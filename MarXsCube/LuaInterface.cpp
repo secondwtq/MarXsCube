@@ -23,6 +23,8 @@
 #include "RenderElement.h"
 #include "RenderElementsContainer.h"
 
+#include "Generic.h"
+
 using namespace luabridge;
 
 namespace LuaInterface {
@@ -295,8 +297,8 @@ namespace LuaInterface {
 					addStaticFunction("CellFromCoord", &Map::CellFromCoord).
 				endClass().
 				beginClass<Session>("Session").
-					addStaticData("instance", &Session::instance).
-					addStaticFunction("GetInstance", &Session::GetInstance).
+					addStaticData("instance", &(Generic::session)).
+					addStaticFunction("GetInstance", &Generic::Session).
 					addFunction("CameraMove", &Session::LUA_CameraMove).
 					addData("KeyData", &Session::KeyData).
 					addData("MousePosData", &Session::MousePosData).

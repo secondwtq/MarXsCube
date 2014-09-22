@@ -44,9 +44,6 @@ class RenderLayer {
 
 class RenderLayerManger {
 	public:
-		static RenderLayerManger *instance;
-		static inline RenderLayerManger &GetInstance() { return *instance; }
-
 		RenderLayer Layers[RenderLayerType::Count];
 
 		void RemoveObject(Abs_Abstract *src);

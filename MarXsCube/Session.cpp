@@ -2,15 +2,13 @@
 #include "ObjectManger.h"
 #include "Abstract.h"
 #include "SFML.h"
+#include "Generic.h"
 
-Session *Session::instance = new Session();
+//Session *Session::instance = new Session();
 const CoordStruct Session::CameraLocationDefault = CoordStruct(384, 384, 320);
 
 void Session::initSession() {LOGFUNC;
-	CameraObject = new Abs_CameraObject();
 
-	ObjectManger::GetInstance().addObject(*CameraObject);
-	RenderLayerManger::GetInstance().Layers[RenderLayerType::Type::LAYER_UI].addObject(*CameraObject);
 }
 
 unsigned int Session::addObject(Abs_Abstract &src) {LOGFUNC;
@@ -19,40 +17,39 @@ unsigned int Session::addObject(Abs_Abstract &src) {LOGFUNC;
 }
 
 void Session::removeObject(Abs_Abstract *src) {LOGFUNC;
-	RenderLayerManger::GetInstance().RemoveObject(src);
+	Generic::RenderLayerManger()->RemoveObject(src);
 	ObjectManger::GetInstance().RemoveObject(src);
-	// delete src;
 }
 
 void Session::CameraMove(DirectionType::Type Direction, float offest) {LOGFUNC;
 	switch (Direction) {
 		case DirectionType::Type::SouthWest:
-		    Session::GetInstance().CameraOffestX -= offest;
-		    Session::GetInstance().CameraOffestY += offest;
+		    this->CameraOffestX -= offest;
+		    this->CameraOffestY += offest;
 		    break;
 		case DirectionType::Type::NorthEast:
-		    Session::GetInstance().CameraOffestX += offest;
-		    Session::GetInstance().CameraOffestY -= offest;
+		    this->CameraOffestX += offest;
+		    this->CameraOffestY -= offest;
 		  	break;
 		case DirectionType::Type::NorthWest:
-		    Session::GetInstance().CameraOffestX -= offest;
-		    Session::GetInstance().CameraOffestY -= offest;
+		    this->CameraOffestX -= offest;
+		    this->CameraOffestY -= offest;
 		  	break;
 		case DirectionType::Type::SouthEast:
-		    Session::GetInstance().CameraOffestX += offest;
-		    Session::GetInstance().CameraOffestY += offest;
+		    this->CameraOffestX += offest;
+		    this->CameraOffestY += offest;
 		  	break;
 		case DirectionType::Type::East:
-			Session::GetInstance().CameraOffestX += offest;
+			this->CameraOffestX += offest;
 			break;
 		case DirectionType::Type::West:
-			Session::GetInstance().CameraOffestX -= offest;
+			this->CameraOffestX -= offest;
 			break;
 		case DirectionType::Type::North:
-			Session::GetInstance().CameraOffestY -= offest;
+			this->CameraOffestY -= offest;
 			break;
 		case DirectionType::Type::South:
-			Session::GetInstance().CameraOffestY += offest;
+			this->CameraOffestY += offest;
 			break;
 	}
 	UpdateCameraOffest();

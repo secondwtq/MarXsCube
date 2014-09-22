@@ -6,6 +6,8 @@
 
 #include "MotionStateTest.h"
 
+#include "Generic.h"
+
 #include "Config.h"
 
 using namespace luabridge;
@@ -21,7 +23,7 @@ Abs_Anim::Abs_Anim(Type_Anim *Type) : Abs_Object(Type), AnimType(Type) {LOGFUNC;
 void Abs_Anim::Update() {LOGFUNC;
 	EventManger::GetInstance().GetEvent(EventManger::Events::ANIM_UPDATE)(this, ExtTable);
 	if (AnimTimer.TimerEnded)
-		Session::GetInstance().removeObject(this);
+		Generic::RemoveObject(this);
 }
 
 void Abs_Anim::Render() {LOGFUNC;
@@ -44,7 +46,7 @@ void Abs_Anim::SpawnAtMapCoord(const CoordStruct &location) {LOGFUNC;
 	cout << "CubeCore: Abs_Anim::SpawnAtMapCoord - Spawning " << location.x << " " << location.y << " " << location.z << " ..." << endl;
 	this->setLocation(location);
 	ObjectManger::GetInstance().addObject(*this);
-	RenderLayerManger::GetInstance().Layers[Layer].addObject(*this);
+	Generic::RenderLayerManger()->Layers[Layer].addObject(*this);
 	cout << "CubeCore: Abs_Anim::SpawnAtMapCoord - Starting ..." << endl;
 	StartPlay();
 	EventManger::GetInstance().GetEvent(EventManger::Events::ANIM_SPAWN)(this, ExtTable);
@@ -52,6 +54,5 @@ void Abs_Anim::SpawnAtMapCoord(const CoordStruct &location) {LOGFUNC;
 }
 
 unsigned int Abs_Anim::GetCurrentFrame() {LOGFUNC;
-	// cout << "CubeCore: Abs_Anim::GetCurrentFrame - Returning " << ((AnimTimer.GetCurrent() / AnimType->FrameLast) * AnimType->FrameStep) << " ..." << endl;
 	return (AnimTimer.GetCurrent() / AnimType->FrameLast) * AnimType->FrameStep;
 }

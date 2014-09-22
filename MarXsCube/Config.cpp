@@ -9,8 +9,6 @@ using namespace std;
 #include "Type_Techno.h"
 #include "Anim.h"
 
-// LuaRef *Environment = nullptr;
-// LuaRef *Functions = nullptr;
 EventManger *EventManger::instance = nullptr;
 
 void ConfigLoadCallback(LuaStatus &L) {

@@ -4,10 +4,11 @@
 
 #include "Session.h"
 #include "Config.h"
+#include "Generic.h"
 
 Abs_Abstract::Abs_Abstract() : 
-	RTTIID(Session::GetInstance().addObject(*this)), 
-	Physics(new PhysicsObject(this)), 
+	RTTIID(Generic::Session()->addObject(*this)),
+	Physics(new PhysicsObject(this)),
 	ExtTable(EventManger::GetInstance().CreateObjectTable(*this)) 
 	{LOGFUNC; }
 

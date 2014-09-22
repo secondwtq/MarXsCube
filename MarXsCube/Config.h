@@ -11,6 +11,8 @@
 class Abs_Abstract;
 class LuaStatus;
 
+typedef void (* LuaLoadCallback) (LuaStatus&);
+
 class ConfigManger {
 	public:
 		LuaStatus *ConfigState = nullptr;
@@ -25,8 +27,6 @@ class ConfigManger {
 
 		luabridge::LuaRef getObject(std::string name);
 };
-
-typedef void (* LuaLoadCallback) (LuaStatus&);
 
 class LuaStatus {
 	public:

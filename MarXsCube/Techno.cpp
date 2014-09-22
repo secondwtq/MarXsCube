@@ -4,6 +4,7 @@
 #include "Transform.h"
 #include "ObjectManger.h"
 #include "RenderElementsContainer.h"
+#include "Generic.h"
 
 using namespace sf;
 
@@ -26,7 +27,7 @@ void Abs_Techno::SpawnAtMapCoord(const CoordStruct &location) {LOGFUNC;
 	cout << "CubeCore: Abs_Techno::SpawnAtMapCoord - Spawning " << location.x << " " << location.y << " " << location.z << " ..." << endl;
     this->setLocation(location);
 	ObjectManger::GetInstance().addObject(*this);
-	RenderLayerManger::GetInstance().Layers[Layer].addObject(*this);
+	Generic::RenderLayerManger()->Layers[Layer].addObject(*this);
 	Physics->SpawnAt(location);
 	EventManger::GetInstance().GetEvent(EventManger::Events::TECHNO_SPAWN)(this, ExtTable);
 }

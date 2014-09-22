@@ -8,13 +8,14 @@
 #include "Session.h"
 #include "Physics.h"
 
+#include "Generic.h"
+
 #include <fstream>
 #include <Bullet/btBulletDynamicsCommon.h>
 
 ObjectManger *ObjectManger::instance = new ObjectManger();
 TestManger *TestManger::instance = new TestManger();
 TextureManger *TextureManger::instance = new TextureManger();
-RenderLayerManger *RenderLayerManger::instance = new RenderLayerManger();
 
 int TextureManger::t(int x) {LOGFUNC; printf("%d\n", x); return 10; }
 TextureAtlas *TextureManger::getTexture(const string &name) {LOGFUNC; return TextureHashs[name]; }
@@ -98,7 +99,7 @@ void TestManger::initShader() {LOGFUNC;
 
 int disToCamera(const Abs_Abstract *src) {//LOGFUNC;
 	auto c = src->GetCoord();
-	auto d = Session::GetInstance().CameraLocation;
+	auto d = Generic::Session()->CameraLocation;
 	return (pow(d.x*10-c.x, 2) + pow(d.y*10-c.y, 2) + pow(d.z*10-c.z, 2));
 }
 

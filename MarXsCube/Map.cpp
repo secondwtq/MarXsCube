@@ -2,14 +2,14 @@
 #include "Map.h"
 #include "Cell.h"
 #include "Session.h"
+#include "Generic.h"
 
 Map *Map::instance = new Map();
 
 void Map::AllocateCells() {
 	for (auto cell : Cells) {
 		ObjectManger::GetInstance().addObject(*cell);
-		RenderLayerManger::GetInstance().Layers[RenderLayerType::Type::LAYER_CELL].addObject(*cell);
-		RenderLayerManger::GetInstance();
+		Generic::RenderLayerManger()->Layers[RenderLayerType::Type::LAYER_CELL].addObject(*cell);
 	}
 }
 

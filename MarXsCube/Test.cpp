@@ -9,6 +9,7 @@
 #include "LuaInterface.h"
 #include "LuaUtils.h"
 #include "Pathfinder.h"
+#include "Generic.h"
 #include "Debug.h"
 using namespace sf;
 using namespace std;
@@ -23,6 +24,10 @@ int main() {
     printf("Working directory: %s, getting ready for logging...\n", currentdir);
     
 	Debug::createLogFile("log.txt");
+	
+	Generic::Init_Session();
+	Generic::Init_RenderLayerManger();
+	
 	LOGFUNC;
 
 	LuaStatus luaState;
@@ -41,7 +46,7 @@ int main() {
 	window.setFramerateLimit(FPSLimit);
 	TestManger::GetInstance().initTest();
 
-	Session::GetInstance().initSession();
+	Generic::Session()->initSession();
 	Pathfinding::init(Map::GetInstance().size.x, Map::GetInstance().size.y);
 	UpdateVm(0, 0);
 
@@ -50,36 +55,36 @@ int main() {
 		EventManger::GetInstance().GetEvent(EventManger::Events::GAME_UPDATE_BEGIN)();
 		// printf("CubeCore: main - updating ...\n");
 
-		Session::GetInstance().setMousePos_Ab();
-		Session::GetInstance().updateMouseButtonStatus();
+		Generic::Session()->setMousePos_Ab();
+		Generic::Session()->updateMouseButtonStatus();
 		while (window.pollEvent(event)) {
 			switch (event.type) {
 				case Event::Closed: window.close(); break;
 
 				case Event::KeyPressed:
-					Session::GetInstance().setKeyEvent(event.key);
-					EventManger::GetInstance().GetEvent(EventManger::Events::UI_KEYPRESS)(Session::GetInstance().getKeyEvent());
+					Generic::Session()->setKeyEvent(event.key);
+					EventManger::GetInstance().GetEvent(EventManger::Events::UI_KEYPRESS)(Generic::Session()->getKeyEvent());
 					break;
 
 				case Event::KeyReleased:
-					Session::GetInstance().setKeyEvent(event.key);
-					EventManger::GetInstance().GetEvent(EventManger::Events::UI_KEYRELEASE)(Session::GetInstance().getKeyEvent());
+					Generic::Session()->setKeyEvent(event.key);
+					EventManger::GetInstance().GetEvent(EventManger::Events::UI_KEYRELEASE)(Generic::Session()->getKeyEvent());
 					break;
 
 				case Event::MouseButtonPressed:
-					Session::GetInstance().setMousePos_Press(event.mouseButton);
-					EventManger::GetInstance().GetEvent(EventManger::Events::UI_MOUSEPRESS)(Session::GetInstance().getMousePos());
+					Generic::Session()->setMousePos_Press(event.mouseButton);
+					EventManger::GetInstance().GetEvent(EventManger::Events::UI_MOUSEPRESS)(Generic::Session()->getMousePos());
 					// Pathfinding::Find(nullptr, nullptr, nullptr);
 					break;
 
 				case Event::MouseButtonReleased:
-					Session::GetInstance().setMousePos_Release(event.mouseButton);
-					EventManger::GetInstance().GetEvent(EventManger::Events::UI_MOUSERELEASE)(Session::GetInstance().getMousePos());
+					Generic::Session()->setMousePos_Release(event.mouseButton);
+					EventManger::GetInstance().GetEvent(EventManger::Events::UI_MOUSERELEASE)(Generic::Session()->getMousePos());
 					break;
 
 				case Event::MouseMoved:
-					Session::GetInstance().setMousePos_Rl(event.mouseMove);
-					EventManger::GetInstance().GetEvent(EventManger::Events::UI_MOUSEMOVE)(Session::GetInstance().getMousePos());
+					Generic::Session()->setMousePos_Rl(event.mouseMove);
+					EventManger::GetInstance().GetEvent(EventManger::Events::UI_MOUSEMOVE)(Generic::Session()->getMousePos());
 					break;
 
 				default: break;
@@ -94,7 +99,7 @@ int main() {
 
 		// printf("CubeCore: main - updating render ...\n");
 		for (size_t i = 0; i < RenderLayerType::Count; i++)
-			RenderLayerManger::GetInstance().Layers[i].Update();
+			Generic::RenderLayerManger()->Layers[i].Update();
 
 		ObjectManger::GetInstance().FinishRemove();
 

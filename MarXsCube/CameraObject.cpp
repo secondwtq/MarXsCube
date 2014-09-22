@@ -3,9 +3,10 @@
 #include "Session.h"
 #include "Transform.h"
 #include "ObjectManger.h"
+#include "Generic.h"
 
 CoordStruct Abs_CameraObject::GetCoord() const {
-	return Session::GetInstance().CameraLocation;
+	return Generic::Session()->CameraLocation;
 }
 
 void Abs_CameraObject::Render() {
