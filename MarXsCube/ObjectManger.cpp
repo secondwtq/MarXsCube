@@ -17,7 +17,7 @@ TextureManger *TextureManger::instance = new TextureManger();
 RenderLayerManger *RenderLayerManger::instance = new RenderLayerManger();
 
 int TextureManger::t(int x) {LOGFUNC; printf("%d\n", x); return 10; }
-TextureAtlas *TextureManger::getTexture(string &name) {LOGFUNC; return TextureHashs[name]; }
+TextureAtlas *TextureManger::getTexture(const string &name) {LOGFUNC; return TextureHashs[name]; }
 TextureAtlas &TextureManger::getTexture_(string &name) {LOGFUNC; return *TextureHashs[name]; }
 
 void RenderLayer::Update() {LOGFUNC;

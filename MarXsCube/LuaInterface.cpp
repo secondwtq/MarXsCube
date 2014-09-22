@@ -20,6 +20,9 @@
 #include "Techno.h"
 #include "Type_Techno.h"
 
+#include "RenderElement.h"
+#include "RenderElementsContainer.h"
+
 using namespace luabridge;
 
 namespace LuaInterface {
@@ -34,6 +37,18 @@ namespace LuaInterface {
 		RegisterInterface_Anim(L);
 		RegisterInterface_Techno(L);
 		RegisterInterface_Map(L);
+		RegisterInterface_New(L);
+	}
+	
+	inline TextureAtlas *Helper_GetTexture(const string &name) {
+		return TextureManger::GetInstance().getTexture(name);
+	}
+	
+	void RegisterInterface_New(LuaStatus &L) {
+		getGlobalNamespace(L).
+			beginNamespace("Helper").
+		addFunction("texture", &Helper_GetTexture).
+		endNamespace();
 	}
 
 	void RegisterInterface_Util(LuaStatus &L) {
@@ -158,6 +173,10 @@ namespace LuaInterface {
 					addData("currentFrame", &RenderElement_FramedStatic::currentFrame).
 					addFunction("setCurrentFrame", &RenderElement_FramedStatic::setCurrentFrame).
 					addStaticFunction("createElement", &RenderElement_FramedStatic::createElement).
+				endClass().
+				deriveClass<RenderElement_FramedDynamic, RenderElement>("RenderElement_FramedDynamic").
+					addConstructor<void(*)(TextureAtlas *, USIZE)>().
+					addStaticFunction("create", &RenderElement_FramedDynamic::create).
 				endClass().
 				beginClass<RenderElementsContainer>("RenderElementsContainer").
 					addFunction("insert", &RenderElementsContainer::insert).

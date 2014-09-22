@@ -61,7 +61,7 @@ class TextureManger {
 
 		int t(int x);
 		TextureAtlas *LUA_getTexture(string name) {LOGFUNC; return getTexture(name); }
-		TextureAtlas *getTexture(string &name);
+		TextureAtlas *getTexture(const string &name);
 		TextureAtlas &getTexture_(string &name);
 };
 

@@ -226,11 +226,13 @@ function Functions.Abs_Techno_onCreate(creating, table)
 	if scriptType.render_preset == "structure" then
 		local bodyElement = Utility.RenderElement_FramedStatic.createElement(scriptType._image)
 		table.bodyElement = bodyElement
-		
+
 		local shadowElement = Utility.RenderElement_FramedStatic.createElement(scriptType._shadowimage)
 		table.shadowElement = shadowElement
 		shadowElement.colorMultiply = Utility.Homogeneous4D(0.1, 0.1, 0.1, 0.3)
 		shadowElement.UseShadowProjection = true;
+
+
 
 		creating.elements:insert(0, bodyElement)
 		creating.elements:insert(-10, shadowElement)

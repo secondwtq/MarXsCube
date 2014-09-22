@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5923C8DA19D00EB90055E0D5 /* RenderElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5923C8D919D00EB90055E0D5 /* RenderElement.cpp */; };
+		5923C8DD19D00F730055E0D5 /* RenderElementsContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5923C8DB19D00F730055E0D5 /* RenderElementsContainer.cpp */; };
 		59262904198AB62300858A67 /* MarXsCube.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 59262903198AB62300858A67 /* MarXsCube.1 */; };
 		5926293E198AB66500858A67 /* Abstract.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262926198AB66500858A67 /* Abstract.cpp */; };
 		5926293F198AB66500858A67 /* Anim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262927198AB66500858A67 /* Anim.cpp */; };
@@ -54,6 +56,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5923C8D919D00EB90055E0D5 /* RenderElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderElement.cpp; sourceTree = "<group>"; };
+		5923C8DB19D00F730055E0D5 /* RenderElementsContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderElementsContainer.cpp; sourceTree = "<group>"; };
+		5923C8DC19D00F730055E0D5 /* RenderElementsContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderElementsContainer.h; sourceTree = "<group>"; };
 		592628FE198AB62300858A67 /* MarXsCube */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MarXsCube; sourceTree = BUILT_PRODUCTS_DIR; };
 		59262903198AB62300858A67 /* MarXsCube.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MarXsCube.1; sourceTree = "<group>"; };
 		5926290A198AB66500858A67 /* Abstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Abstract.h; sourceTree = "<group>"; };
@@ -137,6 +142,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5923C8D819D00E8B0055E0D5 /* Silcon */ = {
+			isa = PBXGroup;
+			children = (
+				5923C8D919D00EB90055E0D5 /* RenderElement.cpp */,
+				5926291D198AB66500858A67 /* RenderElement.h */,
+				5923C8DB19D00F730055E0D5 /* RenderElementsContainer.cpp */,
+				5923C8DC19D00F730055E0D5 /* RenderElementsContainer.h */,
+			);
+			name = Silcon;
+			sourceTree = "<group>";
+		};
+		5923C8DE19D0164B0055E0D5 /* Hafnium */ = {
+			isa = PBXGroup;
+			children = (
+				5926292E198AB66500858A67 /* LuaUtils.cpp */,
+				5926292D198AB66500858A67 /* LuaInterface.cpp */,
+				59262912198AB66500858A67 /* LuaUtils.h */,
+				59262911198AB66500858A67 /* LuaInterface.h */,
+			);
+			name = Hafnium;
+			sourceTree = "<group>";
+		};
 		592628F5198AB62300858A67 = {
 			isa = PBXGroup;
 			children = (
@@ -170,11 +197,11 @@
 				5926290B198AB66500858A67 /* Anim.h */,
 				5926290C198AB66500858A67 /* CameraObject.h */,
 				5926290D198AB66500858A67 /* Cell.h */,
-				5926290E198AB66500858A67 /* Common.h */,
+				5932C84619D00C6800135717 /* Common */,
+				5923C8DE19D0164B0055E0D5 /* Hafnium */,
+				5923C8D819D00E8B0055E0D5 /* Silcon */,
 				5926290F198AB66500858A67 /* Config.h */,
 				59262910198AB66500858A67 /* Debug.h */,
-				59262911198AB66500858A67 /* LuaInterface.h */,
-				59262912198AB66500858A67 /* LuaUtils.h */,
 				59262913198AB66500858A67 /* Map.h */,
 				59262914198AB66500858A67 /* MotionStateTest.h */,
 				59262915198AB66500858A67 /* Object.h */,
@@ -185,9 +212,7 @@
 				5926291A198AB66500858A67 /* Physics.h */,
 				5926291B198AB66500858A67 /* PhysicsCheck.h */,
 				5926291C198AB66500858A67 /* PhysicsCommon.h */,
-				5926291D198AB66500858A67 /* RenderElement.h */,
 				5926291E198AB66500858A67 /* Session.h */,
-				5926291F198AB66500858A67 /* SFML.h */,
 				59262920198AB66500858A67 /* Techno.h */,
 				59262921198AB66500858A67 /* Transform.h */,
 				59262922198AB66500858A67 /* Type_Abstract.h */,
@@ -198,11 +223,8 @@
 				59262927198AB66500858A67 /* Anim.cpp */,
 				59262928198AB66500858A67 /* CameraObject.cpp */,
 				59262929198AB66500858A67 /* Cell.cpp */,
-				5926292A198AB66500858A67 /* Common.cpp */,
 				5926292B198AB66500858A67 /* Config.cpp */,
 				5926292C198AB66500858A67 /* Debug.cpp */,
-				5926292D198AB66500858A67 /* LuaInterface.cpp */,
-				5926292E198AB66500858A67 /* LuaUtils.cpp */,
 				5926292F198AB66500858A67 /* Map.cpp */,
 				59262930198AB66500858A67 /* Object.cpp */,
 				59262931198AB66500858A67 /* ObjectArrayImpl.cpp */,
@@ -220,6 +242,16 @@
 				59262903198AB62300858A67 /* MarXsCube.1 */,
 			);
 			path = MarXsCube;
+			sourceTree = "<group>";
+		};
+		5932C84619D00C6800135717 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5926291F198AB66500858A67 /* SFML.h */,
+				5926292A198AB66500858A67 /* Common.cpp */,
+				5926290E198AB66500858A67 /* Common.h */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,10 +305,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5923C8DD19D00F730055E0D5 /* RenderElementsContainer.cpp in Sources */,
 				5926294D198AB66500858A67 /* Session.cpp in Sources */,
 				5926294B198AB66500858A67 /* Pathfinder.cpp in Sources */,
 				5926293F198AB66500858A67 /* Anim.cpp in Sources */,
 				59262941198AB66500858A67 /* Cell.cpp in Sources */,
+				5923C8DA19D00EB90055E0D5 /* RenderElement.cpp in Sources */,
 				5926294E198AB66500858A67 /* Techno.cpp in Sources */,
 				5926294A198AB66500858A67 /* ObjectManger.cpp in Sources */,
 				59262953198AB66500858A67 /* Type_Anim.cpp in Sources */,

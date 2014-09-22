@@ -24,6 +24,8 @@ namespace LuaInterface {
 	void RegisterInterface_Util(LuaStatus &L);
 
 	void RegisterInterface_Physics(LuaStatus &L);
+	
+	void RegisterInterface_New(LuaStatus &L);
 
 }
 
