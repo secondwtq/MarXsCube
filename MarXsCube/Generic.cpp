@@ -10,8 +10,10 @@
 
 #include "Session.h"
 #include "ObjectManger.h"
+#include "PhysicsGeneral.h"
 
 #include "Generic.h"
 
 class Session *Generic::session = nullptr;
 class RenderLayerManger *Generic::render_layer_manger = nullptr;
+class PhysicsGeneral *Generic::physics_general = nullptr;

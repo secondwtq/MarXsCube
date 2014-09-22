@@ -165,14 +165,5 @@ class ObjectDirection {
 };
 
 const Vector3DT<double> ShadowProjectionVector = Vector3DT<double>(0.2, -1.25, 1);
-extern Float3D GlobalGravity;
-
-#include <Bullet/btBulletDynamicsCommon.h>
-
-extern btDefaultCollisionConfiguration *collConf;
-extern btCollisionDispatcher *dispatcher;
-extern btBroadphaseInterface *overlapPairCache;
-extern btSequentialImpulseConstraintSolver *solver;
-extern btDiscreteDynamicsWorld *dynaWorld;
 
 #endif

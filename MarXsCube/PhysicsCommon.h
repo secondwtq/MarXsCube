@@ -5,6 +5,8 @@
 
 #include <vector>
 
+#include <Bullet/btBulletDynamicsCommon.h>
+
 class PhysicsObject;
 
 class ObjectCollideCache {
@@ -15,7 +17,5 @@ class ObjectCollideCache {
 		inline void clear() { objects.clear(); }
 		inline std::size_t size() { return objects.size(); }
 };
-
-#include "Physics.h"
 
 #endif

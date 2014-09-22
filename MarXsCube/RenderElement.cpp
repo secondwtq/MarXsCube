@@ -9,6 +9,8 @@
 #include "Common.h"
 #include "SFML.h"
 #include "Transform.h"
+#include "InternalDraw.h"
+
 #include "RenderElement.h"
 
 using namespace sf;
@@ -18,7 +20,7 @@ void RenderElement_DirectionedStatic::_Render_Overload(CoordStruct &loc) {LOGFUN
 	SetProjectionLocation_General(this, loc);
 	renderSprite.setTexture(*texture);
 	texture->setArea(renderSprite, getCurrentFrame());
-	InternalDraw_Ext(*this, renderSprite);
+	InternalDraw::DrawExt(*this, renderSprite);
 }
 
 void RenderElement_FramedStatic::_Render_Overload(CoordStruct &loc) {LOGFUNC;
@@ -26,7 +28,7 @@ void RenderElement_FramedStatic::_Render_Overload(CoordStruct &loc) {LOGFUNC;
 	SetProjectionLocation_General(this, loc);
 	renderSprite.setTexture(*texture);
 	texture->setArea(renderSprite, currentFrame);
-	InternalDraw_Ext(*this, renderSprite);
+	InternalDraw::DrawExt(*this, renderSprite);
 }
 
 void RenderElement_FramedDynamic::_Render_Overload(CoordStruct &loc) {
@@ -39,5 +41,5 @@ void RenderElement_FramedDynamic::_Render_Overload(CoordStruct &loc) {
 	
 	this->current_frame++;
 	
-	InternalDraw_Ext(*this, renderSprite);
+	InternalDraw::DrawExt(*this, renderSprite);
 }

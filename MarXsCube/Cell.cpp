@@ -88,7 +88,7 @@ bool Abs_Cell::initialPerformOccTest(int xoff, int yoff, Abs_Object *Obj, int he
 	btVector3 start = btVector3(btScalar(xoff), btScalar(yoff), btScalar(hei));
 	btVector3 end = btVector3(btScalar(xoff), btScalar(yoff), btScalar(hei+DIVS));
 	btCollisionWorld::ClosestRayResultCallback callback(start, end);
-	dynaWorld->rayTest(start, end, callback);
+	Generic::PhysicsGeneral()->dynaWorld->rayTest(start, end, callback);
 	if (callback.hasHit() && ((PhysicsObject *)((btCollisionObject *)callback.m_collisionObject->getUserPointer()))->attachedToObject != Obj) return true;
 	return false;
 }
@@ -116,7 +116,7 @@ Abs_Abstract *Abs_Cell::_initialPerformOccTest(int xoff, int yoff, int hei) {
 	btVector3 start = btVector3(btScalar(xoff), btScalar(yoff), btScalar(hei));
 	btVector3 end = btVector3(btScalar(xoff), btScalar(yoff), btScalar(hei+DIVS));
 	btCollisionWorld::ClosestRayResultCallback callback(start, end);
-	dynaWorld->rayTest(start, end, callback);
+	Generic::PhysicsGeneral()->dynaWorld->rayTest(start, end, callback);
 	if (callback.hasHit()) return ((PhysicsObject *)((btCollisionObject *)callback.m_collisionObject->getUserPointer()))->attachedToObject;
 	return nullptr;
 }
@@ -137,7 +137,7 @@ bool Abs_Cell::PassableTo(Abs_Object *Obj) {//LOGFUNC;
 		auto TestBody = new btRigidBody(info);
 		ContactSensorCallback_CellCheck_ callback(*TestBody, &ret, Obj);
         //  TODO: modified fm. MarKsCube_Mac
-		dynaWorld->contactTest(TestBody, callback);
+		Generic::PhysicsGeneral()->dynaWorld->contactTest(TestBody, callback);
 		delete TestBody;
 		if (ret == false) return false;
 	}

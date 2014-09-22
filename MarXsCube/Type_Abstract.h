@@ -5,6 +5,7 @@
 #include "Common.h"
 #include "Abstract.h"
 #include "ObjectTypeArray.h"
+#include "Physics.h"
 
 class ConfigManger;
 

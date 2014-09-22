@@ -1,6 +1,5 @@
 #include "Transform.h"
 #include "Common.h"
-#include "Session.h"
 
 #include <armadillo>
 using namespace sf;

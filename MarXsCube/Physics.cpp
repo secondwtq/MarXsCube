@@ -51,7 +51,7 @@ bool PhysicsObjectType::LoadFromConfig(ConfigManger &manger, LuaRef ParentRef) {
 
 PhysicsObject::~PhysicsObject() {LOGFUNC;
 	delObject_all(this, PhysicsObject::Array.Array);
-	if (spawned) dynaWorld->removeRigidBody(body);
+	if (spawned) Generic::PhysicsGeneral()->dynaWorld->removeRigidBody(body);
 	delete body;
 	delete MotionState;
 	delete shape;
@@ -77,7 +77,7 @@ void PhysicsObject::SpawnAt(const CoordStruct &loc) {LOGFUNC;
 		body->setAngularFactor(Type->angleFact);
 		body->setUserPointer(this);
 		// body->setContactProcessingThreshold(btScalar(-.1));
-		dynaWorld->addRigidBody(body);
+		Generic::PhysicsGeneral()->dynaWorld->addRigidBody(body);
 
 		attachedToObject->collSphere = new btSphereShape(btScalar(attachedToObject->rCollSphere));
 
@@ -119,7 +119,7 @@ bool PhysicsObject::checkCollide() {
 	btRigidBody::btRigidBodyConstructionInfo info(0, state, _shape, btVector3(0, 0, 0));
 	auto TestBody = new btRigidBody(info);
 	ContactSensorCallback_CellCheck_ callback(*TestBody, &ret, this->attachedToObject);
-	dynaWorld->contactTest(TestBody, callback);
+	Generic::PhysicsGeneral()->dynaWorld->contactTest(TestBody, callback);
 	delete TestBody;
 	delete state;
 	if (ret == false) return true;
@@ -280,23 +280,23 @@ void PhysicsObject::disableResponse() {LOGFUNC;
 }
 
 void PhysicsObject::setToStatic() {LOGFUNC;
-	dynaWorld->removeRigidBody(body);
+	Generic::PhysicsGeneral()->dynaWorld->removeRigidBody(body);
 	body->setLinearVelocity(btVector3(0, 0, 0));
 	body->setAngularVelocity(btVector3(0, 0, 0));
 	body->setMassProps(0, btVector3(0,0,0));
 	body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CollisionFlags::CF_STATIC_OBJECT);
 	body->setActivationState(DISABLE_DEACTIVATION);
-	dynaWorld->addRigidBody(body);
+	Generic::PhysicsGeneral()->dynaWorld->addRigidBody(body);
 }
 
 void PhysicsObject::setToKinematic() {LOGFUNC;
-	dynaWorld->removeRigidBody(body);
+	Generic::PhysicsGeneral()->dynaWorld->removeRigidBody(body);
 	body->setLinearVelocity(btVector3(0, 0, 0));
 	body->setAngularVelocity(btVector3(0, 0, 0));
 	body->setMassProps(0, btVector3(0,0,0));
 	body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CollisionFlags::CF_KINEMATIC_OBJECT);
 	body->setActivationState(DISABLE_DEACTIVATION);
-	dynaWorld->addRigidBody(body);
+	Generic::PhysicsGeneral()->dynaWorld->addRigidBody(body);
 }
 
 

@@ -27,6 +27,7 @@ int main() {
 	
 	Generic::Init_Session();
 	Generic::Init_RenderLayerManger();
+	Generic::Init_PhysicsGeneral();
 	
 	LOGFUNC;
 
@@ -104,11 +105,13 @@ int main() {
 		ObjectManger::GetInstance().FinishRemove();
 
 		// printf("CubeCore: main - updating physics ...\n");
-		dynaWorld->stepSimulation(1.f/(float)FPSLimit, 10, btScalar(1.)/btScalar((float)divPhysics));
+		Generic::PhysicsGeneral()->dynaWorld->stepSimulation(1.f/(float)FPSLimit, 10, btScalar(1.)/btScalar((float)divPhysics));
 
 		// printf("CubeCore: main - displaying ...\n");
 		window.display();
 	}
+	Generic::Dispose_PhysicsGeneral();
+	
 	Debug::closeLogFile();
 
 	return 0;

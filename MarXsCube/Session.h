@@ -4,7 +4,6 @@
 #include "Common.h"
 #include "Transform.h"
 
-class Abs_CameraObject;
 class Abs_Abstract;
 
 struct CubeKeyEvent {
@@ -24,7 +23,6 @@ class Session {
 
 		const static CoordStruct CameraLocationDefault; //	384, 384, 320
 		float CameraOffestX = 0.0, CameraOffestY = 0.0;
-		Abs_CameraObject *CameraObject = nullptr;
 		CoordStruct CameraLocation = CameraLocationDefault;
 		void CameraMove(DirectionType::Type Direction, float offest = 2.0f);
 		void UpdateCameraOffest() { UpdateVm(CameraOffestX, CameraOffestY); }
@@ -52,6 +50,5 @@ class Session {
 };
 
 #include "Abstract.h"
-#include "CameraObject.h"
 
 #endif

@@ -7,23 +7,8 @@ int DIVS = 64;
 int WIDTH = 800, HEIGHT = 600;
 int FPSLimit = 30;
 int divPhysics = 240;
-Float3D GlobalGravity = Float3D(0, 0, -100);
 double PI = 3.14159265;
 double TransformScaleFactor = 0.6484375;
-
-void InternalDraw_Ext(Drawable &obj) {
-	LOGFUNC;
-	static auto shader_ptr = &TestManger::GetInstance().extShader;
-	TestManger::GetInstance().window->draw(obj, shader_ptr);
-}
-
-void InternalDraw_Ext(RenderElement &objArg, Drawable &obj) {
-	LOGFUNC;
-	static auto shader_ptr = &TestManger::GetInstance().extShader;
-	// printf("CubeCore: InternalDraw_Ext - Drawing ...\n");
-	shader_ptr->setParameter("colorMultiply", objArg.colorMultiply.x, objArg.colorMultiply.y, objArg.colorMultiply.z, objArg.colorMultiply.w);
-	TestManger::GetInstance().window->draw(obj, shader_ptr);
-}
 
 CubeTimer *CubeTimer::createCubeTimer(int Interval, int LoopCount) {
 	LOGFUNC;

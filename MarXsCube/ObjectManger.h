@@ -22,13 +22,7 @@ class ObjectManger {
 		vector<Abs_Abstract *> ObjectsToDelete;
 
 		void RemoveObject(Abs_Abstract *src) {LOGFUNC; ObjectsToDelete.push_back(src); }
-		void FinishRemove() { LOGFUNC;
-			for (auto i : ObjectsToDelete) {
-				delObject_all(i, Objects);
-				delete i;
-			}
-			ObjectsToDelete.clear();
-		}
+		void FinishRemove();
 };
 
 class RenderLayer {

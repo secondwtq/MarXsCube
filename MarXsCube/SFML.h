@@ -16,11 +16,6 @@ struct TextureAtlasArg {
 	TextureAtlasArg(const char *_filename, unsigned short _num=1, char hori=1, char vert=1) : filename(_filename), num(_num), TexDist(hori, vert) {LOGFUNC; }
 };
 
-class RenderElement;
-
-void InternalDraw_Ext(sf::Drawable &obj);
-void InternalDraw_Ext(RenderElement &objArg, sf::Drawable &obj);
-
 class TextureAtlas {
 	public:
 		sf::Texture texture;
@@ -57,7 +52,5 @@ class TextureAtlas {
 
 		sf::IntRect _getArea(unsigned short idx);
 };
-
-#include "RenderElement.h"
 
 #endif

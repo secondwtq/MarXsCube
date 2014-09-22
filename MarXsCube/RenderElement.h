@@ -15,10 +15,10 @@ class RenderElement {
 		bool UseShadowProjection = false;
 		Vector3DT<double> ProjectionVector = ShadowProjectionVector; //	Vector3DT<double>(0.1239851454748, -0.7748446592171, 0.61987572737); //	Vector3DT<double>(4, -25, 20);
 
-	inline void Render(CoordStruct &&loc) {
-		if (this->Enabled)
-			this->_Render_Overload(loc);
-	}
+		inline void Render(CoordStruct &&loc) {
+			if (this->Enabled)
+				this->_Render_Overload(loc);
+		}
 
 		virtual ~RenderElement() { }
 	
@@ -32,6 +32,10 @@ class RenderElement_DirectionedStatic : public RenderElement {
 		TextureAtlas *texture = nullptr;
 		sf::Sprite renderSprite;
 		int frameCount = 32;
+	
+		~RenderElement_DirectionedStatic() {
+			delete this->texture;
+		}
 
 		RenderElement_DirectionedStatic(TextureAtlas *_texture, int countFrame = 32) : texture(_texture), frameCount(countFrame) {LOGFUNC; }
 
@@ -53,6 +57,10 @@ class RenderElement_FramedStatic : public RenderElement {
 		int currentFrame = 0;
 
 		RenderElement_FramedStatic(TextureAtlas *_texture) : texture(_texture) {LOGFUNC; }
+	
+		~RenderElement_FramedStatic() {
+			delete this->texture;
+		}
 
 		void setCurrentFrame(int frame) { currentFrame = frame; }
 
@@ -75,6 +83,10 @@ public:
 	
 	RenderElement_FramedDynamic(TextureAtlas *_texture, USIZE _frame_count)
 		: texture(_texture), frame_count(_frame_count) {LOGFUNC; }
+	
+	~RenderElement_FramedDynamic() {
+		delete this->texture;
+	}
 	
 	static RenderElement_FramedDynamic *create(TextureAtlas *texture, USIZE frame_count = 1) {LOGFUNC;
 		return new RenderElement_FramedDynamic(texture, frame_count);

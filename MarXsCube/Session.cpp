@@ -1,8 +1,9 @@
-#include "Session.h"
 #include "ObjectManger.h"
 #include "Abstract.h"
 #include "SFML.h"
 #include "Generic.h"
+
+#include "Session.h"
 
 //Session *Session::instance = new Session();
 const CoordStruct Session::CameraLocationDefault = CoordStruct(384, 384, 320);

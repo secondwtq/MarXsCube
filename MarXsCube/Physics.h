@@ -8,12 +8,12 @@
 #include <LuaBridge/LuaBridge.h>
 #include "Config.h"
 #include "PhysicsCommon.h"
+#include "PhysicsGeneral.h"
 #include "ObjectArray.h"
+#include "Generic.h"
 
 class ConfigManger;
 class Abs_Abstract;
-
-void cubeTickCallback(btDynamicsWorld *world, btScalar timeStep);
 
 enum PhysicsShapes {
 	BOX,
@@ -173,7 +173,7 @@ class RayTestSingle {
 		RayTestSingle(CoordStruct start, CoordStruct end) : callback(btVector3(btScalar(start.x), btScalar(start.y), btScalar(start.z)),
 																							btVector3(btScalar(end.x), btScalar(end.y), btScalar(end.z))) {LOGFUNC; }
 		void perform() {LOGFUNC;
-			dynaWorld->rayTest(callback.m_rayFromWorld, callback.m_rayToWorld, callback);
+			Generic::PhysicsGeneral()->dynaWorld->rayTest(callback.m_rayFromWorld, callback.m_rayToWorld, callback);
 		}
 
 		PhysicsObject *getFirstObject() {LOGFUNC;
