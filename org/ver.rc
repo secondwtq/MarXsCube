@@ -1,0 +1,26 @@
+id ICON "Misc//icon_gen.ico"
+
+1 VERSIONINFO
+FILEVERSION     0,1,6,4
+PRODUCTVERSION  0,1,6,4
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904E4"
+    BEGIN
+      VALUE "CompanyName", "seCOnDatkE, 2014."
+      VALUE "FileDescription", "MarKsCube Engine, powered by SFML, LuaScript & Bullet Physics."
+      VALUE "FileVersion", "Prototype"
+      VALUE "InternalName", "cubecore"
+      VALUE "LegalCopyright", "Copyleft 2014 seCOnDatkE & MarksCube Staff."
+      VALUE "OriginalFilename", "markscube.exe"
+      VALUE "ProductName", "MarKsCube Super Simple Ultimate Unlimited Universal GameEngine."
+      VALUE "ProductVersion", "Prototype"
+    END
+  END
+
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1252
+  END
+END

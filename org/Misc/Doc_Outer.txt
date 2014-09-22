@@ -1,0 +1,19 @@
+Lua全局命名空间：
+
+Environment命名空间：
+	ObjectTable表
+
+Debug命名空间：
+	用于存储一些调试脚本的utility数据和函数。
+
+config命名空间：
+	bases命名空间：
+	textures命名空间：
+	objects命名空间：
+	util命名空间：
+
+Functions命名空间：
+	用于存储事件相关函数。
+
+	_defaultFuns命名空间：
+		定义用作事件placeholder的dummy函数。

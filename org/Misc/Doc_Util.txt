@@ -1,0 +1,60 @@
+Lua全局命名空间：
+
+API：
+
+Utility：
+
+函数：
+
+closeSession()
+	退出游戏。
+CoordStruct GetCoordFromPoint(CubePoint)
+	从屏幕空间投影到世界空间。
+
+类：
+
+CoordStruct：
+	三维整数向量。
+	子元素：
+	x, y, z
+
+	构造函数：
+	CoordStruct(int, int, int)
+
+	通常用于表示世界空间座标。
+
+CellStruct：
+	二维整数向量。
+	子元素：
+	x, y
+
+	构造函数：
+	CoordStruct(int, int)
+
+	通常用于表示地图格子位置。
+
+CubePoint，和CellStruct只有名字不同，通常用于表示屏幕空间中的像素点。
+
+SF_Vector2f：
+	渲染器格式二维浮点数向量。
+	子元素：
+	x, y
+
+	构造函数：
+	SF_Vector2f(float, float)
+
+CubeTimer：
+	内置计时器类。
+
+KeyEvent：
+	用于表示键盘事件。
+	子元素：
+	code，与键盘事件相关的键码，其值的意义通过KeyDef.lua在Lua环境的Enums.Key和Enums.KeyString中定义。
+	control，shift，alt，system，布尔值，表示相关的键是否按下。
+
+MousePosition：
+	用于表示鼠标状态。
+	子元素：
+	pos，CubePoint型向量，表示鼠标在窗口中的相对位置。
+	x_absolute，y_absolute，整数，表示鼠标在桌面中的绝对位置。
+	left，right，middle，布尔值，用于指示事件相关的键或当前鼠标键的状态。

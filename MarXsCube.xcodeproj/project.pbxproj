@@ -7,8 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		59262902198AB62300858A67 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262901198AB62300858A67 /* main.cpp */; };
 		59262904198AB62300858A67 /* MarXsCube.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 59262903198AB62300858A67 /* MarXsCube.1 */; };
+		5926293E198AB66500858A67 /* Abstract.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262926198AB66500858A67 /* Abstract.cpp */; };
+		5926293F198AB66500858A67 /* Anim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262927198AB66500858A67 /* Anim.cpp */; };
+		59262940198AB66500858A67 /* CameraObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262928198AB66500858A67 /* CameraObject.cpp */; };
+		59262941198AB66500858A67 /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262929198AB66500858A67 /* Cell.cpp */; };
+		59262942198AB66500858A67 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926292A198AB66500858A67 /* Common.cpp */; };
+		59262943198AB66500858A67 /* Config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926292B198AB66500858A67 /* Config.cpp */; };
+		59262944198AB66500858A67 /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926292C198AB66500858A67 /* Debug.cpp */; };
+		59262945198AB66500858A67 /* LuaInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926292D198AB66500858A67 /* LuaInterface.cpp */; };
+		59262946198AB66500858A67 /* LuaUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926292E198AB66500858A67 /* LuaUtils.cpp */; };
+		59262947198AB66500858A67 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926292F198AB66500858A67 /* Map.cpp */; };
+		59262948198AB66500858A67 /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262930198AB66500858A67 /* Object.cpp */; };
+		59262949198AB66500858A67 /* ObjectArrayImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262931198AB66500858A67 /* ObjectArrayImpl.cpp */; };
+		5926294A198AB66500858A67 /* ObjectManger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262932198AB66500858A67 /* ObjectManger.cpp */; };
+		5926294B198AB66500858A67 /* Pathfinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262933198AB66500858A67 /* Pathfinder.cpp */; };
+		5926294C198AB66500858A67 /* Physics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262934198AB66500858A67 /* Physics.cpp */; };
+		5926294D198AB66500858A67 /* Session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262935198AB66500858A67 /* Session.cpp */; };
+		5926294E198AB66500858A67 /* Techno.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262936198AB66500858A67 /* Techno.cpp */; };
+		5926294F198AB66500858A67 /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262937198AB66500858A67 /* Test.cpp */; };
+		59262951198AB66500858A67 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262939198AB66500858A67 /* Transform.cpp */; };
+		59262952198AB66500858A67 /* Type_Abstract.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926293A198AB66500858A67 /* Type_Abstract.cpp */; };
+		59262953198AB66500858A67 /* Type_Anim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926293B198AB66500858A67 /* Type_Anim.cpp */; };
+		59262954198AB66500858A67 /* Type_Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926293C198AB66500858A67 /* Type_Object.cpp */; };
+		59262955198AB66500858A67 /* Type_Techno.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926293D198AB66500858A67 /* Type_Techno.cpp */; };
+		59262A3C198AD36900858A67 /* liblua.5.1.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 59262956198ABA0100858A67 /* liblua.5.1.5.dylib */; };
+		59262A3E198AD38400858A67 /* libsfml-system.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5926295B198ABA1900858A67 /* libsfml-system.2.1.dylib */; };
+		59262A3F198AD38400858A67 /* libsfml-window.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5926295C198ABA1900858A67 /* libsfml-window.2.1.dylib */; };
+		59262A40198AD39300858A67 /* libsfml-graphics.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 59262959198ABA1900858A67 /* libsfml-graphics.2.1.dylib */; };
+		595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */; };
+		595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */; };
+		595DDC13198ADD990046919B /* libLinearMath_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,15 +55,82 @@
 
 /* Begin PBXFileReference section */
 		592628FE198AB62300858A67 /* MarXsCube */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MarXsCube; sourceTree = BUILT_PRODUCTS_DIR; };
-		59262901198AB62300858A67 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		59262903198AB62300858A67 /* MarXsCube.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MarXsCube.1; sourceTree = "<group>"; };
+		5926290A198AB66500858A67 /* Abstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Abstract.h; sourceTree = "<group>"; };
+		5926290B198AB66500858A67 /* Anim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Anim.h; sourceTree = "<group>"; };
+		5926290C198AB66500858A67 /* CameraObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraObject.h; sourceTree = "<group>"; };
+		5926290D198AB66500858A67 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		5926290E198AB66500858A67 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		5926290F198AB66500858A67 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		59262910198AB66500858A67 /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
+		59262911198AB66500858A67 /* LuaInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaInterface.h; sourceTree = "<group>"; };
+		59262912198AB66500858A67 /* LuaUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaUtils.h; sourceTree = "<group>"; };
+		59262913198AB66500858A67 /* Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
+		59262914198AB66500858A67 /* MotionStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionStateTest.h; sourceTree = "<group>"; };
+		59262915198AB66500858A67 /* Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Object.h; sourceTree = "<group>"; };
+		59262916198AB66500858A67 /* ObjectArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectArray.h; sourceTree = "<group>"; };
+		59262917198AB66500858A67 /* ObjectManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectManger.h; sourceTree = "<group>"; };
+		59262918198AB66500858A67 /* ObjectTypeArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTypeArray.h; sourceTree = "<group>"; };
+		59262919198AB66500858A67 /* Pathfinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pathfinder.h; sourceTree = "<group>"; };
+		5926291A198AB66500858A67 /* Physics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Physics.h; sourceTree = "<group>"; };
+		5926291B198AB66500858A67 /* PhysicsCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsCheck.h; sourceTree = "<group>"; };
+		5926291C198AB66500858A67 /* PhysicsCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsCommon.h; sourceTree = "<group>"; };
+		5926291D198AB66500858A67 /* RenderElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderElement.h; sourceTree = "<group>"; };
+		5926291E198AB66500858A67 /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
+		5926291F198AB66500858A67 /* SFML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFML.h; sourceTree = "<group>"; };
+		59262920198AB66500858A67 /* Techno.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Techno.h; sourceTree = "<group>"; };
+		59262921198AB66500858A67 /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
+		59262922198AB66500858A67 /* Type_Abstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Type_Abstract.h; sourceTree = "<group>"; };
+		59262923198AB66500858A67 /* Type_Anim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Type_Anim.h; sourceTree = "<group>"; };
+		59262924198AB66500858A67 /* Type_Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Type_Object.h; sourceTree = "<group>"; };
+		59262925198AB66500858A67 /* Type_Techno.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Type_Techno.h; sourceTree = "<group>"; };
+		59262926198AB66500858A67 /* Abstract.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Abstract.cpp; sourceTree = "<group>"; };
+		59262927198AB66500858A67 /* Anim.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Anim.cpp; sourceTree = "<group>"; };
+		59262928198AB66500858A67 /* CameraObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraObject.cpp; sourceTree = "<group>"; };
+		59262929198AB66500858A67 /* Cell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cell.cpp; sourceTree = "<group>"; };
+		5926292A198AB66500858A67 /* Common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Common.cpp; sourceTree = "<group>"; };
+		5926292B198AB66500858A67 /* Config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Config.cpp; sourceTree = "<group>"; };
+		5926292C198AB66500858A67 /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
+		5926292D198AB66500858A67 /* LuaInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaInterface.cpp; sourceTree = "<group>"; };
+		5926292E198AB66500858A67 /* LuaUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaUtils.cpp; sourceTree = "<group>"; };
+		5926292F198AB66500858A67 /* Map.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
+		59262930198AB66500858A67 /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = "<group>"; };
+		59262931198AB66500858A67 /* ObjectArrayImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectArrayImpl.cpp; sourceTree = "<group>"; };
+		59262932198AB66500858A67 /* ObjectManger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectManger.cpp; sourceTree = "<group>"; };
+		59262933198AB66500858A67 /* Pathfinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pathfinder.cpp; sourceTree = "<group>"; };
+		59262934198AB66500858A67 /* Physics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Physics.cpp; sourceTree = "<group>"; };
+		59262935198AB66500858A67 /* Session.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Session.cpp; sourceTree = "<group>"; };
+		59262936198AB66500858A67 /* Techno.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Techno.cpp; sourceTree = "<group>"; };
+		59262937198AB66500858A67 /* Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Test.cpp; sourceTree = "<group>"; };
+		59262939198AB66500858A67 /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
+		5926293A198AB66500858A67 /* Type_Abstract.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Type_Abstract.cpp; sourceTree = "<group>"; };
+		5926293B198AB66500858A67 /* Type_Anim.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Type_Anim.cpp; sourceTree = "<group>"; };
+		5926293C198AB66500858A67 /* Type_Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Type_Object.cpp; sourceTree = "<group>"; };
+		5926293D198AB66500858A67 /* Type_Techno.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Type_Techno.cpp; sourceTree = "<group>"; };
+		59262956198ABA0100858A67 /* liblua.5.1.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua.5.1.5.dylib; path = ../../../../../usr/local/Cellar/lua/5.1.5/lib/liblua.5.1.5.dylib; sourceTree = "<group>"; };
+		59262958198ABA1900858A67 /* libsfml-audio.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-audio.2.1.dylib"; path = "../../../../../usr/local/Cellar/sfml/2.1/lib/libsfml-audio.2.1.dylib"; sourceTree = "<group>"; };
+		59262959198ABA1900858A67 /* libsfml-graphics.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-graphics.2.1.dylib"; path = "../../../../../usr/local/Cellar/sfml/2.1/lib/libsfml-graphics.2.1.dylib"; sourceTree = "<group>"; };
+		5926295A198ABA1900858A67 /* libsfml-network.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-network.2.1.dylib"; path = "../../../../../usr/local/Cellar/sfml/2.1/lib/libsfml-network.2.1.dylib"; sourceTree = "<group>"; };
+		5926295B198ABA1900858A67 /* libsfml-system.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-system.2.1.dylib"; path = "../../../../../usr/local/Cellar/sfml/2.1/lib/libsfml-system.2.1.dylib"; sourceTree = "<group>"; };
+		5926295C198ABA1900858A67 /* libsfml-window.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-window.2.1.dylib"; path = "../../../../../usr/local/Cellar/sfml/2.1/lib/libsfml-window.2.1.dylib"; sourceTree = "<group>"; };
+		59262968198ABCFA00858A67 /* Externals */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Externals; sourceTree = "<group>"; };
+		595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletCollision_xcode4_x64_release.a; sourceTree = "<group>"; };
+		595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletDynamics_xcode4_x64_release.a; sourceTree = "<group>"; };
+		595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libLinearMath_xcode4_x64_release.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		592628FB198AB62300858A67 /* Frameworks */ = {
+		59262A3B198AD35000858A67 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */,
+				595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */,
+				595DDC13198ADD990046919B /* libLinearMath_xcode4_x64_release.a in Frameworks */,
+				59262A40198AD39300858A67 /* libsfml-graphics.2.1.dylib in Frameworks */,
+				59262A3F198AD38400858A67 /* libsfml-window.2.1.dylib in Frameworks */,
+				59262A3E198AD38400858A67 /* libsfml-system.2.1.dylib in Frameworks */,
+				59262A3C198AD36900858A67 /* liblua.5.1.5.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,8 +140,18 @@
 		592628F5198AB62300858A67 = {
 			isa = PBXGroup;
 			children = (
+				595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */,
+				595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */,
+				595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */,
+				59262958198ABA1900858A67 /* libsfml-audio.2.1.dylib */,
+				59262959198ABA1900858A67 /* libsfml-graphics.2.1.dylib */,
+				5926295A198ABA1900858A67 /* libsfml-network.2.1.dylib */,
+				5926295B198ABA1900858A67 /* libsfml-system.2.1.dylib */,
+				5926295C198ABA1900858A67 /* libsfml-window.2.1.dylib */,
+				59262956198ABA0100858A67 /* liblua.5.1.5.dylib */,
 				59262900198AB62300858A67 /* MarXsCube */,
 				592628FF198AB62300858A67 /* Products */,
+				59262968198ABCFA00858A67 /* Externals */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,7 +166,57 @@
 		59262900198AB62300858A67 /* MarXsCube */ = {
 			isa = PBXGroup;
 			children = (
-				59262901198AB62300858A67 /* main.cpp */,
+				5926290A198AB66500858A67 /* Abstract.h */,
+				5926290B198AB66500858A67 /* Anim.h */,
+				5926290C198AB66500858A67 /* CameraObject.h */,
+				5926290D198AB66500858A67 /* Cell.h */,
+				5926290E198AB66500858A67 /* Common.h */,
+				5926290F198AB66500858A67 /* Config.h */,
+				59262910198AB66500858A67 /* Debug.h */,
+				59262911198AB66500858A67 /* LuaInterface.h */,
+				59262912198AB66500858A67 /* LuaUtils.h */,
+				59262913198AB66500858A67 /* Map.h */,
+				59262914198AB66500858A67 /* MotionStateTest.h */,
+				59262915198AB66500858A67 /* Object.h */,
+				59262916198AB66500858A67 /* ObjectArray.h */,
+				59262917198AB66500858A67 /* ObjectManger.h */,
+				59262918198AB66500858A67 /* ObjectTypeArray.h */,
+				59262919198AB66500858A67 /* Pathfinder.h */,
+				5926291A198AB66500858A67 /* Physics.h */,
+				5926291B198AB66500858A67 /* PhysicsCheck.h */,
+				5926291C198AB66500858A67 /* PhysicsCommon.h */,
+				5926291D198AB66500858A67 /* RenderElement.h */,
+				5926291E198AB66500858A67 /* Session.h */,
+				5926291F198AB66500858A67 /* SFML.h */,
+				59262920198AB66500858A67 /* Techno.h */,
+				59262921198AB66500858A67 /* Transform.h */,
+				59262922198AB66500858A67 /* Type_Abstract.h */,
+				59262923198AB66500858A67 /* Type_Anim.h */,
+				59262924198AB66500858A67 /* Type_Object.h */,
+				59262925198AB66500858A67 /* Type_Techno.h */,
+				59262926198AB66500858A67 /* Abstract.cpp */,
+				59262927198AB66500858A67 /* Anim.cpp */,
+				59262928198AB66500858A67 /* CameraObject.cpp */,
+				59262929198AB66500858A67 /* Cell.cpp */,
+				5926292A198AB66500858A67 /* Common.cpp */,
+				5926292B198AB66500858A67 /* Config.cpp */,
+				5926292C198AB66500858A67 /* Debug.cpp */,
+				5926292D198AB66500858A67 /* LuaInterface.cpp */,
+				5926292E198AB66500858A67 /* LuaUtils.cpp */,
+				5926292F198AB66500858A67 /* Map.cpp */,
+				59262930198AB66500858A67 /* Object.cpp */,
+				59262931198AB66500858A67 /* ObjectArrayImpl.cpp */,
+				59262932198AB66500858A67 /* ObjectManger.cpp */,
+				59262933198AB66500858A67 /* Pathfinder.cpp */,
+				59262934198AB66500858A67 /* Physics.cpp */,
+				59262935198AB66500858A67 /* Session.cpp */,
+				59262936198AB66500858A67 /* Techno.cpp */,
+				59262937198AB66500858A67 /* Test.cpp */,
+				59262939198AB66500858A67 /* Transform.cpp */,
+				5926293A198AB66500858A67 /* Type_Abstract.cpp */,
+				5926293B198AB66500858A67 /* Type_Anim.cpp */,
+				5926293C198AB66500858A67 /* Type_Object.cpp */,
+				5926293D198AB66500858A67 /* Type_Techno.cpp */,
 				59262903198AB62300858A67 /* MarXsCube.1 */,
 			);
 			path = MarXsCube;
@@ -74,7 +230,7 @@
 			buildConfigurationList = 59262907198AB62300858A67 /* Build configuration list for PBXNativeTarget "MarXsCube" */;
 			buildPhases = (
 				592628FA198AB62300858A67 /* Sources */,
-				592628FB198AB62300858A67 /* Frameworks */,
+				59262A3B198AD35000858A67 /* Frameworks */,
 				592628FC198AB62300858A67 /* CopyFiles */,
 			);
 			buildRules = (
@@ -117,7 +273,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59262902198AB62300858A67 /* main.cpp in Sources */,
+				5926294D198AB66500858A67 /* Session.cpp in Sources */,
+				5926294B198AB66500858A67 /* Pathfinder.cpp in Sources */,
+				5926293F198AB66500858A67 /* Anim.cpp in Sources */,
+				59262941198AB66500858A67 /* Cell.cpp in Sources */,
+				5926294E198AB66500858A67 /* Techno.cpp in Sources */,
+				5926294A198AB66500858A67 /* ObjectManger.cpp in Sources */,
+				59262953198AB66500858A67 /* Type_Anim.cpp in Sources */,
+				59262948198AB66500858A67 /* Object.cpp in Sources */,
+				59262944198AB66500858A67 /* Debug.cpp in Sources */,
+				59262954198AB66500858A67 /* Type_Object.cpp in Sources */,
+				59262949198AB66500858A67 /* ObjectArrayImpl.cpp in Sources */,
+				59262951198AB66500858A67 /* Transform.cpp in Sources */,
+				59262952198AB66500858A67 /* Type_Abstract.cpp in Sources */,
+				5926294F198AB66500858A67 /* Test.cpp in Sources */,
+				59262940198AB66500858A67 /* CameraObject.cpp in Sources */,
+				59262946198AB66500858A67 /* LuaUtils.cpp in Sources */,
+				59262945198AB66500858A67 /* LuaInterface.cpp in Sources */,
+				59262955198AB66500858A67 /* Type_Techno.cpp in Sources */,
+				59262947198AB66500858A67 /* Map.cpp in Sources */,
+				59262943198AB66500858A67 /* Config.cpp in Sources */,
+				5926294C198AB66500858A67 /* Physics.cpp in Sources */,
+				59262942198AB66500858A67 /* Common.cpp in Sources */,
+				5926293E198AB66500858A67 /* Abstract.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,12 +312,14 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -152,13 +332,26 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/secondatke/Documents/Assets/Librarys/Bullet/include,
+					/usr/local/Cellar/sfml/2.1/include,
+					/usr/local/Cellar/lua/5.1.5/include,
+					/Users/secondatke/Documents/Assets/Librarys/LuaBridge/include,
+					/Users/secondatke/Documents/Assets/Librarys/armadillo/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				OTHER_CFLAGS = "";
+				SDKROOT = macosx10.9;
+				USER_HEADER_SEARCH_PATHS = /Users/secondatke/Documents/Assets/Librarys/Bullet/include/Bullet;
 			};
 			name = Debug;
 		};
@@ -172,12 +365,14 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -185,18 +380,42 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/secondatke/Documents/Assets/Librarys/Bullet/include,
+					/usr/local/Cellar/sfml/2.1/include,
+					/usr/local/Cellar/lua/5.1.5/include,
+					/Users/secondatke/Documents/Assets/Librarys/LuaBridge/include,
+					/Users/secondatke/Documents/Assets/Librarys/armadillo/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				SDKROOT = macosx;
+				OTHER_CFLAGS = "";
+				SDKROOT = macosx10.9;
+				USER_HEADER_SEARCH_PATHS = /Users/secondatke/Documents/Assets/Librarys/Bullet/include/Bullet;
 			};
 			name = Release;
 		};
 		59262908198AB62300858A67 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/lua/5.1.5/lib,
+					/usr/local/Cellar/sfml/2.1/lib,
+					/Users/secondatke/Documents/Assets/Librarys/Bullet/lib,
+				);
+				OTHER_CFLAGS = (
+					"-ffast-math",
+					"-MMD",
+					"-MP",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -204,6 +423,17 @@
 		59262909198AB62300858A67 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/lua/5.1.5/lib,
+					/usr/local/Cellar/sfml/2.1/lib,
+					/Users/secondatke/Documents/Assets/Librarys/Bullet/lib,
+				);
+				OTHER_CFLAGS = (
+					"-ffast-math",
+					"-MMD",
+					"-MP",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -227,6 +457,7 @@
 				59262909198AB62300858A67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

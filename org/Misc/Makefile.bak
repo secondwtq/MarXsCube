@@ -1,0 +1,76 @@
+CC=g++
+CFLAGS=-Wall -ggdb3 -std=c++11 -Wl,-Bstatic -lpython27 -Wl,-Bstatic -lsfml-window -Wl,-Bstatic -lsfml-graphics -Wl,-Bstatic -lsfml-system -O -static -lBulletDynamics -lBulletCollision -lLinearMath -llua52
+C_OUTPUT=test
+
+main: LuaInterface.o Abstract.o Config.o Cell.o Test.o ObjectManger.o Transform.o Common.o Map.o Session.o CameraObject.o Debug.o Type_Abstract.o Type_Object.o Anim.o ObjectArrayImpl.o Type_Anim.o Object.o ver.res link
+	@
+
+Abstract.o: Abstract.cpp
+	$(CC) -c $? $(CFLAGS)
+
+Test.o: Test.cpp
+	$(CC) -c $? $(CFLAGS)
+
+Debug.o: Debug.cpp
+	$(CC) -c $? $(CFLAGS)
+
+Cell.o: Cell.cpp
+	$(CC) -c $? $(CFLAGS)
+
+Session.o: Session.cpp
+	$(CC) -c $? $(CFLAGS)
+
+ObjectManger.o: ObjectManger.cpp
+	$(CC) -c $? $(CFLAGS)
+
+Transform.o: Transform.cpp
+	$(CC) -c $? $(CFLAGS)
+
+Common.o: Common.cpp
+	$(CC) -c $? $(CFLAGS)
+
+Map.o: Map.cpp
+	$(CC) -c $? $(CFLAGS)
+
+CameraObject.o: CameraObject.cpp
+	$(CC) -c $? $(CFLAGS)
+
+Type_Abstract.o: Type_Abstract.cpp
+	$(CC) -c $? $(CFLAGS)
+
+Type_Object.o: Type_Object.cpp
+	$(CC) -c $? $(CFLAGS)
+
+Anim.o: Anim.cpp
+	$(CC) -c $? $(CFLAGS)
+
+Type_Anim.o: Type_Anim.cpp
+	$(CC) -c $? $(CFLAGS)
+
+Object.o: Object.cpp
+	$(CC) -c $? $(CFLAGS)
+
+Config.o: Config.cpp
+	$(CC) -c $? $(CFLAGS)
+
+ObjectArrayImpl.o: ObjectArrayImpl.cpp
+	$(CC) -c $? $(CFLAGS)
+
+LuaInterface.o: LuaInterface.cpp
+	$(CC) -c $? $(CFLAGS)
+
+ver.res: ver.rc
+	windres $? -O coff -o ver.res
+
+link:
+	$(CC) -o $(C_OUTPUT) LuaInterface.o Abstract.o Config.o Cell.o Test.o ObjectManger.o Transform.o Common.o Map.o Session.o CameraObject.o Debug.o Type_Abstract.o Type_Object.o Anim.o Type_Anim.o Object.o ObjectArrayImpl.o ver.res $(CFLAGS)
+
+clean:
+	del *.o
+
+clean_all:
+	del *.o
+	del *.exe
+	del *.gcno
+	del *.gcda
+	del *.gcov

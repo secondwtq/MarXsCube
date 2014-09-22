@@ -1,0 +1,205 @@
+#include "Common.h"
+#include "Pathfinder.h"
+#include "Cell.h"
+
+#include "Map.h"
+
+#include <vector>
+using namespace std;
+
+namespace Pathfinding {
+
+	namespace {
+		int xx = 0, yy = 0;
+		int xx_, yy_;
+		// bool InsideOpen[60][60];
+		// bool InsideClose[60][60];
+		// Abs_Cell *Cells[60][60];
+		// CellStruct Fathers[60][60];
+		// int G[60][60];
+		// int H[60][60];
+		// int F[60][60];
+		
+		bool *InsideOpen;
+		bool *InsideClose;
+		Abs_Cell **Cells;
+		CellStruct *Fathers;
+		int *G;
+		int *H;
+
+		int ll, ww;
+
+		int numOpen;
+
+		int *octree;
+		CellStruct *IDCells;
+		int *CellIDs;
+		int *newF;
+
+		CellStruct minF = CellStruct(0, 0);
+	}
+
+	void init(int _x, int _y) {
+		xx = _x, yy = _y, xx_ = _x-1, yy_ = _y-1;
+		ll = _x+1, ww = _y+1;
+		InsideOpen = new bool[ll*ww];
+		InsideClose = new bool[ll*ww];
+		Cells = (Abs_Cell**)new int[ll*ww];
+		Fathers = new CellStruct[ll*ww];
+		G = new int[ll*ww];
+		H = new int[ll*ww];
+
+		octree = new int[ll*ww];
+		IDCells = new CellStruct[ll*ww];
+		CellIDs = new int[ll*ww];
+		newF = new int[ll*ww];
+		for (int i = -1; i <= xx; i++)
+			for (int j = - yy/2+1; j < yy/2+1; j++) {
+				auto p = CellStruct(i, j);
+				auto cell = Map::GetInstance().GetCellAt(p);
+				Cells[i*xx+j+yy/2] = cell;
+
+				if (cell) {
+					IDCells[cell->RTTIID] = CellStruct(i, j+yy/2);
+					CellIDs[i*xx+j+yy/2] = cell->RTTIID;
+				}
+			}
+	}
+
+	void printTree() {
+		for (int i = 1; i <= numOpen; i++)
+			printf("%d_%d ", octree[i], newF[octree[i]]);
+		printf("\n");
+	}
+
+	void Find_rec(Abs_Object *obj, CellStruct &pos, CellStruct &dest) {
+		InsideClose[pos.x*xx+pos.y] = true;
+		if (pos == dest) return;
+
+		CellStruct _cells[8];
+		_cells[0].x = pos.x-1, _cells[0].y = pos.y-1;
+		_cells[1].x = pos.x-1, _cells[1].y = pos.y;
+		_cells[2].x = pos.x-1, _cells[2].y = pos.y+1;
+
+		_cells[3].x = pos.x, _cells[3].y = pos.y-1;
+		_cells[4].x = pos.x, _cells[4].y = pos.y+1;
+
+		_cells[5].x = pos.x+1, _cells[5].y = pos.y-1;
+		_cells[6].x = pos.x+1, _cells[6].y = pos.y;
+		_cells[7].x = pos.x+1, _cells[7].y = pos.y+1;
+
+		CellStruct cells[8];
+		unsigned char num = 0;
+		for (int i = 0; i < 8; i++) {
+			int x = _cells[i].x, y = _cells[i].y;
+			if (x >= 0 && x <= xx_ && y >= 0 && y < yy_)
+				if (Cells[x*xx+y]->PassableTo(obj)) cells[num++] = _cells[i];
+		}
+
+		for (size_t i = 0; i < num; i++) {
+			int x = cells[i].x, y = cells[i].y;
+			register int offset = x*xx+y;
+			register int id = CellIDs[offset];
+			if (!InsideClose[offset]) {
+				bool better = false;
+				int _G = G[pos.x*xx+pos.y] + 1;
+
+				if (!InsideOpen[offset]) {
+					InsideOpen[offset] = true;
+					better = true;
+
+					G[offset] = _G;
+					int th = abs(x - dest.x) + abs(y - dest.y);
+					H[offset] = th;
+					newF[CellIDs[offset]] = _G+th;
+					numOpen++;
+					octree[numOpen] = CellIDs[offset];
+
+					for (int m = numOpen; m > 1; ) {
+						if (newF[octree[m]] <= newF[octree[m/2]]) {
+							int _t = octree[m/2];
+							octree[m/2] = octree[m];
+							octree[m] = _t;
+							m /= 2;
+						} else break;
+					}
+
+				}
+				else if (_G < G[offset]) better = true;
+				else better = false;
+				if (better) {
+					G[offset] = _G;
+					Fathers[offset] = pos;
+					int th = abs(x - dest.x) + abs(y - dest.y);
+					H[offset] = th;
+
+					int id = CellIDs[offset];
+					newF[CellIDs[offset]] = _G+th;
+					int heapl = 0;
+					for (int i = 1; i <= numOpen; i++)
+						if (octree[i] == id) {
+							heapl = i; break;
+						}
+
+					for (int m = heapl; m > 1; ) {
+						if (newF[octree[m]] <= newF[octree[m/2]]) {
+							int _t = octree[m/2];
+							octree[m/2] = octree[m];
+							octree[m] = _t;
+							m /= 2;
+						} else break;
+					}
+
+				}
+			}
+		}
+
+		minF = IDCells[octree[1]];
+		if (InsideOpen[minF.x*xx+minF.y]) {
+			InsideOpen[minF.x*xx+minF.y] = false;
+			octree[1] = octree[numOpen];
+			numOpen--;
+			int v = 1;
+			while (true) {
+				int u = v;
+				if ((2 * u + 1) <= numOpen) {
+					if (newF[octree[u]] >= newF[octree[2*u]]) v = 2 * u;
+					if (newF[octree[v]] >= newF[octree[2*u+1]]) v = 2*u+1;
+				} else if (2 * u <= numOpen)
+					if (newF[octree[u]] >= newF[octree[2*u]]) v = 2*u;
+				if (u != v) {
+					int t = octree[u];
+					octree[u] = octree[v];
+					octree[v] = t;
+				} else break;
+			}
+		}
+		Find_rec(obj, minF, dest);
+	}
+
+	void Find(Abs_Object *obj, Abs_Cell *src, Abs_Cell *dest) {
+		if (src->PassableTo(obj) && dest->PassableTo(obj)) {
+			memset(InsideOpen, 0, sizeof(bool) * ll * ww);
+			memset(InsideClose, 0, sizeof(bool) * ll * ww);
+
+			memset(newF, 0, sizeof(int) * ll * ww);
+			memset(octree, 0, sizeof(int) * ll * ww);
+
+			numOpen = 0;
+			CellStruct ss = CellStruct(src->LocCell.x, src->LocCell.y+xx/2);
+			CellStruct ds = CellStruct(dest->LocCell.x, dest->LocCell.y+yy/2);
+			newF[CellIDs[ss.x*xx+ss.y]] = abs(ss.x - ds.x) + abs(ss.y - ds.y);
+			G[CellIDs[ss.x*xx+ss.y]] = 0;
+			Fathers[ss.x*xx+ss.y] = CellStruct(-1, -1);
+
+			Find_rec(obj, ss, ds);
+
+			CellStruct v = Fathers[ds.x*xx+ds.y];
+			while (ds.x != -1) {
+				Cells[ds.x*xx+ds.y]->ShowCenter = true;
+				ds.x = v.x, ds.y = v.y;
+				v = Fathers[ds.x*xx+ds.y];
+			}
+		}
+	}
+}
