@@ -49,7 +49,7 @@ int main() {
 
 	Generic::Session()->initSession();
 	Pathfinding::init(Map::GetInstance().size.x, Map::GetInstance().size.y);
-	UpdateVm(0, 0);
+	obsTransform::UpdateVm(0, 0);
 
 	sf::Event event;
 	while (window.isOpen()) {

@@ -99,11 +99,11 @@ protected:
 template <class T>
 inline void SetProjectionLocation_General(T *element, CoordStruct& loc) {
 	if (!element->UseShadowProjection)
-		element->renderSprite.setPosition(GetViewPos(loc+element->offset));
+		element->renderSprite.setPosition(obsTransform::GetViewPos(loc+element->offset));
 	else {
 		auto _loc = loc + element->offset;
 		_loc = CoordStruct(element->ProjectionVector.z*_loc.x+element->ProjectionVector.x*_loc.z, element->ProjectionVector.z*_loc.y+element->ProjectionVector.y*_loc.z, 0);
-		element->renderSprite.setPosition(GetViewPos(_loc));
+		element->renderSprite.setPosition(obsTransform::GetViewPos(_loc));
 	}
 }
 

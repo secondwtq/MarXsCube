@@ -308,8 +308,6 @@ namespace LuaInterface {
 					addStaticData("instance", &TextureManger::instance).
 					addStaticFunction("GetInstance", &TextureManger::GetInstance).
 					addFunction("getTexture__", &TextureManger::getTexture).
-					addFunction("t", &TextureManger::t).
-					addFunction("getTexture_", &TextureManger::getTexture_).
 					addFunction("getTexture", &TextureManger::LUA_getTexture).
 				endClass().
 				beginClass<ObjectManger>("ObjectManger").

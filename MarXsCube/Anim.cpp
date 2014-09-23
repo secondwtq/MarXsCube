@@ -29,7 +29,7 @@ void Abs_Anim::Update() {LOGFUNC;
 void Abs_Anim::Render() {LOGFUNC;
 	if (AnimTimer.Enabled) {
 		AnimType->texture->CenterPivot(renderSprite);
-		renderSprite.setPosition(GetViewPos(GetCoord())+AnimType->_offset);
+		renderSprite.setPosition(obsTransform::GetViewPos(GetCoord())+AnimType->_offset);
 		AnimType->texture->setArea_(renderSprite, GetCurrentFrame());
 		TestManger::GetInstance().window->draw(renderSprite);
 	}

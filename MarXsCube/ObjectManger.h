@@ -51,9 +51,8 @@ class TextureManger {
 		unordered_map<string, TextureAtlas *> TextureHashs;
 
 		int t(int x);
-		TextureAtlas *LUA_getTexture(string name) {LOGFUNC; return getTexture(name); }
+		inline TextureAtlas *LUA_getTexture(string name) {LOGFUNC; return getTexture(name); }
 		TextureAtlas *getTexture(const string &name);
-		TextureAtlas &getTexture_(string &name);
 };
 
 class TestManger {
@@ -66,8 +65,6 @@ class TestManger {
 		sf::Shader extShader;
 
 		void initTest();
-
-		void initBullet();
 
 		void initShader();
 

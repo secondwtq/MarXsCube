@@ -27,7 +27,7 @@ namespace LuaUtils {
 	}
 
 	CoordStruct GetCoordFromPoint(CubePoint pt) {LOGFUNC;
-		return GetWorldPos(pt);
+		return obsTransform::GetWorldPos(pt);
 	}
 
 	double GetTime() {LOGFUNC;

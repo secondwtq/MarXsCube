@@ -25,7 +25,7 @@ class Session {
 		float CameraOffestX = 0.0, CameraOffestY = 0.0;
 		CoordStruct CameraLocation = CameraLocationDefault;
 		void CameraMove(DirectionType::Type Direction, float offest = 2.0f);
-		void UpdateCameraOffest() { UpdateVm(CameraOffestX, CameraOffestY); }
+		void UpdateCameraOffest() { obsTransform::UpdateVm(CameraOffestX, CameraOffestY); }
 
 		unsigned int MaxID = 0;
 		unsigned int addObject(Abs_Abstract &src);

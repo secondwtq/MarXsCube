@@ -10,7 +10,7 @@ CoordStruct Abs_CameraObject::GetCoord() const {
 }
 
 void Abs_CameraObject::Render() {
-	auto loc = GetViewPos(GetCoord());
+	auto loc = obsTransform::GetViewPos(GetCoord());
 	sf::CircleShape shape(1);
 	shape.setFillColor(sf::Color(0, 0, 0));
 	shape.setPosition(sf::Vector2f(loc.x, loc.y));

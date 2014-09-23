@@ -17,9 +17,7 @@ ObjectManger *ObjectManger::instance = new ObjectManger();
 TestManger *TestManger::instance = new TestManger();
 TextureManger *TextureManger::instance = new TextureManger();
 
-int TextureManger::t(int x) {LOGFUNC; printf("%d\n", x); return 10; }
 TextureAtlas *TextureManger::getTexture(const string &name) {LOGFUNC; return TextureHashs[name]; }
-TextureAtlas &TextureManger::getTexture_(string &name) {LOGFUNC; return *TextureHashs[name]; }
 
 void RenderLayer::Update() {LOGFUNC;
 	sort_Objects();
@@ -46,13 +44,9 @@ void ObjectManger::FinishRemove() { LOGFUNC;
 
 void TestManger::initTest() {LOGFUNC;
 	testTerrainTexture = TextureAtlas("green01.png");
-	initBullet();
+	Generic::PhysicsGeneral()->init();
 	initShader();
 	EventManger::GetInstance().GetEvent(EventManger::Events::TEST_BEGIN)();
-}
-
-void TestManger::initBullet() {LOGFUNC;
-	Generic::PhysicsGeneral()->init();
 }
 
 void _readall(ifstream &str, string &dest) {LOGFUNC;
@@ -65,11 +59,11 @@ void TestManger::initShader() {LOGFUNC;
 		// extShader = new Shader();
 		ifstream is;
 		string vert, frag;
-		is.open("vert.vert");
+		is.open("./Shaders/vert.vert");
 		_readall(is, vert);
 		is.close();
 
-		is.open("frag.frag");
+		is.open("./Shaders/frag.frag");
 		_readall(is, frag);
 		is.close();
 

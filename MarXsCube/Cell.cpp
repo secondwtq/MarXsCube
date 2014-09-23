@@ -7,7 +7,7 @@
 #include "Techno.h"
 using namespace sf;
 
-extern sf::Vector2f x;
+extern sf::Vector2f obsTransform::x;
 
 CoordStruct Abs_Cell::GetCoord() const {//LOGFUNC;
 	return LocCoord;
@@ -40,11 +40,11 @@ Abs_Cell::Abs_Cell(int x, int y, bool Special) : LocCell(x, y), isSpecial(Specia
 
 void Abs_Cell::Render() {
 	// renderSprite.setOrigin(30, 15);
-	GetViewPos_Opted(_coordObj);
-	renderSprite.setPosition(x);
+	obsTransform::GetViewPos_Opted(_coordObj);
+	renderSprite.setPosition(obsTransform::x);
 	if (ShowCenter) renderSprite.setColor(Color(255, 255, 255, 128));
 	// if (!PassableTo()) renderSprite.setColor(Color(0, 0, 0, 255));
-	if (x.x > (-size.x) && x.x <= (WIDTH+size.x) && x.y > (-size.y) && x.y <= (HEIGHT+size.y)) {
+	if (obsTransform::x.x > (-size.x) && obsTransform::x.x <= (WIDTH+size.x) && obsTransform::x.y > (-size.y) && obsTransform::x.y <= (HEIGHT+size.y)) {
 		TestManger::GetInstance().window->draw(renderSprite);
 		// if (!PassableTo()) {
 		// 	CircleShape shape(5);
@@ -58,7 +58,7 @@ void Abs_Cell::Render() {
 		CircleShape shape(1);
 		if (isSpecial) shape.setFillColor(Color(255, 0, 0));
 		else shape.setFillColor(Color(0, 0, 0));
-		shape.setPosition(x);
+		shape.setPosition(obsTransform::x);
 		TestManger::GetInstance().window->draw(shape);
 	}
 }

@@ -5,6 +5,8 @@
 using namespace sf;
 using namespace arma;
 
+namespace obsTransform {
+
 mat Vm;
 vec cam_pos = { 384, 384, 320 };
 vec up_vector = {0, 0, 1};
@@ -45,22 +47,11 @@ CoordStruct GetWorldPos(const CubePoint &pt) {LOGFUNC;
 	return CoordStruct(-x[0], -x[1], -x[2]);
 }
 
-template <typename T>
-void printVector(T src) { }
+template <typename T> void printVector(T src) { }
 
-template<> void printVector(Vector2i src) {
-	printf("%d %d\n", src.x, src.y);
-}
+template<> void printVector(Vector2i src) { printf("%d %d\n", src.x, src.y); }
+template<> void printVector(Vector2f src) { printf("%.3f %.3f\n", src.x, src.y); }
+template<> void printVector(Vector3i src) { printf("%d %d %d\n", src.x, src.y, src.z); }
+template <> void printVector(const Vector2f& src) { printf("%.3f %.3f\n", src.x, src.y); }
 
-template<> void printVector(Vector2f src) {
-	printf("%.3f %.3f\n", src.x, src.y);
-}
-
-template<> void printVector(Vector3i src) {
-	printf("%d %d %d\n", src.x, src.y, src.z);
-}
-
-template <>
-void printVector(const Vector2f& src) {
-	printf("%.3f %.3f\n", src.x, src.y);
 }
