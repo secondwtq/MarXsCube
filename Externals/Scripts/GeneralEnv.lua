@@ -60,6 +60,7 @@ function util.getObjectCell(obj)
 end
 
 util.tblinsert = table.insert
+util.tblunpack = table.unpack
 
 ModEnvironment.CurGenState = Idle
 ModEnvironment.SelectedUnit_Single = nil

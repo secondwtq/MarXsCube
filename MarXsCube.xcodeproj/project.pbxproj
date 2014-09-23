@@ -37,13 +37,13 @@
 		59262953198AB66500858A67 /* Type_Anim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926293B198AB66500858A67 /* Type_Anim.cpp */; };
 		59262954198AB66500858A67 /* Type_Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926293C198AB66500858A67 /* Type_Object.cpp */; };
 		59262955198AB66500858A67 /* Type_Techno.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926293D198AB66500858A67 /* Type_Techno.cpp */; };
-		59262A3C198AD36900858A67 /* liblua.5.1.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 59262956198ABA0100858A67 /* liblua.5.1.5.dylib */; };
 		59262A3E198AD38400858A67 /* libsfml-system.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5926295B198ABA1900858A67 /* libsfml-system.2.1.dylib */; };
 		59262A3F198AD38400858A67 /* libsfml-window.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5926295C198ABA1900858A67 /* libsfml-window.2.1.dylib */; };
 		59262A40198AD39300858A67 /* libsfml-graphics.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 59262959198ABA1900858A67 /* libsfml-graphics.2.1.dylib */; };
 		595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */; };
 		595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */; };
 		595DDC13198ADD990046919B /* libLinearMath_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */; };
+		59B412A519D1CCE600B9BE98 /* liblua523_static_darwinclang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B412A119D1C84800B9BE98 /* liblua523_static_darwinclang.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -124,7 +124,6 @@
 		5926293B198AB66500858A67 /* Type_Anim.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Type_Anim.cpp; sourceTree = "<group>"; };
 		5926293C198AB66500858A67 /* Type_Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Type_Object.cpp; sourceTree = "<group>"; };
 		5926293D198AB66500858A67 /* Type_Techno.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Type_Techno.cpp; sourceTree = "<group>"; };
-		59262956198ABA0100858A67 /* liblua.5.1.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua.5.1.5.dylib; path = ../../../../../usr/local/Cellar/lua/5.1.5/lib/liblua.5.1.5.dylib; sourceTree = "<group>"; };
 		59262958198ABA1900858A67 /* libsfml-audio.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-audio.2.1.dylib"; path = "../../../../../usr/local/Cellar/sfml/2.1/lib/libsfml-audio.2.1.dylib"; sourceTree = "<group>"; };
 		59262959198ABA1900858A67 /* libsfml-graphics.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-graphics.2.1.dylib"; path = "../../../../../usr/local/Cellar/sfml/2.1/lib/libsfml-graphics.2.1.dylib"; sourceTree = "<group>"; };
 		5926295A198ABA1900858A67 /* libsfml-network.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-network.2.1.dylib"; path = "../../../../../usr/local/Cellar/sfml/2.1/lib/libsfml-network.2.1.dylib"; sourceTree = "<group>"; };
@@ -134,6 +133,7 @@
 		595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletCollision_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletDynamics_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libLinearMath_xcode4_x64_release.a; sourceTree = "<group>"; };
+		59B412A119D1C84800B9BE98 /* liblua523_static_darwinclang.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua523_static_darwinclang.a; path = ../project_U/lib/liblua523_static_darwinclang.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,13 +141,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59B412A519D1CCE600B9BE98 /* liblua523_static_darwinclang.a in Frameworks */,
 				595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */,
 				595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */,
 				595DDC13198ADD990046919B /* libLinearMath_xcode4_x64_release.a in Frameworks */,
 				59262A40198AD39300858A67 /* libsfml-graphics.2.1.dylib in Frameworks */,
 				59262A3F198AD38400858A67 /* libsfml-window.2.1.dylib in Frameworks */,
 				59262A3E198AD38400858A67 /* libsfml-system.2.1.dylib in Frameworks */,
-				59262A3C198AD36900858A67 /* liblua.5.1.5.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +206,7 @@
 		592628F5198AB62300858A67 = {
 			isa = PBXGroup;
 			children = (
+				59B412A119D1C84800B9BE98 /* liblua523_static_darwinclang.a */,
 				595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */,
 				595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */,
 				595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */,
@@ -214,7 +215,6 @@
 				5926295A198ABA1900858A67 /* libsfml-network.2.1.dylib */,
 				5926295B198ABA1900858A67 /* libsfml-system.2.1.dylib */,
 				5926295C198ABA1900858A67 /* libsfml-window.2.1.dylib */,
-				59262956198ABA0100858A67 /* liblua.5.1.5.dylib */,
 				59262900198AB62300858A67 /* MarXsCube */,
 				592628FF198AB62300858A67 /* Products */,
 				59262968198ABCFA00858A67 /* Externals */,
@@ -479,11 +479,21 @@
 		59262908198AB62300858A67 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/lua52/5.2.3/include,
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/secondatke/Documents/Assets/Librarys/Bullet/include,
+					/usr/local/Cellar/sfml/2.1/include,
+					/Users/secondatke/Documents/Assets/Librarys/LuaBridge/include,
+					/Users/secondatke/Documents/Assets/Librarys/armadillo/include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/Cellar/lua/5.1.5/lib,
+					/usr/local/Cellar/lua52/5.2.3/lib,
 					/usr/local/Cellar/sfml/2.1/lib,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/lib,
+					/Users/secondatke/Documents/branches/project_U/lib,
 				);
 				OTHER_CFLAGS = (
 					"-ffast-math",
@@ -497,11 +507,21 @@
 		59262909198AB62300858A67 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/lua52/5.2.3/include,
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/secondatke/Documents/Assets/Librarys/Bullet/include,
+					/usr/local/Cellar/sfml/2.1/include,
+					/Users/secondatke/Documents/Assets/Librarys/LuaBridge/include,
+					/Users/secondatke/Documents/Assets/Librarys/armadillo/include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/Cellar/lua/5.1.5/lib,
+					/usr/local/Cellar/lua52/5.2.3/lib,
 					/usr/local/Cellar/sfml/2.1/lib,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/lib,
+					/Users/secondatke/Documents/branches/project_U/lib,
 				);
 				OTHER_CFLAGS = (
 					"-ffast-math",

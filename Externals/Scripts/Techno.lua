@@ -9,20 +9,6 @@ end
 function Functions.Abs_Techno_onUpdate(self, table)
 	local scriptType = self:getTechnoType().ScriptType
 
-	if table.isDisabled == true then
-		if table.disabledTimer.Enabled == false then table.disabledTimer:SwitchStart() end
-		local d = math.abs(table.disabledTimer:GetPercentage()-50) / 100.0
-		local c = 0.5 + 0.5 * d
-		-- table.bodyElement.colorMultiply = Utility.Homogeneous4D(c, c, c, 1)
-		table.disabledTimer:Update()
-	else
-		-- table.bodyElement.colorMultiply = Utility.Homogeneous4D(1, 1, 1, 1)
-	end
-	if ModEnvironment.CurMouseOn ~= nil and self.RTTIID == ModEnvironment.CurMouseOn.RTTIID then
-		table.bodyElement.colorMultiply = Utility.Homogeneous4D(1.6, 1.6, 1.6, 1)
-	else
-		table.bodyElement.colorMultiply = Utility.Homogeneous4D(1, 1, 1, 1)
-	end
 	self.elements:setDirection(self.Direction.degree)
 
 	if table.Mission == Enums.ModEnv.Mission.Moving then
@@ -67,6 +53,8 @@ function Functions.Abs_Techno_onUpdate(self, table)
 			end
 		end
 	end
+
+	table.bodyElement.colorMultiply = Utility.Homogeneous4D(unpack(table.bodyColorMultiply:get()))
 end
 
 function Locomotor_Default_setAngularVelocity(updating, args, curDeg, reqDeg, rev)
@@ -232,8 +220,6 @@ function Functions.Abs_Techno_onCreate(creating, table)
 		shadowElement.colorMultiply = Utility.Homogeneous4D(0.1, 0.1, 0.1, 0.3)
 		shadowElement.UseShadowProjection = true;
 
-
-
 		creating.elements:insert(0, bodyElement)
 		creating.elements:insert(-10, shadowElement)
 
@@ -243,4 +229,27 @@ function Functions.Abs_Techno_onCreate(creating, table)
 
 	table.Mission = Enums.ModEnv.Mission.unknown
 	table.MovingState = Enums.ModEnv.MovingState.unknown
+
+	table.bodyColorMultiply = bindedattr.binded_attr:new()
+
+	table.bodyColorMultiply:set_initial(function () return {1.0, 1.0, 1.0, 1.0} end)
+	table.bodyColorMultiply:add_controller(function (self, value)
+		local multiply = 1.0
+		if ModEnvironment.CurMouseOn ~= nil and creating.RTTIID == ModEnvironment.CurMouseOn.RTTIID then
+			multiply = 1.6
+		end
+		return {value[1]*multiply, value[2]*multiply, value[3]*multiply, value[4]} 
+	end, 0)
+
+	table.bodyColorMultiply:add_controller(function (self, value)
+		local multiply = 1.0
+		if table.isDisabled == true then
+			if table.disabledTimer.Enabled == false then table.disabledTimer:SwitchStart() end
+			local d = math.abs(table.disabledTimer:GetPercentage()-50) / 100.0
+			multiply = 0.5 + 0.5 * d
+			table.disabledTimer:Update()
+		end
+		return {value[1]*multiply, value[2]*multiply, value[3]*multiply, value[4]} 
+	end, 0)
+
 end

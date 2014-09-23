@@ -5,6 +5,8 @@ Import =
 		Utility.DoImport(Environment.ConfigPath .. s)
 	end
 
+Utility.DoImport("ScriptsX/scriptsx.lua")
+
 Import("Debug.lua")
 
 Import("CommonDef.lua")
