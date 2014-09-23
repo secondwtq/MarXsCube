@@ -1,18 +1,8 @@
 _binded_attr = { }
 
-_object = { }
+local object = require 'object'
 
-_object.new = function (self, t)
-	r = t or { }
-	setmetatable(r, self)
-	self.__index = self
-	if (self.__init__) then self.__init__(r) end
-	return r
-end
-
-object = _object
-
-_binded_attr.bindedattr_cont = object:new({
+_binded_attr.bindedattr_cont = object.object:new({
 
 	initial_value = 0,
 
@@ -38,9 +28,9 @@ _binded_attr.bindedattr_cont = object:new({
 })
 
 
-_binded_attr.binded_attr = object:new({
+_binded_attr.binded_attr = object.object:new({
 
-	attr_controller = object:new({
+	attr_controller = object.object:new({
 		controller = function(self, value) return value end,
 		priority = 0,
 		compare_to = { },
@@ -80,4 +70,4 @@ _binded_attr.binded_attr = object:new({
 
 })
 
--- return _binded_attr
+return _binded_attr
