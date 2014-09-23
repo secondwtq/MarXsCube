@@ -12,6 +12,7 @@
 #include "Common.h"
 #include "ObjectManger.h"
 #include "Session.h"
+#include "Config.h"
 
 class PhysicsGeneral;
 
@@ -52,11 +53,21 @@ public:
 		Generic::physics_general = nullptr;
 	}
 	
+	static void Init_FunObjectTableCreate(ConfigManger& config_manger);
+	
+	static void Init_FunObjectTableCreate_Forward(ConfigManger& config_manger);
+	
+	static inline luabridge::LuaRef CreateObjectTable(unsigned int id) {
+		return (*Generic::foo_object_table_create)(id);
+	}
+	
 public:
 	static class Session *session;
 	static class RenderLayerManger *render_layer_manger;
 	
 	static class PhysicsGeneral *physics_general;
+	
+	static class luabridge::LuaRef *foo_object_table_create;
 };
 
 #include "PhysicsGeneral.h"

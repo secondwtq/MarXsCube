@@ -37,8 +37,11 @@ int main() {
 	ConfigManger config(luaState);
 	cout << "CubeCore: main - Registering LuaInterface... " << endl;
 	LuaInterface::RegisterInterface(luaState);
+	Generic::Init_FunObjectTableCreate_Forward(config);
 	cout << "CubeCore: main - Loading Config... " << endl;
 	config.loadConfigFrom("Config.lua");
+	
+	Generic::Init_FunObjectTableCreate(config);
 
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "TestWindow | MarXsCube by seCOnDatkE 2014 - Prototype",
 						sf::Style::Titlebar || sf::Style::Close);
@@ -47,7 +50,6 @@ int main() {
 	window.setFramerateLimit(FPSLimit);
 	TestManger::GetInstance().initTest();
 
-	Generic::Session()->initSession();
 	Pathfinding::init(Map::GetInstance().size.x, Map::GetInstance().size.y);
 	obsTransform::UpdateVm(0, 0);
 

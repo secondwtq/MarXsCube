@@ -28,3 +28,8 @@ function load(manager)
 
 	loadObjectsLater()
 end
+
+function CubeCore_CreateObjectTable(id)
+	local ret = { }
+	return ret
+end

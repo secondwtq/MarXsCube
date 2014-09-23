@@ -42,5 +42,9 @@ namespace LuaUtils {
 	}
 
 	Abs_Techno *toTechno(Abs_Abstract *src) { return dynamic_cast<Abs_Techno *>(src); }
+	
+	luabridge::LuaRef CreateObjectTable_Default(lua_State* L) {
+		return luabridge::newTable(L);
+	}
 
 }

@@ -60,10 +60,6 @@ void LuaStatus::load(const char *filename, LuaLoadCallback callback) {LOGFUNC;
 		else std::cout << "Config file " << filename << " is duplicated." << std::endl;
 	}
 	if (callback) callback(*this);
-	// lua_getglobal(State, "Environment");
-	// Environment = new LuaRef(State, LuaRef::FromStack());
-	// lua_getglobal(State, "Functions");
-	// Functions = new LuaRef(State, LuaRef::FromStack());
 	cout << "CubeCore: LuaStatus::load - Initing EventManger::instance... " << endl;
 	EventManger::instance = new EventManger(*this);
 }
@@ -153,7 +149,7 @@ EventManger::EventManger(LuaStatus &State) : _state(&State),FunctionTable(getGlo
 
 LuaRef EventManger::CreateObjectTable(Abs_Abstract &src) {LOGFUNC;
 	// cout << "CubeCore: EventManger::CreateObjectTable - Creating " << src.RTTIID << " ... " << endl;
-	ObjectsTable[src.RTTIID] = newTable(*_state);
+	ObjectsTable[src.RTTIID] = Generic::CreateObjectTable(src.RTTIID); // newTable(*_state);
 	return ObjectsTable[src.RTTIID];
 }
 

@@ -19,7 +19,6 @@ struct CubeMousePos {
 
 class Session {
 	public:
-		void initSession();
 
 		const static CoordStruct CameraLocationDefault; //	384, 384, 320
 		float CameraOffestX = 0.0, CameraOffestY = 0.0;

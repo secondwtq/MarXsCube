@@ -3,6 +3,7 @@
 
 #include "Common.h"
 #include "Techno.h"
+#include "Config.h"
 
 namespace LuaUtils {
 	void initLuaUtils();
@@ -15,6 +16,8 @@ namespace LuaUtils {
 	double GetTime_Clock();
 
 	Abs_Techno *toTechno(Abs_Abstract *src);
+	
+	luabridge::LuaRef CreateObjectTable_Default(lua_State* L);
 }
 
 #endif

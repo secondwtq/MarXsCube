@@ -8,10 +8,6 @@
 //Session *Session::instance = new Session();
 const CoordStruct Session::CameraLocationDefault = CoordStruct(384, 384, 320);
 
-void Session::initSession() {LOGFUNC;
-
-}
-
 unsigned int Session::addObject(Abs_Abstract &src) {LOGFUNC;
 	src.RTTIID = ++MaxID;
 	return MaxID;

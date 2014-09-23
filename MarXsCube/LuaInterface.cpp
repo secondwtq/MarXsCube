@@ -55,6 +55,7 @@ namespace LuaInterface {
 
 	void RegisterInterface_Util(LuaStatus &L) {
 		getGlobalNamespace(L).
+			addFunction("YouFuckingNULLPOINTER", &LuaUtils::CreateObjectTable_Default).
 			beginNamespace("Utility").
 				addFunction("closeSession", &LuaUtils::closeSession).
 				addFunction("GetCoordFromPoint", &LuaUtils::GetCoordFromPoint).
