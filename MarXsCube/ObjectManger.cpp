@@ -44,6 +44,12 @@ void ObjectManger::FinishRemove() { LOGFUNC;
 
 void TestManger::initTest() {LOGFUNC;
 	testTerrainTexture = TextureAtlas("green01.png");
+	testTerrainTexture1 = TextureAtlas("green02.png");
+	testTerrainTexture2 = TextureAtlas("green03.png");
+	testTerrainTexture3 = TextureAtlas("green04.png");
+	testTerrainTexture4 = TextureAtlas("green04.png");
+	testTerrainTextureBlend = TextureAtlas("greenblend.tga");
+	
 	Generic::PhysicsGeneral()->init();
 	initShader();
 	EventManger::GetInstance().GetEvent(EventManger::Events::TEST_BEGIN)();
@@ -69,6 +75,18 @@ void TestManger::initShader() {LOGFUNC;
 
 		extShader.loadFromMemory(vert, sf::Shader::Vertex);
 		extShader.loadFromMemory(frag, sf::Shader::Fragment);
+		
+		ifstream is_terrain;
+		string vert_terrain, frag_terrain;
+		is_terrain.open("./Shaders/terrain.vert");
+		_readall(is_terrain, vert_terrain);
+		is_terrain.close();
+		
+		is_terrain.open("./Shaders/terrain.frag");
+		_readall(is_terrain, frag_terrain);
+		
+		extTerrainShader.loadFromMemory(vert_terrain, sf::Shader::Vertex);
+		extTerrainShader.loadFromMemory(frag_terrain, sf::Shader::Fragment);
 	}
 }
 

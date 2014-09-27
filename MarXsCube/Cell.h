@@ -19,6 +19,12 @@ class Abs_Cell : public Abs_Abstract {
 		CoordStruct LocCoord = CoordStruct(0, 0, 0);
 		Sprite renderSprite;
 		TextureAtlas *renderTexture;
+	TextureAtlas *texture1;
+	TextureAtlas *texture2;
+	TextureAtlas *texture3;
+	TextureAtlas *texture4;
+	TextureAtlas *texture_blend;
+	
 		Vector2i size;
 		bool isSpecial = false;
 		int height = 0;

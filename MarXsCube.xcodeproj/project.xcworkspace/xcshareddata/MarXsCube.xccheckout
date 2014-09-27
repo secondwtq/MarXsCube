@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>752F4FBC-1B27-4E02-8057-3B4907E16B57</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MarXsCube</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>639CF47C-1222-4E07-8D63-8BD186281A76</key>
+		<string>ssh://github.com/secondwtq/project_Urd.git</string>
+		<key>A7BE4F3A-461F-44BD-AD00-AA5CA61C7866</key>
+		<string>https://github.com/secondwtq/MarXsCube</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MarXsCube.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>639CF47C-1222-4E07-8D63-8BD186281A76</key>
+		<string>../../../project_U</string>
+		<key>A7BE4F3A-461F-44BD-AD00-AA5CA61C7866</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/secondwtq/MarXsCube</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>A7BE4F3A-461F-44BD-AD00-AA5CA61C7866</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A7BE4F3A-461F-44BD-AD00-AA5CA61C7866</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MarXsCube</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>639CF47C-1222-4E07-8D63-8BD186281A76</string>
+			<key>IDESourceControlWCCName</key>
+			<string>project_U</string>
+		</dict>
+	</array>
+</dict>
+</plist>

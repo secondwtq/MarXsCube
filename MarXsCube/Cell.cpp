@@ -15,6 +15,11 @@ CoordStruct Abs_Cell::GetCoord() const {//LOGFUNC;
 
 Abs_Cell::Abs_Cell(int x, int y, bool Special) : LocCell(x, y), isSpecial(Special) {LOGFUNC;
 	renderTexture = &TestManger::GetInstance().testTerrainTexture;
+	this->texture1 = &TestManger::GetInstance().testTerrainTexture1;
+	this->texture2 = &TestManger::GetInstance().testTerrainTexture2;
+	this->texture3 = &TestManger::GetInstance().testTerrainTexture3;
+	this->texture4 = &TestManger::GetInstance().testTerrainTexture4;
+	this->texture_blend = &TestManger::GetInstance().testTerrainTextureBlend;
 	renderSprite.setTexture(*renderTexture);
 	size.x = renderTexture->getSize().x;
 	size.y = renderTexture->getSize().y;
@@ -45,7 +50,14 @@ void Abs_Cell::Render() {
 	if (ShowCenter) renderSprite.setColor(Color(255, 255, 255, 128));
 	// if (!PassableTo()) renderSprite.setColor(Color(0, 0, 0, 255));
 	if (obsTransform::x.x > (-size.x) && obsTransform::x.x <= (WIDTH+size.x) && obsTransform::x.y > (-size.y) && obsTransform::x.y <= (HEIGHT+size.y)) {
-		TestManger::GetInstance().window->draw(renderSprite);
+		static auto shader_ptr = &TestManger::GetInstance().extTerrainShader;
+		shader_ptr->setParameter("texture0", this->renderTexture->texture);
+		shader_ptr->setParameter("texture1", this->texture1->texture);
+		shader_ptr->setParameter("texture2", this->texture2->texture);
+		shader_ptr->setParameter("texture3", this->texture3->texture);
+		shader_ptr->setParameter("texture4", this->texture4->texture);
+		shader_ptr->setParameter("textureBlend", this->texture_blend->texture);
+		TestManger::GetInstance().window->draw(renderSprite, shader_ptr);
 		// if (!PassableTo()) {
 		// 	CircleShape shape(5);
 		// 	shape.setFillColor(Color(255, 0, 0));
