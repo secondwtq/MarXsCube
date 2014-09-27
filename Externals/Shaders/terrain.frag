@@ -30,7 +30,7 @@ void main() {
 	clampe(bd);
 	clampe(be);
 
-	frag_color = pixel0 * ba + pixel1 * bb + pixel2 * bc + pixel3 * bd;// + pixel4 * be;
+	frag_color = pixel0 * ba + pixel1 * bb + pixel2 * bc + pixel3 * bd + pixel4 * be;
 	//frag_color *= gl_Color;
 
 	gl_FragColor = frag_color;
