@@ -47,7 +47,9 @@ _binded_attr.binded_attr = object.object:new({
 	get = function(self)
 		local ret = self:initial_controller()
 		for i, v in ipairs(self._controllers) do
-			ret = v.controller(self, ret)
+			if v.enabled then
+				ret = v.controller(self, ret)
+			end
 		end
 		return ret
 	end,
@@ -57,6 +59,7 @@ _binded_attr.binded_attr = object.object:new({
 			parent = self,
 			controller = controller,
 			priority = priority,
+			enabled = true,
 		})
 		-- table.insert(self._controllers, controller)
 		table.insert(self._controllers, c)

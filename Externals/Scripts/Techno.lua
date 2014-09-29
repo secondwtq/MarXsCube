@@ -1,3 +1,5 @@
+components = require 'components'
+
 function Functions.TechnoType_onLoad(self, table)
 	local pType = table
 	local wImage = Objects.TextureManger.GetInstance():getTexture(table.image)
@@ -5,6 +7,50 @@ function Functions.TechnoType_onLoad(self, table)
 	local sImage = Objects.TextureManger.GetInstance():getTexture(table.shadow)
 	table._shadowimage = sImage
 end
+
+subcomp_TechnoColorMultiply = components.subcomponent:new({
+
+	name = "TechnoColorMultiply_Initial",
+
+	on_create = function (self, parent)
+		--self:set_datafield("ColorMultiply", {0.5, 0.5, 0.5, 1.0})
+		self:set_datafield("ColorMultiply", bindedattr.binded_attr:new())
+
+		self:get_datafield("ColorMultiply"):set_initial(function () return {1.0, 1.0, 1.0, 1.0} end)
+
+		self:get_datafield("ColorMultiply"):add_controller(function (self_, value)
+			local multiply = 1.0
+			if ModEnvironment.CurMouseOn ~= nil and self:container_parent().RTTIID == ModEnvironment.CurMouseOn.RTTIID then
+				multiply = 1.6
+			end
+			return {value[1]*multiply, value[2]*multiply, value[3]*multiply, value[4]}
+		end, 0)
+
+		self:get_datafield("ColorMultiply"):add_controller(function (self_, value)
+			local multiply = 1.0
+			if self:container_parent().isDisabled == true then
+				if self:container_parent().disabledTimer.Enabled == false then self:container_parent().disabledTimer:SwitchStart() end
+				local d = math.abs(self:container_parent().disabledTimer:GetPercentage()-50) / 100.0
+				multiply = 0.5 + 0.5 * d
+				self:container_parent().disabledTimer:Update()
+			end
+			return {value[1]*multiply, value[2]*multiply, value[3]*multiply, value[4]}
+		end, 0)
+	end,
+
+	on_update = function (self)
+		self:get_container().parent.bodyElement.colorMultiply = Utility.Homogeneous4D(unpack(self:get_datafield("ColorMultiply"):get()))
+	end,
+
+})
+
+comp_TechnoColorMultiply = components.component:new({
+	name = "TechnoColorMultiply",
+
+	subcomponents = {
+		subcomp_TechnoColorMultiply
+	}
+})
 
 function Functions.Abs_Techno_onUpdate(self, table)
 	local scriptType = self:getTechnoType().ScriptType
@@ -54,7 +100,9 @@ function Functions.Abs_Techno_onUpdate(self, table)
 		end
 	end
 
-	table.bodyElement.colorMultiply = Utility.Homogeneous4D(unpack(table.bodyColorMultiply:get()))
+	table.components:update()
+
+	--table.bodyElement.colorMultiply = Utility.Homogeneous4D(unpack(table.bodyColorMultiply:get()))
 end
 
 function Locomotor_Default_setAngularVelocity(updating, args, curDeg, reqDeg, rev)
@@ -190,9 +238,17 @@ function Functions.Abs_Techno_onSpawn(self, table)
 end
 
 function Functions.Abs_Techno_onCreate(creating, table)
+	table.RTTIID = creating.RTTIID
+
+	table.components = components.components_container:new()
+	table.components:init(table)
+	table.components:add_component(comp_TechnoColorMultiply)
+
 	table.isDisabled = false
 	local scriptType = creating:getTechnoType().ScriptType
 	table.elements = { }
+
+	table.typename = scriptType.image
 
 	creating.useCollSphere = scriptType.usecollsphere
 	creating.rCollSphere = scriptType.rcollsphere
@@ -238,7 +294,7 @@ function Functions.Abs_Techno_onCreate(creating, table)
 		if ModEnvironment.CurMouseOn ~= nil and creating.RTTIID == ModEnvironment.CurMouseOn.RTTIID then
 			multiply = 1.6
 		end
-		return {value[1]*multiply, value[2]*multiply, value[3]*multiply, value[4]} 
+		return {value[1]*multiply, value[2]*multiply, value[3]*multiply, value[4]}
 	end, 0)
 
 	table.bodyColorMultiply:add_controller(function (self, value)
@@ -249,7 +305,7 @@ function Functions.Abs_Techno_onCreate(creating, table)
 			multiply = 0.5 + 0.5 * d
 			table.disabledTimer:Update()
 		end
-		return {value[1]*multiply, value[2]*multiply, value[3]*multiply, value[4]} 
+		return {value[1]*multiply, value[2]*multiply, value[3]*multiply, value[4]}
 	end, 0)
 
 end
