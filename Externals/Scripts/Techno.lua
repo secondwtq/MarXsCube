@@ -12,8 +12,26 @@ subcomp_TechnoColorMultiply = components.subcomponent:new({
 
 	name = "TechnoColorMultiply_Initial",
 
+	-- use set_datafield and get_datafield for general Techno data operation
+	--   of the component itself
+	-- the two functions can be used after both Components and Sub Components
+
+	-- use self:get_container() to get the Components Container
+	-- use self:container_parent() to get the parent of Components Container
+	-- the two functions can be used after both Components and Sub Components
+
+	-- Techno data is stored in the data table of Components Container
+	--	and all Sub Components of certain Component share a same space of Techno data.
+	--		just like : container.data[<name of components>][<fieldname>]
+
+	-- current I have no idea of how to share data between different Components of
+	--	the same Component Container
+	-- but there is a 'data_global' field reserved in the Component Container
+	--  may be used to store references of Components
+
+
+	-- coroutines and bound attributes is encouraged to be used with Components.
 	on_create = function (self, parent)
-		--self:set_datafield("ColorMultiply", {0.5, 0.5, 0.5, 1.0})
 		self:set_datafield("ColorMultiply", bindedattr.binded_attr:new())
 
 		self:get_datafield("ColorMultiply"):set_initial(function () return {1.0, 1.0, 1.0, 1.0} end)
@@ -44,6 +62,11 @@ subcomp_TechnoColorMultiply = components.subcomponent:new({
 
 })
 
+-- ObjectTable(or something) -> Components Container -> Components -> Sub Components
+-- Sub Components should be declared as below
+-- you need to specific a name for both Components and Sub Components
+
+-- now the name of Components use a prefix 'comp_', and Sub Components 'subcomp_'
 comp_TechnoColorMultiply = components.component:new({
 	name = "TechnoColorMultiply",
 
@@ -237,7 +260,12 @@ function Functions.Abs_Techno_onSpawn(self, table)
 		self.Physics:setToStatic() end
 end
 
+-- Components Container should be created in Object RTTIID table
+--    it name should be 'table.components'
+-- call the init(parent) method after allocing using the table(parent)
+
 function Functions.Abs_Techno_onCreate(creating, table)
+	-- a hack, it should be a helper function to get RTTIID from object table
 	table.RTTIID = creating.RTTIID
 
 	table.components = components.components_container:new()
@@ -248,6 +276,10 @@ function Functions.Abs_Techno_onCreate(creating, table)
 	local scriptType = creating:getTechnoType().ScriptType
 	table.elements = { }
 
+	-- hack, same as table.typename, we need to add a name flag for TECHNOTYPE for debugging
+	--   moreover, we need to get CubeCore Object from Object RTTIID table,
+	--			and get Object RTTIID table from CubeCore Object
+	--				get Type from both CubeCore Object and Object RTTIID table
 	table.typename = scriptType.image
 
 	creating.useCollSphere = scriptType.usecollsphere

@@ -1,3 +1,36 @@
+-- this file is part of Project MarXsCube Prototype.
+
+-- subproject:
+--
+--		Lunar?
+--		ScriptX?
+--
+-- basic support of components
+--
+-- including:
+--
+--		* components_container
+--		* component
+--		* subcomponent
+--		* cosubcomponent
+--
+-- dependency:
+--
+--		* lobject
+--		* Lua coroutine
+--
+--	use in other modules:
+--
+--		components = require 'components'
+--
+--	I may consider other name for components library in the future
+--
+--	changelog:
+--
+--		* 2014.9.29 EVE initial commit.
+--
+--	http://github.com/secondwtq/MarXsCube
+
 _module_components = { }
 
 local lobject = require 'object'
