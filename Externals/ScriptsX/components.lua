@@ -45,7 +45,7 @@ _module_components.components_container = lobject.object:new({
 	data = { },
 
 	__init__ = function (self)
-		print("initing components_container", self)
+		-- print("initing components_container", self)
 		self.__components = { }
 		self.data = { }
 		self.data_global = { }

@@ -32,9 +32,19 @@ subcomp_TechnoColorMultiply = components.subcomponent:new({
 
 	-- coroutines and bound attributes is encouraged to be used with Components.
 	on_create = function (self, parent)
+
+		-- bound attribute, introduced in bindedattr module of ScriptX?
+		-- I don't know whether it can do exactly yet, but it is really an amazing idea
+		-- generally we use bindedattr.binded_attr
+
+		-- it has an initial value, which is actually a function, use set_initial() to specific it.
+
+		-- and then add controller function with add_controller(), controllers should be added at the
+		-- beginning, and its function signature should be <TRANSFORMED_VALUE> foo(self, <ORIGINAL_VALUE>)
+
 		self:set_datafield("ColorMultiply", bindedattr.binded_attr:new())
 
-		self:get_datafield("ColorMultiply"):set_initial(function () return {1.0, 1.0, 1.0, 1.0} end)
+		self:get_datafield("ColorMultiply"):set_initial(function (self) return {1.0, 1.0, 1.0, 1.0} end)
 
 		self:get_datafield("ColorMultiply"):add_controller(function (self_, value)
 			local multiply = 1.0
@@ -317,27 +327,5 @@ function Functions.Abs_Techno_onCreate(creating, table)
 
 	table.Mission = Enums.ModEnv.Mission.unknown
 	table.MovingState = Enums.ModEnv.MovingState.unknown
-
-	table.bodyColorMultiply = bindedattr.binded_attr:new()
-
-	table.bodyColorMultiply:set_initial(function () return {1.0, 1.0, 1.0, 1.0} end)
-	table.bodyColorMultiply:add_controller(function (self, value)
-		local multiply = 1.0
-		if ModEnvironment.CurMouseOn ~= nil and creating.RTTIID == ModEnvironment.CurMouseOn.RTTIID then
-			multiply = 1.6
-		end
-		return {value[1]*multiply, value[2]*multiply, value[3]*multiply, value[4]}
-	end, 0)
-
-	table.bodyColorMultiply:add_controller(function (self, value)
-		local multiply = 1.0
-		if table.isDisabled == true then
-			if table.disabledTimer.Enabled == false then table.disabledTimer:SwitchStart() end
-			local d = math.abs(table.disabledTimer:GetPercentage()-50) / 100.0
-			multiply = 0.5 + 0.5 * d
-			table.disabledTimer:Update()
-		end
-		return {value[1]*multiply, value[2]*multiply, value[3]*multiply, value[4]}
-	end, 0)
 
 end
