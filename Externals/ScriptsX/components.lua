@@ -29,6 +29,7 @@
 --
 --		* 2014.9.29 EVE initial commit.
 --		* 2014.10.4 added getdatatable function for comp. and subcomp.
+--		* 2014.10.4 custom event support
 --
 --	http://github.com/secondwtq/MarXsCube
 
@@ -45,11 +46,24 @@ _module_components.components_container = lobject.object:new({
 	data_global = { },
 	data = { },
 
+	events = { },
+
 	__init__ = function (self)
 		-- print("initing components_container", self)
 		self.__components = { }
 		self.data = { }
 		self.data_global = { }
+
+		self.events = { }
+		local function container_event_dispatcher (table, key)
+			return
+				function ()
+					for i, v in ipairs(self.__components) do
+						v.events[key]()
+					end
+				end
+		end
+		setmetatable(self.events, { __index = container_event_dispatcher })
 	end,
 
 	init = function(self, parent)
@@ -74,6 +88,29 @@ _module_components.components_container = lobject.object:new({
 
 })
 
+local events_container = {
+
+	parent = nil,
+
+	__index = nil,
+
+	__newindex = nil,
+}
+
+function events_container.__index(table, value)
+	return
+		function ()
+			local parent = rawget(table, 'parent')
+			for i, v in ipairs(parent.__subcomponents) do
+				if v[value] then v[value](v) end
+			end
+		end
+end
+
+function events_container.__newindex(table, key, value)
+	table['_' .. key .. '_'] = value
+end
+
 _module_components.component = lobject.object:new({
 
 	parent = nil,
@@ -83,6 +120,8 @@ _module_components.component = lobject.object:new({
 	subcomponents = { },
 
 	__subcomponents = { },
+
+	events = { },
 
 	_on_create = function (self, parent)
 		self.parent = parent
@@ -121,6 +160,10 @@ _module_components.component = lobject.object:new({
 	__init__ = function (self)
 		print("initing component", self)
 		self.__subcomponents = { }
+
+		self.events = { }
+		setmetatable(self.events, events_container)
+		rawset(self.events, "parent", self)
 
 		for i, v in ipairs(self.subcomponents) do
 			table.insert(self.__subcomponents, v)

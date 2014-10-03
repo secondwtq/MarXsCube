@@ -87,6 +87,8 @@ subcomp_TechnoColorMultiply = components.subcomponent:new({
 
 })
 
+-- * CUSTOM EVENTS *
+
 -- * HOW TO DEFINE COMPONENTS *
 -- ObjectTable(or something) -> Components Container -> Components -> Sub Components
 -- Sub Components should be declared as below
