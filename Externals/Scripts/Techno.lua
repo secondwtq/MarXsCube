@@ -87,6 +87,7 @@ subcomp_TechnoColorMultiply = components.subcomponent:new({
 
 })
 
+-- * HOW TO DEFINE COMPONENTS *
 -- ObjectTable(or something) -> Components Container -> Components -> Sub Components
 -- Sub Components should be declared as below
 -- you need to specific a name for both Components and Sub Components

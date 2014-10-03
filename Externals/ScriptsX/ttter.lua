@@ -26,6 +26,9 @@
 --
 --	http://github.com/secondwtq/MarXsCube
 
+--	well, I just found it is one of the very few scripts
+--		without the fucking oo instead of lua original style.
+
 
 --	use lua metatable __index & __newindex for impl.
 --	will create a __ttter field in table

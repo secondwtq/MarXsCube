@@ -1,11 +1,12 @@
 Environment = { }
 Environment.ConfigPath = "Scripts/"
+
+package.path = package.path .. ';./ScriptsX/?.lua'
+
 Import =
 	function(s)
 		Utility.DoImport(Environment.ConfigPath .. s)
 	end
-
-Utility.DoImport("ScriptsX/scriptsx.lua")
 
 Import("Debug.lua")
 
