@@ -1,4 +1,5 @@
 components = require 'components'
+bindedattr = require 'binded_attr'
 
 function Functions.TechnoType_onLoad(self, table)
 	local pType = table
@@ -33,6 +34,7 @@ subcomp_TechnoColorMultiply = components.subcomponent:new({
 	-- coroutines and bound attributes is encouraged to be used with Components.
 	on_create = function (self, parent)
 
+		-- * BOUND ATTRIBUTE *
 		-- bound attribute, introduced in bindedattr module of ScriptX?
 		-- I don't know whether it can do exactly yet, but it is really an amazing idea
 		-- generally we use bindedattr.binded_attr
@@ -42,11 +44,24 @@ subcomp_TechnoColorMultiply = components.subcomponent:new({
 		-- and then add controller function with add_controller(), controllers should be added at the
 		-- beginning, and its function signature should be <TRANSFORMED_VALUE> foo(self, <ORIGINAL_VALUE>)
 
-		self:set_datafield("ColorMultiply", bindedattr.binded_attr:new())
+		-- * GETTER & SETTER *
+		-- ttter module in ScriptX? allows accessing bound attribute as common attribute
+		-- comp/subcomp:get_datatable() function is added for it
+		-- use bindedattr.add_bound_attr(datatable, attrname) to add a binded attr with getter
 
-		self:get_datafield("ColorMultiply"):set_initial(function (self) return {1.0, 1.0, 1.0, 1.0} end)
+		-- the bound attribute object itself, which add_bound_attr returns,
+		--	is in fact stored in _<Key>_ field of datatable
+		-- a bindedattr.get_bound_attr() function is also provided to fetch it later
 
-		self:get_datafield("ColorMultiply"):add_controller(function (self_, value)
+		-- it also allows a direct assignment of initial value
+
+		local datatable = self:get_datatable()
+
+		local attr_ColorMultiply = bindedattr.add_bound_attr(datatable, 'ColorMultiplyAttr')
+
+		datatable.ColorMultiplyAttr = { 1.0, 1.0, 1.0, 1.0 }
+
+		attr_ColorMultiply:add_controller(function (self_, value)
 			local multiply = 1.0
 			if ModEnvironment.CurMouseOn ~= nil and self:container_parent().RTTIID == ModEnvironment.CurMouseOn.RTTIID then
 				multiply = 1.6
@@ -54,7 +69,7 @@ subcomp_TechnoColorMultiply = components.subcomponent:new({
 			return {value[1]*multiply, value[2]*multiply, value[3]*multiply, value[4]}
 		end, 0)
 
-		self:get_datafield("ColorMultiply"):add_controller(function (self_, value)
+		attr_ColorMultiply:add_controller(function (self_, value)
 			local multiply = 1.0
 			if self:container_parent().isDisabled == true then
 				if self:container_parent().disabledTimer.Enabled == false then self:container_parent().disabledTimer:SwitchStart() end
@@ -67,7 +82,7 @@ subcomp_TechnoColorMultiply = components.subcomponent:new({
 	end,
 
 	on_update = function (self)
-		self:get_container().parent.bodyElement.colorMultiply = Utility.Homogeneous4D(unpack(self:get_datafield("ColorMultiply"):get()))
+		self:get_container().parent.bodyElement.colorMultiply = Utility.Homogeneous4D(unpack(self:get_datafield('ColorMultiplyAttr')))
 	end,
 
 })

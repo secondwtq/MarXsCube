@@ -27,7 +27,6 @@ _binded_attr.bindedattr_cont = object.object:new({
 
 })
 
-
 _binded_attr.binded_attr = object.object:new({
 
 	attr_controller = object.object:new({
@@ -72,5 +71,30 @@ _binded_attr.binded_attr = object.object:new({
 	end,
 
 })
+
+local ttter = require 'ttter'
+
+_binded_attr.add_bound_attr = function(table, key)
+
+	local bound_actually_name = '_' .. key .. '_'
+
+	table[bound_actually_name] = _binded_attr.binded_attr:new()
+
+	ttter.property(table, key,
+	
+	function (table)
+		return table[bound_actually_name]:get()
+	end,
+	function (table, value)
+		table[bound_actually_name]:set_initial(function () return value end)
+	end)
+
+	return table[bound_actually_name]
+
+end
+
+_binded_attr.get_bound_attr = function(table, key)
+	return table['_' .. key .. '_']
+end
 
 return _binded_attr

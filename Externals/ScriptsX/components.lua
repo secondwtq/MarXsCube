@@ -28,6 +28,7 @@
 --	changelog:
 --
 --		* 2014.9.29 EVE initial commit.
+--		* 2014.10.4 added getdatatable function for comp. and subcomp.
 --
 --	http://github.com/secondwtq/MarXsCube
 
@@ -134,6 +135,10 @@ _module_components.component = lobject.object:new({
 		return self.parent.data[self.name][fieldname]
 	end,
 
+	get_datatable = function (self)
+		return self.parent.data[self.name]
+	end,
+
 	get_container = function (self)
 		return self.parent
 	end,
@@ -181,6 +186,10 @@ _module_components.subcomponent = lobject.object:new({
 
 	get_datafield = function (self, fieldname)
 		return self.parent:get_datafield(fieldname)
+	end,
+
+	get_datatable = function (self)
+		return self.parent:get_datatable()
 	end,
 
 })

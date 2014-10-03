@@ -10,33 +10,33 @@
 	<string>MarXsCube</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>639CF47C-1222-4E07-8D63-8BD186281A76</key>
+		<key>D0D9302F8A6B41AC0754A59BFBD88604AA336107</key>
 		<string>ssh://github.com/secondwtq/project_Urd.git</string>
-		<key>A7BE4F3A-461F-44BD-AD00-AA5CA61C7866</key>
+		<key>F826F94956A2879A5CA4D152EB01A14D16185F70</key>
 		<string>https://github.com/secondwtq/MarXsCube</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>MarXsCube.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>639CF47C-1222-4E07-8D63-8BD186281A76</key>
+		<key>D0D9302F8A6B41AC0754A59BFBD88604AA336107</key>
 		<string>../../../project_U</string>
-		<key>A7BE4F3A-461F-44BD-AD00-AA5CA61C7866</key>
+		<key>F826F94956A2879A5CA4D152EB01A14D16185F70</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/secondwtq/MarXsCube</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>A7BE4F3A-461F-44BD-AD00-AA5CA61C7866</string>
+	<string>F826F94956A2879A5CA4D152EB01A14D16185F70</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>A7BE4F3A-461F-44BD-AD00-AA5CA61C7866</string>
+			<string>F826F94956A2879A5CA4D152EB01A14D16185F70</string>
 			<key>IDESourceControlWCCName</key>
 			<string>MarXsCube</string>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>639CF47C-1222-4E07-8D63-8BD186281A76</string>
+			<string>D0D9302F8A6B41AC0754A59BFBD88604AA336107</string>
 			<key>IDESourceControlWCCName</key>
 			<string>project_U</string>
 		</dict>

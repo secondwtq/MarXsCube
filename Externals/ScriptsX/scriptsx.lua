@@ -2,5 +2,4 @@
 
 package.path = package.path .. ';./ScriptsX/?.lua'
 
-bindedattr = require 'binded_attr'
 -- bindedattr = _binded_attr
