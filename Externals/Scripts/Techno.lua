@@ -2,6 +2,7 @@ components = require 'components'
 bindedattr = require 'binded_attr'
 
 composer = require 'composer'
+Helpers = require 'Helpers'
 
 function Functions.TechnoType_onLoad(self, table)
 	local pType = table

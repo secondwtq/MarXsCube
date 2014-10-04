@@ -44,7 +44,7 @@ namespace LuaInterface {
 	
 	void RegisterInterface_New(LuaStatus &L) {
 		getGlobalNamespace(L).
-			beginNamespace("CoreHelper").
+			beginNamespace("CoreHelpers").
 				addFunction("texture", &LuaUtils::Helper_GetTexture).
 			endNamespace();
 	}
