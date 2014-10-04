@@ -78,6 +78,7 @@ local subcomp_TechnoColorMultiply = components.subcomponent:new({
 	end,
 
 	on_update = function (self)
+		self:get_container().a['thiscomponentdonotexist']:thisfunctiondonotexistoo()
 		self:get_container().parent.bodyElement.colorMultiply = Utility.Homogeneous4D(unpack(self:get_datafield('ColorMultiplyAttr')))
 	end,
 
@@ -102,5 +103,26 @@ local comp_TechnoColorMultiply = components.component:new({
 })
 
 __composer.comp_TechnoColorMultiply = comp_TechnoColorMultiply
+
+local subcomp_RenderBasicBody = components.subcomponent:new({
+
+	name = "RenderBasicBody_Initial",
+
+
+
+})
+
+local comp_RenderBasicBody = components.component:new({
+
+	name = "RenderBasicBody",
+	alias = "RenderBasicBody",
+
+	subcomponents = {
+		subcomp_RenderBasicBody
+	}
+
+})
+
+__composer.comp_RenderBasicBody = comp_RenderBasicBody
 
 return __composer

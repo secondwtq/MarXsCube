@@ -60,6 +60,9 @@ namespace LuaInterface {
 				addFunction("GetTime_Clock", &LuaUtils::GetTime_Clock).
 				addFunction("toTechno", &LuaUtils::toTechno).
 				addFunction("torad", &torad).
+				beginNamespace("Pathfinding").
+					addFunction("smooth_slow", &Pathfinding::smooth_slow).
+				endNamespace().
 				beginClass<Pathfinding::PathFindingcache>("PathFindingcache").
 					addFunction("reset", &Pathfinding::PathFindingcache::reset).
 					addFunction("inc", &Pathfinding::PathFindingcache::inc).

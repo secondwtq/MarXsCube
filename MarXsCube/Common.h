@@ -26,6 +26,7 @@ extern double TransformScaleFactor;
 #define RTTIType_AnimType 6
 #define RTTIType_Techno 7
 #define RTTIType_TechnoType 8
+#define RTTIType_TechnoRTTIIDTable 9
 
 /*
 	Render Layer

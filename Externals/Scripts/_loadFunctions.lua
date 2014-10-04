@@ -29,7 +29,8 @@ function load(manager)
 	loadObjectsLater()
 end
 
-function CubeCore_CreateObjectTable(id)
+function CubeCore_CreateObjectTable(RTTIID)
 	local ret = { }
+	ret.__RTTIID = RTTIID
 	return ret
 end

@@ -31,6 +31,7 @@
 --		* 2014.10.4 added getdatatable function for comp. and subcomp.
 --		* 2014.10.4 custom event support
 --		* 2014.10.4 PM alias on comp.cont. & on_init function for comp. to access all comp.s
+--		* 2014.10.4 EVE refined alias function call
 --
 --	http://github.com/secondwtq/MarXsCube
 
@@ -68,6 +69,22 @@ _module_components.components_container = lobject.object:new({
 				end
 		end
 		setmetatable(self.events, { __index = container_event_dispatcher })
+
+		-- custom component function call through aLIAS
+		--  and the alias is not presented
+		local a_notpresent = { }
+		local a_notpresent_mt = { }
+		function a_notpresent_mt.__index(table, value)
+			return
+				function () end
+		end
+		setmetatable(a_notpresent, a_notpresent_mt)
+
+		local a_mt = { }
+		function a_mt.__index(table, value)
+			return a_notpresent
+		end
+		setmetatable(self.a, a_mt)
 	end,
 
 	init = function(self, parent)

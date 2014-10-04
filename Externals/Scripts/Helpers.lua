@@ -23,6 +23,7 @@
 --	changelog:
 --
 --		* 2014.10.4 PM initial commit.
+--		* 2014.10.4 EVE refined.
 --
 --	http://github.com/secondwtq/MarXsCube
 
@@ -30,6 +31,26 @@ local __Helpers = { }
 
 function __Helpers.texture(name)
 	return CoreHelpers.texture(name)
+end
+
+function __Helpers.TechnoType_Techno(object)
+	return object:getTechnoType()
+end
+
+function __Helpers.scriptType_Techno(object)
+	return object:getTechnoType().ScriptType
+end
+
+function __Helpers.RTTIID_table(table)
+	return table.__RTTIID
+end
+
+function __Helpers.Techno_TechnoRTTIIDTable(table)
+	return table.Techno
+end
+
+function __Helpers.TechnoType_TechnoRTTIIDTable(table)
+	return table.TechnoType
 end
 
 return __Helpers

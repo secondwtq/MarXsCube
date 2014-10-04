@@ -203,4 +203,41 @@ namespace Pathfinding {
 		}
 		return false;
 	}
+	
+	bool can_go_between(Abs_Cell *a, Abs_Cell *b, Abs_Object *object) {
+		return true;
+	}
+	
+	void smooth_slow(PathFindingcache *src, Abs_Object *object) {
+		vector<Abs_Cell *> smoothed;
+		
+		Abs_Cell *cur = src->getCur();
+		Abs_Cell *nex = src->getCur();
+		while (true) {
+			smoothed.push_back(cur);
+			printf("pushing %x\n", cur);
+			
+			src->inc();
+			
+			if (src->ended()) break;
+			
+			while (true) {
+				if (src->aboutoend())
+					break;
+				
+				nex = src->getCur();
+				
+				if (!can_go_between(cur, nex, object))
+					break;
+				
+				src->inc();
+			}
+			
+			cur = src->getCur();
+			
+		}
+		
+		src->init(smoothed);
+		printf("%d\n", src->size());
+	}
 }

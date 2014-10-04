@@ -32,6 +32,7 @@ function Functions.Abs_Techno_onUpdate(self, table)
 					table.MovingState = Enums.ModEnv.MovingState.Moving
 				end
 				local succeeded = Utility.Pathfinding_Find(self, src_cell, dest_cell, self:getPathfindingcache())
+				Utility.Pathfinding.smooth_slow(self:getPathfindingcache(), self)
 				if succeeded == true then self:getPathfindingcache():inc() end
 			end
 		end
@@ -98,9 +99,9 @@ function Functions.Abs_Techno_onPhysicsTransformed(self, table)
 				self:getRepathcache():clear()
 				return
 			end
-			local nextCell = Utility.CoordStruct((cache:getCur():GetCoord().x+cache:getNex():GetCoord().x)/2,
-											(cache:getCur():GetCoord().y+cache:getNex():GetCoord().y)/2,
-											(cache:getCur():GetHeight()+cache:getNex():GetHeight())/2)
+			local nextCell = Utility.CoordStruct((cache:getCur():GetCoord().x),
+											(cache:getCur():GetCoord().y),
+											(cache:getCur():GetHeight()))
 			-- local nextCell = Utility.CoordStruct(cache:getCur():GetCoord().x,
 			-- 								cache:getCur():GetCoord().y,
 			-- 								cache:getCur():GetHeight())
@@ -203,16 +204,30 @@ end
 -- call init_components() method after all components are added to trigger on_init()
 
 function Functions.Abs_Techno_onCreate(creating, table)
-	-- a hack, it should be a helper function to get RTTIID from object table
+	-- set general properties for RTTIID table, for helpers
 	table.RTTIID = creating.RTTIID
+	table.TechnoType = Helpers.TechnoType_Techno(creating)
+	table.Type = table.TechnoType
+	table.Techno = creating
+	table.AttachedToObject = creating
 
+	function table:WhatAmI ()
+		return Enums.TechnoRTTIIDTable
+	end
+
+	local scriptType = Helpers.scriptType_Techno(creating)
+
+	-- alloc, init comp cont, and add components to container
 	table.components = components.components_container:new()
 	table.components:init(table)
-	table.components:add_component(composer.comp_TechnoColorMultiply)
+
+	for i, v in ipairs(scriptType.components) do
+		table.components:add_component(v)
+	end
+
 	table.components:init_components()
 
 	table.isDisabled = false
-	local scriptType = creating:getTechnoType().ScriptType
 	table.elements = { }
 
 	-- hack, same as table.typename, we need to add a name flag for TECHNOTYPE for debugging

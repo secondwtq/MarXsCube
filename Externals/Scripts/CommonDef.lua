@@ -33,6 +33,7 @@ Enums.RTTITypeID = {
 	AnimType = 0x6,
 	Techno = 0x7,
 	TechnoType = 0x8,
+	TechnoRTTIIDTable = 0x9,
 }
 
 Enums.General.CameraKeyMoveStep = 20.0
