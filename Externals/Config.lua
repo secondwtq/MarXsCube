@@ -1,7 +1,7 @@
 Environment = { }
 Environment.ConfigPath = "Scripts/"
 
-package.path = package.path .. ';./ScriptsX/?.lua'
+package.path = package.path .. ';./ScriptsX/?.lua;./Scripts/?.lua'
 
 Import =
 	function(s)

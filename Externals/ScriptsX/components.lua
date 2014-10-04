@@ -30,6 +30,7 @@
 --		* 2014.9.29 EVE initial commit.
 --		* 2014.10.4 added getdatatable function for comp. and subcomp.
 --		* 2014.10.4 custom event support
+--		* 2014.10.4 PM alias on comp.cont. & on_init function for comp. to access all comp.s
 --
 --	http://github.com/secondwtq/MarXsCube
 
@@ -47,6 +48,9 @@ _module_components.components_container = lobject.object:new({
 	data = { },
 
 	events = { },
+
+	-- aliases
+	a = { },
 
 	__init__ = function (self)
 		-- print("initing components_container", self)
@@ -80,6 +84,8 @@ _module_components.components_container = lobject.object:new({
 		return comp
 	end,
 
+	init_components = nil,
+
 	update = function (self)
 		for i, v in ipairs(self.__components) do
 			v:_on_update()
@@ -87,6 +93,12 @@ _module_components.components_container = lobject.object:new({
 	end,
 
 })
+
+function _module_components.components_container:init_components()
+	for i, v in ipairs(self.__components) do
+		v:on_init()
+	end
+end
 
 local events_container = {
 
@@ -116,6 +128,7 @@ _module_components.component = lobject.object:new({
 	parent = nil,
 
 	name = "DEFAULT_COMPNODE",
+	alias = "DEFAULT_COMPNODE_ALIAS",
 
 	subcomponents = { },
 
@@ -126,8 +139,10 @@ _module_components.component = lobject.object:new({
 	_on_create = function (self, parent)
 		self.parent = parent
 
-		local _n_subcomp = { }
+		parent.a[self.alias] = self
 
+		-- init subcomponents
+		local _n_subcomp = { }
 		for i, v in ipairs(self.__subcomponents) do
 			table.insert(_n_subcomp, v:new())
 		end
@@ -150,6 +165,13 @@ _module_components.component = lobject.object:new({
 	end,
 
 	on_create = function (self, parent)
+
+	end,
+
+	-- alloc compcont -> compcont:init
+	-- compcont:add_component -> comp:_on_create -> comp:on_create -> compcont:init_components -> comp:on_init
+	-- you can access alias in on_init, it is all for user
+	on_init = function (self)
 
 	end,
 

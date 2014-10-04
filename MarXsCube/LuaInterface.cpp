@@ -42,15 +42,11 @@ namespace LuaInterface {
 		RegisterInterface_New(L);
 	}
 	
-	inline TextureAtlas *Helper_GetTexture(const string &name) {
-		return TextureManger::GetInstance().getTexture(name);
-	}
-	
 	void RegisterInterface_New(LuaStatus &L) {
 		getGlobalNamespace(L).
-			beginNamespace("Helper").
-		addFunction("texture", &Helper_GetTexture).
-		endNamespace();
+			beginNamespace("CoreHelper").
+				addFunction("texture", &LuaUtils::Helper_GetTexture).
+			endNamespace();
 	}
 
 	void RegisterInterface_Util(LuaStatus &L) {

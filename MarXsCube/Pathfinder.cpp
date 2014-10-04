@@ -41,7 +41,6 @@ namespace Pathfinding {
 		InsideOpen = new bool[llmww];
 		InsideClose = new bool[llmww];
         Cells = (Abs_Cell**)malloc(sizeof(Abs_Cell*) * llmww * 2);
-//		Cells = (Abs_Cell**)new (char*)[llmww];
 		Fathers = new CellStruct[llmww];
 		G = new int[llmww];
 		H = new int[llmww];

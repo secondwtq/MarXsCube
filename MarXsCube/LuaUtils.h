@@ -18,6 +18,10 @@ namespace LuaUtils {
 	Abs_Techno *toTechno(Abs_Abstract *src);
 	
 	luabridge::LuaRef CreateObjectTable_Default(lua_State* L);
+	
+	inline TextureAtlas *Helper_GetTexture(const string &name) {
+		return TextureManger::GetInstance().getTexture(name);
+	}
 }
 
 #endif

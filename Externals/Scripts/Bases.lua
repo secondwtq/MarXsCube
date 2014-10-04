@@ -1,5 +1,7 @@
 Import("_Base.lua")
 
+local composer = require 'composer'
+
 BASES.BaseTexture = BASES.BaseBase:newObject({
 	filename = "./Textures/dummy.png",
 	frame_count = 1,
@@ -36,6 +38,10 @@ BASES.BaseTechno = BASES.BaseObject:newObject({
 	physics = {
 		enabled = false,
 		mass = 0.0
+	},
+
+	components = {
+		composer.comp_TechnoColorMultiply
 	},
 
 	_image = nil,

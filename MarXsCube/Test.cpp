@@ -17,7 +17,7 @@ using namespace std;
 #include "unistd.h"
 
 int main() {
-	printf("MarXsCube by seCOnDatkE, 2014.");
+	printf("MarXsCube by seCOnDatkE, 2014.\n\n");
 	
     char currentdir[1024];
     getcwd(currentdir, 1024);
