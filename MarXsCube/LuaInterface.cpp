@@ -162,6 +162,7 @@ namespace LuaInterface {
 					addData("offset", &RenderElement::offset).
 					addData("colorMultiply", &RenderElement::colorMultiply).
 					addData("direction", &RenderElement::direction).
+					addData("direction_offset", &RenderElement::direction_offset).
 					addData("UseShadowProjection", &RenderElement::UseShadowProjection).
 					addData("ProjectionVector", &RenderElement::ProjectionVector).
 				endClass().
@@ -169,12 +170,14 @@ namespace LuaInterface {
 					addConstructor<void (*)(TextureAtlas *, int)>().
 					addData("frameCount", &RenderElement_DirectionedStatic::frameCount).
 					addStaticFunction("createElement", &RenderElement_DirectionedStatic::createElement).
+					addStaticFunction("create", &RenderElement_DirectionedStatic::createElement).
 				endClass().
 				deriveClass<RenderElement_FramedStatic, RenderElement>("RenderElement_FramedStatic").
 					addConstructor<void (*)(TextureAtlas *)>().
 					addData("currentFrame", &RenderElement_FramedStatic::currentFrame).
 					addFunction("setCurrentFrame", &RenderElement_FramedStatic::setCurrentFrame).
 					addStaticFunction("createElement", &RenderElement_FramedStatic::createElement).
+					addStaticFunction("create", &RenderElement_FramedStatic::createElement).
 				endClass().
 				deriveClass<RenderElement_FramedDynamic, RenderElement>("RenderElement_FramedDynamic").
 					addConstructor<void(*)(TextureAtlas *, USIZE)>().

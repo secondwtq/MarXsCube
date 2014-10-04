@@ -12,6 +12,7 @@ class RenderElement {
 		CoordStruct offset = CoordStruct(0, 0, 0);
 		Vector4DT<float> colorMultiply = Vector4DT<float>(1, 1, 1, 1);
 		int direction = 0;
+		int direction_offset = 0;
 		bool UseShadowProjection = false;
 		Vector3DT<double> ProjectionVector = ShadowProjectionVector; //	Vector3DT<double>(0.1239851454748, -0.7748446592171, 0.61987572737); //	Vector3DT<double>(4, -25, 20);
 

@@ -41,6 +41,10 @@ function __Helpers.scriptType_Techno(object)
 	return object:getTechnoType().ScriptType
 end
 
+function __Helpers.scriptType_TechnoRTTITable(table)
+	return table.ScriptType
+end
+
 function __Helpers.RTTIID_table(table)
 	return table.__RTTIID
 end
@@ -52,5 +56,7 @@ end
 function __Helpers.TechnoType_TechnoRTTIIDTable(table)
 	return table.TechnoType
 end
+
+__Helpers.tblinsert = table.insert
 
 return __Helpers

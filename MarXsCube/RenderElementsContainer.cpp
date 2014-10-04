@@ -15,5 +15,5 @@ void RenderElementsContainer::Update() {LOGFUNC;
 }
 
 void RenderElementsContainer::setDirection(int degree) {LOGFUNC;
-	for (auto e : elements) e.second->direction = degree;
+	for (auto e : elements) e.second->direction = degree + e.second->direction_offset;
 }

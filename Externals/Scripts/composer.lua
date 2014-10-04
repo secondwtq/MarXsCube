@@ -1,7 +1,9 @@
---package.path = package.path .. ';../ScriptsX/?.lua'
+package.path = package.path .. ';../ScriptsX/?.lua'
 
 local components = require 'components'
 local bindedattr = require 'binded_attr'
+local Helpers = require 'Helpers'
+local Placeholders = require 'Placeholders'
 
 local __composer = { }
 
@@ -104,11 +106,33 @@ local comp_TechnoColorMultiply = components.component:new({
 
 __composer.comp_TechnoColorMultiply = comp_TechnoColorMultiply
 
+-- * COMPONENT: RenderBasicBody *
+--
+-- dependency:
+--
+--		* CubeCore -> Silcon
+--		* Scripts -> Helpers
+--		* Scripts -> composer -> RenderElementsManger
+--
+-- component datafields:
+--
+--		none
+--
+-- component methods:
+--
+--		none, it is intended to parse the render_elements field in ScriptType.
+--
+--	used field in TechnoScriptType:
+--
+--		appearance -> render_elements
+--
+--	changelog:
+--
+--		* 2014.10.6 initial commit.
+
 local subcomp_RenderBasicBody = components.subcomponent:new({
 
 	name = "RenderBasicBody_Initial",
-
-
 
 })
 
@@ -123,6 +147,106 @@ local comp_RenderBasicBody = components.component:new({
 
 })
 
+function comp_RenderBasicBody:on_init()
+	local scriptType = Helpers.scriptType_TechnoRTTITable(self:container_parent())
+
+	local attr_techno_appearance = scriptType:property 'appearance'
+	local attr_render_elements = attr_techno_appearance['render_elements']
+
+	local elements_manger = self:get_container().a['RenderElementsManger']
+
+	for i, element in ipairs(attr_render_elements) do
+		local creator = elements_manger:element_internal_creator(element.type_static, element.type_directioned)
+
+		-- create RenderElements
+		local element_body = creator(Helpers.texture(element.image), element.image_faces)
+		local element_shadow = creator(Helpers.texture(element.shadow), element.shadow_faces)
+		element_shadow.UseShadowProjection = true
+		element_shadow.colorMultiply = Utility.Homogeneous4D(0.1, 0.1, 0.1, 0.3)
+
+		-- element.offset
+		local coord_offset = Utility.CoordStruct(unpack(element.offset))
+		element_body.offset = coord_offset
+		element_shadow.offset = coord_offset
+
+		-- element.direction_offser
+		element_body.direction_offset = element.direction_offset
+		element_shadow.direction_offset = element.direction_offset
+
+		-- add RenderElements to RenderElementsManger
+		elements_manger:add_element(0, element.name, element_body)
+		elements_manger:add_element(-10, element.name .. '_shadow', element_shadow)
+	end
+end
+
 __composer.comp_RenderBasicBody = comp_RenderBasicBody
+
+-- * COMPONENT: RenderElementsManger *
+--
+-- dependency:
+--
+--		* CubeCore -> Silcon
+--		* Scripts -> Helpers
+--
+-- component datafields:
+--
+--		* elements
+--		* elements_dict
+--
+-- component methods:
+--
+--		* CubeCore::RenderElement add_element(index, name, element)
+--		* function(RenderElementCreator) element_interal_creator(istatic, isdirectioned)
+--
+--	used field in TechnoScriptType:
+--
+--		none, it just provide a interface to CubeCore->RenderElement
+--
+--	changelog:
+--
+--		* 2014.10.4 EVE initial commit.
+
+local subcomp_RenderElementsManger = components.subcomponent:new({
+	name = "RenderElementsManger_Initial",
+})
+
+function subcomp_RenderElementsManger:on_create()
+	self:set_datafield('elements', { })
+	self:set_datafield('elements_dict', { })
+end
+
+local comp_RenderElementsManger = components.component:new({
+
+	name = "RenderElementsManger",
+	alias = "RenderElementsManger",
+
+	subcomponents = {
+		subcomp_RenderElementsManger,
+	},
+
+	add_element = Placeholders.ComponentMethod,
+
+	element_internal_creator = Placeholders.ComponentMethod,
+
+})
+
+function comp_RenderElementsManger:add_element(index, name, element)
+	Helpers.Techno_TechnoRTTIIDTable(self:container_parent()).elements:insert(index, element)
+	Helpers.tblinsert(self:get_datafield 'elements' , element)
+	self:get_datafield 'elements' [name] = element
+	return element
+end
+
+function comp_RenderElementsManger:element_internal_creator(istatic, isdirectioned)
+	if istatic and isdirectioned then
+		return Utility.RenderElement_DirectionedStatic.create
+	elseif (not istatic) and isdirectioned then
+		return Utility.RenderElement_FramedDynamic.create
+	elseif (not istatic) and (not isdirectioned) then
+		return Utility.RenderElement_FramedDynamic
+	end
+end
+
+__composer.comp_RenderElementsManger = comp_RenderElementsManger
 
 return __composer

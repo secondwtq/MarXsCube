@@ -210,6 +210,7 @@ function Functions.Abs_Techno_onCreate(creating, table)
 	table.Type = table.TechnoType
 	table.Techno = creating
 	table.AttachedToObject = creating
+	table.ScriptType = Helpers.scriptType_Techno(creating)
 
 	function table:WhatAmI ()
 		return Enums.TechnoRTTIIDTable

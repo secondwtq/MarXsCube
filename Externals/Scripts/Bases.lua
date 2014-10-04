@@ -1,6 +1,8 @@
-Import("_Base.lua")
 
 local composer = require 'composer'
+local Placeholders = require 'Placeholders'
+
+Import("_Base.lua")
 
 BASES.BaseTexture = BASES.BaseBase:newObject({
 	filename = "./Textures/dummy.png",
@@ -35,17 +37,55 @@ BASES.BaseTechno = BASES.BaseObject:newObject({
 	usecollsphere = true,
 	rcollsphere = 64,
 
+	appearance = {
+
+		render_preset = 'vehicle',
+
+		render_elements = {
+
+			{
+				name = 'body',
+
+				type_static = true,
+				type_directioned = true,
+
+				offset = { 0, 0, 0 },
+				direction_offset = 0,
+
+				image = "TESTUNITBODYIMAGE",
+				image_faces = 32,
+				shadow = "TESTUNITSHADOWIMAGE",
+				shadow_faces = 32,
+
+				multiply = { 1.0, 1.0, 1.0, 1.0 }
+			}
+
+		},
+
+	},
+
 	physics = {
 		enabled = false,
 		mass = 0.0
 	},
 
 	components = {
-		composer.comp_TechnoColorMultiply
+		composer.comp_TechnoColorMultiply,
+		composer.comp_RenderElementsManger,
+		composer.comp_RenderBasicBody,
 	},
 
 	_image = nil,
 	_shadowimage = nil,
+
+	-- well you are suggested to use syntax like
+	--	TechnoScriptType:property '<property>' to index primary properties
+	property = Placeholders.ComponentMethod,
+
 })
+
+function BASES.BaseTechno:property(key)
+	return self[key]
+end
 
 BASES.BaseObject = nil
