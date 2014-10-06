@@ -32,6 +32,7 @@
 --		* 2014.10.4 custom event support
 --		* 2014.10.4 PM alias on comp.cont. & on_init function for comp. to access all comp.s
 --		* 2014.10.4 EVE refined alias function call
+--		* 2014.10.6 EVE fixed alias table instance bug
 --
 --	http://github.com/secondwtq/MarXsCube
 
@@ -58,6 +59,7 @@ _module_components.components_container = lobject.object:new({
 		self.__components = { }
 		self.data = { }
 		self.data_global = { }
+		self.a = { }
 
 		self.events = { }
 		local function container_event_dispatcher (table, key)

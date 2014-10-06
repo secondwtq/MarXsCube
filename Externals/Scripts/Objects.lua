@@ -10,6 +10,28 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 	usecollsphere = true,
 	rcollsphere = 36,
 
+	appearance = {
+		render_elements = {
+			{
+				name = 'body',
+
+				type_static = true,
+				type_directioned = true,
+
+				offset = { 0, 0, 0 },
+				direction_offset = 0,
+
+				image = "TRIKEIMAGE",
+				image_faces = 32,
+				shadow = "TRIKEIMAGE_SHADOW",
+				shadow_faces = 32,
+
+				multiply = { 1.0, 1.0, 1.0, 1.0 },
+				affected_by_global_multiply = true,
+			}
+		},
+	},
+
 	physics = {
 		enabled = true,
 		initialstatic = false,
@@ -42,6 +64,28 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 	shadow = "TESTUNITSHADOWIMAGE",
 	occupationtype = "centeredynamic",
 	occupationfoundation_simple = { x = 1, y = 1 },
+
+	appearance = {
+		render_elements = {
+			{
+				name = 'body',
+
+				type_static = true,
+				type_directioned = true,
+
+				offset = { 0, 0, 0 },
+				direction_offset = 0,
+
+				image = "TESTUNITBODYIMAGE",
+				image_faces = 32,
+				shadow = "TESTUNITSHADOWIMAGE",
+				shadow_faces = 32,
+
+				multiply = { 1.0, 1.0, 1.0, 1.0 },
+				affected_by_global_multiply = true,
+			}
+		},
+	},
 
 	physics = {
 		enabled = true,
@@ -77,6 +121,28 @@ OBJECTS.TESTBUILDING = BASES.BaseTechno:newObject({
 	clickselectable = true,
 	occupationtype = "buildingstatic",
 	occupationfoundation_simple = { x = 4, y = 4 },
+
+	appearance = {
+		render_elements = {
+			{
+				name = 'bodybuilding',
+
+				type_static = true,
+				type_directioned = false,
+
+				offset = { 0, 0, 0 },
+				direction_offset = 0,
+
+				image = "TESTBUILDING_BODY",
+				image_faces = 32,
+				shadow = "TESTBUILDING_SHADOW",
+				shadow_faces = 32,
+
+				multiply = { 1.0, 1.0, 1.0, 1.0 },
+				affected_by_global_multiply = true,
+			}
+		},
+	},
 
 	physics = {
 		enabled = true,

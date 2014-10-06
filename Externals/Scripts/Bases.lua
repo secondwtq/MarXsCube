@@ -57,7 +57,8 @@ BASES.BaseTechno = BASES.BaseObject:newObject({
 				shadow = "TESTUNITSHADOWIMAGE",
 				shadow_faces = 32,
 
-				multiply = { 1.0, 1.0, 1.0, 1.0 }
+				multiply = { 1.0, 1.0, 1.0, 1.0 },
+				affected_by_global_multiply = true,
 			}
 
 		},

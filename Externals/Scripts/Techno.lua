@@ -5,11 +5,7 @@ composer = require 'composer'
 Helpers = require 'Helpers'
 
 function Functions.TechnoType_onLoad(self, table)
-	local pType = table
-	local wImage = Objects.TextureManger.GetInstance():getTexture(table.image)
-	table._image = wImage
-	local sImage = Objects.TextureManger.GetInstance():getTexture(table.shadow)
-	table._shadowimage = sImage
+
 end
 
 function Functions.Abs_Techno_onUpdate(self, table)
@@ -229,7 +225,6 @@ function Functions.Abs_Techno_onCreate(creating, table)
 	table.components:init_components()
 
 	table.isDisabled = false
-	table.elements = { }
 
 	-- hack, same as table.typename, we need to add a name flag for TECHNOTYPE for debugging
 	--   moreover, we need to get CubeCore Object from Object RTTIID table,
@@ -239,36 +234,6 @@ function Functions.Abs_Techno_onCreate(creating, table)
 
 	creating.useCollSphere = scriptType.usecollsphere
 	creating.rCollSphere = scriptType.rcollsphere
-
-	if scriptType.render_preset == "vehicle" then
-		local bodyElement = Utility.RenderElement_DirectionedStatic.createElement(scriptType._image, scriptType.imagefaces)
-		table.bodyElement = bodyElement
-		local shadowElement = Utility.RenderElement_DirectionedStatic.createElement(scriptType._shadowimage, scriptType.shadowimagefaces)
-		table.shadowElement = shadowElement
-		shadowElement.colorMultiply = Utility.Homogeneous4D(0.1, 0.1, 0.1, 0.3)
-		shadowElement.UseShadowProjection = true;
-
-		creating.elements:insert(0, bodyElement)
-		creating.elements:insert(-10, shadowElement)
-
-		util.tblinsert(table.elements, bodyElement)
-		util.tblinsert(table.elements, shadowElement)
-	end
-	if scriptType.render_preset == "structure" then
-		local bodyElement = Utility.RenderElement_FramedStatic.createElement(scriptType._image)
-		table.bodyElement = bodyElement
-
-		local shadowElement = Utility.RenderElement_FramedStatic.createElement(scriptType._shadowimage)
-		table.shadowElement = shadowElement
-		shadowElement.colorMultiply = Utility.Homogeneous4D(0.1, 0.1, 0.1, 0.3)
-		shadowElement.UseShadowProjection = true;
-
-		creating.elements:insert(0, bodyElement)
-		creating.elements:insert(-10, shadowElement)
-
-		util.tblinsert(table.elements, bodyElement)
-		util.tblinsert(table.elements, shadowElement)
-	end
 
 	table.Mission = Enums.ModEnv.Mission.unknown
 	table.MovingState = Enums.ModEnv.MovingState.unknown

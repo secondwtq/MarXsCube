@@ -1,3 +1,39 @@
+-- this file is part of Project MarXsCube Prototype.
+
+-- subproject:
+--
+--		Lunar?
+--
+-- some basic components for test & example
+--
+-- including:
+--
+--		* comp_TechnoColorMultiply
+--		* comp_RenderBasicBody
+--		* comp_RenderElementsManger
+--
+-- dependency:
+--
+--		* components
+--		* binded_attr
+--		* Helpers
+--		* Placeholders
+--
+--	use in other modules:
+--
+--		composers = require 'composers'
+
+--
+--	changelog:
+--
+--		* 2014.10.4 PM initial commit, added comp_TechnoColorMultiply.
+--		* 2014.10.4 EVE updated.
+--		* 2014.10.5 EVE refined comp_RenderBasicBody & comp_RenderElementsManger
+--		* 2014.10.6 EVE compleing 3 comps
+--
+--	http://github.com/secondwtq/MarXsCube
+
+
 package.path = package.path .. ';../ScriptsX/?.lua'
 
 local components = require 'components'
@@ -58,7 +94,6 @@ local subcomp_TechnoColorMultiply = components.subcomponent:new({
 		local attr_ColorMultiply = bindedattr.add_bound_attr(datatable, 'ColorMultiplyAttr')
 
 		datatable.ColorMultiplyAttr = { 1.0, 1.0, 1.0, 1.0 }
-
 		attr_ColorMultiply:add_controller(function (self_, value)
 			local multiply = 1.0
 			if ModEnvironment.CurMouseOn ~= nil and self:container_parent().RTTIID == ModEnvironment.CurMouseOn.RTTIID then
@@ -80,8 +115,15 @@ local subcomp_TechnoColorMultiply = components.subcomponent:new({
 	end,
 
 	on_update = function (self)
-		self:get_container().a['thiscomponentdonotexist']:thisfunctiondonotexistoo()
-		self:get_container().parent.bodyElement.colorMultiply = Utility.Homogeneous4D(unpack(self:get_datafield('ColorMultiplyAttr')))
+		local multiply_corefmt = Utility.Homogeneous4D(unpack(self:get_datafield 'ColorMultiplyAttr'))
+
+		local element_types = Helpers.scriptType_TechnoRTTITable(self:container_parent())['appearance']['render_elements']
+
+		for i, element in ipairs(element_types) do
+			if element.affected_by_global_multiply then
+				self:get_container().a['RenderElementsManger']:get_element_named(element.name).colorMultiply = multiply_corefmt
+			end
+		end
 	end,
 
 })
@@ -150,8 +192,7 @@ local comp_RenderBasicBody = components.component:new({
 function comp_RenderBasicBody:on_init()
 	local scriptType = Helpers.scriptType_TechnoRTTITable(self:container_parent())
 
-	local attr_techno_appearance = scriptType:property 'appearance'
-	local attr_render_elements = attr_techno_appearance['render_elements']
+	local attr_render_elements = scriptType:property 'appearance' ['render_elements']
 
 	local elements_manger = self:get_container().a['RenderElementsManger']
 
@@ -192,6 +233,8 @@ __composer.comp_RenderBasicBody = comp_RenderBasicBody
 --
 --		* elements
 --		* elements_dict
+--		* get_elements_dict
+--		* get_element_named
 --
 -- component methods:
 --
@@ -205,6 +248,9 @@ __composer.comp_RenderBasicBody = comp_RenderBasicBody
 --	changelog:
 --
 --		* 2014.10.4 EVE initial commit.
+--		* 2014.10.6 EVE update, add two comp methods
+--
+--	no on_update currently, only on_create and some comp methods
 
 local subcomp_RenderElementsManger = components.subcomponent:new({
 	name = "RenderElementsManger_Initial",
@@ -228,20 +274,30 @@ local comp_RenderElementsManger = components.component:new({
 
 	element_internal_creator = Placeholders.ComponentMethod,
 
+	get_elements_dict = Placeholders.ComponentMethod,
+
+	get_element_named = Placeholders.ComponentMethod,
+
 })
 
 function comp_RenderElementsManger:add_element(index, name, element)
 	Helpers.Techno_TechnoRTTIIDTable(self:container_parent()).elements:insert(index, element)
 	Helpers.tblinsert(self:get_datafield 'elements' , element)
-	self:get_datafield 'elements' [name] = element
+	self:get_datafield 'elements_dict' [name] = element
 	return element
 end
+
+function comp_RenderElementsManger:get_elements_dict() return self:get_datafield 'elements_dict' end
+
+function comp_RenderElementsManger:get_element_named(name) return self:get_datafield 'elements_dict' [name] end
 
 function comp_RenderElementsManger:element_internal_creator(istatic, isdirectioned)
 	if istatic and isdirectioned then
 		return Utility.RenderElement_DirectionedStatic.create
 	elseif (not istatic) and isdirectioned then
 		return Utility.RenderElement_FramedDynamic.create
+	elseif istatic and (not isdirectioned) then
+		return Utility.RenderElement_FramedStatic.create
 	elseif (not istatic) and (not isdirectioned) then
 		return Utility.RenderElement_FramedDynamic
 	end
