@@ -15,8 +15,11 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 			{
 				name = 'body',
 
+				type_general = true,
 				type_static = true,
 				type_directioned = true,
+				type_internal_line = false,
+				has_shadow = true,
 
 				offset = { 0, 0, 0 },
 				direction_offset = 0,
@@ -70,8 +73,11 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 			{
 				name = 'body',
 
+				type_general = true,
 				type_static = true,
 				type_directioned = true,
+				type_internal_line = false,
+				has_shadow = true,
 
 				offset = { 0, 0, 0 },
 				direction_offset = 0,
@@ -81,6 +87,27 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 				shadow = "TESTUNITSHADOWIMAGE",
 				shadow_faces = 32,
 
+				multiply = { 1.0, 1.0, 1.0, 1.0 },
+				affected_by_global_multiply = true,
+			}, 
+			{
+				name = 'test_line',
+
+				type_general = false,
+				type_internal_line = true,
+
+				has_shadow = false,
+
+				point1 = { 0, 0, 50 },
+				point2 = { 1000, 0, 50 },
+
+				-- due to internal problem in comp_RenderBasicBody:on_init()
+				--		INTERNAL LINE elements still require offset field.
+				offset = { 0, 0, 0 },
+				thickness = 0,
+
+				color1 = { 1, 1, 1, 1 },
+				color2 = { 0, 0, 0, 1 },
 				multiply = { 1.0, 1.0, 1.0, 1.0 },
 				affected_by_global_multiply = true,
 			}
@@ -127,8 +154,11 @@ OBJECTS.TESTBUILDING = BASES.BaseTechno:newObject({
 			{
 				name = 'bodybuilding',
 
+				type_general = true,
 				type_static = true,
 				type_directioned = false,
+				type_internal_line = false,
+				has_shadow = true,
 
 				offset = { 0, 0, 0 },
 				direction_offset = 0,
@@ -167,4 +197,74 @@ OBJECTS.TESTBUILDING = BASES.BaseTechno:newObject({
 			size = { x = 128, y = 128, z = 54 }
 		}
 	}
+})
+
+local composer = require('composer')
+local gmap_comps = require('gmap_comps')
+
+OBJECTS.GRAPH_LINE = BASES.BaseTechno:newObject({
+
+	type = "TECHNO",
+	clickmoveable = false,
+	clickselectable = false,
+	occupationtype = 'none',
+
+	appearance = {
+		render_elements = {
+			{
+				name = 'line',
+				type_general = false,
+				type_internal_line = true,
+				has_shadow = false,
+				point1 = { 0, 1000, 50 },
+				point2 = { 1000, 0, 50 },
+				offset = { 0, 0, 0 },
+				thickness = 0,
+				color1 = { 1, 1, 1, 1 },
+				color2 = { 1, 1, 1, 1 }
+			}
+		}
+	},
+
+	components = {
+		composer.comp_TechnoColorMultiply,
+		composer.comp_RenderElementsManger,
+		composer.comp_RenderBasicBody,
+		gmap_comps.comp_GraphLineStore,
+	},
+
+
+	physics = {
+		enabled = false,
+	}
+
+})
+
+OBJECTS.GRAPH_NODE = BASES.BaseTechno:newObject({
+
+	type = "TECHNO",
+	clickmoveable = false,
+	clickselectable = false,
+	occupationtype = 'none',
+
+	appearance = {
+		render_elements = {
+			{
+				name = 'body',
+				type_general = true,
+				type_directioned = false,
+				type_static = true,
+				has_shadow = false,
+				image = "GRAPH_NODE_IMAGE",
+				offset = { 0, 0, 0 },
+				multiply = { 1.0, 1.0, 1.0, 1.0 },
+				affected_by_global_multiply = true,
+			}
+		}
+	},
+
+	physics = {
+		enabled = false,
+	}
+
 })

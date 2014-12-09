@@ -52,11 +52,11 @@ void Abs_Cell::Render() {
 	if (obsTransform::x.x > (-size.x) && obsTransform::x.x <= (WIDTH+size.x) && obsTransform::x.y > (-size.y) && obsTransform::x.y <= (HEIGHT+size.y)) {
 		static auto shader_ptr = &TestManger::GetInstance().extTerrainShader;
 		shader_ptr->setParameter("texture0", this->renderTexture->texture);
-		shader_ptr->setParameter("texture1", this->texture1->texture);
-		shader_ptr->setParameter("texture2", this->texture2->texture);
-		shader_ptr->setParameter("texture3", this->texture3->texture);
-		shader_ptr->setParameter("texture4", this->texture4->texture);
-		shader_ptr->setParameter("textureBlend", this->texture_blend->texture);
+		//shader_ptr->setParameter("texture1", this->texture1->texture);
+		//shader_ptr->setParameter("texture2", this->texture2->texture);
+		//shader_ptr->setParameter("texture3", this->texture3->texture);
+		//shader_ptr->setParameter("texture4", this->texture4->texture);
+		//shader_ptr->setParameter("textureBlend", this->texture_blend->texture);
 		TestManger::GetInstance().window->draw(renderSprite, shader_ptr);
 		// if (!PassableTo()) {
 		// 	CircleShape shape(5);

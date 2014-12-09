@@ -50,7 +50,7 @@ namespace Pathfinding {
 				}
 			}
 		
-			int size() { return this->cache.size(); }
+			std::size_t size() { return this->cache.size(); }
 
 			void initFromRev(std::vector<Abs_Cell *> &src) {LOGFUNC;
 				reset();

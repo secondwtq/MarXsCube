@@ -105,7 +105,20 @@ function ModEnvironment.Functions.moveTechno(self, target_coord)
 end
 
 function ModEnvironment.Functions.createTechno(scriptType, coord, phy)
+
+	-- check scriptType
+	if type(scriptType) ~= 'table' then
+		Debug.ExceptionPrint("* ModEnvironment.Functions.createTechno: invalid scriptType!")
+	end
+
+	-- when user does not specific whether to enable physics in the argument
+	--		and the script type indicates not, then set it to false
+	if phy == nil and scriptType:property 'physics' ['enabled'] == false then
+		phy = false
+	end
+
 	phy = (phy==nil and false or phy)
+
 	local initialType = scriptType:InitialType()
 	local tp = initialType:WhatAmI()
 	local obj

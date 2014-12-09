@@ -197,26 +197,37 @@ function comp_RenderBasicBody:on_init()
 	local elements_manger = self:get_container().a['RenderElementsManger']
 
 	for i, element in ipairs(attr_render_elements) do
-		local creator = elements_manger:element_internal_creator(element.type_static, element.type_directioned)
+		local creator = elements_manger:element_internal_creator(element.type_general, element.type_static, element.type_directioned, element)
 
-		-- create RenderElements
-		local element_body = creator(Helpers.texture(element.image), element.image_faces)
-		local element_shadow = creator(Helpers.texture(element.shadow), element.shadow_faces)
-		element_shadow.UseShadowProjection = true
-		element_shadow.colorMultiply = Utility.Homogeneous4D(0.1, 0.1, 0.1, 0.3)
-
-		-- element.offset
+		local element_body = nil
 		local coord_offset = Utility.CoordStruct(unpack(element.offset))
-		element_body.offset = coord_offset
-		element_shadow.offset = coord_offset
+		if element.type_general then
+			element_body = creator(Helpers.texture(element.image), element.image_faces)
+			element_body.offset = coord_offset
+			if element.type_directioned then
+				element_body.direction_offset = element.direction_offset
+			end
+		elseif element.type_internal_line then
+			local coord1 = Utility.CoordStruct(unpack(element.point1))
+			local coord2 = Utility.CoordStruct(unpack(element.point2))
+			local color1 = Utility.Homogeneous4D(unpack(element.color1))
+			local color2 = Utility.Homogeneous4D(unpack(element.color2))
 
-		-- element.direction_offser
-		element_body.direction_offset = element.direction_offset
-		element_shadow.direction_offset = element.direction_offset
+			element_body = creator(coord1, coord2, color1, color2)
+			element_body.thickness = element.thickness
+			print(element_body)
+		end
 
-		-- add RenderElements to RenderElementsManger
 		elements_manger:add_element(0, element.name, element_body)
-		elements_manger:add_element(-10, element.name .. '_shadow', element_shadow)
+
+		if element.has_shadow then
+			local element_shadow = creator(Helpers.texture(element.shadow), element.shadow_faces)
+			element_shadow.UseShadowProjection = true
+			element_shadow.colorMultiply = Utility.Homogeneous4D(0.1, 0.1, 0.1, 0.3)
+			element_shadow.offset = coord_offset
+			element_shadow.direction_offset = element.direction_offset
+			elements_manger:add_element(-10, element.name .. '_shadow', element_shadow)
+		end
 	end
 end
 
@@ -291,15 +302,21 @@ function comp_RenderElementsManger:get_elements_dict() return self:get_datafield
 
 function comp_RenderElementsManger:get_element_named(name) return self:get_datafield 'elements_dict' [name] end
 
-function comp_RenderElementsManger:element_internal_creator(istatic, isdirectioned)
-	if istatic and isdirectioned then
-		return Utility.RenderElement_DirectionedStatic.create
-	elseif (not istatic) and isdirectioned then
-		return Utility.RenderElement_FramedDynamic.create
-	elseif istatic and (not isdirectioned) then
-		return Utility.RenderElement_FramedStatic.create
-	elseif (not istatic) and (not isdirectioned) then
-		return Utility.RenderElement_FramedDynamic
+function comp_RenderElementsManger:element_internal_creator(igeneral, istatic, isdirectioned, org_dict)
+	if igeneral then
+		if istatic and isdirectioned then
+			return Utility.RenderElement_DirectionedStatic.create
+		elseif (not istatic) and isdirectioned then
+			return Utility.RenderElement_FramedDynamic.create
+		elseif istatic and (not isdirectioned) then
+			return Utility.RenderElement_FramedStatic.create
+		elseif (not istatic) and (not isdirectioned) then
+			return Utility.RenderElement_FramedDynamic
+		end
+	else
+		if org_dict.type_internal_line then
+			return Utility.RenderElement_InternalLine.create
+		end
 	end
 end
 

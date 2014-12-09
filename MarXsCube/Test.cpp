@@ -42,9 +42,12 @@ int main() {
 	config.loadConfigFrom("Config.lua");
 	
 	Generic::Init_FunObjectTableCreate(config);
+	
+	sf::ContextSettings settings;
+	settings.antialiasingLevel = 8;
 
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "TestWindow | MarXsCube by seCOnDatkE 2014 - Prototype",
-						sf::Style::Titlebar || sf::Style::Close);
+						sf::Style::Titlebar || sf::Style::Close, settings);
 
 	TestManger::GetInstance().window = &window;
 	window.setFramerateLimit(FPSLimit);

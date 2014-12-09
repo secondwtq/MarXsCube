@@ -68,6 +68,13 @@ TEXTURES.TRIKEIMAGE_SHADOW = TEXTURES.DUMMY:newObject({
 	frame_row = 6,
 })
 
+TEXTURES.GRAPH_NODE_IMAGE = TEXTURES.DUMMY:newObject({
+	filename = "./Textures/tex_graph_node.png",
+	frame_count = 1,
+	frame_col = 1,
+	frame_row = 1,
+})
+
 -- TEXTURES.TESTBIG = TEXTURES.DUMMY:newObject({
 -- 	filename = ".\\Textures\\BIG.png",
 -- 	frame_count = 32,

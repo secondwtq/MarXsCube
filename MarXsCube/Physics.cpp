@@ -29,13 +29,13 @@ btCollisionShape *PhysicsShapeTypeBox::createShape() {LOGFUNC;
 }
 
 bool PhysicsObjectType::LoadFromConfig(ConfigManger &manger, LuaRef ParentRef) {LOGFUNC;
-	std::cout << "CubeCore: PhysicsObjectType::LoadFromConfig - Loading ..." << std::endl;
+	std::cout << "CubeCore: PhysicsObjectType::LoadFromConfig - Loading ";
 	LuaRef PhysicsRef = ParentRef["physics"];
 	EnablePhysics = PhysicsRef["enabled"];
-	mass = PhysicsRef["mass"];
 	ShapeRef = PhysicsRef["shape"];
 
 	if (EnablePhysics) {
+		mass = PhysicsRef["mass"];
 		LuaRef offsetRef = PhysicsRef["offset"];
 		offset = btVector3(btScalar(offsetRef["x"]), btScalar(offsetRef["y"]), btScalar(offsetRef["z"]));
 
@@ -46,6 +46,7 @@ bool PhysicsObjectType::LoadFromConfig(ConfigManger &manger, LuaRef ParentRef) {
 		ShapeType->LoadFromConfig(manger, ShapeRef);
 	}
 
+	std::cout << " finished ..."  << std::endl;
 	return true;
 }
 
@@ -61,7 +62,7 @@ PhysicsObject::~PhysicsObject() {LOGFUNC;
 }
 
 void PhysicsObject::SpawnAt(const CoordStruct &loc) {LOGFUNC;
-	if (attachedToObject->EnablePhysics) {
+	if (attachedToObject->EnablePhysics != false) {
 		offset = Type->offset;
 		_shape = Type->ShapeType->createShape();
 		btTransform trans = btTransform::getIdentity();

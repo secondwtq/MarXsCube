@@ -9,7 +9,9 @@ function getObjectDef(id)
 end
 
 function loadObjects(manager)
-	for k, v in pairs(config.objects) do Host.ConfigManger.loadObject(manager, k, v) end
+	for k, v in pairs(config.objects) do
+		Host.ConfigManger.loadObject(manager, k, v)
+	end
 end
 
 function loadObjectsLater()

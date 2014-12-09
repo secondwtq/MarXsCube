@@ -37,7 +37,7 @@ Enums.RTTITypeID = {
 }
 
 Enums.General.CameraKeyMoveStep = 20.0
-Enums.General.CameraMouseSlideStep = 8.0
+Enums.General.CameraMouseSlideStep = 16.0
 
 Import("KeyDef.lua")
 Import("EventsDef.lua")

@@ -1,21 +1,35 @@
+gmap_dots = require('gmap_dots')
+gmap_edges = require('gmap_edges')
+Helpers = require('Helpers')
+
+DATA_DOTS = gmap_dots.data
+DATA_EDGES = gmap_edges.data
+OBJ_DOTS = { }
+OBJ_EDGES = { }
+
 function Functions.TestManger_onTestInit()
-	Objects.Map.GetInstance():CreateEmptyMap(50, 50)
+	Objects.Map.GetInstance():CreateEmptyMap(60, 50)
 	ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
 
-	local Techno = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(1560, 126, 0), true)
-	Techno.Physics:setDirection(5)
+	local data_dots_new = { }
+	for i, dot in pairs(DATA_DOTS) do
+		local t = { -1*(dot[1] * 192 - 64 * 2), dot[2] * 192 + 64 * 28 }
+		Helpers.tblinsert(data_dots_new, t)
+	end
+	DATA_DOTS = data_dots_new
 
-	Techno = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(256, 512, 0), true)
-	Techno.Physics:setDirection(6)
+	for i, dot in ipairs(DATA_DOTS) do
+		local dot_techno = ModEnvironment.Functions.createTechno(OBJECTS.GRAPH_NODE, Utility.CoordStruct(dot[2], dot[1], 0)).ExtTable
+		OBJ_DOTS[i] = dot_techno
+	end
 
-	Techno = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(400, 600, 0), true)
+	for i, edge in ipairs(DATA_EDGES) do
+		local edge_techno = ModEnvironment.Functions.createTechno(OBJECTS.GRAPH_LINE, Utility.CoordStruct(0, 0, 0)).ExtTable
 
-	local TestTechnoTypePhy = OBJECTS.TESTTECHNO_PHY:InitialType()
-	Techno = Objects.Type_Techno.createTechno(TestTechnoTypePhy)
-	Techno.EnablePhysics = true;
-	Techno:SpawnAtMapCoord(Utility.CoordStruct(1000, 126, 0))
-	Techno.ExtTable.isDisabled = true
-	Techno.Physics:setDirection(0)
+		local GLS = edge_techno.components.a['GraphLineStore']
+		GLS:init(unpack(edge))
 
-	ModEnvironment.Functions.createTechno(OBJECTS.TESTBUILDING, Utility.CoordStruct(0, 0, 0), true)
+		OBJ_EDGES[i] = edge_techno
+	end
+
 end

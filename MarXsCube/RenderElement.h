@@ -97,6 +97,37 @@ protected:
 	void _Render_Overload(CoordStruct &loc);
 };
 
+class RenderElement_InternalLine : public RenderElement {
+public:
+	
+	// inherited CoordStruct offset.
+	CoordStruct point1 = CoordStruct(0, 0, 0);
+	CoordStruct point2 = CoordStruct(0, 0, 0);
+	Vector4DT<float> color1 = Vector4DT<float>(0, 0, 0, 1);
+	Vector4DT<float> color2 = Vector4DT<float>(0, 0, 0, 1);
+	float thickness = 0;
+	
+	RenderElement_InternalLine(const CoordStruct &pt1, const CoordStruct &pt2, const Vector4DT<float> &_color1, const Vector4DT<float> &_color2) :
+		point1(pt1), point2(pt2), color1(_color1), color2(_color2) {
+			this->_verts[0] = sf::Vertex();
+			this->_verts[1] = sf::Vertex();
+	}
+	
+	~RenderElement_InternalLine() { }
+	
+	static RenderElement_InternalLine *create(const CoordStruct *pt1, const CoordStruct *pt2, const Vector4DT<float> *color1, const Vector4DT<float> *color2) {
+		return new RenderElement_InternalLine(*pt1, *pt2, *color1, *color2);
+	}
+	
+protected:
+	
+	void _Render_Overload(CoordStruct &loc);
+	
+private:
+	sf::Vertex _verts[2];
+	
+};
+
 template <class T>
 inline void SetProjectionLocation_General(T *element, CoordStruct& loc) {
 	if (!element->UseShadowProjection)
@@ -107,5 +138,18 @@ inline void SetProjectionLocation_General(T *element, CoordStruct& loc) {
 		element->renderSprite.setPosition(obsTransform::GetViewPos(_loc));
 	}
 }
+
+//template <class T>
+//inline sf::Vector2f SetProjectionLocation_pt(CoordStruct& loc, bool UseShadowProjection = false) {
+//	if (!UseShadowProjection)
+//		return obsTransform::GetViewPos(loc);
+//	else {
+//		return obsTransform::GetViewPos(loc);
+////		element->renderSprite.setPosition(obsTransform::GetViewPos(loc+element->offset));
+////		auto _loc = loc + element->offset;
+////		_loc = CoordStruct(element->ProjectionVector.z*_loc.x+element->ProjectionVector.x*_loc.z, element->ProjectionVector.z*_loc.y+element->ProjectionVector.y*_loc.z, 0);
+////		element->renderSprite.setPosition(obsTransform::GetViewPos(_loc));
+//	}
+//}
 
 #endif

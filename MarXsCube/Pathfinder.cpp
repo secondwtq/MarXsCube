@@ -215,7 +215,6 @@ namespace Pathfinding {
 		Abs_Cell *nex = src->getCur();
 		while (true) {
 			smoothed.push_back(cur);
-			printf("pushing %x\n", cur);
 			
 			src->inc();
 			
@@ -238,6 +237,5 @@ namespace Pathfinding {
 		}
 		
 		src->init(smoothed);
-		printf("%d\n", src->size());
 	}
 }

@@ -200,6 +200,8 @@ end
 -- call init_components() method after all components are added to trigger on_init()
 
 function Functions.Abs_Techno_onCreate(creating, table)
+	print("Functions.Abs_Techno_onCreate: creating Techno ...")
+
 	-- set general properties for RTTIID table, for helpers
 	table.RTTIID = creating.RTTIID
 	table.TechnoType = Helpers.TechnoType_Techno(creating)
@@ -207,6 +209,8 @@ function Functions.Abs_Techno_onCreate(creating, table)
 	table.Techno = creating
 	table.AttachedToObject = creating
 	table.ScriptType = Helpers.scriptType_Techno(creating)
+
+	table.GetCoord = function (self) return creating.GetCoord(creating) end
 
 	function table:WhatAmI ()
 		return Enums.TechnoRTTIIDTable
@@ -222,6 +226,7 @@ function Functions.Abs_Techno_onCreate(creating, table)
 		table.components:add_component(v)
 	end
 
+	print("Functions.Abs_Techno_onCreate: initing components ...")
 	table.components:init_components()
 
 	table.isDisabled = false
@@ -238,4 +243,5 @@ function Functions.Abs_Techno_onCreate(creating, table)
 	table.Mission = Enums.ModEnv.Mission.unknown
 	table.MovingState = Enums.ModEnv.MovingState.unknown
 
+	print("Functions.Abs_Techno_onCreate: completed ...")
 end

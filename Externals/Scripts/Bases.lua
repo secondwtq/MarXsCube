@@ -46,8 +46,11 @@ BASES.BaseTechno = BASES.BaseObject:newObject({
 			{
 				name = 'body',
 
+				type_general = true,
 				type_static = true,
 				type_directioned = true,
+				type_internal_line = false,
+				has_shadow = true,
 
 				offset = { 0, 0, 0 },
 				direction_offset = 0,

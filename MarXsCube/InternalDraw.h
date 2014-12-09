@@ -19,6 +19,8 @@ public:
 	static void Draw(sf::Drawable &obj);
 	
 	static void DrawExt(RenderElement &objArg, sf::Drawable &obj);
+	
+	static void DrawExt_InternalLine(RenderElement &objArg, sf::Vertex *verts, unsigned int count_verts);
 };
 
 #include "RenderElement.h"
