@@ -44,7 +44,7 @@ int main() {
 	Generic::Init_FunObjectTableCreate(config);
 	
 	sf::ContextSettings settings;
-	settings.antialiasingLevel = 8;
+	settings.antialiasingLevel = 4;
 
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "TestWindow | MarXsCube by seCOnDatkE 2014 - Prototype",
 						sf::Style::Titlebar || sf::Style::Close, settings);

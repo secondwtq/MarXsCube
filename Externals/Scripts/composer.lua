@@ -225,7 +225,9 @@ function comp_RenderBasicBody:on_init()
 			element_shadow.UseShadowProjection = true
 			element_shadow.colorMultiply = Utility.Homogeneous4D(0.1, 0.1, 0.1, 0.3)
 			element_shadow.offset = coord_offset
-			element_shadow.direction_offset = element.direction_offset
+			if element.type_directioned then
+				element_shadow.direction_offset = element.direction_offset
+			end
 			elements_manger:add_element(-10, element.name .. '_shadow', element_shadow)
 		end
 	end
