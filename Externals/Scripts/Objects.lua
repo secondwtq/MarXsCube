@@ -220,8 +220,8 @@ OBJECTS.GRAPH_LINE = BASES.BaseTechno:newObject({
 				point2 = { 1000, 0, 50 },
 				offset = { 0, 0, 0 },
 				thickness = 0,
-				color1 = { 1, 1, 1, 1 },
-				color2 = { 1, 1, 1, 1 }
+				color1 = { 1, 1, 1, 0.5 },
+				color2 = { 1, 1, 1, 0.7 }
 			},
 		}
 	},
