@@ -25,6 +25,8 @@
 
 #include "Generic.h"
 
+#include "Gmap_Interface.h"
+
 using namespace luabridge;
 
 namespace LuaInterface {
@@ -40,6 +42,7 @@ namespace LuaInterface {
 		RegisterInterface_Techno(L);
 		RegisterInterface_Map(L);
 		RegisterInterface_New(L);
+		RegisterInterface_User_Gmap(L);
 	}
 	
 	void RegisterInterface_New(LuaStatus &L) {

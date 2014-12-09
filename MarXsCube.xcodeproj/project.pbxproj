@@ -40,6 +40,7 @@
 		59262A3E198AD38400858A67 /* libsfml-system.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5926295B198ABA1900858A67 /* libsfml-system.2.1.dylib */; };
 		59262A3F198AD38400858A67 /* libsfml-window.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5926295C198ABA1900858A67 /* libsfml-window.2.1.dylib */; };
 		59262A40198AD39300858A67 /* libsfml-graphics.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 59262959198ABA1900858A67 /* libsfml-graphics.2.1.dylib */; };
+		592859091A37594700D4AE91 /* Gmap_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 592859071A37594700D4AE91 /* Gmap_Interface.cpp */; };
 		595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */; };
 		595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */; };
 		595DDC13198ADD990046919B /* libLinearMath_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */; };
@@ -130,6 +131,10 @@
 		5926295B198ABA1900858A67 /* libsfml-system.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-system.2.1.dylib"; path = "../../../../../usr/local/Cellar/sfml/2.1/lib/libsfml-system.2.1.dylib"; sourceTree = "<group>"; };
 		5926295C198ABA1900858A67 /* libsfml-window.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-window.2.1.dylib"; path = "../../../../../usr/local/Cellar/sfml/2.1/lib/libsfml-window.2.1.dylib"; sourceTree = "<group>"; };
 		59262968198ABCFA00858A67 /* Externals */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Externals; sourceTree = "<group>"; };
+		592859061A37592A00D4AE91 /* graph_def.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graph_def.h; sourceTree = "<group>"; };
+		592859071A37594700D4AE91 /* Gmap_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gmap_Interface.cpp; sourceTree = "<group>"; };
+		592859081A37594700D4AE91 /* Gmap_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gmap_Interface.h; sourceTree = "<group>"; };
+		5928590A1A375B0900D4AE91 /* bellman_ford.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bellman_ford.h; sourceTree = "<group>"; };
 		595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletCollision_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletDynamics_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libLinearMath_xcode4_x64_release.a; sourceTree = "<group>"; };
@@ -232,6 +237,7 @@
 		59262900198AB62300858A67 /* MarXsCube */ = {
 			isa = PBXGroup;
 			children = (
+				592859051A37590A00D4AE91 /* Gmap */,
 				5923C8E619D026CE0055E0D5 /* Bullet */,
 				5932C84619D00C6800135717 /* Common */,
 				5923C8DE19D0164B0055E0D5 /* Hafnium */,
@@ -278,6 +284,17 @@
 				59262903198AB62300858A67 /* MarXsCube.1 */,
 			);
 			path = MarXsCube;
+			sourceTree = "<group>";
+		};
+		592859051A37590A00D4AE91 /* Gmap */ = {
+			isa = PBXGroup;
+			children = (
+				592859061A37592A00D4AE91 /* graph_def.h */,
+				5928590A1A375B0900D4AE91 /* bellman_ford.h */,
+				592859071A37594700D4AE91 /* Gmap_Interface.cpp */,
+				592859081A37594700D4AE91 /* Gmap_Interface.h */,
+			);
+			name = Gmap;
 			sourceTree = "<group>";
 		};
 		5932C84619D00C6800135717 /* Common */ = {
@@ -345,6 +362,7 @@
 				5926294D198AB66500858A67 /* Session.cpp in Sources */,
 				5926294B198AB66500858A67 /* Pathfinder.cpp in Sources */,
 				5926293F198AB66500858A67 /* Anim.cpp in Sources */,
+				592859091A37594700D4AE91 /* Gmap_Interface.cpp in Sources */,
 				59262941198AB66500858A67 /* Cell.cpp in Sources */,
 				5923C8DA19D00EB90055E0D5 /* RenderElement.cpp in Sources */,
 				5926294E198AB66500858A67 /* Techno.cpp in Sources */,

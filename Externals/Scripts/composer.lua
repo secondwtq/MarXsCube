@@ -215,7 +215,6 @@ function comp_RenderBasicBody:on_init()
 
 			element_body = creator(coord1, coord2, color1, color2)
 			element_body.thickness = element.thickness
-			print(element_body)
 		end
 
 		elements_manger:add_element(0, element.name, element_body)
