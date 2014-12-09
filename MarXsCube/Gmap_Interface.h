@@ -12,6 +12,10 @@
 #include "Common.h"
 #include "Config.h"
 
+namespace LuaInterface {
+
 void RegisterInterface_User_Gmap(LuaStatus &L);
+	
+}
 
 #endif /* defined(__MarXsCube__Gmap_Interface__) */

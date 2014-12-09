@@ -135,6 +135,7 @@
 		592859071A37594700D4AE91 /* Gmap_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gmap_Interface.cpp; sourceTree = "<group>"; };
 		592859081A37594700D4AE91 /* Gmap_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gmap_Interface.h; sourceTree = "<group>"; };
 		5928590A1A375B0900D4AE91 /* bellman_ford.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bellman_ford.h; sourceTree = "<group>"; };
+		5928590C1A375F2000D4AE91 /* StdInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StdInterface.h; sourceTree = "<group>"; };
 		595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletCollision_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletDynamics_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libLinearMath_xcode4_x64_release.a; sourceTree = "<group>"; };
@@ -177,6 +178,7 @@
 			children = (
 				5926292E198AB66500858A67 /* LuaUtils.cpp */,
 				5926292D198AB66500858A67 /* LuaInterface.cpp */,
+				5928590C1A375F2000D4AE91 /* StdInterface.h */,
 				59262912198AB66500858A67 /* LuaUtils.h */,
 				59262911198AB66500858A67 /* LuaInterface.h */,
 				5923C8E719D027480055E0D5 /* LWindow.cpp */,

@@ -15,6 +15,10 @@
 
 using namespace luabridge;
 
+using namespace Gmap;
+
+namespace LuaInterface {
+
 void RegisterInterface_User_Gmap(LuaStatus &L) {
 	getGlobalNamespace(L).
 	beginNamespace("Appins").
@@ -35,4 +39,6 @@ void RegisterInterface_User_Gmap(LuaStatus &L) {
 			endClass().
 		endNamespace().
 	endNamespace();
+}
+
 }

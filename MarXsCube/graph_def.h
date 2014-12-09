@@ -17,6 +17,8 @@
 
 #include <cstdint>
 
+namespace Gmap {
+
 struct gGraph_listnode {
 	public:
 		std::size_t na = 0;
@@ -43,18 +45,7 @@ struct gGraph_listnode {
 		}
 };
 
-// hash function for std::unordered_set & std::unordered_map
-//	just hash the sum of vertex indexes.
-//		from http://stackoverflow.com/questions/17016175/c-unordered-map-using-a-custom-class-type-as-the-key
-namespace std {
-template < >
-struct hash<gGraph_listnode> {
-	std::size_t operator() (const gGraph_listnode& op) const { return std::hash<std::size_t>()(op.na+op.nb); }
-};
-}
-
 class gGraph {
-
 	public:
 
 		// you need to specific initial vertex counts
@@ -121,6 +112,19 @@ class gGraph {
 		std::size_t _count_vert = 0;
 		std::size_t _count_edge = 0;
 
+};
+	
+}
+
+// hash function for std::unordered_set & std::unordered_map
+//	just hash the sum of vertex indexes.
+//		from http://stackoverflow.com/questions/17016175/c-unordered-map-using-a-custom-class-type-as-the-key
+//
+// it should be declared just below Gmap::gGraph_listnode
+//		but I dunno know how to solve the namespace issue
+template < >
+struct std::hash<Gmap::gGraph_listnode> {
+	std::size_t operator() (const Gmap::gGraph_listnode& op) const { return std::hash<std::size_t>()(op.na+op.nb); }
 };
 
 #endif

@@ -11,6 +11,8 @@
 
 #include "graph_def.h"
 
+namespace Gmap {
+
 class bellman_food_shortest {
 public:
 	std::vector<const gGraph_listnode *> edge_to;
@@ -66,5 +68,7 @@ private:
 	}
 	
 };
+	
+}
 
 #endif
