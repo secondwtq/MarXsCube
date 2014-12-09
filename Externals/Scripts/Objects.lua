@@ -222,7 +222,7 @@ OBJECTS.GRAPH_LINE = BASES.BaseTechno:newObject({
 				thickness = 0,
 				color1 = { 1, 1, 1, 1 },
 				color2 = { 1, 1, 1, 1 }
-			}
+			},
 		}
 	},
 

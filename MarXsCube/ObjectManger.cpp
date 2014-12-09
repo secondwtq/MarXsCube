@@ -99,6 +99,6 @@ int disToCamera(const Abs_Abstract *src) {//LOGFUNC;
 void RenderLayer::sort_Objects() {LOGFUNC;
 	sort(Objects.begin(), Objects.end(),
 			[](const Abs_Abstract *a, const Abs_Abstract *b) -> bool {
-				return disToCamera(a) < disToCamera(b);
+				return disToCamera(a) > disToCamera(b);
 			});
 }

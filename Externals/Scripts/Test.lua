@@ -24,7 +24,8 @@ function Functions.TestManger_onTestInit()
 	end
 
 	for i, edge in ipairs(DATA_EDGES) do
-		local edge_techno = ModEnvironment.Functions.createTechno(OBJECTS.GRAPH_LINE, Utility.CoordStruct(0, 0, 0)).ExtTable
+		-- we really need some functions to fetch the corners of map
+		local edge_techno = ModEnvironment.Functions.createTechno(OBJECTS.GRAPH_LINE, Utility.CoordStruct(0, -25*64, 0)).ExtTable
 
 		local GLS = edge_techno.components.a['GraphLineStore']
 		GLS:init(unpack(edge))
