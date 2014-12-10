@@ -17,7 +17,10 @@ class bellman_food_shortest {
 public:
 	std::vector<const gGraph_listnode *> edge_to;
 	
-	bellman_food_shortest(const bellman_food_shortest& other) { printf("copying bellman\n"); }
+	// we need a copy ctor for security,
+	//	but be awared: it is not to be copied, naturally.
+	//		if it is copied somehow (LuaBridge bug, for most time), the dtor would be called twice
+	//			then is time for OS.
 	
 	bellman_food_shortest(gGraph *src, std::size_t rootidx)
 		: src_graph(src), root(rootidx), inside_queue(new bool[src_graph->count_vert()]) {

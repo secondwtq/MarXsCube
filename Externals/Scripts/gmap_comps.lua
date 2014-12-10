@@ -27,13 +27,14 @@ function comp_GraphLineStore:init(vert1, vert2, weight)
 	edge_element.point1 = OBJ_DOTS[vert1+1]:GetCoord()
 	edge_element.point2 = OBJ_DOTS[vert2+1]:GetCoord()
 
-	self:set_datafield('verts', { vert1+1, vert2+1 })
+	self:set_datafield('verts_lua', { vert1+1, vert2+1 })
+	self:set_datafield('verts_initial', { vert1, vert2 })
 	self:set_datafield('weight', weight)
 end
 
 function comp_GraphLineStore:connect(vert1, vert2)
-	local verts = self:get_datafield 'verts'
-	return (vert1 == verts[1] and vert2 == verts[2]) or (vert1 == verts[2] and vert2 == verts[1])
+	local verts = self:get_datafield 'verts_initial'
+	return ((vert1 == verts[1] and vert2 == verts[2]) or (vert1 == verts[2] and vert2 == verts[1]))
 end
 
 gmap_comps.comp_GraphLineStore = comp_GraphLineStore

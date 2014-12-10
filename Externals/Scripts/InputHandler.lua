@@ -8,6 +8,8 @@
 
 local InputHandler = { }
 
+local Helpers = require 'Helpers'
+
 function InputHandler.MousePress_OnCell(mouse_status)
 	local coord = Utility.GetCoordFromPoint(mouse_status.pos)
 	local rt_start = coord
@@ -32,7 +34,18 @@ function InputHandler.MousePress_OnCell(mouse_status)
 				local bf_shortest = Appins.Gmap.bellman_ford_shortest(GRAPH_GLOBAL, PATH_STARTNODE.components.a['GraphNodeStore']:get_datafield 'idx_initial')
 				bf_shortest:go()
 				local path_nodes = Appins.Gmap.bellman_ford_shortest.extract_path(bf_shortest, PATH_ENDNODE.components.a['GraphNodeStore']:get_datafield 'idx_initial')
-				print(path_nodes)
+				for i, v in ipairs(path_nodes) do
+					if i < #path_nodes then
+						for _i, edge in ipairs(OBJ_EDGES) do
+							if edge.components.a['GraphLineStore']:connect(v, path_nodes[i+1]) then
+								edge.components.a['RenderElementsManger']:get_element_named 'line'.color1 = Utility.Homogeneous4D(1.0, 0.0, 0.0, 1.0)
+								edge.components.a['RenderElementsManger']:get_element_named 'line'.color2 = Utility.Homogeneous4D(1.0, 0.0, 0.0, 1.0)
+								break
+							end
+						end
+					end
+				end
+
 				PATH_STARTNODE, PATH_ENDNODE = nil
 			end
 		end
