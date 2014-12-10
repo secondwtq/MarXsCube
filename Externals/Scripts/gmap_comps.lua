@@ -33,4 +33,25 @@ end
 
 gmap_comps.comp_GraphLineStore = comp_GraphLineStore
 
+local subcomp_GraphNodeStore = components.subcomponent:new({
+	name = "GraphNodeStore_Initial"
+})
+
+local comp_GraphNodeStore = components.component:new({
+	name = "GraphNodeStore",
+	alias = "GraphNodeStore",
+
+	subcomponents = {
+		subcomp_GraphNodeStore
+	},
+
+	init = Placeholders.ComponentMethod,
+})
+
+function comp_GraphNodeStore:init(idx_initial)
+	self:set_datafield('idx_initial', idx_initial)
+end
+
+gmap_comps.comp_GraphNodeStore = comp_GraphNodeStore
+
 return gmap_comps

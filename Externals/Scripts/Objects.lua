@@ -264,6 +264,13 @@ OBJECTS.GRAPH_NODE = BASES.BaseTechno:newObject({
 		}
 	},
 
+	components = {
+		composer.comp_TechnoColorMultiply,
+		composer.comp_RenderElementsManger,
+		composer.comp_RenderBasicBody,
+		gmap_comps.comp_GraphNodeStore,
+	},
+
 	physics = {
 		enabled = false,
 	}

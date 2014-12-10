@@ -1,7 +1,8 @@
-gmap_dots = require('gmap_dots')
-gmap_edges = require('gmap_edges')
-Helpers = require('Helpers')
+gmap_dots = require 'gmap_dots'
+gmap_edges = require 'gmap_edges'
+Helpers = require 'Helpers'
 
+-- global variables
 DATA_DOTS = gmap_dots.data
 DATA_EDGES = gmap_edges.data
 OBJ_DOTS = { }
@@ -24,6 +25,7 @@ function Functions.TestManger_onTestInit()
 	-- create GameObjects for nodes, and fill OBJ_DOTS
 	for i, dot in ipairs(DATA_DOTS) do
 		local dot_techno = ModEnvironment.Functions.createTechno(OBJECTS.GRAPH_NODE, Utility.CoordStruct(dot[2], dot[1], 0)).ExtTable
+		dot_techno.components.a['GraphNodeStore']:init(i-1)
 		OBJ_DOTS[i] = dot_techno
 	end
 
@@ -31,9 +33,7 @@ function Functions.TestManger_onTestInit()
 		-- we really need some functions to fetch the corners of map
 		local edge_techno = ModEnvironment.Functions.createTechno(OBJECTS.GRAPH_LINE, Utility.CoordStruct(0, -25*64, 0)).ExtTable
 
-		local GLS = edge_techno.components.a['GraphLineStore']
-		GLS:init(unpack(edge))
-
+		edge_techno.components.a['GraphLineStore']:init(unpack(edge))
 		OBJ_EDGES[i] = edge_techno
 
 		GRAPH_GLOBAL:connect(unpack(edge))
@@ -48,4 +48,17 @@ function transform_dots(src)
 		Helpers.tblinsert(data_dots_new, t)
 	end
 	return data_dots_new
+end
+
+function find_nearest_node(coord)
+	local ret = nil
+
+	local current_idx = 1
+	local current_dis = Helpers.coord_distance(coord, OBJ_DOTS[1].GetCoord())
+	for i, nodeobj in ipairs(OBJ_DOTS) do
+		current_idx = i
+		local dis_new = Helpers.coord_distance(coord, nodeobj.GetCoord())
+	end
+
+	return ret
 end

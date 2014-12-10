@@ -57,6 +57,11 @@ function __Helpers.TechnoType_TechnoRTTIIDTable(table)
 	return table.TechnoType
 end
 
+local math = require 'math'
+function __Helpers.coord_distance(op1, op2)
+	return math.sqrt(math.pow(op1, 2)+math.pow(op2, 2))
+end
+
 __Helpers.tblinsert = table.insert
 
 return __Helpers
