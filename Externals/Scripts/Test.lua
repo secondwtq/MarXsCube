@@ -10,6 +10,9 @@ OBJ_EDGES = { }
 
 GRAPH_GLOBAL = None
 
+CURRENT_STATUS = "SELECT_FIRST"
+PATH_STARTNODE, PATH_ENDNODE = nil, nil
+
 function Functions.TestManger_onTestInit()
 	Objects.Map.GetInstance():CreateEmptyMap(60, 50) -- create map
 	GRAPH_GLOBAL = Appins.Gmap.Graph(#DATA_DOTS) -- create graph data structure
@@ -50,15 +53,20 @@ function transform_dots(src)
 	return data_dots_new
 end
 
-function find_nearest_node(coord)
+function find_nearest_node(coord, max_dist)
 	local ret = nil
 
-	local current_idx = 1
+	local current_node = OBJ_DOTS[1]
 	local current_dis = Helpers.coord_distance(coord, OBJ_DOTS[1].GetCoord())
 	for i, nodeobj in ipairs(OBJ_DOTS) do
-		current_idx = i
 		local dis_new = Helpers.coord_distance(coord, nodeobj.GetCoord())
+		if dis_new < current_dis then
+			current_dis = dis_new
+			current_node = nodeobj
+		end
 	end
 
-	return ret
+	-- max_dist as a threshold
+	if max_dist ~= nil and current_dis > max_dist then return nil end
+	return current_node
 end

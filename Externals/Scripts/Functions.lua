@@ -1,3 +1,4 @@
+InputHandler = require 'InputHandler'
 
 function Functions.Main_GameUpdateBegin()
 	-- move camera with mouse
@@ -63,12 +64,8 @@ function Functions.Session_MousePress(mouseStatus)
 				end
 			end
 
-			local ray_cell = Physics.RayTestSingleForCell.createRayTestForCell(rt_end, rt_start)
-			ray_cell:perform()
-			if ray_cell:hit() then
-				local hit_point = ray_cell:hit_point()
-				print(hit_point.x, hit_point.y, hit_point.z)
-			end
+			-- delegate to InputHandler - MousePress OnCell
+			InputHandler.MousePress_OnCell(mouseStatus)
 		end
 	else 
 		if ModEnvironment.CurGenState == Enums.ModEnv.GenStates.Selected_Single then

@@ -17,6 +17,8 @@ class bellman_food_shortest {
 public:
 	std::vector<const gGraph_listnode *> edge_to;
 	
+	bellman_food_shortest(const bellman_food_shortest& other) { printf("copying bellman\n"); }
+	
 	bellman_food_shortest(gGraph *src, std::size_t rootidx)
 		: src_graph(src), root(rootidx), inside_queue(new bool[src_graph->count_vert()]) {
 		for (int i = 0; i < src->count_vert(); i++) {

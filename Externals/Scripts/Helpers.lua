@@ -59,7 +59,7 @@ end
 
 local math = require 'math'
 function __Helpers.coord_distance(op1, op2)
-	return math.sqrt(math.pow(op1, 2)+math.pow(op2, 2))
+	return math.sqrt(math.pow(op1.x - op2.x, 2)+math.pow(op1.y - op2.y, 2)+math.pow(op1.z - op2.z, 2))
 end
 
 __Helpers.tblinsert = table.insert

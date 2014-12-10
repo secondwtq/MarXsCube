@@ -19,16 +19,21 @@ local comp_GraphLineStore = components.component:new({
 	},
 
 	init = Placeholders.ComponentMethod,
+	connect = Placeholders.ComponentMethod
 })
 
 function comp_GraphLineStore:init(vert1, vert2, weight)
 	local edge_element = self:get_container().a['RenderElementsManger']:get_element_named('line')
+	edge_element.point1 = OBJ_DOTS[vert1+1]:GetCoord()
+	edge_element.point2 = OBJ_DOTS[vert2+1]:GetCoord()
 
 	self:set_datafield('verts', { vert1+1, vert2+1 })
 	self:set_datafield('weight', weight)
+end
 
-	edge_element.point1 = OBJ_DOTS[vert1+1]:GetCoord()
-	edge_element.point2 = OBJ_DOTS[vert2+1]:GetCoord()
+function comp_GraphLineStore:connect(vert1, vert2)
+	local verts = self:get_datafield 'verts'
+	return (vert1 == verts[1] and vert2 == verts[2]) or (vert1 == verts[2] and vert2 == verts[1])
 end
 
 gmap_comps.comp_GraphLineStore = comp_GraphLineStore
@@ -50,6 +55,7 @@ local comp_GraphNodeStore = components.component:new({
 
 function comp_GraphNodeStore:init(idx_initial)
 	self:set_datafield('idx_initial', idx_initial)
+
 end
 
 gmap_comps.comp_GraphNodeStore = comp_GraphNodeStore
