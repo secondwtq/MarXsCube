@@ -17,6 +17,8 @@ function Functions.TestManger_onTestInit()
 	--		we just abandon original table
 	DATA_DOTS = transform_dots(DATA_DOTS)
 
+	ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(0, 0, 0), true)
+
 	ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
 
 	-- create GameObjects for nodes, and fill OBJ_DOTS

@@ -41,7 +41,9 @@ function Functions.Session_MousePress(mouseStatus)
 
 	if mouseStatus.left == true then
 		local x_ = function (ptr) return true end
-		local ray = Physics.RayTestSingle.createRayTestSingle(coord, Utility.CoordStruct(coord.x+6000, coord.y+6000, coord.z+5000))
+		local rt_start = coord
+		local rt_end = Utility.CoordStruct(coord.x+6000, coord.y+6000, coord.z+5000)
+		local ray = Physics.RayTestSingle.createRayTestSingle(rt_start, rt_end)
 		ray:perform()
 		if (ray:hit()) then
 			local selected = ray:getFirstObject().attachedToObject
@@ -59,6 +61,13 @@ function Functions.Session_MousePress(mouseStatus)
 						ModEnvironment.Functions.moveTechno(selected, coord)
 					end
 				end
+			end
+
+			local ray_cell = Physics.RayTestSingleForCell.createRayTestForCell(rt_end, rt_start)
+			ray_cell:perform()
+			if ray_cell:hit() then
+				local hit_point = ray_cell:hit_point()
+				print(hit_point.x, hit_point.y, hit_point.z)
 			end
 		end
 	else 

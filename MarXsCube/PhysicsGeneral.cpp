@@ -32,8 +32,10 @@ void PhysicsGeneral::init() {
 	btRigidBody *grBody = new btRigidBody(grInfo);
 	grBody->setRestitution(btScalar(1));
 	grBody->setContactProcessingThreshold(btScalar(64));
-	auto x = new PhysicsObject(true);
-	grBody->setUserPointer(x);
+	
+	auto physicObj_Ground = new PhysicsObject(true);
+	physicObj_Ground->isCell = true;
+	grBody->setUserPointer(physicObj_Ground);
 	dynaWorld->addRigidBody(grBody);
 }
 

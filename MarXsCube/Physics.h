@@ -74,12 +74,13 @@ class PhysicsObject {
 		btRigidBody *body = nullptr;
 		Abs_Abstract *attachedToObject = nullptr;
 		btVector3 offset = btVector3(btScalar(0), btScalar(0), btScalar(0));
+	
+		bool isEmpty = false;
+		bool isCell = false;
 
 		ObjectCollideCache collCache;
 
 		~PhysicsObject();
-
-		bool isEmpty = false;
 
 		void SpawnAt(const CoordStruct &loc);
 
@@ -156,6 +157,16 @@ public:
 	}
 };
 
+class ClosestRayResultCallback_ForCell : public ClosestRayResultCallback_Custom {
+public:
+	ClosestRayResultCallback_ForCell(const btVector3& rayFromWorld,const btVector3& rayToWorld)
+	: ClosestRayResultCallback_Custom(rayFromWorld, rayToWorld) {LOGFUNC; }
+	bool needsCollision(btBroadphaseProxy* proxy0) const {LOGFUNC;
+		PhysicsObject *ptr = (PhysicsObject *)(((btCollisionObject *)proxy0->m_clientObject)->getUserPointer());
+		return !(ptr->isEmpty && !ptr->isCell);
+	}
+};
+
 class ClosestRayResultCallback_Custom_ : public btCollisionWorld::ClosestRayResultCallback {
 public:
 	ClosestRayResultCallback_Custom_(const btVector3& rayFromWorld,const btVector3& rayToWorld)
@@ -166,28 +177,67 @@ public:
 	}
 };
 
-//  TODO: modified fm. MarKsCube_Mac
-class RayTestSingle {
-	public:
-        ClosestRayResultCallback_Custom callback;
-		RayTestSingle(CoordStruct start, CoordStruct end) : callback(btVector3(btScalar(start.x), btScalar(start.y), btScalar(start.z)),
-																							btVector3(btScalar(end.x), btScalar(end.y), btScalar(end.z))) {LOGFUNC; }
-		void perform() {LOGFUNC;
-			Generic::PhysicsGeneral()->dynaWorld->rayTest(callback.m_rayFromWorld, callback.m_rayToWorld, callback);
-		}
-
-		PhysicsObject *getFirstObject() {LOGFUNC;
-			return (PhysicsObject *)(callback.m_collisionObject->getUserPointer());
-		}
-
-		bool hit() {LOGFUNC;
-			return callback.hasHit();
-		}
-    
-        static RayTestSingle *createRayTestSingle(CoordStruct &start, CoordStruct &end) {
-            return new RayTestSingle(start, end);
-        }
+template <typename CallbackT>
+class RayTestClass {
+public:
+	CallbackT callback;
+	RayTestClass(CoordStruct start, CoordStruct end) : callback(btVector3(btScalar(start.x), btScalar(start.y), btScalar(start.z)),
+																 btVector3(btScalar(end.x), btScalar(end.y), btScalar(end.z))) {LOGFUNC; }
+	void perform() {LOGFUNC;
+		Generic::PhysicsGeneral()->dynaWorld->rayTest(callback.m_rayFromWorld, callback.m_rayToWorld, callback);
+	}
+	
+	PhysicsObject *getFirstObject() {LOGFUNC;
+		return (PhysicsObject *)(callback.m_collisionObject->getUserPointer());
+	}
+	
+	bool hit() {LOGFUNC; return callback.hasHit(); }
+	
+	CoordStruct hit_point() {
+		return CoordStruct(this->callback.m_hitPointWorld.x(), this->callback.m_hitPointWorld.y(), this->callback.m_hitPointWorld.z());
+	}
+	
 };
+
+using RayTestSingle = RayTestClass<ClosestRayResultCallback_Custom>;
+using RayTestSingleForCell = RayTestClass<ClosestRayResultCallback_ForCell>;
+
+namespace Physics {
+	namespace RayTest {
+		static RayTestSingle *createRayTestSingle(CoordStruct &start, CoordStruct &end) {
+			return new RayTestSingle(start, end); }
+		static RayTestSingleForCell *createRayTestForCell(CoordStruct &start, CoordStruct &end) {
+			return new RayTestSingleForCell(start, end); }
+	}
+}
+
+//  TODO: modified fm. MarKsCube_Mac
+//class RayTestSingle {
+//	public:
+//        ClosestRayResultCallback_Custom callback;
+//		RayTestSingle(CoordStruct start, CoordStruct end) : callback(btVector3(btScalar(start.x), btScalar(start.y), btScalar(start.z)),
+//																							btVector3(btScalar(end.x), btScalar(end.y), btScalar(end.z))) {LOGFUNC; }
+//		void perform() {LOGFUNC;
+//			Generic::PhysicsGeneral()->dynaWorld->rayTest(callback.m_rayFromWorld, callback.m_rayToWorld, callback);
+//		}
+//
+//		PhysicsObject *getFirstObject() {LOGFUNC;
+//			return (PhysicsObject *)(callback.m_collisionObject->getUserPointer());
+//		}
+//
+//		bool hit() {LOGFUNC;
+//			return callback.hasHit();
+//		}
+//	
+//		CoordStruct hit_point() {
+//			return CoordStruct(this->callback.m_hitPointWorld.x(), this->callback.m_hitPointWorld.y(), this->callback.m_hitPointWorld.z());
+//		}
+//	
+//        static RayTestSingle *createRayTestSingle(CoordStruct &start, CoordStruct &end) {
+//            return new RayTestSingle(start, end);
+//        }
+//	
+//};
 
 #include "Config.h"
 #include "Abstract.h"
