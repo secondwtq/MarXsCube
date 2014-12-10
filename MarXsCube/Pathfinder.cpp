@@ -49,8 +49,8 @@ namespace Pathfinding {
 		bi_t = new int[llmww];
 		IDCells = new CellStruct[llmww];
 		CellIDs = new int[llmww];
-		for (int i = -1; i <= xx; i++)
-			for (int j = - yy/2; j < yy/2+1; j++) {
+		for (int i = -1; i <= yy; i++)
+			for (int j = - xx/2; j < xx/2+1; j++) {
 				auto p = CellStruct(i, j);
 				auto cell = Map::GetInstance().GetCellAt(p);
 				Cells[i*xx+j+yy/2] = cell;
