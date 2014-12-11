@@ -15,8 +15,6 @@
 
 #include "Gmap_Interface.h"
 
-using namespace luabridge;
-
 using namespace Gmap;
 
 namespace Gmap {
@@ -26,19 +24,22 @@ namespace Gmap {
 	//	mapped to Appins::Gmap::bellman_ford_shortest::extract_path()
 	//		do it with two passes, one get the reversed path, the second reverse it while coping data to the table
 	// Attention: the return value does not include the start node.
-	LuaRef bf_extract_path(bellman_food_shortest const *src, std::size_t dest, lua_State *L) {
+	luabridge::LuaRef bf_extract_path(bellman_food_shortest const *src, std::size_t dest, lua_State *L) {
 		std::size_t current_node = dest;
 		const Gmap::gGraph_listnode *current_edge = src->edge_to[current_node];
 		std::vector<std::size_t> nodes;
+		
+		// the first pass
 		while (current_edge) {
 			nodes.push_back(current_node);
 			current_node = current_edge->other(current_node);
 			current_edge = src->edge_to[current_node];
 		}
 		
-		LuaRef ret = luabridge::newTable(L);
+		// and the second pass
+		luabridge::LuaRef ret = luabridge::newTable(L);
 		std::size_t idx = 1;
-		for (auto i = nodes.rbegin(); i != nodes.rend(); i++)
+		for (auto i = nodes.rbegin(); i != nodes.rend(); i++) // reversed iterator
 			ret[idx++] = *i;
 		return ret;
 	}
@@ -47,7 +48,7 @@ namespace Gmap {
 namespace LuaInterface {
 
 void RegisterInterface_User_Gmap(LuaStatus &L) {
-	getGlobalNamespace(L).
+	luabridge::getGlobalNamespace(L).
 	beginNamespace("Appins").
 		beginNamespace("Gmap").
 			beginClass<gGraph>("Graph").
