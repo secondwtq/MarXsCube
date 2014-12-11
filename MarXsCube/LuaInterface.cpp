@@ -26,6 +26,7 @@
 #include "Generic.h"
 
 #include "StdInterface.h"
+#include "RayTest_Interface.h"
 
 #include "Gmap_Interface.h"
 
@@ -370,23 +371,9 @@ namespace LuaInterface {
 					addFunction("checkCollide", &PhysicsObject::checkCollide).
 					addFunction("checkCollide_", &PhysicsObject::checkCollide_).
 				endClass().
-				beginClass<RayTestSingle>("RayTestSingle").
-					addConstructor<void (*)(CoordStruct, CoordStruct)>().
-					addFunction("perform", &RayTestSingle::perform).
-					addFunction("getFirstObject", &RayTestSingle::getFirstObject).
-					addFunction("hit", &RayTestSingle::hit).
-					addFunction("hit_point", &RayTestSingle::hit_point).
-                    addStaticFunction("createRayTestSingle", &Physics::RayTest::createRayTestSingle).
-				endClass().
-				beginClass<RayTestSingleForCell>("RayTestSingleForCell").
-					addConstructor<void (*)(CoordStruct, CoordStruct)>().
-					addFunction("perform", &RayTestSingleForCell::perform).
-					addFunction("getFirstObject", &RayTestSingleForCell::getFirstObject).
-					addFunction("hit", &RayTestSingleForCell::hit).
-					addFunction("hit_point", &RayTestSingleForCell::hit_point).
-					addStaticFunction("createRayTestForCell", &Physics::RayTest::createRayTestForCell).
-				endClass().
 			endNamespace();
+		
+		LuaInterface::RegisterInterface_Physics_RayTest(L);
 	}
 
 }

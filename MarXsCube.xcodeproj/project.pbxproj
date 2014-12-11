@@ -44,6 +44,8 @@
 		595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */; };
 		595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */; };
 		595DDC13198ADD990046919B /* libLinearMath_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */; };
+		598D1DDE1A3966A70049653B /* RayTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDC1A3966A70049653B /* RayTest.cpp */; };
+		598D1DE11A3967FF0049653B /* RayTest_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */; };
 		59B412A519D1CCE600B9BE98 /* liblua523_static_darwinclang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B412A119D1C84800B9BE98 /* liblua523_static_darwinclang.a */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +141,10 @@
 		595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletCollision_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletDynamics_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libLinearMath_xcode4_x64_release.a; sourceTree = "<group>"; };
+		598D1DDC1A3966A70049653B /* RayTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RayTest.cpp; sourceTree = "<group>"; };
+		598D1DDD1A3966A70049653B /* RayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest.h; sourceTree = "<group>"; };
+		598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RayTest_Interface.cpp; sourceTree = "<group>"; };
+		598D1DE01A3967FF0049653B /* RayTest_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest_Interface.h; sourceTree = "<group>"; };
 		59B412A119D1C84800B9BE98 /* liblua523_static_darwinclang.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua523_static_darwinclang.a; path = ../project_U/lib/liblua523_static_darwinclang.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -206,6 +212,10 @@
 				59262934198AB66500858A67 /* Physics.cpp */,
 				5923C8ED19D02A3D0055E0D5 /* PhysicsGeneral.h */,
 				5923C8EE19D02A5E0055E0D5 /* PhysicsGeneral.cpp */,
+				598D1DDC1A3966A70049653B /* RayTest.cpp */,
+				598D1DDD1A3966A70049653B /* RayTest.h */,
+				598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */,
+				598D1DE01A3967FF0049653B /* RayTest_Interface.h */,
 			);
 			name = Bullet;
 			sourceTree = "<group>";
@@ -361,6 +371,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5923C8DD19D00F730055E0D5 /* RenderElementsContainer.cpp in Sources */,
+				598D1DDE1A3966A70049653B /* RayTest.cpp in Sources */,
+				598D1DE11A3967FF0049653B /* RayTest_Interface.cpp in Sources */,
 				5926294D198AB66500858A67 /* Session.cpp in Sources */,
 				5926294B198AB66500858A67 /* Pathfinder.cpp in Sources */,
 				5926293F198AB66500858A67 /* Anim.cpp in Sources */,
