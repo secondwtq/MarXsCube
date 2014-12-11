@@ -145,7 +145,7 @@ class CubeTimer {
 
 inline int getDirFrameNum(int deg, int totalNum = 32) { LOGFUNC;
 	double r = deg % 360;
-	r += (360.0 / totalNum) * 0.5;
+	r += (360.0 / totalNum) * 0.9;
 	if (r < 0) r += 360.0;
 	else if (r > 360.0) r -= 360.0;
 	return (r / 360.0) * totalNum;

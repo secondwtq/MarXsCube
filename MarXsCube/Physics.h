@@ -75,6 +75,8 @@ class PhysicsObject {
 		Abs_Abstract *attachedToObject = nullptr;
 		btVector3 offset = btVector3(btScalar(0), btScalar(0), btScalar(0));
 	
+		double main_rotation = 0.0;
+	
 		bool isEmpty = false;
 		bool isCell = false;
 
@@ -127,6 +129,10 @@ class PhysicsObject {
 		void applyCentralImpulse_Directional(float impluse);
 
 		void applyCentralImpulse_Vertical(float impluse);
+	
+		void applyTorqueImpulse_Initial(const CoordStruct& torque);
+	
+		double getMainRotation();
 
 		double getMainRotationVelocity();
 

@@ -25,22 +25,22 @@ function Functions.TestManger_onTestInit()
 	ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(0, 0, 0), true)
 	ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
 
-	-- create GameObjects for nodes, and fill OBJ_DOTS
-	for i, dot in ipairs(DATA_DOTS) do
-		local dot_techno = ModEnvironment.Functions.createTechno(OBJECTS.GRAPH_NODE, Utility.CoordStruct(dot[2], dot[1], 0)).ExtTable
-		dot_techno.components.a['GraphNodeStore']:init(i-1)
-		OBJ_DOTS[i] = dot_techno
-	end
+	-- -- create GameObjects for nodes, and fill OBJ_DOTS
+	-- for i, dot in ipairs(DATA_DOTS) do
+	-- 	local dot_techno = ModEnvironment.Functions.createTechno(OBJECTS.GRAPH_NODE, Utility.CoordStruct(dot[2], dot[1], 0)).ExtTable
+	-- 	dot_techno.components.a['GraphNodeStore']:init(i-1)
+	-- 	OBJ_DOTS[i] = dot_techno
+	-- end
 
-	-- create GameObjects for edges, and fill OBJ_EDGES
-	for i, edge in ipairs(DATA_EDGES) do
-		-- we really need some functions to fetch the corners of map
-		local edge_techno = ModEnvironment.Functions.createTechno(OBJECTS.GRAPH_LINE, Utility.CoordStruct(0, -25*64, 0)).ExtTable
-		edge_techno.components.a['GraphLineStore']:init(unpack(edge))
-		OBJ_EDGES[i] = edge_techno
+	-- -- create GameObjects for edges, and fill OBJ_EDGES
+	-- for i, edge in ipairs(DATA_EDGES) do
+	-- 	-- we really need some functions to fetch the corners of map
+	-- 	local edge_techno = ModEnvironment.Functions.createTechno(OBJECTS.GRAPH_LINE, Utility.CoordStruct(0, -25*64, 0)).ExtTable
+	-- 	edge_techno.components.a['GraphLineStore']:init(unpack(edge))
+	-- 	OBJ_EDGES[i] = edge_techno
 
-		GRAPH_GLOBAL:connect(unpack(edge))
-	end
+	-- 	GRAPH_GLOBAL:connect(unpack(edge))
+	-- end
 
 end
 

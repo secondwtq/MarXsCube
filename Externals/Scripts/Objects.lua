@@ -1,5 +1,9 @@
 Import("Anims.lua")
 
+local composer = require('composer')
+local gmap_comps = require('gmap_comps')
+local locomotor = require 'locomotor'
+
 OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 	type = "TECHNO",
 	imagefaces = 36,
@@ -25,14 +29,21 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 				direction_offset = 0,
 
 				image = "TRIKEIMAGE",
-				image_faces = 32,
+				image_faces = 36,
 				shadow = "TRIKEIMAGE_SHADOW",
-				shadow_faces = 32,
+				shadow_faces = 36,
 
 				multiply = { 1.0, 1.0, 1.0, 1.0 },
 				affected_by_global_multiply = true,
 			}
 		},
+	},
+
+	components = {
+		composer.comp_TechnoColorMultiply,
+		composer.comp_RenderElementsManger,
+		composer.comp_RenderBasicBody,
+		locomotor.comp_LocomotorDefault
 	},
 
 	physics = {
@@ -45,10 +56,18 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		locomotor_args = {
 			realtimeupdate = true,
 			balance_force_mult = 1,
-			rot = 6,
+			rot = 700,
 			stablespeed = 650,
 			engineforce = 60,
 			rot_negativeforce = 2,
+		},
+		ntype_locomotor = 'default',
+		nlocomotor_args = {
+			rot = 300,
+			max_rot = 6,
+			stablespeed = 650,
+			engineforce = 300,
+			brakingforce = 500,
 		},
 		shape = {
 			type = "BOX",
@@ -198,9 +217,6 @@ OBJECTS.TESTBUILDING = BASES.BaseTechno:newObject({
 		}
 	}
 })
-
-local composer = require('composer')
-local gmap_comps = require('gmap_comps')
 
 OBJECTS.GRAPH_LINE = BASES.BaseTechno:newObject({
 

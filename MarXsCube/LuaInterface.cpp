@@ -368,6 +368,8 @@ namespace LuaInterface {
 					addFunction("applyCentralImpulse_Vertical", &PhysicsObject::applyCentralImpulse_Vertical).
 					addFunction("clearVerticalVelocity", &PhysicsObject::clearVerticalVelocity).
 					addFunction("applyCentralImpulse_Directional", &PhysicsObject::applyCentralImpulse_Directional).
+					addFunction("applyTorqueImpulse_Initial", &PhysicsObject::applyTorqueImpulse_Initial).
+					addFunction("getMainRotation", &PhysicsObject::getMainRotation).
 					addFunction("checkCollide", &PhysicsObject::checkCollide).
 					addFunction("checkCollide_", &PhysicsObject::checkCollide_).
 				endClass().

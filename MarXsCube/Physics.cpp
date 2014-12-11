@@ -235,8 +235,21 @@ void PhysicsObject::applyForce_Directional(float force, const CoordStruct &rel_p
 	applyForce(foc, rel_pos);
 }
 
+void PhysicsObject::applyTorqueImpulse_Initial(const CoordStruct& torque) {
+	body->applyTorqueImpulse(btVector3(btScalar(torque.x), btScalar(torque.y), btScalar(torque.z)));
+}
+
 void PhysicsObject::activate() {
 	body->activate();
+}
+
+// the rad space of Script Environment is 0 -> 2pi
+//	but in Bullet, it is -pi -> pi
+double PhysicsObject::getMainRotation() {
+	if (this->main_rotation < 0) {
+		this->main_rotation += 2*PI;
+	}
+	return this->main_rotation;
 }
 
 void PhysicsObject::setTransformCallback(const btTransform &centerOfMassWorldTrans) {LOGFUNC;
@@ -250,6 +263,7 @@ void PhysicsObject::setTransformCallback(const btTransform &centerOfMassWorldTra
 		float x, y, z;
 		rot.getEulerZYX(z, y, x);
 		attachedToObject->setMainRotation(z * (180.0 / PI));
+		this->main_rotation = z;
 		// printf("%lf %lf %lf\n", x.x(), x.y(), x.z());
 		
 		if (attachedToObject->WhatAmI() == RTTIType_Techno) {

@@ -12,6 +12,7 @@ function Functions.Abs_Techno_onUpdate(self, table)
 	local scriptType = self:getTechnoType().ScriptType
 
 	self.elements:setDirection(self.Direction.degree)
+	print('direction: ', self.Direction.degree)
 
 	if table.Mission == Enums.ModEnv.Mission.Moving then
 		if self.Physics:checkCollide_() then

@@ -1,4 +1,5 @@
 InputHandler = require 'InputHandler'
+Helpers = require 'Helpers'
 
 function Functions.Main_GameUpdateBegin()
 	-- move camera with mouse
@@ -59,7 +60,9 @@ function Functions.Session_MousePress(mouseStatus)
 				if ModEnvironment.SelectedUnit_Single:WhatAmI() == 7 then
 					local selected = Utility.toTechno(ModEnvironment.SelectedUnit_Single)
 					if selected:getTechnoType().ScriptType.clickmoveable == true then
-						ModEnvironment.Functions.moveTechno(selected, coord)
+						local selected_table = selected.ExtTable
+						selected_table.components.a['LocomotorDefault']:move_to_coord_direct(Helpers.unpack_coord3(coord))
+						-- ModEnvironment.Functions.moveTechno(selected, coord)
 					end
 				end
 			end

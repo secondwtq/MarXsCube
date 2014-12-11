@@ -111,6 +111,12 @@ _module_components.components_container = lobject.object:new({
 		end
 	end,
 
+	phy_transform = function (self)
+		for i, v in ipairs(self.__components) do
+			v:on_phytrans()
+		end
+	end,
+
 })
 
 function _module_components.components_container:init_components()
@@ -191,6 +197,10 @@ _module_components.component = lobject.object:new({
 	-- compcont:add_component -> comp:_on_create -> comp:on_create -> compcont:init_components -> comp:on_init
 	-- you can access alias in on_init, it is all for user
 	on_init = function (self)
+
+	end,
+
+	on_phytrans = function (self)
 
 	end,
 
