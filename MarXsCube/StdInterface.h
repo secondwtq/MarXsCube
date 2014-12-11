@@ -21,17 +21,21 @@ namespace LuaInterface {
 	
 	template <typename ValueT>
 	void RegisterInterface_Std_Vector(LuaStatus &L, const std::string& name_type) {
+		ValueT& (std::vector<ValueT>::*vec_at)(std::size_t) = &std::vector<ValueT>::at;
+		
 		luabridge::getGlobalNamespace(L).
 		beginNamespace("Appins").
 			beginNamespace("STL").
-				beginClass<std::vector<ValueT> >("vector").
-//					addConstructor<void (*)(const vector&)>().
-//					addFunction<void (*)(std::vector<ValueT, std::allocator<ValueT>> *, std::size_t)>("at", &vec_this::at).
-//					addFunction<void (*)(std_vector_int *, int)>("push_back", &std_vector_int::push_back).
-					addFunction("empty", &std::vector<ValueT>::empty).
-					addFunction("size", &std::vector<ValueT>::size).
-					addFunction("length", &std::vector<ValueT>::size).
-				endClass().
+				beginNamespace("vector").
+					beginClass<std::vector<ValueT> >(name_type.c_str()).
+	//					addConstructor<void (*)(const vector&)>().
+						addFunction("at", &vec_at).
+	//					addFunction<void (*)(std_vector_int *, int)>("push_back", &std_vector_int::push_back).
+						addFunction("empty", &std::vector<ValueT>::empty).
+						addFunction("size", &std::vector<ValueT>::size).
+						addFunction("length", &std::vector<ValueT>::size).
+					endClass().
+				endNamespace().
 			endNamespace().
 		endNamespace();
 	}

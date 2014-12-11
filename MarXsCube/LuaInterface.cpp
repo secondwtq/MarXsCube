@@ -46,6 +46,8 @@ namespace LuaInterface {
 		RegisterInterface_New(L);
 		
 		RegisterInterface_User_Gmap(L);
+		
+		// RegisterInterface_Std<int>(L, "int");
 	}
 	
 	void RegisterInterface_New(LuaStatus &L) {

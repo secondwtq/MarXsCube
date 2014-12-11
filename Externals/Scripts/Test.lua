@@ -13,6 +13,7 @@ GRAPH_GLOBAL = None
 CURRENT_STATUS = "SELECT_FIRST"
 PATH_STARTNODE, PATH_ENDNODE = nil, nil
 
+-- run when game started
 function Functions.TestManger_onTestInit()
 	Objects.Map.GetInstance():CreateEmptyMap(60, 50) -- create map
 	GRAPH_GLOBAL = Appins.Gmap.Graph(#DATA_DOTS) -- create graph data structure
@@ -22,7 +23,6 @@ function Functions.TestManger_onTestInit()
 	DATA_DOTS = transform_dots(DATA_DOTS)
 
 	ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(0, 0, 0), true)
-
 	ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
 
 	-- create GameObjects for nodes, and fill OBJ_DOTS
@@ -32,10 +32,10 @@ function Functions.TestManger_onTestInit()
 		OBJ_DOTS[i] = dot_techno
 	end
 
+	-- create GameObjects for edges, and fill OBJ_EDGES
 	for i, edge in ipairs(DATA_EDGES) do
 		-- we really need some functions to fetch the corners of map
 		local edge_techno = ModEnvironment.Functions.createTechno(OBJECTS.GRAPH_LINE, Utility.CoordStruct(0, -25*64, 0)).ExtTable
-
 		edge_techno.components.a['GraphLineStore']:init(unpack(edge))
 		OBJ_EDGES[i] = edge_techno
 
