@@ -4,9 +4,7 @@ bindedattr = require 'binded_attr'
 composer = require 'composer'
 Helpers = require 'Helpers'
 
-function Functions.TechnoType_onLoad(self, table)
-
-end
+function Functions.TechnoType_onLoad(self, table) end
 
 function Functions.Abs_Techno_onUpdate(self, table)
 	local scriptType = self:getTechnoType().ScriptType

@@ -6,10 +6,6 @@ local locomotor = require 'locomotor'
 
 OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 	type = "TECHNO",
-	imagefaces = 36,
-	shadowimagefaces = 36,
-	image = "TRIKEIMAGE",
-	shadow = "TRIKEIMAGE_SHADOW",
 	clickselectable = true,
 	usecollsphere = true,
 	rcollsphere = 36,
@@ -43,7 +39,8 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		composer.comp_TechnoColorMultiply,
 		composer.comp_RenderElementsManger,
 		composer.comp_RenderBasicBody,
-		locomotor.comp_LocomotorDefault
+		locomotor.comp_LocomotorDefault,
+		gmap_comps.comp_GraphVehicle
 	},
 
 	physics = {
@@ -52,15 +49,6 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		mass = 0.5,
 		offset = { x = 0, y = 0, z = 24 },
 		angle_factor = { x = 1.0, y = 1.0, z = 1.0 },
-		locomotor_type = "default",
-		locomotor_args = {
-			realtimeupdate = true,
-			balance_force_mult = 1,
-			rot = 700,
-			stablespeed = 650,
-			engineforce = 60,
-			rot_negativeforce = 2,
-		},
 		ntype_locomotor = 'default',
 		nlocomotor_args = {
 			rot = 300,
@@ -82,14 +70,11 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 
 OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 	type = "TECHNO",
-	image = "TESTUNITBODYIMAGE",
-	shadow = "TESTUNITSHADOWIMAGE",
 	occupationtype = "centeredynamic",
 	occupationfoundation_simple = { x = 1, y = 1 },
 
 	appearance = {
-		render_elements = {
-			{
+		render_elements = { {
 				name = 'body',
 
 				type_general = true,
@@ -108,29 +93,14 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 
 				multiply = { 1.0, 1.0, 1.0, 1.0 },
 				affected_by_global_multiply = true,
-			}, 
-			{
-				name = 'test_line',
+		} }
+	},
 
-				type_general = false,
-				type_internal_line = true,
-
-				has_shadow = false,
-
-				point1 = { 0, 0, 50 },
-				point2 = { 1000, 0, 50 },
-
-				-- due to internal problem in comp_RenderBasicBody:on_init()
-				--		INTERNAL LINE elements still require offset field.
-				offset = { 0, 0, 0 },
-				thickness = 0,
-
-				color1 = { 1, 1, 1, 1 },
-				color2 = { 0, 0, 0, 1 },
-				multiply = { 1.0, 1.0, 1.0, 1.0 },
-				affected_by_global_multiply = true,
-			}
-		},
+	components = {
+		composer.comp_TechnoColorMultiply,
+		composer.comp_RenderElementsManger,
+		composer.comp_RenderBasicBody,
+		locomotor.comp_LocomotorDefault
 	},
 
 	physics = {
@@ -139,14 +109,13 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 		mass = 5.0,
 		offset = { x = 0, y = 0, z = 48 },
 		angle_factor = { x = 1.0, y = 1.0, z = 1.0 },
-		locomotor_type = "default",
-		locomotor_args = {
-			realtimeupdate = true,
-			balance_force_mult = 10.0,
-			rot = 1,
-			stablespeed = 200,
+		ntype_locomotor = 'default',
+		nlocomotor_args = {
+			rot = 200,
+			stablespeed = 250,
 			engineforce = 400,
-			rot_negativeforce = 50,
+			brakingforce = 500,
+			rotate_negativeforce = 300,
 		},
 		shape = {
 			type = "BOX",
@@ -219,7 +188,6 @@ OBJECTS.TESTBUILDING = BASES.BaseTechno:newObject({
 })
 
 OBJECTS.GRAPH_LINE = BASES.BaseTechno:newObject({
-
 	type = "TECHNO",
 	clickmoveable = false,
 	clickselectable = false,
@@ -257,7 +225,6 @@ OBJECTS.GRAPH_LINE = BASES.BaseTechno:newObject({
 })
 
 OBJECTS.GRAPH_NODE = BASES.BaseTechno:newObject({
-
 	type = "TECHNO",
 	clickmoveable = false,
 	clickselectable = false,

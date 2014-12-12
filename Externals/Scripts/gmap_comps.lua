@@ -61,4 +61,17 @@ end
 
 gmap_comps.comp_GraphNodeStore = comp_GraphNodeStore
 
+local subcomp_GraphVehicle = components.subcomponent:new({
+	name = "GraphVehicle_Initial"
+})
+
+local comp_GraphVehicle = components.component:new({
+	name = "GraphVehicle",
+	alias = "GraphVehicle",
+
+	subcomponents = { subcomp_GraphVehicle }
+})
+
+gmap_comps.comp_GraphVehicle = comp_GraphVehicle
+
 return gmap_comps

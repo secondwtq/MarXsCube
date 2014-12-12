@@ -25,6 +25,7 @@ function Functions.TestManger_onTestInit()
 	DATA_DOTS = transform_dots(DATA_DOTS)
 
 	local cycle = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(0, 0, 0), true)
+	-- local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(128, 0, 0), true)
 	TECHNO_GLOBAL = cycle
 	-- ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
 
@@ -56,11 +57,12 @@ function transform_dots(src)
 	return data_dots_new
 end
 
+-- find the nearest node of a CoordStruct from OBJ_DOTS
+-- coord must be a CoordStruct, max_dist can be empty
 function find_nearest_node(coord, max_dist)
-	local ret = nil
-
 	local current_node = OBJ_DOTS[1]
 	local current_dis = Helpers.coord_distance(coord, OBJ_DOTS[1].GetCoord())
+
 	for i, nodeobj in ipairs(OBJ_DOTS) do
 		local dis_new = Helpers.coord_distance(coord, nodeobj.GetCoord())
 		if dis_new < current_dis then
