@@ -37,6 +37,7 @@ function comp_LocomotorDefault:on_init()
 end
 
 function comp_LocomotorDefault:state(state)
+	print('comp_LocomotorDefault: ', 'entering state ', state)
 	self:set_datafield('state', state)
 end
 
@@ -62,39 +63,34 @@ function comp_LocomotorDefault:on_update()
 				local required_rotation = Helpers.rad_from_vector2(Helpers.vector2_offset(self:get_datafield 'dest_vector3', current_pos))
 				local required_deg = math.deg(required_rotation)
 
-				if math.abs(current_forward_vel) >= 0.01 then
+				if current_forward_vel >= 1 then
 
 					local factor = 1
 					local vector2_offset = Helpers.local_vector2(current_pos, Helpers.unpack_coord2(obj.Physics:getLinearVelocity()), self:get_datafield 'dest_vector3')
-					if vector2_offset[1] > 0 then
-						factor = -1*factor
-					end
-					if Helpers.absoffset_rad(required_rotation, current_rotation) > 0.15 then
-						if math.abs(obj.Physics:getMainRotationVelocity()) < loco_args['max_rot'] then
-							obj.Physics:applyCentralForce_Vertical(factor * loco_args['rot'])
-							obj.Physics:setDirectionTo(math.deg(Helpers.rad_from_vector2(Helpers.unpack_coord2(obj.Physics:getLinearVelocity()))))
-							print('\tapplying positive torque')
-						end
-					else
-						if math.abs(obj.Physics:getMainRotationVelocity()) > 1 then
-							obj.Physics:setMainRotationVelocity(0)
-							print('\tapplying negative torque')
-						end
-					end
-				end
-				-- print(obj.Physics:getMainRotationVelocity())
+					if vector2_offset[1] > 0 then factor = -1*factor end
 
+					if math.abs(current_forward_vel) >= loco_args['stablespeed'] / 24 then
+						if Helpers.absoffset_rad(required_rotation, current_rotation) > 0.15 then
+							obj.Physics:applyCentralForce_Vertical(factor * loco_args['rot'])
+						end
+					end
+
+					obj.Physics:setDirectionTo(math.deg(Helpers.rad_from_vector2(Helpers.unpack_coord2(obj.Physics:getLinearVelocity()))))
+					print('setting direction ', math.deg(Helpers.rad_from_vector2(Helpers.unpack_coord2(obj.Physics:getLinearVelocity()))))
+				end
 				if current_forward_vel < loco_args['stablespeed'] then
 					obj.Physics:applyCentralForce_Directional(loco_args['engineforce'])
 				end
 			end
 
 		elseif self:in_state 'BRAKING' then
-			print('braking')
-			if current_forward_vel > 1 then
+			if current_forward_vel > loco_args['stablespeed'] / 5 then
 				obj.Physics:applyCentralForce_Directional(-1*loco_args['brakingforce'])
-				obj.Physics:setMainRotationVelocity(0)
+			elseif current_forward_vel < -loco_args['stablespeed'] / 5 then
+				obj.Physics:applyCentralForce_Directional(loco_args['brakingforce'])
 			else
+				obj.Physics:setVelocity(0)
+				obj.Physics:setMainRotationVelocity(0)
 				self:state 'IDLE'
 			end
 		end
@@ -103,6 +99,7 @@ function comp_LocomotorDefault:on_update()
 end
 
 function comp_LocomotorDefault:move_to_coord_direct(vector3)
+	print('comp_LocomotorDefault:move_to_coord_direct')
 	Helpers.Techno_TechnoRTTIIDTable(self:container_parent()).Physics:activate()
 	self:set_datafield('state', 'MOVING')
 	self:set_datafield('dest_vector3', vector3)

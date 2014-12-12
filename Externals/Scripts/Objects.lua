@@ -64,10 +64,9 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		ntype_locomotor = 'default',
 		nlocomotor_args = {
 			rot = 300,
-			max_rot = 6,
 			stablespeed = 650,
-			engineforce = 300,
-			brakingforce = 500,
+			engineforce = 200,
+			brakingforce = 600,
 		},
 		shape = {
 			type = "BOX",

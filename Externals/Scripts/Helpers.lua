@@ -124,6 +124,14 @@ function __Helpers.absoffset_rad(op1, op2)
 	return ret
 end
 
+function __Helpers.centri_radius(force, mass, velocity)
+	return (mass * math.pow(velocity, 2))/force
+end
+
+function __Helpers.centri_velocity(force, mass, radius)
+	return math.sqrt((radius*force)/mass)
+end
+
 __Helpers.tblinsert = table.insert
 
 return __Helpers
