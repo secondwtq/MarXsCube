@@ -61,7 +61,7 @@ function Functions.Session_MousePress(mouseStatus)
 					local selected = Utility.toTechno(ModEnvironment.SelectedUnit_Single)
 					if selected:getTechnoType().ScriptType.clickmoveable == true then
 						local selected_table = selected.ExtTable
-						selected_table.components.a['LocomotorDefault']:move_to_coord_direct(Helpers.unpack_coord3(coord))
+						selected_table.components.a['LocomotorDefault']:move_path({Helpers.unpack_coord3(coord)})
 						-- ModEnvironment.Functions.moveTechno(selected, coord)
 					end
 				end

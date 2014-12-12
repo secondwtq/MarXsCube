@@ -54,9 +54,9 @@ local comp_GraphNodeStore = components.component:new({
 	init = Placeholders.ComponentMethod,
 })
 
-function comp_GraphNodeStore:init(idx_initial)
+function comp_GraphNodeStore:init(idx_initial, vec3_coord)
 	self:set_datafield('idx_initial', idx_initial)
-
+	self:set_datafield('vec3_coord', vec3_coord)
 end
 
 gmap_comps.comp_GraphNodeStore = comp_GraphNodeStore
