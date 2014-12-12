@@ -4,7 +4,7 @@
 using namespace sf;
 
 int DIVS = 64;
-int WIDTH = 1024, HEIGHT = 768;
+int WIDTH = 800, HEIGHT = 600;
 int FPSLimit = 30;
 int divPhysics = 240;
 double PI = 3.1415926535898;

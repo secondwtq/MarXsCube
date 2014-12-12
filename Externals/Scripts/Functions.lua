@@ -9,9 +9,9 @@ function Functions.Main_GameUpdateBegin()
 	local dir = Enums.Direction
 
 	if (pos.x <= 12) then sesInst:CameraMove(dir.SouthWest, step) end
-	if (1024 - pos.x <= 12) then sesInst:CameraMove(dir.NorthEast, step) end
+	if (800 - pos.x <= 12) then sesInst:CameraMove(dir.NorthEast, step) end
 	if (pos.y <= 12) then sesInst:CameraMove(dir.NorthWest, step) end
-	if (768 - pos.y <= 12) then sesInst:CameraMove(dir.SouthEast, step) end
+	if (600 - pos.y <= 12) then sesInst:CameraMove(dir.SouthEast, step) end
 end
 
 function Functions.Session_KeyPress(keyevent)

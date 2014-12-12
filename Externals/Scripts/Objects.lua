@@ -67,6 +67,7 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 			stablespeed = 650,
 			engineforce = 200,
 			brakingforce = 600,
+			rotate_negativeforce = 300,
 		},
 		shape = {
 			type = "BOX",
