@@ -48,33 +48,13 @@ function Functions.Session_MousePress(mouseStatus)
 		local ray = Physics.RayTestSingle.createRayTestSingle(rt_start, rt_end)
 		ray:perform()
 		if (ray:hit()) then
-			local selected = ray:getFirstObject().attachedToObject
-			if selected:WhatAmI() == 7 and Utility.toTechno(selected):getTechnoType().ScriptType.clickselectable == true then
-				ModEnvironment.CurGenState = Enums.ModEnv.GenStates.Selected_Single
-				ModEnvironment.SelectedUnit_Single = selected
-			end
+			-- delegate to InputHandler - MousePress OnObject
+			InputHandler.MousePress_OnObject(mouseStatus, ray)
 		else
-			if ModEnvironment.CurGenState == Enums.ModEnv.GenStates.Idle then
-
-			elseif ModEnvironment.CurGenState == Enums.ModEnv.GenStates.Selected_Single then
-				if ModEnvironment.SelectedUnit_Single:WhatAmI() == 7 then
-					local selected = Utility.toTechno(ModEnvironment.SelectedUnit_Single)
-					if selected:getTechnoType().ScriptType.clickmoveable == true then
-						local selected_table = selected.ExtTable
-						selected_table.components.a['LocomotorDefault']:move_path({Helpers.unpack_coord3(coord)})
-						-- ModEnvironment.Functions.moveTechno(selected, coord)
-					end
-				end
-			end
-
 			-- delegate to InputHandler - MousePress OnCell
 			InputHandler.MousePress_OnCell(mouseStatus)
 		end
 	else 
-		if ModEnvironment.CurGenState == Enums.ModEnv.GenStates.Selected_Single then
-			ModEnvironment.CurGenState = Enums.ModEnv.GenStates.Idle
-			ModEnvironment.SelectedUnit_Single = nil
-		end
 		print("Current cell location: ", cell.LocCell.x, cell.LocCell.y)
 	end
 end

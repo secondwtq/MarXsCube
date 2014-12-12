@@ -30,8 +30,8 @@ function comp_LocomotorDefault:on_init()
 	local phyargs = scriptType:property 'physics'
 	if phyargs['ntype_locomotor'] == 'default' then
 
-		self:set_datafield('state', 'IDLE')
-		self:set_datafield('dest_vector3', {0, 0, 0})
+		self:set_datafield('state', 'IDLE') -- state, NONE, IDLE, BRAKING, MOVING
+		self:set_datafield('dest_vector3', {0, 0, 0}) -- current dest coord, a part of path
 		self:set_datafield('dest_vecarray', { })
 		self:set_datafield('current_pathnode', 1)
 
@@ -55,10 +55,15 @@ function comp_LocomotorDefault:on_update()
 		local current_forward_vel = obj.Physics:getVelocity()
 		local current_pos = Helpers.unpack_coord3(obj:GetCoord())
 
+		-- print('velocity', current_forward_vel)
+
 		if self:in_state 'MOVING' then
 
-			if Helpers.vector3_distance(current_pos, self:get_datafield 'dest_vector3') < 64 then
+			-- if too near to final dest, then start braking
+			if Helpers.vector3_distance(current_pos, self:get_datafield 'dest_vector3') < 128 then
+				-- all movement is treated as a waypointed navagation, define path with a vector3 array
 				if self:path_ended() then
+					print("current pos", unpack(current_pos))
 					self:state 'BRAKING'
 				else
 					self:advance_path()
@@ -89,11 +94,12 @@ function comp_LocomotorDefault:on_update()
 							end
 						end
 					end
-					-- print('distance', required_distance)
 					obj.Physics:setDirectionTo(math.deg(Helpers.rad_from_vector2(Helpers.unpack_coord2(obj.Physics:getLinearVelocity()))))
 				end
+
+				-- if speed is too low, and is not rotating, then apply engine force
 				if current_forward_vel < loco_args['stablespeed'] then
-					if not (current_forward_vel > loco_args['stablespeed']/4 and Helpers.absoffset_rad(required_rotation, current_rotation) > 0.4) then
+					if not (current_forward_vel > loco_args['stablespeed']/4 and Helpers.absoffset_rad(required_rotation, current_rotation) > 0.3) then
 						obj.Physics:applyCentralForce_Directional(loco_args['engineforce'])
 					end
 				end
@@ -107,6 +113,7 @@ function comp_LocomotorDefault:on_update()
 			else -- or stop it, immediately
 				obj.Physics:setVelocity(0)
 				obj.Physics:setMainRotationVelocity(0)
+				print("current pos", unpack(current_pos))
 				self:state 'IDLE'
 			end
 
@@ -115,12 +122,8 @@ function comp_LocomotorDefault:on_update()
 
 end
 
-function comp_LocomotorDefault:move_to_coord_direct(vector3)
-	print('comp_LocomotorDefault:move_to_coord_direct')
-	Helpers.Techno_TechnoRTTIIDTable(self:container_parent()).Physics:activate()
-	self:set_datafield('state', 'MOVING')
-	self:set_datafield('dest_vector3', vector3)
-end
+-- directed move is delegated to path move
+function comp_LocomotorDefault:move_to_coord_direct(vector3) self:move_path({vector3}) end
 
 function comp_LocomotorDefault:move_path(array_path)
 	self:set_datafield('dest_vecarray', array_path)
@@ -130,6 +133,7 @@ function comp_LocomotorDefault:move_path(array_path)
 	Helpers.Techno_TechnoRTTIIDTable(self:container_parent()).Physics:activate()
 end
 
+-- move to next path node, used by on_update()
 function comp_LocomotorDefault:advance_path()
 	local current_idx = self:get_datafield 'current_pathnode'
 	local current_node = self:get_datafield 'dest_vecarray' [current_idx+1]
@@ -137,6 +141,7 @@ function comp_LocomotorDefault:advance_path()
 	self:set_datafield('dest_vector3', current_node)
 end
 
+-- judge whether current path is finished, used by on_update()
 function comp_LocomotorDefault:path_ended()
 	local current_idx = self:get_datafield 'current_pathnode'
 	return current_idx >= #(self:get_datafield 'dest_vecarray')

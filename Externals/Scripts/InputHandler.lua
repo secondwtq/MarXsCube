@@ -10,6 +10,13 @@ local InputHandler = { }
 
 local Helpers = require 'Helpers'
 
+-- called when mouse press on an object
+-- args: mouse_status: same as Functions.Session_MousePress
+--		ray: the RayTestSingle object used to test ray collision
+function InputHandler.MousePress_OnObject(mouse_status, ray)
+
+end
+
 -- called when mouse pressed on an empty cell
 -- args: mouse_status: same as Functions.Session_MousePress
 function InputHandler.MousePress_OnCell(mouse_status)

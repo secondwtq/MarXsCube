@@ -5,6 +5,9 @@
 //  Created by SeconDatke on 14-12-10.
 //  Copyright (c) 2014年 MarXsCube Staff. All rights reserved.
 //
+//
+//	Lua Interface of Gmap.
+//
 
 #include "Common.h"
 

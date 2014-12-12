@@ -65,7 +65,7 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		nlocomotor_args = {
 			rot = 300,
 			stablespeed = 650,
-			engineforce = 200,
+			engineforce = 300,
 			brakingforce = 600,
 			rotate_negativeforce = 300,
 		},
