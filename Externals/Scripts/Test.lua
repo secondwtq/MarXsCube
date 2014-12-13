@@ -22,7 +22,7 @@ function Functions.TestManger_onTestInit()
 	DATA_DOTS = transform_dots(DATA_DOTS)
 
 	local cycle = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(0, 0, 0), true)
-	-- local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(128, 0, 0), true)
+	local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(128, 0, 0), true)
 	-- ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
 
 	-- create GameObjects for nodes, and fill OBJ_DOTS
@@ -42,7 +42,8 @@ function Functions.TestManger_onTestInit()
 		GRAPH_GLOBAL:connect(unpack(edge))
 	end
 
-	move_techno_graph(cycle.ExtTable, OBJ_DOTS[10])
+	move_techno_graph(cycle.ExtTable, OBJ_DOTS[9+1])
+	move_techno_graph(cycle.ExtTable, OBJ_DOTS[19+1])
 
 end
 

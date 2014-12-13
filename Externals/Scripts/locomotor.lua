@@ -50,8 +50,8 @@ function comp_LocomotorDefault:in_state(state)
 end
 
 function comp_LocomotorDefault:on_update()
-	if not self:in_state 'IDLE' then
-		local obj = Helpers.Techno_TechnoRTTIIDTable(self:container_parent())
+	local obj = Helpers.Techno_TechnoRTTIIDTable(self:container_parent())
+	if not self:in_state 'IDLE' and obj:onGround() == true then
 		local loco_args = Helpers.scriptType_TechnoRTTITable(self:container_parent()):property 'physics'['nlocomotor_args']
 
 		local current_forward_vel = obj.Physics:getVelocity()
@@ -115,7 +115,7 @@ function comp_LocomotorDefault:on_update()
 			else -- or stop it, immediately
 				obj.Physics:setVelocity(0)
 				obj.Physics:setMainRotationVelocity(0)
-				
+
 				print("current pos", unpack(current_pos))
 				self:get_datafield 'callback_reach_dest' ()
 				self:state 'IDLE'
