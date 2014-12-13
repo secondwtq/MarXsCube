@@ -73,8 +73,8 @@ local comp_GraphVehicle = components.component:new({
 })
 
 function comp_GraphVehicle:on_init()
-	self:set_datafield('current_node', 0)
 	self:set_datafield('status', 'none')
+	self:set_datafield('current_node', 0)
 end
 
 function comp_GraphVehicle:select_single()
@@ -82,10 +82,12 @@ function comp_GraphVehicle:select_single()
 	TECHNO_SELECTED = self:container_parent()
 end
 
-function comp_GraphVehicle:on_update()
+function comp_GraphVehicle:update_currentnode()
 	-- update current node datafield
 	self:set_datafield('current_node', find_nearest_node(self:container_parent():GetCoord()).components.a['GraphNodeStore']:get_datafield 'idx_initial')
 end
+
+function comp_GraphVehicle:on_update() self:update_currentnode() end
 
 gmap_comps.comp_GraphVehicle = comp_GraphVehicle
 

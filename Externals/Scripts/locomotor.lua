@@ -57,8 +57,6 @@ function comp_LocomotorDefault:on_update()
 		local current_forward_vel = obj.Physics:getVelocity()
 		local current_pos = Helpers.unpack_coord3(obj:GetCoord())
 
-		-- print('velocity', current_forward_vel)
-
 		if self:in_state 'MOVING' then
 
 			-- if too near to final dest, then start braking
@@ -117,7 +115,7 @@ function comp_LocomotorDefault:on_update()
 				obj.Physics:setMainRotationVelocity(0)
 
 				print("current pos", unpack(current_pos))
-				self:get_datafield 'callback_reach_dest' ()
+				self:get_datafield 'callback_reach_dest' () -- callback when object reached dest
 				self:state 'IDLE'
 			end
 
