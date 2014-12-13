@@ -23,10 +23,10 @@ void PhysicsGeneral::init() {
 	
 	dynaWorld->setInternalTickCallback(cubeTickCallback);
 	
-	btCollisionShape *ground = new btBoxShape(btVector3(btScalar(25 * 64), btScalar(25 * 64), btScalar(0.1)));
+	btCollisionShape *ground = new btBoxShape(btVector3(btScalar(30 * 64), btScalar(30 * 64), btScalar(0.1)));
 	btTransform groundTrans;
 	groundTrans.setIdentity();
-	groundTrans.setOrigin(btVector3(25*64, 0, 0));
+	groundTrans.setOrigin(btVector3(30*64, 0, 0));
 	btDefaultMotionState *grMotionState = new btDefaultMotionState(groundTrans);
 	btRigidBody::btRigidBodyConstructionInfo grInfo(0., grMotionState, ground);
 	btRigidBody *grBody = new btRigidBody(grInfo);
