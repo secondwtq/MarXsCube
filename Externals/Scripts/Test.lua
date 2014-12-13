@@ -10,10 +10,7 @@ OBJ_EDGES = { }
 
 GRAPH_GLOBAL = None
 
-CURRENT_STATUS = "SELECT_FIRST"
-PATH_STARTNODE, PATH_ENDNODE = nil, nil
-
-TECHNO_GLOBAL = nil
+TECHNO_SELECTED = nil
 
 -- run when game started
 function Functions.TestManger_onTestInit()
@@ -26,7 +23,6 @@ function Functions.TestManger_onTestInit()
 
 	local cycle = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(0, 0, 0), true)
 	-- local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(128, 0, 0), true)
-	TECHNO_GLOBAL = cycle
 	-- ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
 
 	-- create GameObjects for nodes, and fill OBJ_DOTS
@@ -46,6 +42,8 @@ function Functions.TestManger_onTestInit()
 		GRAPH_GLOBAL:connect(unpack(edge))
 	end
 
+	move_techno_graph(cycle.ExtTable, OBJ_DOTS[10])
+
 end
 
 function transform_dots(src)
@@ -57,7 +55,7 @@ function transform_dots(src)
 	return data_dots_new
 end
 
--- find the nearest node of a CoordStruct from OBJ_DOTS
+-- find the nearest node (RTTITable) of a CoordStruct from OBJ_DOTS
 -- coord must be a CoordStruct, max_dist can be empty
 function find_nearest_node(coord, max_dist)
 	local current_node = OBJ_DOTS[1]
@@ -74,4 +72,23 @@ function find_nearest_node(coord, max_dist)
 	-- max_dist as a threshold
 	if max_dist ~= nil and current_dis > max_dist then return nil end
 	return current_node
+end
+
+-- calculate nearest path of an object's current position to a specificed node
+--- args: technot - a Techno RTTITable, target_node a Node's RTTITable
+function move_techno_graph(technot, target_node)
+	-- init bellman - ford object
+	local bf_shortest = Appins.Gmap.bellman_ford_shortest(GRAPH_GLOBAL, technot.components.a['GraphVehicle']:get_datafield 'current_node')
+	bf_shortest:go() -- execute the algorithm
+	local path_nodes = Appins.Gmap.bellman_ford_shortest.extract_path(bf_shortest, target_node.components.a['GraphNodeStore']:get_datafield 'idx_initial')
+
+	-- convert array of node index to array of vector3
+	local path_nodes_vec3 = { }
+	for i, node in ipairs(path_nodes) do
+		local coord = OBJ_DOTS[node+1].components.a['GraphNodeStore']:get_datafield 'vec3_coord'
+		Helpers.tblinsert(path_nodes_vec3, coord)
+	end
+
+	-- move object
+	technot.components.a['LocomotorDefault']:move_path(path_nodes_vec3)
 end

@@ -33,6 +33,10 @@ function __Helpers.texture(name)
 	return CoreHelpers.texture(name)
 end
 
+function __Helpers.toTechno(abs)
+	return CoreHelpers.toTechno(abs)
+end
+
 function __Helpers.TechnoType_Techno(object)
 	return object:getTechnoType()
 end

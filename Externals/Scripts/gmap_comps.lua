@@ -74,6 +74,12 @@ local comp_GraphVehicle = components.component:new({
 
 function comp_GraphVehicle:on_init()
 	self:set_datafield('current_node', 0)
+	self:set_datafield('status', 'none')
+end
+
+function comp_GraphVehicle:select_single()
+	self:set_datafield('status', 'selected_single')
+	TECHNO_SELECTED = self:container_parent()
 end
 
 function comp_GraphVehicle:on_update()

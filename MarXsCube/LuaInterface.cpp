@@ -55,6 +55,7 @@ namespace LuaInterface {
 		getGlobalNamespace(L).
 			beginNamespace("CoreHelpers").
 				addFunction("texture", &LuaUtils::Helper_GetTexture).
+				addFunction("toTechno", &LuaUtils::toTechno).
 			endNamespace();
 	}
 
