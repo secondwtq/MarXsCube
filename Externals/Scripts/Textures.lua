@@ -19,13 +19,6 @@ TEXTURES.TESTDDS_TEX = TEXTURES.DUMMY:newObject({
 	frame_col = 4,
 })
 
-TEXTURES.TESTANIM_TEX_FULL = TEXTURES.DUMMY:newObject({
-	filename = "./Textures/TESTANIM.png",
-	frame_count = 1,
-	frame_row = 1,
-	frame_col = 1,
-})
-
 TEXTURES.TESTUNITBODYIMAGE = TEXTURES.DUMMY:newObject({
 	filename = "./Textures/TestUnit.png",
 	frame_count = 32,
@@ -81,10 +74,3 @@ TEXTURES.GRAPH_NODE_SHADOW = TEXTURES.DUMMY:newObject({
 	frame_col = 1,
 	frame_row = 1,
 })
-
--- TEXTURES.TESTBIG = TEXTURES.DUMMY:newObject({
--- 	filename = ".\\Textures\\BIG.png",
--- 	frame_count = 32,
--- 	frame_col = 6,
--- 	frame_row = 6,
--- })

@@ -10,6 +10,7 @@
 #define MarXsCube_bellman_ford_h
 
 #include "graph_def.h"
+#include "string.h"
 
 namespace Gmap {
 
@@ -24,7 +25,7 @@ public:
 	
 	bellman_food_shortest(gGraph *src, std::size_t rootidx)
 		: src_graph(src), root(rootidx), inside_queue(new bool[src_graph->count_vert()]) {
-		for (int i = 0; i < src->count_vert(); i++) {
+			for (std::size_t i = 0; i < src->count_vert(); i++) {
 			this->dist_to.push_back(0xFFFFFF);
 			this->edge_to.push_back(nullptr);
 		}

@@ -18,7 +18,11 @@ class PhysicsGeneral;
 
 class Generic {
 public:
-	
+
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-fpermissive"
+#endif
 	static inline Session *Session() {
 		return Generic::session;
 	}
@@ -60,6 +64,9 @@ public:
 	static inline luabridge::LuaRef CreateObjectTable(unsigned int id) {
 		return (*Generic::foo_object_table_create)(id);
 	}
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic pop
+#endif
 	
 public:
 	static class Session *session;

@@ -131,7 +131,7 @@ function comp_LocomotorDefault:move_path(array_path)
 	self:set_datafield('dest_vecarray', array_path)
 	self:set_datafield('current_pathnode', 1)
 	self:set_datafield('dest_vector3', self:get_datafield 'dest_vecarray' [1])
-	self:set_datafield('state', 'MOVING')
+	self:state 'MOVING'
 	Helpers.Techno_TechnoRTTIIDTable(self:container_parent()).Physics:activate()
 end
 

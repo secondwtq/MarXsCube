@@ -209,7 +209,7 @@ _module_components.component = lobject.object:new({
 	end,
 
 	__init__ = function (self)
-		print("initing component", self)
+		-- print("initing component", self)
 		self.__subcomponents = { }
 
 		self.events = { }

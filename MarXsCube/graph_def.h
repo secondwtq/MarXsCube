@@ -122,9 +122,11 @@ class gGraph {
 //
 // it should be declared just below Gmap::gGraph_listnode
 //		but I dunno know how to solve the namespace issue
+namespace std {
 template < >
-struct std::hash<Gmap::gGraph_listnode> {
+struct hash<Gmap::gGraph_listnode> {
 	std::size_t operator() (const Gmap::gGraph_listnode& op) const { return std::hash<std::size_t>()(op.na+op.nb); }
 };
+}
 
 #endif
