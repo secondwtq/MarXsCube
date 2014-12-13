@@ -35,6 +35,8 @@ function comp_LocomotorDefault:on_init()
 		self:set_datafield('dest_vecarray', { })
 		self:set_datafield('current_pathnode', 1)
 
+		self:set_datafield('callback_reach_dest', Placeholders.EmptyFunction)
+
 	end
 end
 
@@ -113,7 +115,9 @@ function comp_LocomotorDefault:on_update()
 			else -- or stop it, immediately
 				obj.Physics:setVelocity(0)
 				obj.Physics:setMainRotationVelocity(0)
+				
 				print("current pos", unpack(current_pos))
+				self:get_datafield 'callback_reach_dest' ()
 				self:state 'IDLE'
 			end
 

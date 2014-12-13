@@ -31,4 +31,6 @@ local function placeholder_foo () end
 
 __Placeholders.ComponentMethod = placeholder_foo
 
+__Placeholders.EmptyFunction = placeholder_foo
+
 return __Placeholders

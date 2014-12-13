@@ -72,6 +72,15 @@ local comp_GraphVehicle = components.component:new({
 	subcomponents = { subcomp_GraphVehicle }
 })
 
+function comp_GraphVehicle:on_init()
+	self:set_datafield('current_node', 0)
+end
+
+function comp_GraphVehicle:on_update()
+	-- update current node datafield
+	self:set_datafield('current_node', find_nearest_node(self:container_parent():GetCoord()).components.a['GraphNodeStore']:get_datafield 'idx_initial')
+end
+
 gmap_comps.comp_GraphVehicle = comp_GraphVehicle
 
 return gmap_comps
