@@ -2,7 +2,7 @@
 #define CUBE_E_CONFIG_H
 
 #include "Common.h"
-#include <LuaJit_Bridge.h>
+#include "LuaJit_Bridge.h"
 #include <vector>
 #include <string>
 #include <iostream>

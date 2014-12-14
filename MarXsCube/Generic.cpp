@@ -12,7 +12,7 @@
 #include "ObjectManger.h"
 #include "PhysicsGeneral.h"
 #include "Config.h"
-#include <LuaJit_Bridge.h>
+#include "LuaJit_Bridge.h"
 
 #include "Generic.h"
 

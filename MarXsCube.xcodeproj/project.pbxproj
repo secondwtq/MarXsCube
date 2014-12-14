@@ -142,6 +142,7 @@
 		595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletDynamics_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libLinearMath_xcode4_x64_release.a; sourceTree = "<group>"; };
 		597D223C1A3D93E8006B296B /* libluajit_darwinclang.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libluajit_darwinclang.a; path = "../../Assets/Librarys/LuaJIT-2.0.3/lib/libluajit_darwinclang.a"; sourceTree = "<group>"; };
+		597D223E1A3D95EC006B296B /* LuaJit_Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaJit_Bridge.h; sourceTree = "<group>"; };
 		598D1DDC1A3966A70049653B /* RayTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RayTest.cpp; sourceTree = "<group>"; };
 		598D1DDD1A3966A70049653B /* RayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest.h; sourceTree = "<group>"; };
 		598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RayTest_Interface.cpp; sourceTree = "<group>"; };
@@ -189,6 +190,7 @@
 				59262911198AB66500858A67 /* LuaInterface.h */,
 				5923C8E719D027480055E0D5 /* LWindow.cpp */,
 				5923C8E819D027480055E0D5 /* LWindow.h */,
+				597D223E1A3D95EC006B296B /* LuaJit_Bridge.h */,
 			);
 			name = Hafnium;
 			sourceTree = "<group>";
@@ -518,6 +520,7 @@
 					/usr/local/Cellar/sfml/2.1/include,
 					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/include",
 					/Users/secondatke/Documents/Assets/Librarys/armadillo/include,
+					/Users/secondatke/Documents/Assets/Librarys/LuaBridge/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -552,6 +555,7 @@
 					/usr/local/Cellar/sfml/2.1/include,
 					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/include",
 					/Users/secondatke/Documents/Assets/Librarys/armadillo/include,
+					/Users/secondatke/Documents/Assets/Librarys/LuaBridge/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

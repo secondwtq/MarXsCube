@@ -4,7 +4,7 @@
 #include "Common.h"
 #include <vector>
 #include <string.h>
-#include <LuaJit_Bridge.h>
+#include "LuaJit_Bridge.h"
 #include "Config.h"
 #include "PhysicsCommon.h"
 #include "PhysicsGeneral.h"
