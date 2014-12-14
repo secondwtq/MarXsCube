@@ -233,18 +233,18 @@ OBJECTS.GRAPH_NODE = BASES.BaseTechno:newObject({
 
 	appearance = {
 		render_elements = {
-			-- {
-			-- 	name = 'body',
-			-- 	type_general = true,
-			-- 	type_directioned = false,
-			-- 	type_static = true,
-			-- 	has_shadow = true,
-			-- 	image = "GRAPH_NODE_IMAGE",
-			-- 	shadow = "GRAPH_NODE_SHADOW",
-			-- 	offset = { 0, 0, 0 },
-			-- 	multiply = { 1.0, 1.0, 1.0, 1.0 },
-			-- 	affected_by_global_multiply = true,
-			-- }
+			{
+				name = 'body',
+				type_general = true,
+				type_directioned = false,
+				type_static = true,
+				has_shadow = true,
+				image = "GRAPH_NODE_IMAGE",
+				shadow = "GRAPH_NODE_SHADOW",
+				offset = { 0, 0, 0 },
+				multiply = { 1.0, 1.0, 1.0, 1.0 },
+				affected_by_global_multiply = true,
+			}
 		}
 	},
 

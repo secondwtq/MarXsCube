@@ -222,7 +222,7 @@ function comp_RenderBasicBody:on_init()
 		if element.has_shadow then
 			local element_shadow = creator(Helpers.texture(element.shadow), element.shadow_faces)
 			element_shadow.UseShadowProjection = true
-			element_shadow.colorMultiply = Utility.Homogeneous4D(0.1, 0.1, 0.1, 0.3)
+			element_shadow.colorMultiply = Utility.Homogeneous4D(0.1, 0.1, 0.1, 0.6)
 			element_shadow.offset = coord_offset
 			if element.type_directioned then
 				element_shadow.direction_offset = element.direction_offset
