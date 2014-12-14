@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		591692601A3E11D2001D4D35 /* SFLineShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5916925E1A3E11D2001D4D35 /* SFLineShape.cpp */; };
 		5923C8DA19D00EB90055E0D5 /* RenderElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5923C8D919D00EB90055E0D5 /* RenderElement.cpp */; };
 		5923C8DD19D00F730055E0D5 /* RenderElementsContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5923C8DB19D00F730055E0D5 /* RenderElementsContainer.cpp */; };
 		5923C8E419D01EE60055E0D5 /* Generic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5923C8E219D01EE60055E0D5 /* Generic.cpp */; };
@@ -63,6 +64,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5916925E1A3E11D2001D4D35 /* SFLineShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SFLineShape.cpp; sourceTree = "<group>"; };
+		5916925F1A3E11D2001D4D35 /* SFLineShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFLineShape.h; sourceTree = "<group>"; };
 		5923C8D919D00EB90055E0D5 /* RenderElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderElement.cpp; sourceTree = "<group>"; };
 		5923C8DB19D00F730055E0D5 /* RenderElementsContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderElementsContainer.cpp; sourceTree = "<group>"; };
 		5923C8DC19D00F730055E0D5 /* RenderElementsContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderElementsContainer.h; sourceTree = "<group>"; };
@@ -176,6 +179,8 @@
 				5923C8DC19D00F730055E0D5 /* RenderElementsContainer.h */,
 				5923C8EA19D0286F0055E0D5 /* InternalDraw.cpp */,
 				5923C8EB19D0286F0055E0D5 /* InternalDraw.h */,
+				5916925E1A3E11D2001D4D35 /* SFLineShape.cpp */,
+				5916925F1A3E11D2001D4D35 /* SFLineShape.h */,
 			);
 			name = Silcon;
 			sourceTree = "<group>";
@@ -402,6 +407,7 @@
 				59262943198AB66500858A67 /* Config.cpp in Sources */,
 				5926294C198AB66500858A67 /* Physics.cpp in Sources */,
 				59262942198AB66500858A67 /* Common.cpp in Sources */,
+				591692601A3E11D2001D4D35 /* SFLineShape.cpp in Sources */,
 				5926293E198AB66500858A67 /* Abstract.cpp in Sources */,
 				5923C8E919D027480055E0D5 /* LWindow.cpp in Sources */,
 			);
