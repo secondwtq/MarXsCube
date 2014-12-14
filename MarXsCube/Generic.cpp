@@ -12,8 +12,7 @@
 #include "ObjectManger.h"
 #include "PhysicsGeneral.h"
 #include "Config.h"
-#include <lua.hpp>
-#include <LuaBridge/LuaBridge.h>
+#include <LuaJit_Bridge.h>
 
 #include "Generic.h"
 

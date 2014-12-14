@@ -3,8 +3,7 @@
 
 #include "Common.h"
 #include "ObjectArray.h"
-#include <lua.hpp>
-#include <LuaBridge/LuaBridge.h>
+#include <LuaJit_Bridge.h>
 #include "PhysicsCommon.h"
 
 class PhysicsObject;

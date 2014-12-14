@@ -44,9 +44,9 @@
 		595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */; };
 		595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */; };
 		595DDC13198ADD990046919B /* libLinearMath_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */; };
+		597D223D1A3D93E8006B296B /* libluajit_darwinclang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 597D223C1A3D93E8006B296B /* libluajit_darwinclang.a */; };
 		598D1DDE1A3966A70049653B /* RayTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDC1A3966A70049653B /* RayTest.cpp */; };
 		598D1DE11A3967FF0049653B /* RayTest_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */; };
-		59B412A519D1CCE600B9BE98 /* liblua523_static_darwinclang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B412A119D1C84800B9BE98 /* liblua523_static_darwinclang.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -141,11 +141,11 @@
 		595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletCollision_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletDynamics_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libLinearMath_xcode4_x64_release.a; sourceTree = "<group>"; };
+		597D223C1A3D93E8006B296B /* libluajit_darwinclang.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libluajit_darwinclang.a; path = "../../Assets/Librarys/LuaJIT-2.0.3/lib/libluajit_darwinclang.a"; sourceTree = "<group>"; };
 		598D1DDC1A3966A70049653B /* RayTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RayTest.cpp; sourceTree = "<group>"; };
 		598D1DDD1A3966A70049653B /* RayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest.h; sourceTree = "<group>"; };
 		598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RayTest_Interface.cpp; sourceTree = "<group>"; };
 		598D1DE01A3967FF0049653B /* RayTest_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest_Interface.h; sourceTree = "<group>"; };
-		59B412A119D1C84800B9BE98 /* liblua523_static_darwinclang.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua523_static_darwinclang.a; path = ../project_U/lib/liblua523_static_darwinclang.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59B412A519D1CCE600B9BE98 /* liblua523_static_darwinclang.a in Frameworks */,
+				597D223D1A3D93E8006B296B /* libluajit_darwinclang.a in Frameworks */,
 				595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */,
 				595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */,
 				595DDC13198ADD990046919B /* libLinearMath_xcode4_x64_release.a in Frameworks */,
@@ -223,7 +223,7 @@
 		592628F5198AB62300858A67 = {
 			isa = PBXGroup;
 			children = (
-				59B412A119D1C84800B9BE98 /* liblua523_static_darwinclang.a */,
+				597D223C1A3D93E8006B296B /* libluajit_darwinclang.a */,
 				595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */,
 				595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */,
 				595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */,
@@ -512,25 +512,31 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/lua52/5.2.3/include,
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/include,
 					/usr/local/Cellar/sfml/2.1/include,
-					/Users/secondatke/Documents/Assets/Librarys/LuaBridge/include,
+					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/include",
 					/Users/secondatke/Documents/Assets/Librarys/armadillo/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/Cellar/lua52/5.2.3/lib,
 					/usr/local/Cellar/sfml/2.1/lib,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/lib,
 					/Users/secondatke/Documents/branches/project_U/lib,
+					"$(PROJECT_DIR)/extlibs/LuaJit/lib",
+					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/lib",
 				);
 				OTHER_CFLAGS = (
 					"-ffast-math",
 					"-MMD",
 					"-MP",
+				);
+				OTHER_LDFLAGS = (
+					"-pagezero_size",
+					10000,
+					"-image_base",
+					100000000,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -540,25 +546,31 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/lua52/5.2.3/include,
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/include,
 					/usr/local/Cellar/sfml/2.1/include,
-					/Users/secondatke/Documents/Assets/Librarys/LuaBridge/include,
+					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/include",
 					/Users/secondatke/Documents/Assets/Librarys/armadillo/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/Cellar/lua52/5.2.3/lib,
 					/usr/local/Cellar/sfml/2.1/lib,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/lib,
 					/Users/secondatke/Documents/branches/project_U/lib,
+					"$(PROJECT_DIR)/extlibs/LuaJit/lib",
+					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/lib",
 				);
 				OTHER_CFLAGS = (
 					"-ffast-math",
 					"-MMD",
 					"-MP",
+				);
+				OTHER_LDFLAGS = (
+					"-pagezero_size",
+					10000,
+					"-image_base",
+					100000000,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

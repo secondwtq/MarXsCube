@@ -4,10 +4,6 @@ bindedattr = require 'binded_attr'
 composer = require 'composer'
 Helpers = require 'Helpers'
 
-local luatrace = require 'luatrace'
-
--- COUNT = 0
-
 function Functions.TechnoType_onLoad(self, table) end
 
 function Functions.Abs_Techno_onUpdate(self, table)
