@@ -21,6 +21,8 @@ function Functions.TestManger_onTestInit()
 	--		we just abandon original table
 	DATA_DOTS = transform_dots(DATA_DOTS)
 
+	local background = ModEnvironment.Functions.createTechno(OBJECTS.SATELITE_BG, Utility.CoordStruct(64*27+56, -36, 0))
+	background.temp_ZOffset = true
 	local cycle = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(0, 0, 0), true)
 	local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(64, 256, 0), true)
 	-- ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
@@ -53,7 +55,9 @@ end
 function transform_dots(src)
 	local data_dots_new = { }
 	for i, dot in pairs(src) do
-		local t = { -1*(dot[1] * 192 - 64 * 2), dot[2] * 192 + 64 * 28 }
+		-- local t = { -1*(dot[1] * 192 - 64 * 2), dot[2] * 192 + 64 * 28 }
+		local t = { -1*(dot[1] * 176 - 64 * 2), dot[2] * 128 + 64 * 28 }
+
 		Helpers.tblinsert(data_dots_new, t)
 	end
 	return data_dots_new

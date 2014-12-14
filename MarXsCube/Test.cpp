@@ -46,7 +46,7 @@ int main() {
 	sf::ContextSettings settings;
 	settings.antialiasingLevel = 4;
 
-	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "TestWindow | MarXsCube by seCOnDatkE 2014 - Prototype",
+	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Gmap | MarXsCube by seCOnDatkE 2014 - Prototype",
 						sf::Style::Titlebar || sf::Style::Close, settings);
 
 	TestManger::GetInstance().window = &window;

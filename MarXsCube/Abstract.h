@@ -41,7 +41,8 @@ class Abs_Abstract {
 		virtual ~Abs_Abstract();
 
 	public:
-		
+		bool temp_ZOffset = false;
+	
 		bool useCollSphere = true;
 		int rCollSphere = 64;
 		btCollisionShape *collSphere = nullptr;

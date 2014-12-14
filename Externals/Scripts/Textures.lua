@@ -74,3 +74,10 @@ TEXTURES.GRAPH_NODE_SHADOW = TEXTURES.DUMMY:newObject({
 	frame_col = 1,
 	frame_row = 1,
 })
+
+TEXTURES.SATELITE = TEXTURES.DUMMY:newObject({
+	filename = "./Textures/satelite.png",
+	frame_count = 1,
+	frame_col = 1,
+	frame_row = 1,
+})

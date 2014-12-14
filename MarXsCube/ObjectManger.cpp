@@ -91,6 +91,7 @@ void TestManger::initShader() {LOGFUNC;
 }
 
 int disToCamera(const Abs_Abstract *src) {//LOGFUNC;
+	if (src->temp_ZOffset) return 0x6FFFFFFF;
 	auto c = src->GetCoord();
 	auto d = Generic::Session()->CameraLocation;
 	return (pow(d.x*10-c.x, 2) + pow(d.y*10-c.y, 2) + pow(d.z*10-c.z, 2));
@@ -99,6 +100,5 @@ int disToCamera(const Abs_Abstract *src) {//LOGFUNC;
 void RenderLayer::sort_Objects() {LOGFUNC;
 	sort(Objects.begin(), Objects.end(),
 			[](const Abs_Abstract *a, const Abs_Abstract *b) -> bool {
-				return disToCamera(a) > disToCamera(b);
-			});
+				return disToCamera(a) > disToCamera(b); });
 }
