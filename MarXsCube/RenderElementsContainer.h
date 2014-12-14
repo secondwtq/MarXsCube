@@ -22,7 +22,6 @@ public:
 	Abs_Abstract *parent;
 	void Update();
 	RenderElementsContainer(Abs_Abstract *_parent) : parent(_parent) {LOGFUNC; }
-	void setDirection(int degree);
 	void insert(int Zidx, RenderElement *element) {LOGFUNC;
 		elements.insert({Zidx, element});
 	}
@@ -31,6 +30,8 @@ public:
 		for (auto i : elements)
 			delete i.second;
 	}
+	
+	int direction = 0;
 };
 
 #endif /* defined(__MarXsCube__RenderElementsContainer__) */

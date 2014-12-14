@@ -238,7 +238,7 @@ _module_components.component = lobject.object:new({
 	end,
 
 	container_parent = function (self)
-		return self:get_container().parent
+		return self.parent.parent
 	end,
 
 })
@@ -267,23 +267,23 @@ _module_components.subcomponent = lobject.object:new({
 	end,
 
 	get_container = function (self)
-		return self.parent:get_container()
+		return self.parent.parent
 	end,
 
 	container_parent = function (self)
-		return self.parent:container_parent()
+		return self.parent.parent.parent
 	end,
 
 	set_datafield = function(self, fieldname, value)
-		self.parent:set_datafield(fieldname, value)
+		self.parent.parent.data[self.parent.name][fieldname] = value
 	end,
 
 	get_datafield = function (self, fieldname)
-		return self.parent:get_datafield(fieldname)
+		return self.parent.parent.data[self.parent.name][fieldname]
 	end,
 
 	get_datatable = function (self)
-		return self.parent:get_datatable()
+		return self.parent.parent.data[self.parent.name]
 	end,
 
 })

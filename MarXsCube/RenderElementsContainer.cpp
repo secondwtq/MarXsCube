@@ -13,7 +13,3 @@
 void RenderElementsContainer::Update() {LOGFUNC;
 	for (auto e : elements) e.second->Render(parent->GetCoord());
 }
-
-void RenderElementsContainer::setDirection(int degree) {LOGFUNC;
-	for (auto e : elements) e.second->direction = degree + e.second->direction_offset;
-}

@@ -4,38 +4,46 @@ bindedattr = require 'binded_attr'
 composer = require 'composer'
 Helpers = require 'Helpers'
 
+local luatrace = require 'luatrace'
+
+-- COUNT = 0
+
 function Functions.TechnoType_onLoad(self, table) end
 
 function Functions.Abs_Techno_onUpdate(self, table)
-	local scriptType = self:getTechnoType().ScriptType
+	-- luatrace.tron { trace_file_name="mytrace" .. COUNT .. ".txt" }
+	-- COUNT = COUNT + 1
 
-	self.elements:setDirection(self.Direction.degree)
+	-- local scriptType = self:getTechnoType().ScriptType
 
-	if scriptType.occupationtype == "local" then
-		if table.occupationtype_local_curCell ~= nil then
-			table.occupationtype_local_curCell:clearOccupyObject()
-		end
-		table.occupationtype_local_curCell = util.getObjectCell(self)
-		table.occupationtype_local_curCell:setOccupyObject(self)
-	end
-	if scriptType.occupationtype == "centeredynamic" then
-		for i, v in ipairs(table.occupationtype_centeredynamic_cells) do
-			v:clearOccupyObject()
-		end
-		table.occupationtype_centeredynamic_cells = { }
-		local curCell = util.getObjectCell(self)
-		local x, y = scriptType.occupationfoundation_simple.x, scriptType.occupationfoundation_simple.y
-		for i = curCell.LocCell.x-x, curCell.LocCell.x+x do
-			for j = curCell.LocCell.y-y, curCell.LocCell.y+y do
-				local cell = Objects.Map.GetInstance():GetCellAt(Utility.CellStruct(i, j))
-				util.tblinsert(table.occupationtype_centeredynamic_cells, cell)
-				cell:setOccupyObject(self)
-			end
-		end
-	end
+	self.elements.direction = self.Direction.degree
+
+	-- if scriptType.occupationtype == "local" then
+	-- 	if table.occupationtype_local_curCell ~= nil then
+	-- 		table.occupationtype_local_curCell:clearOccupyObject()
+	-- 	end
+	-- 	table.occupationtype_local_curCell = util.getObjectCell(self)
+	-- 	table.occupationtype_local_curCell:setOccupyObject(self)
+	-- end
+	-- if scriptType.occupationtype == "centeredynamic" then
+	-- 	for i, v in ipairs(table.occupationtype_centeredynamic_cells) do
+	-- 		v:clearOccupyObject()
+	-- 	end
+	-- 	table.occupationtype_centeredynamic_cells = { }
+	-- 	local curCell = util.getObjectCell(self)
+	-- 	local x, y = scriptType.occupationfoundation_simple.x, scriptType.occupationfoundation_simple.y
+	-- 	for i = curCell.LocCell.x-x, curCell.LocCell.x+x do
+	-- 		for j = curCell.LocCell.y-y, curCell.LocCell.y+y do
+	-- 			local cell = Objects.Map.GetInstance():GetCellAt(Utility.CellStruct(i, j))
+	-- 			util.tblinsert(table.occupationtype_centeredynamic_cells, cell)
+	-- 			cell:setOccupyObject(self)
+	-- 		end
+	-- 	end
+	-- end
 
 	table.components:update()
 
+	-- luatrace.troff()
 end
 
 function Functions.Abs_Techno_onPhysicsTransformed(self, table)

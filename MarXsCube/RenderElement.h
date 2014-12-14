@@ -5,10 +5,15 @@
 #include "SFML.h"
 #include "Abstract.h"
 
+class RenderElementsContainer;
+
 class RenderElement {
 	public:
 		bool Enabled = true;
 	
+		RenderElement() { }
+	
+		RenderElementsContainer *parent = nullptr;
 		CoordStruct offset = CoordStruct(0, 0, 0);
 		Vector4DT<float> colorMultiply = Vector4DT<float>(1, 1, 1, 1);
 		int direction = 0;
@@ -37,10 +42,10 @@ class RenderElement_DirectionedStatic : public RenderElement {
 		~RenderElement_DirectionedStatic() {
 			delete this->texture;
 		}
+	
+		int getCurrentFrame();
 
-		RenderElement_DirectionedStatic(TextureAtlas *_texture, int countFrame = 32) : texture(_texture), frameCount(countFrame) {LOGFUNC; }
-
-		inline int getCurrentFrame() {LOGFUNC; return getDirFrameNum(direction, frameCount); }
+		RenderElement_DirectionedStatic(TextureAtlas *_texture, int countFrame = 32) : RenderElement(), texture(_texture), frameCount(countFrame) {LOGFUNC; }
 
 		static RenderElement_DirectionedStatic *createElement(TextureAtlas *texture, int countFrame = 32) {LOGFUNC;
 			return new RenderElement_DirectionedStatic(texture, countFrame);
@@ -57,7 +62,7 @@ class RenderElement_FramedStatic : public RenderElement {
 		void Render(CoordStruct &&loc);
 		int currentFrame = 0;
 
-		RenderElement_FramedStatic(TextureAtlas *_texture) : texture(_texture) {LOGFUNC; }
+		RenderElement_FramedStatic(TextureAtlas *_texture) : RenderElement(), texture(_texture) {LOGFUNC; }
 	
 		~RenderElement_FramedStatic() {
 			delete this->texture;
@@ -83,7 +88,7 @@ public:
 	sf::Sprite renderSprite;
 	
 	RenderElement_FramedDynamic(TextureAtlas *_texture, USIZE _frame_count)
-		: texture(_texture), frame_count(_frame_count) {LOGFUNC; }
+		: RenderElement(), texture(_texture), frame_count(_frame_count) {LOGFUNC; }
 	
 	~RenderElement_FramedDynamic() {
 		delete this->texture;
@@ -108,7 +113,7 @@ public:
 	float thickness = 0;
 	
 	RenderElement_InternalLine(const CoordStruct &pt1, const CoordStruct &pt2, const Vector4DT<float> &_color1, const Vector4DT<float> &_color2) :
-		point1(pt1), point2(pt2), color1(_color1), color2(_color2) {
+		RenderElement(), point1(pt1), point2(pt2), color1(_color1), color2(_color2) {
 			this->_verts[0] = sf::Vertex();
 			this->_verts[1] = sf::Vertex();
 	}
@@ -151,5 +156,7 @@ inline void SetProjectionLocation_General(T *element, CoordStruct& loc) {
 ////		element->renderSprite.setPosition(obsTransform::GetViewPos(_loc));
 //	}
 //}
+
+#include "RenderElementsContainer.h"
 
 #endif

@@ -175,6 +175,7 @@ namespace LuaInterface {
 					addData("direction_offset", &RenderElement::direction_offset).
 					addData("UseShadowProjection", &RenderElement::UseShadowProjection).
 					addData("ProjectionVector", &RenderElement::ProjectionVector).
+					addData("parent", &RenderElement::parent).
 				endClass().
 				deriveClass<RenderElement_DirectionedStatic, RenderElement>("RenderElement_DirectionedStatic").
 					addConstructor<void (*)(TextureAtlas *, int)>().
@@ -204,7 +205,7 @@ namespace LuaInterface {
 				endClass().
 				beginClass<RenderElementsContainer>("RenderElementsContainer").
 					addFunction("insert", &RenderElementsContainer::insert).
-					addFunction("setDirection", &RenderElementsContainer::setDirection).
+					addData("direction", &RenderElementsContainer::direction).
 				endClass().
 				beginClass<ObjectDirection>("ObjectDirection").
 					addData("degree", &ObjectDirection::degree).

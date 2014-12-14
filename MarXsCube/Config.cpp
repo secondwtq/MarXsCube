@@ -119,7 +119,8 @@ void ConfigManger::loadConfigFrom(const char *filename) {LOGFUNC;
 	printf("CubeCore: ConfigManger::loadConfigFrom - Load Function finished..\n");
 }
 
-luabridge::LuaRef &EventManger::GetEvent(Events type) {LOGFUNC; Debug::logstream << _EventsName[type] << endl; return _Events[type]; }
+// delete log because of performance issue
+luabridge::LuaRef &EventManger::GetEvent(Events type) {LOGFUNC; return _Events[type]; }
 
 #define ADD_EVENT(init, func) case init: addEvent(func); break
 

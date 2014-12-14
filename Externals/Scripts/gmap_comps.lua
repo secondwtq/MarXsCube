@@ -6,17 +6,11 @@ local components = require 'components'
 local Helpers = require 'Helpers'
 local Placeholders = require 'Placeholders'
 
-local subcomp_GraphLineStore = components.subcomponent:new({
-	name = "GraphLineStore_Initial",
-})
-
 local comp_GraphLineStore = components.component:new({
 	name = "GraphLineStore",
 	alias = "GraphLineStore",
 
-	subcomponents = {
-		subcomp_GraphLineStore	
-	},
+	subcomponents = { },
 
 	init = Placeholders.ComponentMethod,
 	connect = Placeholders.ComponentMethod
@@ -24,8 +18,10 @@ local comp_GraphLineStore = components.component:new({
 
 function comp_GraphLineStore:init(vert1, vert2, weight)
 	local edge_element = self:get_container().a['RenderElementsManger']:get_element_named('line')
-	edge_element.point1 = OBJ_DOTS[vert1+1]:GetCoord()
-	edge_element.point2 = OBJ_DOTS[vert2+1]:GetCoord()
+	if edge_element then
+		edge_element.point1 = OBJ_DOTS[vert1+1]:GetCoord()
+		edge_element.point2 = OBJ_DOTS[vert2+1]:GetCoord()
+	end
 
 	self:set_datafield('verts_lua', { vert1+1, vert2+1 })
 	self:set_datafield('verts_initial', { vert1, vert2 })
@@ -39,17 +35,11 @@ end
 
 gmap_comps.comp_GraphLineStore = comp_GraphLineStore
 
-local subcomp_GraphNodeStore = components.subcomponent:new({
-	name = "GraphNodeStore_Initial"
-})
-
 local comp_GraphNodeStore = components.component:new({
 	name = "GraphNodeStore",
 	alias = "GraphNodeStore",
 
-	subcomponents = {
-		subcomp_GraphNodeStore
-	},
+	subcomponents = { },
 
 	init = Placeholders.ComponentMethod,
 })
@@ -61,15 +51,11 @@ end
 
 gmap_comps.comp_GraphNodeStore = comp_GraphNodeStore
 
-local subcomp_GraphVehicle = components.subcomponent:new({
-	name = "GraphVehicle_Initial"
-})
-
 local comp_GraphVehicle = components.component:new({
 	name = "GraphVehicle",
 	alias = "GraphVehicle",
 
-	subcomponents = { subcomp_GraphVehicle }
+	subcomponents = { }
 })
 
 function comp_GraphVehicle:on_init()

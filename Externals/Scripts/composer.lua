@@ -293,7 +293,9 @@ local comp_RenderElementsManger = components.component:new({
 })
 
 function comp_RenderElementsManger:add_element(index, name, element)
-	Helpers.Techno_TechnoRTTIIDTable(self:container_parent()).elements:insert(index, element)
+	local element_container = Helpers.Techno_TechnoRTTIIDTable(self:container_parent()).elements
+	element_container:insert(index, element)
+	element.parent = element_container
 	Helpers.tblinsert(self:get_datafield 'elements' , element)
 	self:get_datafield 'elements_dict' [name] = element
 	return element

@@ -212,7 +212,7 @@ OBJECTS.GRAPH_LINE = BASES.BaseTechno:newObject({
 	},
 
 	components = {
-		composer.comp_TechnoColorMultiply,
+		-- composer.comp_TechnoColorMultiply,
 		composer.comp_RenderElementsManger,
 		composer.comp_RenderBasicBody,
 		gmap_comps.comp_GraphLineStore,
@@ -249,7 +249,6 @@ OBJECTS.GRAPH_NODE = BASES.BaseTechno:newObject({
 	},
 
 	components = {
-		composer.comp_TechnoColorMultiply,
 		composer.comp_RenderElementsManger,
 		composer.comp_RenderBasicBody,
 		gmap_comps.comp_GraphNodeStore,
@@ -282,6 +281,11 @@ OBJECTS.SATELITE_BG = BASES.BaseTechno:newObject({
 				affected_by_global_multiply = true,
 			}
 		},
+	},
+
+	components = {
+		composer.comp_RenderElementsManger,
+		composer.comp_RenderBasicBody,
 	},
 
 	physics={enabled=false}

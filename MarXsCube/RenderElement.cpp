@@ -15,6 +15,8 @@
 
 using namespace sf;
 
+int RenderElement_DirectionedStatic::getCurrentFrame() { return getDirFrameNum(this->parent->direction, frameCount); }
+
 void RenderElement_DirectionedStatic::_Render_Overload(CoordStruct &loc) {LOGFUNC;
 	texture->CenterPivot(renderSprite);
 	SetProjectionLocation_General(this, loc);
