@@ -50,5 +50,5 @@ void RenderElement_InternalLine::_Render_Overload(CoordStruct &loc) {LOGFUNC;
 	this->shape.m_thickness = this->thickness;
 	this->shape.setPoints(obsTransform::GetViewPos(this->point1), obsTransform::GetViewPos(this->point2));
 	this->shape.setFillColor(sf::Color(this->color.x*255.0, this->color.y*255.0, this->color.z*255.0, this->color.w*255.0));
-	TestManger::GetInstance().window->draw(this->shape);
+	InternalDraw::Draw(this->shape);
 }
