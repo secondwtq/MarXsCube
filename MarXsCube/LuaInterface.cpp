@@ -195,11 +195,10 @@ namespace LuaInterface {
 					addStaticFunction("create", &RenderElement_FramedDynamic::create).
 				endClass().
 				deriveClass<RenderElement_InternalLine, RenderElement>("RenderElement_InternalLine").
-					addConstructor<void (*)(const CoordStruct&, const CoordStruct&, const Vector4DT<float>&, const Vector4DT<float>&)>().
+					addConstructor<void (*)(const CoordStruct&, const CoordStruct&, const Vector4DT<float>&)>().
 					addData("point1", &RenderElement_InternalLine::point1).
 					addData("point2", &RenderElement_InternalLine::point2).
-					addData("color1", &RenderElement_InternalLine::color1).
-					addData("color2", &RenderElement_InternalLine::color2).
+					addData("color", &RenderElement_InternalLine::color).
 					addData("thickness", &RenderElement_InternalLine::thickness).
 					addStaticFunction("create", &RenderElement_InternalLine::create).
 				endClass().

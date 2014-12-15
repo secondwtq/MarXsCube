@@ -210,10 +210,9 @@ function comp_RenderBasicBody:on_init()
 		elseif element.type_internal_line then
 			local coord1 = Utility.CoordStruct(unpack(element.point1))
 			local coord2 = Utility.CoordStruct(unpack(element.point2))
-			local color1 = Utility.Homogeneous4D(unpack(element.color1))
-			local color2 = Utility.Homogeneous4D(unpack(element.color2))
+			local color = Utility.Homogeneous4D(unpack(element.color))
 
-			element_body = creator(coord1, coord2, color1, color2)
+			element_body = creator(coord1, coord2, color)
 			element_body.thickness = element.thickness
 		end
 

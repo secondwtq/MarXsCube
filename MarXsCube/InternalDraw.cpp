@@ -13,8 +13,8 @@
 
 void InternalDraw::Draw(Drawable &obj) {
 	LOGFUNC;
-	static auto shader_ptr = &TestManger::GetInstance().extShader;
-	TestManger::GetInstance().window->draw(obj, shader_ptr);
+	//static auto shader_ptr = &TestManger::GetInstance().extShader;
+	TestManger::GetInstance().window->draw(obj);
 }
 
 void InternalDraw::DrawExt(RenderElement &objArg, Drawable &obj) {

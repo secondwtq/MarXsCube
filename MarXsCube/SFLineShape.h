@@ -15,26 +15,23 @@
 //	https://github.com/LaurentGomila/SFML/wiki/Source:-Line-segment-with-thickness
 //
 namespace sf {
-	class SFML_GRAPHICS_API LineShape: public Shape {
+	class LineShape: public Shape {
 	public:
 		explicit LineShape(const Vector2f& pt1, const Vector2f& pt2);
 		
 		void setPoints(const Vector2f& pt1, const Vector2f& pt2);
 		
-		float len() const;
+		float getLength() const;
 		
 		void setThickness(float thickness);
 		float getThickness() const { return this->m_thickness; };
 		
-		virtual unsigned int getPointCount() const { return 4; }
+		virtual unsigned int getPointCount() const { return 4; };
 		virtual Vector2f getPoint(unsigned int index) const;
+		float m_thickness = 10;
 		
 	private:
-		float m_thickness = 1;
 		Vector2f m_direction;
-		Vector2f b_pts[4];
-		
-		void regen_pts();
 	};
 }
 

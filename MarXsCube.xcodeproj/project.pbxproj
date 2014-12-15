@@ -533,7 +533,6 @@
 					/usr/local/Cellar/sfml/2.1/lib,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/lib,
 					/Users/secondatke/Documents/branches/project_U/lib,
-					"$(PROJECT_DIR)/extlibs/LuaJit/lib",
 					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/lib",
 				);
 				OTHER_CFLAGS = (
@@ -568,7 +567,6 @@
 					/usr/local/Cellar/sfml/2.1/lib,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/lib,
 					/Users/secondatke/Documents/branches/project_U/lib,
-					"$(PROJECT_DIR)/extlibs/LuaJit/lib",
 					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/lib",
 				);
 				OTHER_CFLAGS = (

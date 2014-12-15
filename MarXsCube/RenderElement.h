@@ -4,6 +4,7 @@
 #include "Common.h"
 #include "SFML.h"
 #include "Abstract.h"
+#include "SFLineShape.h"
 
 class RenderElementsContainer;
 
@@ -108,28 +109,24 @@ public:
 	// inherited CoordStruct offset.
 	CoordStruct point1 = CoordStruct(0, 0, 0);
 	CoordStruct point2 = CoordStruct(0, 0, 0);
-	Vector4DT<float> color1 = Vector4DT<float>(0, 0, 0, 1);
-	Vector4DT<float> color2 = Vector4DT<float>(0, 0, 0, 1);
+	Vector4DT<float> color = Vector4DT<float>(0, 0, 0, 1);
 	float thickness = 0;
+	sf::LineShape shape;
 	
-	RenderElement_InternalLine(const CoordStruct &pt1, const CoordStruct &pt2, const Vector4DT<float> &_color1, const Vector4DT<float> &_color2) :
-		RenderElement(), point1(pt1), point2(pt2), color1(_color1), color2(_color2) {
-			this->_verts[0] = sf::Vertex();
-			this->_verts[1] = sf::Vertex();
+	RenderElement_InternalLine(const CoordStruct &pt1, const CoordStruct &pt2, const Vector4DT<float> &_color) :
+		RenderElement(), point1(pt1), point2(pt2), color(_color), shape(Vector2f(0, 0), Vector2f(0, 0)) {
+			this->shape.setThickness(10);
 	}
 	
 	~RenderElement_InternalLine() { }
 	
-	static RenderElement_InternalLine *create(const CoordStruct *pt1, const CoordStruct *pt2, const Vector4DT<float> *color1, const Vector4DT<float> *color2) {
-		return new RenderElement_InternalLine(*pt1, *pt2, *color1, *color2);
+	static RenderElement_InternalLine *create(const CoordStruct *pt1, const CoordStruct *pt2, const Vector4DT<float> *color) {
+		return new RenderElement_InternalLine(*pt1, *pt2, *color);
 	}
 	
 protected:
 	
 	void _Render_Overload(CoordStruct &loc);
-	
-private:
-	sf::Vertex _verts[2];
 	
 };
 
