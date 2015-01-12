@@ -35,14 +35,14 @@ void RenderElement_FramedStatic::_Render_Overload(CoordStruct &loc) {LOGFUNC;
 
 void RenderElement_FramedDynamic::_Render_Overload(CoordStruct &loc) {LOGFUNC;
 	if (this->current_frame > this->frame_count) this-> current_frame = 1;
-	
+
 	texture->CenterPivot(renderSprite);
 	SetProjectionLocation_General(this, loc);
 	renderSprite.setTexture(*texture);
 	texture->setArea(renderSprite, this->current_frame);
-	
+
 	this->current_frame++;
-	
+
 	InternalDraw::DrawExt(*this, renderSprite);
 }
 
