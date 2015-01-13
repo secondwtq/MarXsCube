@@ -12,6 +12,8 @@ vec cam_pos = { 384, 384, 320 };
 vec up_vector = {0, 0, 1};
 vec look_at = {0, 0, 0};
 sf::Vector2f x(0, 0);
+	
+mat vm_temp;
 
 void gen_Vm() {LOGFUNC;
 	vec za = normalise(cam_pos - look_at);
@@ -19,11 +21,11 @@ void gen_Vm() {LOGFUNC;
 	vec ya = cross(za, xa);
 	rowvec posa = { -1*dot(xa, cam_pos), -1*dot(ya, cam_pos), -1*dot(za, cam_pos), 1};
 	static vec z = {0, 0, 0};
-	Vm = join_rows(xa, ya);
-	Vm = join_rows(Vm, za);
-	Vm = join_rows(Vm, z);
-	Vm = join_cols(Vm, posa);
-	Vm = Vm.t();
+	vm_temp = join_rows(xa, ya);
+	vm_temp = join_rows(vm_temp, za);
+	vm_temp = join_rows(vm_temp, z);
+	vm_temp = join_cols(vm_temp, posa);
+	Vm = vm_temp.t();
 }
 
 void UpdateVm(int ox, int oy) {LOGFUNC;

@@ -32,6 +32,18 @@ std::condition_variable update_render;
 sf::RenderWindow *window_global = nullptr;
 
 std::size_t global_counter = 0;
+std::size_t counter_render = 0;
+
+sf::Clock clock_render;
+
+std::thread t_thr_phy;
+std::thread t_thr_ren;
+
+void safe_session_close() {
+	game_running = false;
+	t_thr_ren.join();
+	TestManger::GetInstance().window->close();
+}
 
 void thread_physics() {
 	while (true) {
@@ -48,20 +60,23 @@ void thread_physics() {
 }
 
 void thread_rendering() {
+	std::unique_lock<std::mutex> lk(mut_render);
+	update_render.wait(lk, [] { return should_render; });
 	while (true) {
-		std::unique_lock<std::mutex> lk(mut_render);
-		update_render.wait(lk, [] { return should_render; });
 		if (!game_running) return lk.unlock();
 		
+		counter_render++;
+		float fps = counter_render / clock_render.getElapsedTime().asSeconds();
+		printf("rendering... %lu %f\n", counter_render, fps);
 		window_global->clear(sf::Color::Black);
 		for (size_t i = 0; i < RenderLayerType::Count; i++)
 			Generic::RenderLayerManger()->Layers[i].Update();
 		
-		ObjectManger::GetInstance().FinishRemove();
+		printf("render complete... %lu\n", counter_render);
 		
-		should_render = false;
+//		should_render = false;
 		window_global->display();
-		lk.unlock();
+//		lk.unlock();
 	}
 }
 
@@ -108,19 +123,18 @@ int main() {
 	obsTransform::UpdateVm(0, 0);
 
 	game_running = true;
-	std::thread t_thr_phy(thread_physics);
-	std::thread t_thr_ren(thread_rendering);
-	//t_thr_phy.join();
+	t_thr_phy = std::thread(thread_physics);
+	t_thr_ren = std::thread(thread_rendering);
 	
 	sf::Event event;
 	sf::Clock clock;
 	while (window.isOpen()) {
-		mut_render.lock();
+//		mut_render.lock();
 		mut_phy.lock();
 		
 		global_counter++;
 		float fps = global_counter / clock.getElapsedTime().asSeconds();
-		printf("%f\n", fps);
+		printf("updating... %lu %f\n", global_counter, fps);
 		
 		EventManger::GetInstance().GetEvent(EventManger::Events::GAME_UPDATE_BEGIN)();
 		// printf("CubeCore: main - updating ...\n");
@@ -130,7 +144,7 @@ int main() {
 		
 		while (window.pollEvent(event)) {
 			switch (event.type) {
-				case Event::Closed: window.close(); break;
+				case Event::Closed: safe_session_close(); break;
 
 				case Event::KeyPressed:
 					Generic::Session()->setKeyEvent(event.key);
@@ -162,9 +176,10 @@ int main() {
 			}
 		}
 
-		// printf("CubeCore: main - updating logic ...\n");
 		for (auto i : ObjectManger::GetInstance().Objects)
 			i->Update();
+		
+		ObjectManger::GetInstance().FinishRemove();
 		
 //		window_global->clear(sf::Color::Black);
 //		for (size_t i = 0; i < RenderLayerType::Count; i++)
@@ -174,23 +189,23 @@ int main() {
 //		window_global->display();
 		
 		mut_phy.unlock();
-		mut_render.unlock();
+//		mut_render.unlock();
 		
 		should_update = true;
 		should_render = true;
 		update_phy.notify_all();
 		update_render.notify_all();
+		
+		printf("updating complete %lu %f\n", global_counter, fps);
 
 //		Generic::PhysicsGeneral()->dynaWorld->stepSimulation(1.f/(float)FPSLimit, 10, btScalar(1.)/btScalar((float)divPhysics));
 	}
 	
-	game_running = false;
 	should_update = true;
 	should_render = true;
 	update_phy.notify_all();
 	update_render.notify_all();
 	t_thr_phy.join();
-	t_thr_ren.join();
 	
 	Generic::Dispose_PhysicsGeneral();
 	

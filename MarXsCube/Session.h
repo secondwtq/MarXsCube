@@ -48,6 +48,8 @@ class Session {
 		CubeMousePos MousePosData;
 };
 
+void safe_session_close();
+
 #include "Abstract.h"
 
 #endif

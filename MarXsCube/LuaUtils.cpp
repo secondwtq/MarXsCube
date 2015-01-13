@@ -23,7 +23,7 @@ namespace LuaUtils {
 	}
 
 	void closeSession() {LOGFUNC;
-		TestManger::GetInstance().window->close();
+		safe_session_close();
 	}
 
 	CoordStruct GetCoordFromPoint(CubePoint pt) {LOGFUNC;
