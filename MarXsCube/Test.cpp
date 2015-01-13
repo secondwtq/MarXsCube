@@ -49,10 +49,7 @@ void thread_physics() {
 	while (true) {
 		std::unique_lock<std::mutex> lk(mut_phy);
 		update_phy.wait(lk, [] { return should_update; });
-		if (!game_running) {
-			lk.unlock();
-			return;
-		}
+		if (!game_running) return lk.unlock();
 		Generic::PhysicsGeneral()->dynaWorld->stepSimulation(1.f/(float)FPSLimit, 16, btScalar(1.)/btScalar((float)divPhysics));
 		should_update = false;
 		lk.unlock();
@@ -71,9 +68,6 @@ void thread_rendering() {
 		window_global->clear(sf::Color::Black);
 		for (size_t i = 0; i < RenderLayerType::Count; i++)
 			Generic::RenderLayerManger()->Layers[i].Update();
-		
-		printf("render complete... %lu\n", counter_render);
-		
 //		should_render = false;
 		window_global->display();
 //		lk.unlock();
@@ -137,7 +131,6 @@ int main() {
 		printf("updating... %lu %f\n", global_counter, fps);
 		
 		EventManger::GetInstance().GetEvent(EventManger::Events::GAME_UPDATE_BEGIN)();
-		// printf("CubeCore: main - updating ...\n");
 
 		Generic::Session()->setMousePos_Ab();
 		Generic::Session()->updateMouseButtonStatus();
@@ -181,13 +174,6 @@ int main() {
 		
 		ObjectManger::GetInstance().FinishRemove();
 		
-//		window_global->clear(sf::Color::Black);
-//		for (size_t i = 0; i < RenderLayerType::Count; i++)
-//			Generic::RenderLayerManger()->Layers[i].Update();
-//		ObjectManger::GetInstance().FinishRemove();
-//		should_render = false;
-//		window_global->display();
-		
 		mut_phy.unlock();
 //		mut_render.unlock();
 		
@@ -196,9 +182,7 @@ int main() {
 		update_phy.notify_all();
 		update_render.notify_all();
 		
-		printf("updating complete %lu %f\n", global_counter, fps);
-
-//		Generic::PhysicsGeneral()->dynaWorld->stepSimulation(1.f/(float)FPSLimit, 10, btScalar(1.)/btScalar((float)divPhysics));
+//		printf("updating complete %lu %f\n", global_counter, fps);
 	}
 	
 	should_update = true;
