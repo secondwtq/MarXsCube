@@ -5,8 +5,8 @@ using namespace sf;
 
 int DIVS = 64;
 int WIDTH = 1024, HEIGHT = 768;
-int FPSLimit = 30;
-int divPhysics = 240;
+int FPSLimit = 70;
+int divPhysics = 480;
 double PI = 3.1415926535898;
 double TransformScaleFactor = 0.6484375;
 

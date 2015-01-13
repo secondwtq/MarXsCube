@@ -57,7 +57,7 @@ void Abs_Cell::Render() {
 		//shader_ptr->setParameter("texture3", this->texture3->texture);
 		//shader_ptr->setParameter("texture4", this->texture4->texture);
 		//shader_ptr->setParameter("textureBlend", this->texture_blend->texture);
-		TestManger::GetInstance().window->draw(renderSprite, shader_ptr);
+//		TestManger::GetInstance().window->draw(renderSprite, shader_ptr);
 		// if (!PassableTo()) {
 		// 	CircleShape shape(5);
 		// 	shape.setFillColor(Color(255, 0, 0));

@@ -266,9 +266,9 @@ void PhysicsObject::setTransformCallback(const btTransform &centerOfMassWorldTra
 		this->main_rotation = z;
 		// printf("%lf %lf %lf\n", x.x(), x.y(), x.z());
 		
-		if (attachedToObject->WhatAmI() == RTTIType_Techno) {
-			EventManger::GetInstance().GetEvent(EventManger::Events::TECHNO_PHYUPDATE)(LuaUtils::toTechno(attachedToObject), LuaUtils::toTechno(attachedToObject)->ExtTable);
-		}
+//		if (attachedToObject->WhatAmI() == RTTIType_Techno) {
+//			EventManger::GetInstance().GetEvent(EventManger::Events::TECHNO_PHYUPDATE)(LuaUtils::toTechno(attachedToObject), LuaUtils::toTechno(attachedToObject)->ExtTable);
+//		}
 	}
 }
 

@@ -1,6 +1,10 @@
 #ifndef CUBE_E_COMMON_H
 #define CUBE_E_COMMON_H
 
+#define USE_PARALLEL_SOLVER 1
+#define USE_PARALLEL_DISPATCHER 1
+#define USE_PTHREADS
+
 // #define _GLIBCXX_DEBUG 1
 
 #include <stdio.h>
