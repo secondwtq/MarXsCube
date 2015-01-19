@@ -59,61 +59,13 @@ void thread_physics() {
 #include <SFML/OpenGL.hpp>
 
 static const GLfloat g_vertex_bufdata[] = {
-	-1, 1, -10, 0, 1,
-	-1, -1, -10, 1, 0,
-	1, -1, -10, 1, 1,
-};
-
-static const GLfloat g_vertex_bufdata_3[] = {
-	-1, -1, -10,
-	1, -1, -10,
-	0, -1, -10,
-};
-
-GLfloat cube[] =
-{
-	// positions    // texture coordinates
-	-20, -20, -20,  0, 0,
-	-20,  20, -20,  1, 0,
-	-20, -20,  20,  0, 1,
-	-20, -20,  20,  0, 1,
-	-20,  20, -20,  1, 0,
-	-20,  20,  20,  1, 1,
+	-1, 1, 0, 0, 1,
+	-1, -1, 0, 1, 0,
+	1, -1, 0, 1, 1,
 	
-	20, -20, -20,  0, 0,
-	20,  20, -20,  1, 0,
-	20, -20,  20,  0, 1,
-	20, -20,  20,  0, 1,
-	20,  20, -20,  1, 0,
-	20,  20,  20,  1, 1,
-	
-	-20, -20, -20,  0, 0,
-	20, -20, -20,  1, 0,
-	-20, -20,  20,  0, 1,
-	-20, -20,  20,  0, 1,
-	20, -20, -20,  1, 0,
-	20, -20,  20,  1, 1,
-	
-	-20,  20, -20,  0, 0,
-	20,  20, -20,  1, 0,
-	-20,  20,  20,  0, 1,
-	-20,  20,  20,  0, 1,
-	20,  20, -20,  1, 0,
-	20,  20,  20,  1, 1,
-	
-	-20, -20, -20,  0, 0,
-	20, -20, -20,  1, 0,
-	-20,  20, -20,  0, 1,
-	-20,  20, -20,  0, 1,
-	20, -20, -20,  1, 0,
-	20,  20, -20,  1, 1,
-	
-	-20, -20,  20,  0, 0,
-	20, -20,  20,  1, 0,
-	-20,  20,  20,  0, 1,
-	-20,  20,  20,  0, 1,
-	20, -20,  20,  1, 0,
-	20,  20,  20,  1, 1
+	1, -1, 0, 1, 1,
+	1, 1, 0, 1, 1,
+	-1, 1, 0, 0, 1,
 };
 
 GLuint vert_buf;
@@ -131,7 +83,7 @@ void init_opengl() {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	GLfloat ratio = static_cast<float>(window_global->getSize().x) / window_global->getSize().y;
-	glOrtho(-1.f, 1.f, -1.f/ratio, 1.f/ratio, 1.f, 500.f);
+	glOrtho(-1.f, 1.f, -1.f/ratio, 1.f/ratio, .1f, 500.f);
 	
 //	glDisableClientState(GL_NORMAL_ARRAY);
 //	glDisableClientState(GL_COLOR_ARRAY);
@@ -140,7 +92,7 @@ void init_opengl() {
 	
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_bufdata), g_vertex_bufdata, GL_STATIC_DRAW);
-	//glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void thread_rendering() {
@@ -164,12 +116,15 @@ void thread_rendering() {
 		
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
+		gluLookAt(6, 6, 5, 0, 0, 0, 0, 0, 1);
+		glTranslatef(0, 0.5, 0);
+		glScalef(0.1, 0.1, 0.1);
 		glClear(GL_DEPTH_BUFFER_BIT);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, vert_buf);
 		glVertexPointer(3, GL_FLOAT, 5 * sizeof(GLfloat), (char *)0);
 		glEnableClientState(GL_VERTEX_ARRAY);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 		glDisableClientState(GL_VERTEX_ARRAY);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		
