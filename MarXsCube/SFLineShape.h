@@ -11,6 +11,8 @@
 
 #include "SFML.h"
 
+typedef std::size_t SF_SIZE;
+
 // source from
 //	https://github.com/LaurentGomila/SFML/wiki/Source:-Line-segment-with-thickness
 //
@@ -26,8 +28,8 @@ namespace sf {
 		void setThickness(float thickness);
 		float getThickness() const { return this->m_thickness; };
 
-		virtual unsigned int getPointCount() const { return 4; };
-		virtual Vector2f getPoint(unsigned int index) const;
+		virtual SF_SIZE getPointCount() const { return 4; };
+		virtual Vector2f getPoint(SF_SIZE index) const;
 		float m_thickness = 10;
 
 	private:

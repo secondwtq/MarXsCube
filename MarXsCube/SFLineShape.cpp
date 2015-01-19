@@ -31,7 +31,7 @@ namespace sf {
 	float LineShape::getLength() const {
 		return sqrt(m_direction.x*m_direction.x+m_direction.y*m_direction.y); }
 
-	Vector2f LineShape::getPoint(unsigned int index) const {
+	Vector2f LineShape::getPoint(SF_SIZE index) const {
 		Vector2f u_dir = this->m_direction / this->getLength();
 		Vector2f u_dirt(-u_dir.y, u_dir.x);
 		Vector2f offset = this->m_thickness*u_dirt;

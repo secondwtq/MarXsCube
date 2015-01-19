@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		591201C11A6D078900ECB42A /* libsfml-window.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 591201BE1A6D078900ECB42A /* libsfml-window.2.2.0.dylib */; };
+		591201C21A6D078900ECB42A /* libsfml-system.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 591201BF1A6D078900ECB42A /* libsfml-system.2.2.0.dylib */; };
+		591201C51A6D1D9F00ECB42A /* libsfml-graphics.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 591201BD1A6D078900ECB42A /* libsfml-graphics.2.2.0.dylib */; };
+		591201C71A6D1DA500ECB42A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 591201C61A6D1DA500ECB42A /* OpenGL.framework */; };
 		591692601A3E11D2001D4D35 /* SFLineShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5916925E1A3E11D2001D4D35 /* SFLineShape.cpp */; };
 		5923C8DA19D00EB90055E0D5 /* RenderElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5923C8D919D00EB90055E0D5 /* RenderElement.cpp */; };
 		5923C8DD19D00F730055E0D5 /* RenderElementsContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5923C8DB19D00F730055E0D5 /* RenderElementsContainer.cpp */; };
@@ -45,9 +49,6 @@
 		597D223D1A3D93E8006B296B /* libluajit_darwinclang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 597D223C1A3D93E8006B296B /* libluajit_darwinclang.a */; };
 		598D1DDE1A3966A70049653B /* RayTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDC1A3966A70049653B /* RayTest.cpp */; };
 		598D1DE11A3967FF0049653B /* RayTest_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */; };
-		59F7DAA91A3EF9C400131209 /* sfml-graphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F7DAA61A3EF9C400131209 /* sfml-graphics.framework */; };
-		59F7DAAA1A3EF9C400131209 /* sfml-system.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F7DAA71A3EF9C400131209 /* sfml-system.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		59F7DAAB1A3EF9C400131209 /* sfml-window.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F7DAA81A3EF9C400131209 /* sfml-window.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,6 +65,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		591201BD1A6D078900ECB42A /* libsfml-graphics.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-graphics.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-graphics.2.2.0.dylib"; sourceTree = "<group>"; };
+		591201BE1A6D078900ECB42A /* libsfml-window.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-window.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-window.2.2.0.dylib"; sourceTree = "<group>"; };
+		591201BF1A6D078900ECB42A /* libsfml-system.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-system.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-system.2.2.0.dylib"; sourceTree = "<group>"; };
+		591201C31A6D1D9400ECB42A /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGLEW.a; path = "../../Assets/Librarys/SFML-master/extlibs/libs-osx/lib/libGLEW.a"; sourceTree = "<group>"; };
+		591201C61A6D1DA500ECB42A /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		5916925E1A3E11D2001D4D35 /* SFLineShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SFLineShape.cpp; sourceTree = "<group>"; };
 		5916925F1A3E11D2001D4D35 /* SFLineShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFLineShape.h; sourceTree = "<group>"; };
 		5923C8D919D00EB90055E0D5 /* RenderElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderElement.cpp; sourceTree = "<group>"; };
@@ -145,9 +151,6 @@
 		598D1DDD1A3966A70049653B /* RayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest.h; sourceTree = "<group>"; };
 		598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RayTest_Interface.cpp; sourceTree = "<group>"; };
 		598D1DE01A3967FF0049653B /* RayTest_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest_Interface.h; sourceTree = "<group>"; };
-		59F7DAA61A3EF9C400131209 /* sfml-graphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-graphics.framework"; path = "../../../../../Library/Frameworks/sfml-graphics.framework"; sourceTree = "<group>"; };
-		59F7DAA71A3EF9C400131209 /* sfml-system.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-system.framework"; path = "../../../../../Library/Frameworks/sfml-system.framework"; sourceTree = "<group>"; };
-		59F7DAA81A3EF9C400131209 /* sfml-window.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-window.framework"; path = "../../../../../Library/Frameworks/sfml-window.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,9 +158,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59F7DAA91A3EF9C400131209 /* sfml-graphics.framework in Frameworks */,
-				59F7DAAA1A3EF9C400131209 /* sfml-system.framework in Frameworks */,
-				59F7DAAB1A3EF9C400131209 /* sfml-window.framework in Frameworks */,
+				591201C71A6D1DA500ECB42A /* OpenGL.framework in Frameworks */,
+				591201C11A6D078900ECB42A /* libsfml-window.2.2.0.dylib in Frameworks */,
+				591201C51A6D1D9F00ECB42A /* libsfml-graphics.2.2.0.dylib in Frameworks */,
+				591201C21A6D078900ECB42A /* libsfml-system.2.2.0.dylib in Frameworks */,
 				597D223D1A3D93E8006B296B /* libluajit_darwinclang.a in Frameworks */,
 				595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */,
 				595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */,
@@ -228,9 +232,11 @@
 		592628F5198AB62300858A67 = {
 			isa = PBXGroup;
 			children = (
-				59F7DAA61A3EF9C400131209 /* sfml-graphics.framework */,
-				59F7DAA71A3EF9C400131209 /* sfml-system.framework */,
-				59F7DAA81A3EF9C400131209 /* sfml-window.framework */,
+				591201C61A6D1DA500ECB42A /* OpenGL.framework */,
+				591201C31A6D1D9400ECB42A /* libGLEW.a */,
+				591201BD1A6D078900ECB42A /* libsfml-graphics.2.2.0.dylib */,
+				591201BE1A6D078900ECB42A /* libsfml-window.2.2.0.dylib */,
+				591201BF1A6D078900ECB42A /* libsfml-system.2.2.0.dylib */,
 				597D223C1A3D93E8006B296B /* libluajit_darwinclang.a */,
 				595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */,
 				595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */,
@@ -520,21 +526,24 @@
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_THREADSAFE_STATICS = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/include,
-					/usr/local/Cellar/sfml/2.1/include,
+					"/Users/secondatke/Documents/Assets/Librarys/SFML-master/include",
 					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/include",
 					/Users/secondatke/Documents/Assets/Librarys/armadillo/include,
 					/Users/secondatke/Documents/Assets/Librarys/LuaBridge/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/Cellar/sfml/2.1/lib,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/lib,
 					/Users/secondatke/Documents/branches/project_U/lib,
 					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/lib",
+					"/Users/secondatke/Documents/Assets/Librarys/SFML-master/lib",
+					"/Users/secondatke/Documents/Assets/Librarys/SFML-OSX-3.2Changes/lib",
+					"/Users/secondatke/Documents/Assets/Librarys/SFML-master/extlibs/libs-osx/lib",
 				);
 				OTHER_CFLAGS = (
 					"-ffast-math",
@@ -558,21 +567,24 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_THREADSAFE_STATICS = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/include,
-					/usr/local/Cellar/sfml/2.1/include,
+					"/Users/secondatke/Documents/Assets/Librarys/SFML-master/include",
 					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/include",
 					/Users/secondatke/Documents/Assets/Librarys/armadillo/include,
 					/Users/secondatke/Documents/Assets/Librarys/LuaBridge/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/Cellar/sfml/2.1/lib,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/lib,
 					/Users/secondatke/Documents/branches/project_U/lib,
 					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/lib",
+					"/Users/secondatke/Documents/Assets/Librarys/SFML-master/lib",
+					"/Users/secondatke/Documents/Assets/Librarys/SFML-OSX-3.2Changes/lib",
+					"/Users/secondatke/Documents/Assets/Librarys/SFML-master/extlibs/libs-osx/lib",
 				);
 				OTHER_CFLAGS = (
 					"-ffast-math",

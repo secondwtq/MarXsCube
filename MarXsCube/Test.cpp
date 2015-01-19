@@ -56,9 +56,99 @@ void thread_physics() {
 	}
 }
 
+#include <SFML/OpenGL.hpp>
+
+static const GLfloat g_vertex_bufdata[] = {
+	-1, 1, -10, 0, 1,
+	-1, -1, -10, 1, 0,
+	1, -1, -10, 1, 1,
+};
+
+static const GLfloat g_vertex_bufdata_3[] = {
+	-1, -1, -10,
+	1, -1, -10,
+	0, -1, -10,
+};
+
+GLfloat cube[] =
+{
+	// positions    // texture coordinates
+	-20, -20, -20,  0, 0,
+	-20,  20, -20,  1, 0,
+	-20, -20,  20,  0, 1,
+	-20, -20,  20,  0, 1,
+	-20,  20, -20,  1, 0,
+	-20,  20,  20,  1, 1,
+	
+	20, -20, -20,  0, 0,
+	20,  20, -20,  1, 0,
+	20, -20,  20,  0, 1,
+	20, -20,  20,  0, 1,
+	20,  20, -20,  1, 0,
+	20,  20,  20,  1, 1,
+	
+	-20, -20, -20,  0, 0,
+	20, -20, -20,  1, 0,
+	-20, -20,  20,  0, 1,
+	-20, -20,  20,  0, 1,
+	20, -20, -20,  1, 0,
+	20, -20,  20,  1, 1,
+	
+	-20,  20, -20,  0, 0,
+	20,  20, -20,  1, 0,
+	-20,  20,  20,  0, 1,
+	-20,  20,  20,  0, 1,
+	20,  20, -20,  1, 0,
+	20,  20,  20,  1, 1,
+	
+	-20, -20, -20,  0, 0,
+	20, -20, -20,  1, 0,
+	-20,  20, -20,  0, 1,
+	-20,  20, -20,  0, 1,
+	20, -20, -20,  1, 0,
+	20,  20, -20,  1, 1,
+	
+	-20, -20,  20,  0, 0,
+	20, -20,  20,  1, 0,
+	-20,  20,  20,  0, 1,
+	-20,  20,  20,  0, 1,
+	20, -20,  20,  1, 0,
+	20,  20,  20,  1, 1
+};
+
+GLuint vert_buf;
+
+void init_opengl() {
+	window_global->setActive();
+	
+	glEnable(GL_DEPTH_TEST);
+	glDepthMask(GL_TRUE);
+	glClearDepth(1.f);
+	glDisable(GL_LIGHTING);
+	
+	glViewport(0, 0, window_global->getSize().x, window_global->getSize().y);
+	
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	GLfloat ratio = static_cast<float>(window_global->getSize().x) / window_global->getSize().y;
+	glOrtho(-1.f, 1.f, -1.f/ratio, 1.f/ratio, 1.f, 500.f);
+	
+//	glDisableClientState(GL_NORMAL_ARRAY);
+//	glDisableClientState(GL_COLOR_ARRAY);
+	
+	glGenBuffers(1, &vert_buf);
+	
+	glBindBuffer(GL_ARRAY_BUFFER, vert_buf);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_bufdata), g_vertex_bufdata, GL_STATIC_DRAW);
+	//glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
 void thread_rendering() {
 	std::unique_lock<std::mutex> lk(mut_render);
+	
 	update_render.wait(lk, [] { return should_render; });
+	
+	window_global->setActive();
 	while (true) {
 		if (!game_running) return lk.unlock();
 		
@@ -66,8 +156,23 @@ void thread_rendering() {
 		float fps = counter_render / clock_render.getElapsedTime().asSeconds();
 		printf("rendering... %lu %f\n", counter_render, fps);
 		window_global->clear(sf::Color::Black);
+		
+		window_global->pushGLStates();
 		for (size_t i = 0; i < RenderLayerType::Count; i++)
 			Generic::RenderLayerManger()->Layers[i].Update();
+		window_global->popGLStates();
+		
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		glClear(GL_DEPTH_BUFFER_BIT);
+		
+		glBindBuffer(GL_ARRAY_BUFFER, vert_buf);
+		glVertexPointer(3, GL_FLOAT, 5 * sizeof(GLfloat), (char *)0);
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDisableClientState(GL_VERTEX_ARRAY);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		
 //		should_render = false;
 		window_global->display();
 //		lk.unlock();
@@ -102,15 +207,24 @@ int main() {
 	Generic::Init_FunObjectTableCreate(config);
 	
 	sf::ContextSettings settings;
-	settings.antialiasingLevel = 4;
+	settings.stencilBits = 8;
+	settings.depthBits = 24;
+	settings.antialiasingLevel = 0;
+	settings.majorVersion = 2;
+	settings.minorVersion = 1;
 
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Gmap | MarXsCube by seCOnDatkE 2014 - Prototype",
 						sf::Style::Titlebar || sf::Style::Close, settings);
 	window_global = &window;
+	
+	sf::ContextSettings settings_got = window.getSettings();
+	printf("Running with OpenGL %d.%d.\n", settings_got.majorVersion, settings_got.minorVersion);
+	
+	init_opengl();
 
 	TestManger::GetInstance().window = &window;
 	window.setFramerateLimit(FPSLimit);
-	window.setVerticalSyncEnabled(false);
+	window.setVerticalSyncEnabled(true);
 	TestManger::GetInstance().initTest();
 
 	Pathfinding::init(Map::GetInstance().size.x, Map::GetInstance().size.y);
@@ -122,6 +236,7 @@ int main() {
 	
 	sf::Event event;
 	sf::Clock clock;
+	clock_render.restart();
 	while (window.isOpen()) {
 //		mut_render.lock();
 		mut_phy.lock();
