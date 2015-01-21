@@ -49,6 +49,7 @@
 		597D223D1A3D93E8006B296B /* libluajit_darwinclang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 597D223C1A3D93E8006B296B /* libluajit_darwinclang.a */; };
 		598D1DDE1A3966A70049653B /* RayTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDC1A3966A70049653B /* RayTest.cpp */; };
 		598D1DE11A3967FF0049653B /* RayTest_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */; };
+		598E6EEF1A6F649E000C68BE /* ModelLoader_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -151,6 +152,8 @@
 		598D1DDD1A3966A70049653B /* RayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest.h; sourceTree = "<group>"; };
 		598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RayTest_Interface.cpp; sourceTree = "<group>"; };
 		598D1DE01A3967FF0049653B /* RayTest_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest_Interface.h; sourceTree = "<group>"; };
+		598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModelLoader_obj.cpp; sourceTree = "<group>"; };
+		598E6EEE1A6F649E000C68BE /* ModelLoader_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLoader_obj.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +306,8 @@
 				5926293C198AB66500858A67 /* Type_Object.cpp */,
 				5926293D198AB66500858A67 /* Type_Techno.cpp */,
 				59262903198AB62300858A67 /* MarXsCube.1 */,
+				598E6EEE1A6F649E000C68BE /* ModelLoader_obj.h */,
+				598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */,
 			);
 			path = MarXsCube;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 				59262941198AB66500858A67 /* Cell.cpp in Sources */,
 				5923C8DA19D00EB90055E0D5 /* RenderElement.cpp in Sources */,
 				5926294E198AB66500858A67 /* Techno.cpp in Sources */,
+				598E6EEF1A6F649E000C68BE /* ModelLoader_obj.cpp in Sources */,
 				5926294A198AB66500858A67 /* ObjectManger.cpp in Sources */,
 				5923C8EC19D0286F0055E0D5 /* InternalDraw.cpp in Sources */,
 				59262953198AB66500858A67 /* Type_Anim.cpp in Sources */,

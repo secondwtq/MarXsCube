@@ -84,6 +84,7 @@ class Vector2DT : public VectorT<T> {
 		Vector2DT<T> &operator=(const Vector2DT<T> &o) { this->x = o.x, this->y = o.y; return *this; }
 		Vector2DT<T> &operator+=(const Vector2DT<T> &o) { x+=o.x, y+=o.y; return *this; }
 		Vector2DT<T> operator+(const Vector2DT<T> &o) { Vector2DT<T> ret = *this; ret += o; return ret; }
+
 };
 
 template <typename T>

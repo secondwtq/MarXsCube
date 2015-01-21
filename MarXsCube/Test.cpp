@@ -39,6 +39,10 @@ sf::Clock clock_render;
 std::thread t_thr_phy;
 std::thread t_thr_ren;
 
+#include "ModelLoader_obj.h"
+gl_vertarray verts_def;
+gl_shader tiler_shader_main;
+
 void safe_session_close() {
 	game_running = false;
 	t_thr_ren.join();
@@ -85,13 +89,27 @@ void init_opengl() {
 	GLfloat ratio = static_cast<float>(window_global->getSize().x) / window_global->getSize().y;
 	glOrtho(-1.f, 1.f, -1.f/ratio, 1.f/ratio, .1f, 500.f);
 	
+	tiler_shader_main.load_file(gl_shader::type::SHADER_VERTEX, "terrain_tiler.vert");
+	tiler_shader_main.load_file(gl_shader::type::SHADER_FRAG, "terrain_tiler.frag");
+	tiler_shader_main.create();
+	
 //	glDisableClientState(GL_NORMAL_ARRAY);
 //	glDisableClientState(GL_COLOR_ARRAY);
-	
-	glGenBuffers(1, &vert_buf);
+}
+
+void render_gl() {
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(6, 6, 5, 0, 0, 0, 0, 0, 1);
+	glScalef(0.1, 0.1, 0.1);
+	glClear(GL_DEPTH_BUFFER_BIT);
 	
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_bufdata), g_vertex_bufdata, GL_STATIC_DRAW);
+	glVertexPointer(3, GL_FLOAT, 3 * sizeof(GLfloat), (char *)0);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	tiler_shader_main.use();
+	glDrawArrays(GL_TRIANGLES, 0, (int)verts_def.len());
+	glDisableClientState(GL_VERTEX_ARRAY);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
@@ -114,19 +132,7 @@ void thread_rendering() {
 			Generic::RenderLayerManger()->Layers[i].Update();
 		window_global->popGLStates();
 		
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
-		gluLookAt(6, 6, 5, 0, 0, 0, 0, 0, 1);
-		glTranslatef(0, 0.5, 0);
-		glScalef(0.1, 0.1, 0.1);
-		glClear(GL_DEPTH_BUFFER_BIT);
-		
-		glBindBuffer(GL_ARRAY_BUFFER, vert_buf);
-		glVertexPointer(3, GL_FLOAT, 5 * sizeof(GLfloat), (char *)0);
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glDrawArrays(GL_TRIANGLES, 0, 6);
-		glDisableClientState(GL_VERTEX_ARRAY);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		render_gl();
 		
 //		should_render = false;
 		window_global->display();
@@ -175,7 +181,18 @@ int main() {
 	sf::ContextSettings settings_got = window.getSettings();
 	printf("Running with OpenGL %d.%d.\n", settings_got.majorVersion, settings_got.minorVersion);
 	
+	objfile obj_test;
+	obj_test.filepath = "drawcall.obj";
+	obj_test.parse();
+	
+	transfer_verts(verts_def, obj_test);
+	
 	init_opengl();
+	
+	glGenBuffers(1, &vert_buf);
+	glBindBuffer(GL_ARRAY_BUFFER, vert_buf);
+	glBufferData(GL_ARRAY_BUFFER, verts_def.len() * sizeof(float), verts_def.array(), GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	TestManger::GetInstance().window = &window;
 	window.setFramerateLimit(FPSLimit);
