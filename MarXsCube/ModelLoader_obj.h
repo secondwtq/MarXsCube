@@ -36,7 +36,11 @@ public:
 	
 	void load_str(gl_shader::type type, const std::string& src);
 	
+	std::string log(gl_shader::type type);
+	
 	void create();
+	
+	int get_attribute(const char *name);
 	
 	void use();
 	

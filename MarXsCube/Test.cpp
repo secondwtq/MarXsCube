@@ -43,6 +43,8 @@ std::thread t_thr_ren;
 gl_vertarray verts_def;
 gl_shader tiler_shader_main;
 
+int vert_attrid = 0;
+
 void safe_session_close() {
 	game_running = false;
 	t_thr_ren.join();
@@ -93,6 +95,11 @@ void init_opengl() {
 	tiler_shader_main.load_file(gl_shader::type::SHADER_FRAG, "terrain_tiler.frag");
 	tiler_shader_main.create();
 	
+	vert_attrid = tiler_shader_main.get_attribute("position");
+	
+	std::cout << tiler_shader_main.log(gl_shader::type::SHADER_VERTEX);
+	std::cout << tiler_shader_main.log(gl_shader::type::SHADER_FRAG);
+	
 //	glDisableClientState(GL_NORMAL_ARRAY);
 //	glDisableClientState(GL_COLOR_ARRAY);
 }
@@ -104,12 +111,13 @@ void render_gl() {
 	glScalef(0.1, 0.1, 0.1);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	
-	glBindBuffer(GL_ARRAY_BUFFER, vert_buf);
-	glVertexPointer(3, GL_FLOAT, 3 * sizeof(GLfloat), (char *)0);
-	glEnableClientState(GL_VERTEX_ARRAY);
 	tiler_shader_main.use();
+	glBindBuffer(GL_ARRAY_BUFFER, vert_buf);
+//	glVertexPointer(3, GL_FLOAT, 5*sizeof(GLfloat), (char *)0);
+	glVertexAttribPointer(vert_attrid, 3, GL_FLOAT, GL_FALSE, 0, (char *)0);
+	glEnableVertexAttribArray(vert_attrid);
 	glDrawArrays(GL_TRIANGLES, 0, (int)verts_def.len());
-	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableVertexAttribArray(vert_attrid);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 

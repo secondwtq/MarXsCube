@@ -30,9 +30,30 @@ IterT string_split(const std::string& src, const char delim, IterT out) {
 }
 
 const std::size_t LENGTH_SHADER_READBUFFER = 8192;
+const std::size_t LENGTH_SHADERLOG_BUFFER = 8192;
 
 namespace {
 	char _shader_readbuffer[LENGTH_SHADER_READBUFFER] { 0 };
+	char _shader_logbuffer[LENGTH_SHADERLOG_BUFFER] { 0 };
+}
+
+// from http://blog.csdn.net/racehorse/article/details/6616256
+std::string gl_shader::log(gl_shader::type type) {
+	GLuint obj = (type == gl_shader::type::SHADER_FRAG) ? this->frag_id : this->vert_id;
+	int length = 0, chwritten = 0;
+	char *log_buffer;
+	std::string ret = "";
+	
+	glGetShaderiv(obj, GL_INFO_LOG_LENGTH, &length);
+	
+	if (length > 0) {
+		log_buffer = (char *)malloc(length);
+		glGetShaderInfoLog(obj, length, &chwritten, log_buffer);
+		ret = log_buffer;
+		free(log_buffer);
+	}
+	
+	return ret;
 }
 
 void gl_shader::load_file(gl_shader::type type, const std::string &path) {
@@ -66,6 +87,10 @@ void gl_shader::use() {
 	glUseProgram(this->obj_id);
 }
 
+int gl_shader::get_attribute(const char *name) {
+	return glGetAttribLocation(this->obj_id, name);
+}
+
 void gl_vertarray::clear() {
 	if (this->_data) {
 		delete [] reinterpret_cast<float *>(this->_data);
@@ -83,12 +108,15 @@ void transfer_verts(gl_vertarray& dest, const objfile &src) {
 			std::size_t vert_idx = face[j];
 			for (std::size_t k = 0; k < 3; k++)
 				data[i][j][k] = src.raw_verts[vert_idx][k];
+//			for (std::size_t k = 0; k < 2; k++)
+//				data[i][j][k+3] = src.raw_uvcoords[vert_idx][k];
 		}
 	}
 }
 
 void objfile::parse() {
-	this->raw_verts.push_back({0, 0, 0}); // placeholder
+	this->raw_verts.push_back({0, 0, 0});
+	this->raw_uvcoords.push_back({0, 0, 0}); // placeholders
 	
 	std::ifstream f(this->filepath);
 	std::string t;
@@ -117,6 +145,12 @@ void objfile::parse() {
 					*ivert++ = std::stoul(face_at[0]);
 				}
 				this->raw_faces.push_back(vert_idxs);
+			} else if (splits[0] == "vt") {
+				std::array<float, 3> vert;
+				vert[0] = std::stof(splits[1]);
+				vert[1] = std::stof(splits[3]);
+				vert[2] = std::stof(splits[2]);
+				this->raw_uvcoords.push_back(vert);
 			}
 		}
 	}

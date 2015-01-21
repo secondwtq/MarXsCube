@@ -11,6 +11,7 @@
 #include "Debug.h"
 
 typedef size_t USIZE;
+typedef unsigned int GLIDX;
 // typedef unsigned int size_t;
 
 extern int DIVS;
