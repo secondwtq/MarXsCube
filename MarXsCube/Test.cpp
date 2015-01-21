@@ -42,9 +42,12 @@ std::thread t_thr_ren;
 #include "ModelLoader_obj.h"
 gl_vertarray verts_def;
 gl_shader tiler_shader_main;
+GLIDX texture_main = 0;
 
 int vert_attrid = 0;
 int vert_normid = 0;
+int vert_textid = 0;
+int vert_texcid = 0;
 
 void safe_session_close() {
 	game_running = false;
@@ -98,6 +101,10 @@ void init_opengl() {
 	
 	vert_attrid = tiler_shader_main.get_attribute("position");
 	vert_normid = tiler_shader_main.get_attribute("s_normal");
+	vert_textid = tiler_shader_main.get_attribute("s_texture_main");
+	vert_texcid = tiler_shader_main.get_attribute("s_texcoord");
+	
+	texture_main = TextureManger::GetInstance().TextureHashs["DOGE"]->texture.m_texture;
 	
 	std::cout << tiler_shader_main.log(gl_shader::type::SHADER_VERTEX);
 	std::cout << tiler_shader_main.log(gl_shader::type::SHADER_FRAG);
@@ -116,11 +123,17 @@ void render_gl() {
 	tiler_shader_main.use();
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf);
 //	glVertexPointer(3, GL_FLOAT, 5*sizeof(GLfloat), (char *)0);
-	glVertexAttribPointer(vert_attrid, 3, GL_FLOAT, GL_FALSE, 6*sizeof(float), (char *)0);
-	glVertexAttribPointer(vert_normid, 3, GL_FLOAT, GL_FALSE, 6*sizeof(float), (char *)(3*sizeof(GLfloat)));
+	glVertexAttribPointer(vert_attrid, 3, GL_FLOAT, GL_FALSE, 8*sizeof(float), (char *)0);
+	glVertexAttribPointer(vert_normid, 3, GL_FLOAT, GL_FALSE, 8*sizeof(float), (char *)(3*sizeof(GLfloat)));
+	glVertexAttribPointer(vert_texcid, 2, GL_FLOAT, GL_FALSE, 8*sizeof(float), (char *)(6*sizeof(GLfloat)));
 	glEnableVertexAttribArray(vert_attrid);
 	glEnableVertexAttribArray(vert_normid);
+	glEnableVertexAttribArray(vert_texcid);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture_main);
+	glUniform1i(vert_textid, 0);
 	glDrawArrays(GL_TRIANGLES, 0, (int)verts_def.len());
+	glDisableVertexAttribArray(vert_texcid);
 	glDisableVertexAttribArray(vert_normid);
 	glDisableVertexAttribArray(vert_attrid);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

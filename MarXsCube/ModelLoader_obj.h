@@ -41,6 +41,7 @@ public:
 	void create();
 	
 	int get_attribute(const char *name);
+	int get_uniform(const char *name);
 	
 	void use();
 	
@@ -54,7 +55,7 @@ public:
 	void clear();
 	float *array() { return this->_data; }
 	std::size_t count_face() { return this->_len; }
-	std::size_t len() { return this->_len * 3 * 6; }
+	std::size_t len() { return this->_len * 3 * 8; }
 	void face(std::size_t len) { this->_len = len; }
 	void init_with(std::size_t facecount) {
 		this->clear();
