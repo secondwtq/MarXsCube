@@ -44,6 +44,7 @@ gl_vertarray verts_def;
 gl_shader tiler_shader_main;
 
 int vert_attrid = 0;
+int vert_normid = 0;
 
 void safe_session_close() {
 	game_running = false;
@@ -96,6 +97,7 @@ void init_opengl() {
 	tiler_shader_main.create();
 	
 	vert_attrid = tiler_shader_main.get_attribute("position");
+	vert_normid = tiler_shader_main.get_attribute("s_normal");
 	
 	std::cout << tiler_shader_main.log(gl_shader::type::SHADER_VERTEX);
 	std::cout << tiler_shader_main.log(gl_shader::type::SHADER_FRAG);
@@ -114,9 +116,12 @@ void render_gl() {
 	tiler_shader_main.use();
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf);
 //	glVertexPointer(3, GL_FLOAT, 5*sizeof(GLfloat), (char *)0);
-	glVertexAttribPointer(vert_attrid, 3, GL_FLOAT, GL_FALSE, 0, (char *)0);
+	glVertexAttribPointer(vert_attrid, 3, GL_FLOAT, GL_FALSE, 6*sizeof(float), (char *)0);
+	glVertexAttribPointer(vert_normid, 3, GL_FLOAT, GL_FALSE, 6*sizeof(float), (char *)(3*sizeof(GLfloat)));
 	glEnableVertexAttribArray(vert_attrid);
+	glEnableVertexAttribArray(vert_normid);
 	glDrawArrays(GL_TRIANGLES, 0, (int)verts_def.len());
+	glDisableVertexAttribArray(vert_normid);
 	glDisableVertexAttribArray(vert_attrid);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }

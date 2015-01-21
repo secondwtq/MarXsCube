@@ -6,12 +6,12 @@
 varying float intensity;
 
 attribute vec3 position;
+attribute vec3 s_normal;
 
 void main() {
 
-	vec3 light_dir = vec3(1, 0, 0);
-	// intensity = dot(light_dir, gl_Normal);
-	// intensity = 1.0;
+	vec3 light_dir = vec3(1, 0, 5);
+	intensity = dot(normalize(light_dir), normalize(s_normal));
 
 	vec4 position_4 = vec4(position.xyz, 1);
 

@@ -101,17 +101,30 @@ void gl_vertarray::clear() {
 
 void transfer_verts(gl_vertarray& dest, const objfile &src) {
 	dest.init_with(src.raw_faces.size());
-	float (*data)[3][3] = (float (*) [3][3])(float ***)(dest.array());
+	float (*data)[3][6] = (float (*) [3][6])(float ***)(dest.array());
 	for (std::size_t i = 0; i < src.raw_faces.size(); i++) {
 		const FaceSpec& face = src.raw_faces[i];
+		
+		auto p1 = src.raw_verts[face[0]], p2 = src.raw_verts[face[1]], p3 = src.raw_verts[face[2]];
+		Float3D v1(p2[0]-p1[0], p2[1]-p1[1], p2[2]-p1[2]), v2(p3[0]-p1[0], p3[1]-p1[1], p3[2]-p1[2]);
+//		Float3D normal((v1.y*v2.z)-(v1.z-v2.y), -((v2.z*v1.x)-(v2.x*v1.z)), (v1.x-v2.y)-(v1.y-v2.x));
+		Float3D normal((v1.y*v2.z)-(v1.z*v2.y), -((v2.z*v1.x)-(v2.x*v1.z)), (v1.x*v2.y)-(v1.y*v2.x));
+		
 		for (std::size_t j = 0; j < 3; j++) {
-			std::size_t vert_idx = face[j];
+			const std::size_t vert_idx = face[j];
 			for (std::size_t k = 0; k < 3; k++)
 				data[i][j][k] = src.raw_verts[vert_idx][k];
 //			for (std::size_t k = 0; k < 2; k++)
 //				data[i][j][k+3] = src.raw_uvcoords[vert_idx][k];
+			
+			data[i][j][3] = normal.x;
+			data[i][j][4] = normal.y;
+			data[i][j][5] = normal.z;
 		}
 	}
+	
+//	for (std::size_t i = 0; i < dest.len(); i++)
+//		printf("%.2f ", dest.array()[i]);
 }
 
 void objfile::parse() {
@@ -129,7 +142,7 @@ void objfile::parse() {
 			string_split(t, ' ', splits.begin());
 			if (splits[0] == "v") {
 				std::array<float, 3> vert;
-				vert[0] = std::stof(splits[1])*0.01;
+				vert[0] = -std::stof(splits[1])*0.01;
 				vert[1] = std::stof(splits[3])*0.01;
 				vert[2] = std::stof(splits[2])*0.01;
 				this->raw_verts.push_back(vert);
