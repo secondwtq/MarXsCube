@@ -24,7 +24,7 @@ IterT string_split(const std::string& src, const char delim, IterT out) {
 	auto iter_first = src.begin();
 	(*out).clear();
 	std::for_each(iter_first, src.end(),
-				  [&out, delim] (char o) { if (o == delim) { out++; (*out).clear(); }
+				  [&out, delim] (char o) { if (o == delim) { if ((*out).length()) { out++; (*out).clear(); } }
 											else (*out) += o; });
 	return out;
 }
@@ -106,7 +106,7 @@ void transfer_verts(gl_vertarray& dest, const objfile &src) {
 	float (*data)[3][8] = (float (*) [3][8])(float ***)(dest.array());
 	for (std::size_t i = 0; i < src.raw_faces.size(); i++) {
 		const FaceSpec& face = src.raw_faces[i];
-		
+
 		auto p1 = src.raw_verts[face[0]], p2 = src.raw_verts[face[1]], p3 = src.raw_verts[face[2]];
 		Float3D v1(p2[0]-p1[0], p2[1]-p1[1], p2[2]-p1[2]), v2(p3[0]-p1[0], p3[1]-p1[1], p3[2]-p1[2]);
 		Float3D normal((v1.y*v2.z)-(v1.z*v2.y), -((v2.z*v1.x)-(v2.x*v1.z)), (v1.x*v2.y)-(v1.y*v2.x));
@@ -116,9 +116,14 @@ void transfer_verts(gl_vertarray& dest, const objfile &src) {
 			for (std::size_t k = 0; k < 3; k++)
 				data[i][j][k] = src.raw_verts[vert_idx][k];
 			
-			data[i][j][3] = normal.x;
-			data[i][j][4] = normal.y;
-			data[i][j][5] = normal.z;
+			if (src.raw_normals.size() > vert_idx) {
+				for (std::size_t k = 0; k < 3; k++)
+					data[i][j][k+3] = src.raw_normals[vert_idx][k];
+			} else {
+				data[i][j][3] = normal.x;
+				data[i][j][4] = normal.y;
+				data[i][j][5] = normal.z;
+			}
 			
 			for (std::size_t k = 0; k < 2; k++)
 				data[i][j][k+6] = src.raw_uvcoords[vert_idx][k];
@@ -133,6 +138,7 @@ void transfer_verts(gl_vertarray& dest, const objfile &src) {
 
 void objfile::parse() {
 	this->raw_verts.push_back({0, 0, 0});
+	this->raw_normals.push_back({0, 0, 0});
 	this->raw_uvcoords.push_back({0, 0, 0}); // placeholders
 	
 	std::ifstream f(this->filepath);
@@ -144,25 +150,31 @@ void objfile::parse() {
 		} else {
 			std::array<std::string, 5*2> splits;
 			string_split(t, ' ', splits.begin());
-			if (splits[0] == "v") {
+			if (splits[0] == "v") {		// read vertexs
 				std::array<float, 3> vert;
 				vert[0] = -std::stof(splits[1])*0.01;
 				vert[1] = std::stof(splits[3])*0.01;
 				vert[2] = std::stof(splits[2])*0.01;
 				this->raw_verts.push_back(vert);
-			} else if (splits[0] == "f") {
+			} else if (splits[0] == "vn") {		// read vertex normals
+				std::array<float, 3> vert;
+				vert[0] = -std::stof(splits[1]);
+				vert[1] = std::stof(splits[3]);
+				vert[2] = std::stof(splits[2]);
+				this->raw_normals.push_back(vert);
+			} else if (splits[0] == "f") {		// read meshes
 				std::array<std::size_t, 3> vert_idxs;
-				std::array<std::string, 2> face_at;
+				std::array<std::string, 3> face_at;
 				
 				auto ivert = vert_idxs.begin();
 				auto isplit = splits.begin()+1;
-				
+				std::cout << *isplit << std::endl;
 				while (ivert != vert_idxs.end()) {
 					string_split(*isplit++, '/', face_at.begin());
 					*ivert++ = std::stoul(face_at[0]);
 				}
 				this->raw_faces.push_back(vert_idxs);
-			} else if (splits[0] == "vt") {
+			} else if (splits[0] == "vt") {		// read texture coords
 				std::array<float, 3> vert;
 				vert[0] = std::stof(splits[1]);
 				vert[1] = std::stof(splits[2]);

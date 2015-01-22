@@ -77,6 +77,7 @@ public:
 	
 	std::vector<VertexSpec> raw_verts;
 	std::vector<VertexSpec> raw_uvcoords;
+	std::vector<VertexSpec> raw_normals;
 	std::vector<FaceSpec> raw_faces;
 	
 	void parse();
