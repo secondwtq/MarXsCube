@@ -134,7 +134,7 @@ void transfer_verts(gl_vertarray& dest, const objfile &src) {
 			
 			// uv coords
 			for (GLIDX k = 0; k < 2; k++)
-				data[i][j][k+6] = src.raw_uvcoords[vert_idx][k];
+				data[i][j][k+6] = src.raw_uvcoords[src.raw_face_uvcoords[i][j]][k];
 		}
 	}
 	
@@ -166,24 +166,28 @@ void objfile::parse() {
 			string_split(t, ' ', splits.begin());
 			
 			if (splits[0] == "v")		// read vertexs
-				this->raw_verts.push_back(vec3(-stof(splits[1]), stof(splits[3]), stof(splits[2])) * 0.01f);
+				this->raw_verts.push_back(vec3(-stof(splits[1]), stof(splits[3]), stof(splits[2])) * 0.05f);
 			else if (splits[0] == "vn")		// read vertex normals
 				this->raw_normals.push_back({ -stof(splits[1]), stof(splits[3]), stof(splits[2]) });
 			
 			else if (splits[0] == "f") {		// read meshes
-				i32vec3 vert_idxs;
+				i32vec3 vert_idxs, vert_uvcoords;
 				array<string, 3> face_at;
 				
 				auto isplit = splits.begin()+1;
 				for (GLIDX i = 0; i < 3; i++) {
 					string_split(*isplit++, '/', face_at.begin());
 					vert_idxs[i] = stoi(face_at[0]);
+					vert_uvcoords[i] = stoi(face_at[1]);
 				}
 				this->raw_faces.push_back(vert_idxs);
+				this->raw_face_uvcoords.push_back(vert_uvcoords);
 			}
 			
-			else if (splits[0] == "vt")		// read texture coords
+			else if (splits[0] == "vt") {		// read texture coords
+				if (!splits[3].length()) splits[3] = "0";
 				this->raw_uvcoords.push_back({ stof(splits[1]), stof(splits[2]), stof(splits[3]) });
+			}
 			
 		}
 	}

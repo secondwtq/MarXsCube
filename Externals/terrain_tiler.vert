@@ -15,7 +15,7 @@ uniform sampler2D s_texture_main;
 
 void main() {
 
-	vec3 light_dir = vec3(1, 1, 1);
+	vec3 light_dir = vec3(1, 1, 3);
 
 	frag_normal = normalize(s_normal);
 	frag_light_dir = normalize(light_dir);
