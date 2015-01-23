@@ -16,11 +16,12 @@
 #include <unordered_map>
 #include <array>
 
-using FaceSpec = std::array<std::size_t, 3>;
-using VertexSpec = std::array<float, 3>;
+#include <glm/glm.hpp>
 
-class gl_vertarray;
+using FaceSpec = std::array<std::size_t, 3>;
+
 class objfile;
+class gl_vertarray;
 
 void transfer_verts(gl_vertarray& dest, const objfile &src);
 
@@ -75,10 +76,8 @@ class objfile {
 public:
 	std::string filepath { "" }	;
 	
-	std::vector<VertexSpec> raw_verts;
-	std::vector<VertexSpec> raw_uvcoords;
-	std::vector<VertexSpec> raw_normals;
-	std::vector<FaceSpec> raw_faces;
+	std::vector<glm::vec3> raw_verts, raw_uvcoords, raw_normals;
+	std::vector<glm::i32vec3> raw_faces;
 	
 	void parse();
 	

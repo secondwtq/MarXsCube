@@ -132,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarXsCube/Test.cpp"
-            timestampString = "443711803.796541"
+            timestampString = "443713063.357423"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "main()"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,22 +170,6 @@
             startingLineNumber = "116"
             endingLineNumber = "116"
             landmarkName = "init_opengl()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarXsCube/ModelLoader_obj.cpp"
-            timestampString = "443607599.694801"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "transfer_verts(gl_vertarray&amp; dest, const objfile &amp;src)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

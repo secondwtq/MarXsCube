@@ -557,6 +557,7 @@
 					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/include",
 					/Users/secondatke/Documents/Assets/Librarys/armadillo/include,
 					/Users/secondatke/Documents/Assets/Librarys/LuaBridge/include,
+					/Users/secondatke/Documents/Assets/Librarys/glm/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -598,6 +599,7 @@
 					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/include",
 					/Users/secondatke/Documents/Assets/Librarys/armadillo/include,
 					/Users/secondatke/Documents/Assets/Librarys/LuaBridge/include,
+					/Users/secondatke/Documents/Assets/Librarys/glm/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

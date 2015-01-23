@@ -11,6 +11,7 @@
 #include "ModelLoader_obj.h"
 
 #include <SFML/OpenGL.hpp>
+#include <glm/glm.hpp>
 
 #include <fstream>
 #include <string>
@@ -102,30 +103,37 @@ void gl_vertarray::clear() {
 }
 
 void transfer_verts(gl_vertarray& dest, const objfile &src) {
+	
 	dest.init_with(src.raw_faces.size());
+	
+	// so dirty!
 	float (*data)[3][8] = (float (*) [3][8])(float ***)(dest.array());
+	
 	for (std::size_t i = 0; i < src.raw_faces.size(); i++) {
-		const FaceSpec& face = src.raw_faces[i];
-
-		auto p1 = src.raw_verts[face[0]], p2 = src.raw_verts[face[1]], p3 = src.raw_verts[face[2]];
-		Float3D v1(p2[0]-p1[0], p2[1]-p1[1], p2[2]-p1[2]), v2(p3[0]-p1[0], p3[1]-p1[1], p3[2]-p1[2]);
-		Float3D normal((v1.y*v2.z)-(v1.z*v2.y), -((v2.z*v1.x)-(v2.x*v1.z)), (v1.x*v2.y)-(v1.y*v2.x));
+		const glm::i32vec3& face = src.raw_faces[i];
 		
-		for (std::size_t j = 0; j < 3; j++) {
-			const std::size_t vert_idx = face[j];
-			for (std::size_t k = 0; k < 3; k++)
+		auto p1 = src.raw_verts[face[0]], p2 = src.raw_verts[face[1]], p3 = src.raw_verts[face[2]];
+		glm::vec3 v1 = p2 - p1, v2 = p3 - p1;
+		glm::vec3 normal { (v1.y*v2.z)-(v1.z*v2.y), -((v2.z*v1.x)-(v2.x*v1.z)), (v1.x*v2.y)-(v1.y*v2.x) };
+		
+		for (GLIDX j = 0; j < 3; j++) {
+			const int vert_idx = face[j];
+			
+			// vertex position
+			for (GLIDX k = 0; k < 3; k++)
 				data[i][j][k] = src.raw_verts[vert_idx][k];
 			
-			if (src.raw_normals.size() > vert_idx) {
-				for (std::size_t k = 0; k < 3; k++)
+			// normals
+			if (src.raw_normals.size() > vert_idx)
+				for (GLIDX k = 0; k < 3; k++)
 					data[i][j][k+3] = src.raw_normals[vert_idx][k];
-			} else {
-				data[i][j][3] = normal.x;
-				data[i][j][4] = normal.y;
-				data[i][j][5] = normal.z;
-			}
+			else
+				for (GLIDX k = 0; k < 3; k++)
+					// if there is no normal, use calculated normals
+					data[i][j][k+3] = normal[k];
 			
-			for (std::size_t k = 0; k < 2; k++)
+			// uv coords
+			for (GLIDX k = 0; k < 2; k++)
 				data[i][j][k+6] = src.raw_uvcoords[vert_idx][k];
 		}
 	}
@@ -137,50 +145,46 @@ void transfer_verts(gl_vertarray& dest, const objfile &src) {
 }
 
 void objfile::parse() {
+	
+	// placeholders
 	this->raw_verts.push_back({0, 0, 0});
 	this->raw_normals.push_back({0, 0, 0});
-	this->raw_uvcoords.push_back({0, 0, 0}); // placeholders
+	this->raw_uvcoords.push_back({0, 0, 0});
 	
-	std::ifstream f(this->filepath);
-	std::string t;
+	using namespace std;
+	using namespace glm;
+	
+	ifstream f(this->filepath);
+	string t;
 	
 	while (getline(f, t)) {
 		if (t.length() <= 1 || t[0] == '#') {
 			
 		} else {
-			std::array<std::string, 5*2> splits;
+			
+			array<string, 5*2> splits;
 			string_split(t, ' ', splits.begin());
-			if (splits[0] == "v") {		// read vertexs
-				std::array<float, 3> vert;
-				vert[0] = -std::stof(splits[1])*0.01;
-				vert[1] = std::stof(splits[3])*0.01;
-				vert[2] = std::stof(splits[2])*0.01;
-				this->raw_verts.push_back(vert);
-			} else if (splits[0] == "vn") {		// read vertex normals
-				std::array<float, 3> vert;
-				vert[0] = -std::stof(splits[1]);
-				vert[1] = std::stof(splits[3]);
-				vert[2] = std::stof(splits[2]);
-				this->raw_normals.push_back(vert);
-			} else if (splits[0] == "f") {		// read meshes
-				std::array<std::size_t, 3> vert_idxs;
-				std::array<std::string, 3> face_at;
+			
+			if (splits[0] == "v")		// read vertexs
+				this->raw_verts.push_back(vec3(-stof(splits[1]), stof(splits[3]), stof(splits[2])) * 0.01f);
+			else if (splits[0] == "vn")		// read vertex normals
+				this->raw_normals.push_back({ -stof(splits[1]), stof(splits[3]), stof(splits[2]) });
+			
+			else if (splits[0] == "f") {		// read meshes
+				i32vec3 vert_idxs;
+				array<string, 3> face_at;
 				
-				auto ivert = vert_idxs.begin();
 				auto isplit = splits.begin()+1;
-				std::cout << *isplit << std::endl;
-				while (ivert != vert_idxs.end()) {
+				for (GLIDX i = 0; i < 3; i++) {
 					string_split(*isplit++, '/', face_at.begin());
-					*ivert++ = std::stoul(face_at[0]);
+					vert_idxs[i] = stoi(face_at[0]);
 				}
 				this->raw_faces.push_back(vert_idxs);
-			} else if (splits[0] == "vt") {		// read texture coords
-				std::array<float, 3> vert;
-				vert[0] = std::stof(splits[1]);
-				vert[1] = std::stof(splits[2]);
-				vert[2] = std::stof(splits[3]);
-				this->raw_uvcoords.push_back(vert);
 			}
+			
+			else if (splits[0] == "vt")		// read texture coords
+				this->raw_uvcoords.push_back({ stof(splits[1]), stof(splits[2]), stof(splits[3]) });
+			
 		}
 	}
 }
