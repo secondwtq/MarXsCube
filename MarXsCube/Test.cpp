@@ -20,6 +20,8 @@ using namespace std;
 #include <mutex>
 #include <condition_variable>
 
+#include "Atheverybeginning.h"
+
 bool game_running = false;
 bool should_update = false;
 std::mutex mut_phy;
@@ -95,8 +97,8 @@ void init_opengl() {
 	GLfloat ratio = static_cast<float>(window_global->getSize().x) / window_global->getSize().y;
 	glOrtho(-1.f, 1.f, -1.f/ratio, 1.f/ratio, .1f, 500.f);
 	
-	tiler_shader_main.load_file(gl_shader::type::SHADER_VERTEX, "terrain_tiler.vert");
-	tiler_shader_main.load_file(gl_shader::type::SHADER_FRAG, "terrain_tiler.frag");
+	tiler_shader_main.load_file(SHADERTYPE::VERTEX, "terrain_tiler.vert");
+	tiler_shader_main.load_file(SHADERTYPE::FRAG, "terrain_tiler.frag");
 	tiler_shader_main.create();
 	
 	vert_attrid = tiler_shader_main.get_attribute("position");
@@ -106,8 +108,8 @@ void init_opengl() {
 	
 	texture_main = TextureManger::GetInstance().TextureHashs["DOGE"]->texture.m_texture;
 	
-	std::cout << tiler_shader_main.log(gl_shader::type::SHADER_VERTEX);
-	std::cout << tiler_shader_main.log(gl_shader::type::SHADER_FRAG);
+	std::cout << tiler_shader_main.log(SHADERTYPE::VERTEX);
+	std::cout << tiler_shader_main.log(SHADERTYPE::FRAG);
 	
 //	glDisableClientState(GL_NORMAL_ARRAY);
 //	glDisableClientState(GL_COLOR_ARRAY);
@@ -169,7 +171,7 @@ void thread_rendering() {
 int main() {
 	printf("MarXsCube by seCOnDatkE, 2014.\n\n");
 	
-    char currentdir[1024];
+	char currentdir[1024];
     getcwd(currentdir, 1024);
     printf("Working directory: %s, getting ready for logging...\n", currentdir);
     
@@ -184,6 +186,10 @@ int main() {
 	LuaStatus luaState;
 	luaState.init();
 	LuaUtils::initLuaUtils();
+	
+	AtTheVeryBeginning::init_atvb(luaState);
+	AtTheVeryBeginning::load_config("atheverybeginning.lua");
+	
 	ConfigManger config(luaState);
 	cout << "CubeCore: main - Registering LuaInterface... " << endl;
 	LuaInterface::RegisterInterface(luaState);

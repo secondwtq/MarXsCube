@@ -36,8 +36,8 @@ namespace {
 }
 
 // from http://blog.csdn.net/racehorse/article/details/6616256
-std::string gl_shader::log(gl_shader::type type) {
-	GLuint obj = (type == gl_shader::type::SHADER_FRAG) ? this->frag_id : this->vert_id;
+std::string gl_shader::log(SHADERTYPE type) {
+	GLuint obj = (type == SHADERTYPE::FRAG) ? this->frag_id : this->vert_id;
 	int length = 0, chwritten = 0;
 	char *log_buffer;
 	std::string ret = "";
@@ -54,16 +54,16 @@ std::string gl_shader::log(gl_shader::type type) {
 	return ret;
 }
 
-void gl_shader::load_file(gl_shader::type type, const std::string &path) {
+void gl_shader::load_file(SHADERTYPE type, const std::string &path) {
 	FILE *fp = fopen(path.c_str(), "r");
 	std::size_t len = fread(_shader_readbuffer, 1, LENGTH_SHADER_READBUFFER-1, fp);
 	_shader_readbuffer[len] = '\0';
 	this->load_str(type, _shader_readbuffer);
 }
 
-void gl_shader::load_str(gl_shader::type type, const char *src) {
-	GLuint *target = (type == gl_shader::type::SHADER_FRAG) ? &this->frag_id : &this->vert_id;
-	auto shader_tp = (type == gl_shader::type::SHADER_FRAG) ? GL_FRAGMENT_SHADER : GL_VERTEX_SHADER;
+void gl_shader::load_str(SHADERTYPE type, const char *src) {
+	GLuint *target = (type == SHADERTYPE::FRAG) ? &this->frag_id : &this->vert_id;
+	auto shader_tp = (type == SHADERTYPE::FRAG) ? GL_FRAGMENT_SHADER : GL_VERTEX_SHADER;
 	
 	*target = glCreateShader(shader_tp);
 	const char * t[1] { src };
@@ -71,7 +71,7 @@ void gl_shader::load_str(gl_shader::type type, const char *src) {
 	glCompileShader(*target);
 }
 
-void gl_shader::load_str(gl_shader::type type, const std::string& src) {
+void gl_shader::load_str(SHADERTYPE type, const std::string& src) {
 	this->load_str(type, src.c_str()); }
 
 void gl_shader::create() {

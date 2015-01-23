@@ -1,0 +1,15 @@
+R"(
+AtTheVeryBeginning = { }
+
+function AtTheVeryBeginning.together(table)
+	for k, v in pairs(table) do
+		AtTheVeryBeginning[k] = v end
+end
+
+function AtTheVeryBeginning.WeWereCreated()
+	setmetatable(AtTheVeryBeginning,
+	{ __index = __AtTheVeryBeginning.get, __newindex = __AtTheVeryBeginning.set })
+end
+
+-- AtTheVeryBeginning.WeWereCreated()
+)"

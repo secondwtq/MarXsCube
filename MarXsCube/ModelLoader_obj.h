@@ -24,19 +24,19 @@ class objfile;
 
 void transfer_verts(gl_vertarray& dest, const objfile &src);
 
+enum SHADERTYPE {
+	VERTEX, FRAG, PROGRAM };
+
 class gl_shader {
 public:
-	enum type {
-		SHADER_VERTEX, SHADER_FRAG
-	};
 	
-	void load_file(gl_shader::type type, const std::string &path);
+	void load_file(SHADERTYPE type, const std::string &path);
 	
-	void load_str(gl_shader::type type, const char *src);
+	void load_str(SHADERTYPE type, const char *src);
 	
-	void load_str(gl_shader::type type, const std::string& src);
+	void load_str(SHADERTYPE type, const std::string& src);
 	
-	std::string log(gl_shader::type type);
+	std::string log(SHADERTYPE type);
 	
 	void create();
 	
