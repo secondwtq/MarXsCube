@@ -67,7 +67,8 @@ public:
 	
 	virtual void close();
 	
-	virtual FSMCompositeStream& add_logger(FSMBasicStream &src);
+	FSMCompositeStream& add_logger(FSMBasicStream &src);
+	FSMCompositeStream& add_deflogger();
 	
 	virtual void write(const char *src);
 	virtual void writeln(const char *src);

@@ -115,6 +115,12 @@ void FSMLogger::log_noendl(const char *src) {
 	cassert(this->m_logger != nullptr, "FSM::FSMLogger::log_noendl - logger has no stream but trying to log.");
 	this->m_logger->write(src);
 }
+	
+FSMLogger& FSMLogger::set_deflogger() {
+	cassert(fsm_inited == true, "FSM::FSMLogger::set_deflogger() - FSM not inited but trying to fetch default stream.");
+	this->set_logger(*stream_stdout);
+	return *this;
+}
 
 FSMLoggerProxy& FSMLogger::get_proxy(FSMLevel level) {
 	return *this->m_proxies[static_cast<std::size_t>(level)]; }
@@ -142,6 +148,10 @@ void FSMCompositeStream::writeln(const char *src) {
 FSMCompositeStream& FSMCompositeStream::add_logger(FSMBasicStream &src) {
 	this->m_loggers.push_back(&src);
 	return *this; }
+
+FSMCompositeStream& FSMCompositeStream::add_deflogger() {
+	cassert(fsm_inited == true, "FSM::FSMLogger::set_deflogger() - FSM not inited but trying to fetch default stream.");
+	return this->add_logger(*stream_stdout); }
 
 void FSMFileStream::close() {
 	

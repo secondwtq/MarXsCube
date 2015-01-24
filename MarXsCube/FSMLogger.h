@@ -46,6 +46,7 @@ namespace FSM {
 		inline void set_logger(FSMBasicStream& logger) { this->m_logger = &logger; }
 		inline FSMBasicStream &get_logger() { return *(this->m_logger); }
 		inline void clear_logger() { this->m_logger = nullptr; }
+		FSMLogger& set_deflogger();
 		
 		inline bool is_root() { return this->m_isroot; }
 		inline const std::string& getname() { return this->m_name; }
@@ -110,12 +111,13 @@ namespace FSM {
 	void dispose();
 	bool inited();
 	
+	FSMLogger& get_logger(const std::string &name);
+	void dispose_logger(const std::string &name);
+	
 	FSMLogger& logger();
 	inline FSMLoggerProxy& logger(FSMLevel level) { return logger().get_proxy(level); }
-	
-	FSMLogger& get_logger(const std::string &name);
-	
-	void dispose_logger(const std::string &name);
+	inline FSMLogger& logger(const std::string &name) { return get_logger(name); }
+
 }
 
 #include "FSMStream.h"
