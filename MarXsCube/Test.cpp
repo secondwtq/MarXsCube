@@ -145,15 +145,6 @@ int main() {
 	AtTheVeryBeginning::init_atvb(luaState);
 	AtTheVeryBeginning::load_config("atheverybeginning.lua");
 	
-	ConfigManger config(luaState);
-	cout << "CubeCore: main - Registering LuaInterface... " << endl;
-	LuaInterface::RegisterInterface(luaState);
-	Generic::Init_FunObjectTableCreate_Forward(config);
-	cout << "CubeCore: main - Loading Config... " << endl;
-	config.loadConfigFrom("Config.lua");
-	
-	Generic::Init_FunObjectTableCreate(config);
-	
 	sf::ContextSettings settings;
 	settings.stencilBits = 8;
 	settings.depthBits = 24;
@@ -167,6 +158,15 @@ int main() {
 	
 	sf::ContextSettings settings_got = window.getSettings();
 	printf("Running with OpenGL %d.%d.\n", settings_got.majorVersion, settings_got.minorVersion);
+	
+	ConfigManger config(luaState);
+	cout << "CubeCore: main - Registering LuaInterface... " << endl;
+	LuaInterface::RegisterInterface(luaState);
+	Generic::Init_FunObjectTableCreate_Forward(config);
+	cout << "CubeCore: main - Loading Config... " << endl;
+	config.loadConfigFrom("Config.lua");
+	
+	Generic::Init_FunObjectTableCreate(config);
 	
 	objfile obj_test;
 	obj_test.filepath = "drawcall.obj";
