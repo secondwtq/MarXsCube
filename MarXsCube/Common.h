@@ -21,6 +21,8 @@ extern int divPhysics;
 extern double PI;
 extern double TransformScaleFactor;
 
+#define CUBE_ENDLINE "\n"
+
 //	RTTIType
 #define RTTIType_Abstract 0
 #define RTTIType_Cell 1

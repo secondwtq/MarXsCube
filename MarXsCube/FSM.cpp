@@ -18,6 +18,11 @@
 
 #define cassert(condition, information) assert(condition)
 
+const char * FSMLevelNames[static_cast<std::size_t>(FSMLevel::Lowest)+1] = {
+	"HIGHEST", "FATAL", "ERROR", "WARNING",
+	"DEBUG", "MESSAGE", "TRACE", "LOWEST",
+};
+
 namespace FSM {
 	
 namespace {
@@ -93,7 +98,7 @@ namespace {
 	FSMLogger::FSMLogger() {
 		// init proxies
 		for (std::size_t i = (std::size_t)FSMLevel::Highest; i <= (std::size_t)FSMLevel::Lowest; i++)
-			this->m_proxies.push_back(FSMLoggerProxy(*this, static_cast<FSMLevel>(i)));
+			this->m_proxies.push_back(std::unique_ptr<FSMLoggerProxy>(new FSMLoggerProxy(*this, static_cast<FSMLevel>(i))));
 	}
 	
 	void FSMLogger::log(const char *src) {
@@ -107,7 +112,7 @@ namespace {
 	}
 	
 	FSMLoggerProxy& FSMLogger::operator[](FSMLevel level) {
-		return this->m_proxies[static_cast<std::size_t>(level)]; }
+		return *this->m_proxies[static_cast<std::size_t>(level)]; }
 	
 	void FSMStdStream::close() { }
 

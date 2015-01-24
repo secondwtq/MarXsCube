@@ -29,9 +29,12 @@ enum class FSMLevel {
 	Lowest,
 };
 
+extern const char * FSMLevelNames[];
+
 namespace FSM {
 	
 	class FSMLogger;
+	class FSMLoggerProxy;
 	
 	void init();
 	void dispose();
@@ -45,7 +48,7 @@ namespace FSM {
 		virtual void write(const char *src) = 0;
 		virtual void writeln(const char *src) = 0;
 		
-		virtual ~FSMBasicStream();
+		virtual ~FSMBasicStream() { };
 		
 	};
 	
@@ -97,15 +100,6 @@ namespace FSM {
 		std::vector<FSMBasicStream *> m_loggers;
 	};
 	
-	class FSMLoggerProxy {
-	public:
-		FSMLoggerProxy(FSMLogger& logger, FSMLevel level) : m_level(level), m_logger(&logger) { }
-		
-	private:
-		FSMLevel m_level = FSMLevel::Debug;
-		FSMLogger *m_logger = nullptr;
-	};
-	
 	class FSMLogger {
 		
 		friend void init();
@@ -117,7 +111,7 @@ namespace FSM {
 		FSMLoggerProxy& operator[] (FSMLevel level);
 		
 		void set_logger(FSMBasicStream& logger) { this->m_logger = &logger; }
-		FSMBasicStream &get_logger() { return *this->m_logger; }
+		FSMBasicStream &get_logger() { return *(this->m_logger); }
 		void clear_logger() { this->m_logger = nullptr; }
 		
 		bool is_root() { return this->m_isroot; }
@@ -136,8 +130,51 @@ namespace FSM {
 		FSMLevel m_defaultlevel = FSMLevel::Debug;
 		FSMBasicStream *m_logger = nullptr;
 		bool m_isroot = false;
-		std::vector<FSMLoggerProxy> m_proxies;
+		std::vector<std::unique_ptr<FSMLoggerProxy> > m_proxies;
 	};
+	
+	class FSMLoggerProxy {
+	public:
+		FSMLoggerProxy(FSMLogger& logger, FSMLevel level) : m_level(level), m_logger(&logger) { }
+		
+		FSMLoggerProxy& log(const char *src) {
+			if (this->inited) {
+				this->m_logger->log_noendl(src);
+			} else {
+				this->inited = true;
+				this->m_logger->log_noendl(FSMLevelNames[static_cast<std::size_t>(this->m_level)]);
+				this->m_logger->log_noendl(": ");
+				this->m_logger->log_noendl(src);
+			}
+			return *this;
+		}
+		
+	private:
+		FSMLevel m_level = FSMLevel::Debug;
+		FSMLogger *m_logger = nullptr;
+		bool inited = false;
+	};
+	
+	class LoggerEndline { };
+	using rn = LoggerEndline;
+	
+	template <typename T>
+	std::string& convert_to_string(const T& src) {
+		static std::string unknown { "FSM::convert_to_string() - [UNKNOWN CONVERTION]" };
+		return unknown; }
+	
+	template<typename T>
+	FSMLoggerProxy& operator << (FSMLoggerProxy& proxy, const T& src) {
+		return proxy.log(convert_to_string(src).c_str());
+	}
+	
+	template<>
+	FSMLoggerProxy& operator << <LoggerEndline>(FSMLoggerProxy& proxy, const LoggerEndline& src) {
+		return proxy.log(CUBE_ENDLINE); }
+	
+	template<>
+	FSMLoggerProxy& operator << <const char *>(FSMLoggerProxy& proxy,  const char * const& src) {
+		return proxy.log(src); }
 	
 	FSMLogger& logger();
 	
