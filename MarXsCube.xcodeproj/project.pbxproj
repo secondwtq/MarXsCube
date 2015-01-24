@@ -52,6 +52,8 @@
 		598E6EEF1A6F649E000C68BE /* ModelLoader_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */; };
 		59FCBF2F1A713D8500BEF905 /* Atheverybeginning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF2D1A713D8500BEF905 /* Atheverybeginning.cpp */; };
 		59FCBF361A73673100BEF905 /* FSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF341A73673100BEF905 /* FSM.cpp */; };
+		59FCBF3F1A73B8E200BEF905 /* BulletThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF3D1A73B8E200BEF905 /* BulletThread.cpp */; };
+		59FCBF431A73CA5700BEF905 /* Acheron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF411A73CA5700BEF905 /* Acheron.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -166,6 +168,10 @@
 		59FCBF3A1A73A0F600BEF905 /* FSMProxyTemplates.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMProxyTemplates.h; sourceTree = "<group>"; };
 		59FCBF3B1A73A11C00BEF905 /* FSMCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMCommon.h; sourceTree = "<group>"; };
 		59FCBF3C1A73A26300BEF905 /* FSM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSM.h; sourceTree = "<group>"; };
+		59FCBF3D1A73B8E200BEF905 /* BulletThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletThread.cpp; sourceTree = "<group>"; };
+		59FCBF3E1A73B8E200BEF905 /* BulletThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletThread.h; sourceTree = "<group>"; };
+		59FCBF411A73CA5700BEF905 /* Acheron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Acheron.cpp; sourceTree = "<group>"; };
+		59FCBF421A73CA5700BEF905 /* Acheron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Acheron.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,14 +196,14 @@
 		5923C8D819D00E8B0055E0D5 /* Silcon */ = {
 			isa = PBXGroup;
 			children = (
-				5923C8D919D00EB90055E0D5 /* RenderElement.cpp */,
 				5926291D198AB66500858A67 /* RenderElement.h */,
-				5923C8DB19D00F730055E0D5 /* RenderElementsContainer.cpp */,
 				5923C8DC19D00F730055E0D5 /* RenderElementsContainer.h */,
-				5923C8EA19D0286F0055E0D5 /* InternalDraw.cpp */,
 				5923C8EB19D0286F0055E0D5 /* InternalDraw.h */,
-				5916925E1A3E11D2001D4D35 /* SFLineShape.cpp */,
+				5923C8EA19D0286F0055E0D5 /* InternalDraw.cpp */,
+				5923C8D919D00EB90055E0D5 /* RenderElement.cpp */,
+				5923C8DB19D00F730055E0D5 /* RenderElementsContainer.cpp */,
 				5916925F1A3E11D2001D4D35 /* SFLineShape.h */,
+				5916925E1A3E11D2001D4D35 /* SFLineShape.cpp */,
 			);
 			name = Silcon;
 			sourceTree = "<group>";
@@ -205,14 +211,14 @@
 		5923C8DE19D0164B0055E0D5 /* Hafnium */ = {
 			isa = PBXGroup;
 			children = (
-				5926292E198AB66500858A67 /* LuaUtils.cpp */,
-				5926292D198AB66500858A67 /* LuaInterface.cpp */,
-				5928590C1A375F2000D4AE91 /* StdInterface.h */,
-				59262912198AB66500858A67 /* LuaUtils.h */,
-				59262911198AB66500858A67 /* LuaInterface.h */,
-				5923C8E719D027480055E0D5 /* LWindow.cpp */,
-				5923C8E819D027480055E0D5 /* LWindow.h */,
 				597D223E1A3D95EC006B296B /* LuaJit_Bridge.h */,
+				59262911198AB66500858A67 /* LuaInterface.h */,
+				59262912198AB66500858A67 /* LuaUtils.h */,
+				5926292D198AB66500858A67 /* LuaInterface.cpp */,
+				5926292E198AB66500858A67 /* LuaUtils.cpp */,
+				5928590C1A375F2000D4AE91 /* StdInterface.h */,
+				5923C8E819D027480055E0D5 /* LWindow.h */,
+				5923C8E719D027480055E0D5 /* LWindow.cpp */,
 			);
 			name = Hafnium;
 			sourceTree = "<group>";
@@ -229,17 +235,19 @@
 		5923C8E619D026CE0055E0D5 /* Bullet */ = {
 			isa = PBXGroup;
 			children = (
+				5926291C198AB66500858A67 /* PhysicsCommon.h */,
+				5923C8ED19D02A3D0055E0D5 /* PhysicsGeneral.h */,
 				5926291A198AB66500858A67 /* Physics.h */,
 				59262914198AB66500858A67 /* MotionStateTest.h */,
 				5926291B198AB66500858A67 /* PhysicsCheck.h */,
-				5926291C198AB66500858A67 /* PhysicsCommon.h */,
 				59262934198AB66500858A67 /* Physics.cpp */,
-				5923C8ED19D02A3D0055E0D5 /* PhysicsGeneral.h */,
 				5923C8EE19D02A5E0055E0D5 /* PhysicsGeneral.cpp */,
-				598D1DDC1A3966A70049653B /* RayTest.cpp */,
 				598D1DDD1A3966A70049653B /* RayTest.h */,
-				598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */,
+				598D1DDC1A3966A70049653B /* RayTest.cpp */,
 				598D1DE01A3967FF0049653B /* RayTest_Interface.h */,
+				598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */,
+				59FCBF3E1A73B8E200BEF905 /* BulletThread.h */,
+				59FCBF3D1A73B8E200BEF905 /* BulletThread.cpp */,
 			);
 			name = Bullet;
 			sourceTree = "<group>";
@@ -281,6 +289,8 @@
 				5923C8DE19D0164B0055E0D5 /* Hafnium */,
 				5923C8D819D00E8B0055E0D5 /* Silcon */,
 				5923C8E519D0225A0055E0D5 /* Obsoleted */,
+				59FCBF421A73CA5700BEF905 /* Acheron.h */,
+				59FCBF411A73CA5700BEF905 /* Acheron.cpp */,
 				5926290A198AB66500858A67 /* Abstract.h */,
 				5926290B198AB66500858A67 /* Anim.h */,
 				5926290D198AB66500858A67 /* Cell.h */,
@@ -331,8 +341,8 @@
 			children = (
 				592859061A37592A00D4AE91 /* graph_def.h */,
 				5928590A1A375B0900D4AE91 /* bellman_ford.h */,
-				592859071A37594700D4AE91 /* Gmap_Interface.cpp */,
 				592859081A37594700D4AE91 /* Gmap_Interface.h */,
+				592859071A37594700D4AE91 /* Gmap_Interface.cpp */,
 			);
 			name = Gmap;
 			sourceTree = "<group>";
@@ -340,9 +350,9 @@
 		5932C84619D00C6800135717 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5926290E198AB66500858A67 /* Common.h */,
 				5926291F198AB66500858A67 /* SFML.h */,
 				5926292A198AB66500858A67 /* Common.cpp */,
-				5926290E198AB66500858A67 /* Common.h */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -445,6 +455,7 @@
 				59262951198AB66500858A67 /* Transform.cpp in Sources */,
 				59262952198AB66500858A67 /* Type_Abstract.cpp in Sources */,
 				5926294F198AB66500858A67 /* Test.cpp in Sources */,
+				59FCBF3F1A73B8E200BEF905 /* BulletThread.cpp in Sources */,
 				59262940198AB66500858A67 /* CameraObject.cpp in Sources */,
 				59262946198AB66500858A67 /* LuaUtils.cpp in Sources */,
 				59262945198AB66500858A67 /* LuaInterface.cpp in Sources */,
@@ -453,6 +464,7 @@
 				59262947198AB66500858A67 /* Map.cpp in Sources */,
 				5923C8E419D01EE60055E0D5 /* Generic.cpp in Sources */,
 				59262943198AB66500858A67 /* Config.cpp in Sources */,
+				59FCBF431A73CA5700BEF905 /* Acheron.cpp in Sources */,
 				5926294C198AB66500858A67 /* Physics.cpp in Sources */,
 				59262942198AB66500858A67 /* Common.cpp in Sources */,
 				591692601A3E11D2001D4D35 /* SFLineShape.cpp in Sources */,

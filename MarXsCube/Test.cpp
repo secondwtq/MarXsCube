@@ -25,6 +25,8 @@ using namespace std;
 
 #include "Atheverybeginning.h"
 
+#include "BulletThread.h"
+
 bool game_running = false;
 bool should_update = false;
 std::mutex mut_phy;
@@ -60,17 +62,6 @@ void safe_session_close() {
 	game_running = false;
 	t_thr_ren.join();
 	TestManger::GetInstance().window->close();
-}
-
-void thread_physics() {
-	while (true) {
-		std::unique_lock<std::mutex> lk(mut_phy);
-		update_phy.wait(lk, [] { return should_update; });
-		if (!game_running) return lk.unlock();
-		Generic::PhysicsGeneral()->dynaWorld->stepSimulation(1.f/(float)FPSLimit, 16, btScalar(1.)/btScalar((float)divPhysics));
-		should_update = false;
-		lk.unlock();
-	}
 }
 
 #include <SFML/OpenGL.hpp>
@@ -247,15 +238,15 @@ int main() {
 	obsTransform::UpdateVm(0, 0);
 
 	game_running = true;
-	t_thr_phy = std::thread(thread_physics);
 	t_thr_ren = std::thread(thread_rendering);
+	Acheron::Bullet.start(Acheron::SYNCSTATE::SYNCED);
 	
 	sf::Event event;
 	sf::Clock clock;
 	clock_render.restart();
 	while (window.isOpen()) {
 //		mut_render.lock();
-		mut_phy.lock();
+		Acheron::Bullet.pause();
 		
 		global_counter++;
 		float fps = global_counter / clock.getElapsedTime().asSeconds();
@@ -304,27 +295,22 @@ int main() {
 			i->Update();
 		
 		ObjectManger::GetInstance().FinishRemove();
-		
-		mut_phy.unlock();
-//		mut_render.unlock();
-		
-		should_update = true;
+
 		should_render = true;
-		update_phy.notify_all();
+		Acheron::Bullet.invoke();
 		update_render.notify_all();
-		
-//		printf("updating complete %lu %f\n", global_counter, fps);
 	}
 	
-	should_update = true;
+	Acheron::Bullet.invoke_and_stop();
 	should_render = true;
-	update_phy.notify_all();
 	update_render.notify_all();
-	t_thr_phy.join();
+//	t_thr_phy.join();
 	
 	Generic::Dispose_PhysicsGeneral();
 	
 	Debug::closeLogFile();
+	
+	FSM::dispose_logger("main");
 	FSM::dispose();
 
 	return 0;

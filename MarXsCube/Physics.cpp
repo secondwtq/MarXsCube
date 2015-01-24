@@ -4,6 +4,7 @@
 #include "Config.h"
 #include "LuaUtils.h"
 #include "PhysicsCheck.h"
+#include "PhysicsGeneral.h"
 
 using namespace std;
 using namespace luabridge;

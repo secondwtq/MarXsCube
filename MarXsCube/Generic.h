@@ -44,18 +44,11 @@ public:
 	}
 	
 	static inline PhysicsGeneral* PhysicsGeneral() {
-		return Generic::physics_general;
-	}
+		return Generic::physics_general; }
 	
-	static inline void Init_PhysicsGeneral() {
-		Generic::physics_general = new class PhysicsGeneral();
-	}
+	static void Init_PhysicsGeneral();
 	
-	static inline void Dispose_PhysicsGeneral() {
-		Generic::physics_general->dispose();
-		delete Generic::physics_general;
-		Generic::physics_general = nullptr;
-	}
+	static void Dispose_PhysicsGeneral();
 	
 	static void Init_FunObjectTableCreate(ConfigManger& config_manger);
 	

@@ -166,7 +166,7 @@ void objfile::parse() {
 			string_split(t, ' ', splits.begin());
 			
 			if (splits[0] == "v")		// read vertexs
-				this->raw_verts.push_back(vec3(-stof(splits[1]), stof(splits[3]), stof(splits[2])) * 0.05f);
+				this->raw_verts.push_back(vec3(-stof(splits[1]), stof(splits[3]), stof(splits[2])) * 0.02f);
 			else if (splits[0] == "vn")		// read vertex normals
 				this->raw_normals.push_back({ -stof(splits[1]), stof(splits[3]), stof(splits[2]) });
 			

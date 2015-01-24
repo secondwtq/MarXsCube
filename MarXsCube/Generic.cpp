@@ -21,6 +21,15 @@ class RenderLayerManger *Generic::render_layer_manger = nullptr;
 class PhysicsGeneral *Generic::physics_general = nullptr;
 class luabridge::LuaRef *Generic::foo_object_table_create;
 
+void Generic::Init_PhysicsGeneral() {
+	Generic::physics_general = new class PhysicsGeneral(); }
+
+void Generic::Dispose_PhysicsGeneral() {
+	Generic::physics_general->dispose();
+	delete Generic::physics_general;
+	Generic::physics_general = nullptr;
+}
+
 void Generic::Init_FunObjectTableCreate_Forward(ConfigManger& config_manger) {
 	Generic::foo_object_table_create = new luabridge::LuaRef(*config_manger.ConfigState, luabridge::Nil());
 	*Generic::foo_object_table_create = luabridge::getGlobal(*config_manger.ConfigState, "YouFuckingNULLPOINTER");

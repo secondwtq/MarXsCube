@@ -7,7 +7,6 @@
 #include "LuaJit_Bridge.h"
 #include "Config.h"
 #include "PhysicsCommon.h"
-#include "PhysicsGeneral.h"
 #include "ObjectArray.h"
 #include "Generic.h"
 

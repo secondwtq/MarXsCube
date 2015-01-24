@@ -1,0 +1,67 @@
+//
+//  Acheron.h
+//  MarXsCube
+//
+//  Created by SeconDatke on 1/24/15.
+//  Copyright (c) 2015 MarXsCube Staff. All rights reserved.
+//
+
+#ifndef __MarXsCube__Acheron__
+#define __MarXsCube__Acheron__
+
+#include <thread>
+#include <functional>
+
+namespace Acheron {
+	
+	inline void foo_placeholder() { }
+	
+	enum SYNCSTATE { UNSYNCED = 0, SYNCED = 1 };
+	
+	class AcheronBase {
+	public:
+		
+		typedef void (function_type)();
+		typedef std::function<function_type> std_function_type;
+		
+		AcheronBase();
+		
+		AcheronBase(std_function_type target) : m_target(target) { }
+		
+		inline void set_target(std_function_type target) {
+			this->m_target = target; }
+		
+		inline void start(SYNCSTATE synced) { this->start(static_cast<bool>(synced)); }
+		inline void invoke() { this->m_mutex.unlock(); this->m_cycle = true; this->m_cond.notify_all(); }
+		inline void pause() { this->m_mutex.lock(); }
+		inline void invoke_and_stop() { this->_invoke(); this->stop(); }
+		
+		void start();
+		inline void start(bool synced) { this->sync(synced); this->start(); }
+		inline void sync(bool value) { this->m_sync = value; }
+		
+		inline void _invoke() {
+			//			if (this->m_mutex.try_lock())
+			//				this->m_mutex.unlock();
+			this->m_cycle = true; this->m_cond.notify_all();
+		}
+		inline void stop() { this->m_running = false; this->m_thread.join(); }
+		
+	private:
+		
+		void function();
+		
+		std_function_type m_target = &::Acheron::foo_placeholder;
+		
+		std::thread m_thread;
+		std::mutex m_mutex;
+		std::condition_variable m_cond;
+		
+		bool m_sync = false;
+		bool m_running = false;
+		bool m_cycle = false;
+	};
+	
+}
+
+#endif /* defined(__MarXsCube__Acheron__) */
