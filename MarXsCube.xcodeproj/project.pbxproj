@@ -25,7 +25,7 @@
 		59262941198AB66500858A67 /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262929198AB66500858A67 /* Cell.cpp */; };
 		59262942198AB66500858A67 /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926292A198AB66500858A67 /* Common.cpp */; };
 		59262943198AB66500858A67 /* Config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926292B198AB66500858A67 /* Config.cpp */; };
-		59262944198AB66500858A67 /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926292C198AB66500858A67 /* Debug.cpp */; };
+		59262944198AB66500858A67 /* Debug_old.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926292C198AB66500858A67 /* Debug_old.cpp */; };
 		59262945198AB66500858A67 /* LuaInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926292D198AB66500858A67 /* LuaInterface.cpp */; };
 		59262946198AB66500858A67 /* LuaUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926292E198AB66500858A67 /* LuaUtils.cpp */; };
 		59262947198AB66500858A67 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926292F198AB66500858A67 /* Map.cpp */; };
@@ -98,7 +98,7 @@
 		5926290D198AB66500858A67 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
 		5926290E198AB66500858A67 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		5926290F198AB66500858A67 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
-		59262910198AB66500858A67 /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
+		59262910198AB66500858A67 /* Debug_old.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug_old.h; sourceTree = "<group>"; };
 		59262911198AB66500858A67 /* LuaInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaInterface.h; sourceTree = "<group>"; };
 		59262912198AB66500858A67 /* LuaUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaUtils.h; sourceTree = "<group>"; };
 		59262913198AB66500858A67 /* Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		59262929198AB66500858A67 /* Cell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cell.cpp; sourceTree = "<group>"; };
 		5926292A198AB66500858A67 /* Common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Common.cpp; sourceTree = "<group>"; };
 		5926292B198AB66500858A67 /* Config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Config.cpp; sourceTree = "<group>"; };
-		5926292C198AB66500858A67 /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
+		5926292C198AB66500858A67 /* Debug_old.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug_old.cpp; sourceTree = "<group>"; };
 		5926292D198AB66500858A67 /* LuaInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaInterface.cpp; sourceTree = "<group>"; };
 		5926292E198AB66500858A67 /* LuaUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaUtils.cpp; sourceTree = "<group>"; };
 		5926292F198AB66500858A67 /* Map.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
@@ -233,6 +233,8 @@
 		5923C8E519D0225A0055E0D5 /* Obsoleted */ = {
 			isa = PBXGroup;
 			children = (
+				59262910198AB66500858A67 /* Debug_old.h */,
+				5926292C198AB66500858A67 /* Debug_old.cpp */,
 				5926290C198AB66500858A67 /* CameraObject.h */,
 				59262928198AB66500858A67 /* CameraObject.cpp */,
 				59FCBF471A73D2AB00BEF905 /* Obsoleted.cpp */,
@@ -303,7 +305,6 @@
 				5926290B198AB66500858A67 /* Anim.h */,
 				5926290D198AB66500858A67 /* Cell.h */,
 				5926290F198AB66500858A67 /* Config.h */,
-				59262910198AB66500858A67 /* Debug.h */,
 				59262913198AB66500858A67 /* Map.h */,
 				59262915198AB66500858A67 /* Object.h */,
 				59262916198AB66500858A67 /* ObjectArray.h */,
@@ -323,7 +324,6 @@
 				59262927198AB66500858A67 /* Anim.cpp */,
 				59262929198AB66500858A67 /* Cell.cpp */,
 				5926292B198AB66500858A67 /* Config.cpp */,
-				5926292C198AB66500858A67 /* Debug.cpp */,
 				5926292F198AB66500858A67 /* Map.cpp */,
 				59262930198AB66500858A67 /* Object.cpp */,
 				59262931198AB66500858A67 /* ObjectArrayImpl.cpp */,
@@ -456,7 +456,7 @@
 				5923C8EC19D0286F0055E0D5 /* InternalDraw.cpp in Sources */,
 				59262953198AB66500858A67 /* Type_Anim.cpp in Sources */,
 				59262948198AB66500858A67 /* Object.cpp in Sources */,
-				59262944198AB66500858A67 /* Debug.cpp in Sources */,
+				59262944198AB66500858A67 /* Debug_old.cpp in Sources */,
 				59262954198AB66500858A67 /* Type_Object.cpp in Sources */,
 				59FCBF461A73CBEC00BEF905 /* SilconThread.cpp in Sources */,
 				59FCBF361A73673100BEF905 /* FSM.cpp in Sources */,

@@ -1,14 +1,11 @@
 #ifndef CUBE_E_COMMON_H
 #define CUBE_E_COMMON_H
 
-#define USE_PARALLEL_SOLVER 1
-#define USE_PARALLEL_DISPATCHER 1
-#define USE_PTHREADS
+#define LOGFUNC
 
 // #define _GLIBCXX_DEBUG 1
 
 #include <stdio.h>
-#include "Debug.h"
 
 typedef size_t USIZE;
 typedef unsigned int GLIDX;
@@ -139,8 +136,8 @@ class CubeTimer {
 		inline int GetCurrent() { return current; }
 		inline int GetLoopedCount() { return LoopTimed; }
 		inline bool IsTimerEnded() { return TimerEnded; }
-		inline char GetPercentage() { LOGFUNC; if (current >= 0 && Interval >= 0) return (int)((current / (double)Interval) * 100.0); else return 100; }
-		int GetPercentage_LUA() { LOGFUNC; if (current >= 0 && Interval >= 0) return (int)((current / (double)Interval) * 100.0); else return 100; }
+		inline char GetPercentage() { if (current >= 0 && Interval >= 0) return (int)((current / (double)Interval) * 100.0); else return 100; }
+		int GetPercentage_LUA() { if (current >= 0 && Interval >= 0) return (int)((current / (double)Interval) * 100.0); else return 100; }
 		bool IsTimerEnded_LUA() { return TimerEnded; }
 		int GetCurrent_LUA() { return current; }
 
@@ -167,10 +164,10 @@ class ObjectDirection {
 
 		ObjectDirection(unsigned short defDeg = 0) : degree(defDeg) { }
 
-		unsigned short getDirection() { LOGFUNC; return degree; }
-		void setDirection(unsigned short deg) { LOGFUNC; degree = deg; }
+		unsigned short getDirection() { return degree; }
+		void setDirection(unsigned short deg) { degree = deg; }
 
-		inline int getFrameNum(int totalNum = 32) { LOGFUNC; return getDirFrameNum(degree, totalNum); }
+		inline int getFrameNum(int totalNum = 32) { return getDirFrameNum(degree, totalNum); }
 };
 
 const Vector3DT<double> ShadowProjectionVector = Vector3DT<double>(0.2, -1.25, 1);

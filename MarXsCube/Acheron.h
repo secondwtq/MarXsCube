@@ -47,7 +47,8 @@ namespace Acheron {
 //							this->m_mutex.lock();
 //							this->m_mutex.unlock();
 //						}
-			this->m_mutex.unlock();
+			this->m_mutex.unlock(); // hack, only applies to Bullet & Silcon
+				// do you think threading library of C++11 is tooooo simple to use?
 			this->m_cycle = true; this->m_cond.notify_all();
 		}
 		inline void stop() { this->m_running = false; this->m_thread.join(); }

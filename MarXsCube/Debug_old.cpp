@@ -1,8 +1,8 @@
-#include "Debug.h"
+#include "Debug_old.h"
 
 using namespace std;
 
-namespace Debug {
+namespace Debug_old {
 
 	ofstream logstream;
 

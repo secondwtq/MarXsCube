@@ -10,7 +10,6 @@
 #include "LuaUtils.h"
 #include "Pathfinder.h"
 #include "Generic.h"
-#include "Debug.h"
 
 #include "FSM.h"
 using namespace FSMHelper;
@@ -134,15 +133,10 @@ int main() {
 	
 	log_main = FSM::logger("main").set_deflogger().get_proxy();
 	log_main << "test default logger" << rn;
-	log_main << "test default logger" << rn;
-	
-	Debug::createLogFile("log.txt");
 	
 	Generic::Init_Session();
 	Generic::Init_RenderLayerManger();
 	Generic::Init_PhysicsGeneral();
-	
-	LOGFUNC;
 
 	LuaStatus luaState;
 	luaState.init();
@@ -257,8 +251,6 @@ int main() {
 	}
 	
 	Generic::Dispose_PhysicsGeneral();
-	
-	Debug::closeLogFile();
 	
 	FSM::dispose_logger("main");
 	FSM::dispose();

@@ -4,7 +4,7 @@
 #include <fstream>
 #include <iostream>
 
-namespace Debug {
+namespace Debug_old {
 	extern std::ofstream logstream;
 
 	void createLogFile(const char *filename);
