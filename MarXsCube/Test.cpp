@@ -54,6 +54,8 @@ int vert_normid = 0;
 int vert_textid = 0;
 int vert_texcid = 0;
 
+FSM::FSMLoggerProxy log_main = FSM::create_handle();
+
 void safe_session_close() {
 	game_running = false;
 	t_thr_ren.join();
@@ -180,6 +182,10 @@ int main() {
 
 	FSM::init();
 	FSM::logger(L::Debug) << "test FSM." << rn;
+	
+	log_main = FSM::logger("main").set_deflogger().get_proxy();
+	log_main << "test default logger" << rn;
+	log_main << "test default logger" << rn;
 	
 	Debug::createLogFile("log.txt");
 	

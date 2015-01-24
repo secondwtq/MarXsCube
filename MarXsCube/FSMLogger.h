@@ -41,6 +41,7 @@ namespace FSM {
 		inline FSMLoggerProxy& operator[] (FSMLevel level) {
 			return this->get_proxy(level); }
 		
+		inline FSMLoggerProxy& get_proxy() { return this->get_proxy(this->get_deflevel()); }
 		FSMLoggerProxy& get_proxy(FSMLevel level);
 		
 		inline void set_logger(FSMBasicStream& logger) { this->m_logger = &logger; }
@@ -70,6 +71,9 @@ namespace FSM {
 	};
 	
 	class FSMLoggerProxy {
+		
+		friend FSMLoggerProxy create_handle();
+		
 	public:
 		FSMLoggerProxy(FSMLogger& logger, FSMLevel level) : m_level(level), m_logger(&logger) { }
 		
@@ -89,10 +93,25 @@ namespace FSM {
 			return *this;
 		}
 		
-	private:
+		inline FSMLoggerProxy& operator[] (FSMLevel level) {
+			return this->m_logger->get_proxy(level); }
+		
+		inline FSMLoggerProxy& reset(bool inited = false) {
+			this->inited = inited;
+			return *this; }
+		
+	protected:
 		FSMLevel m_level = FSMLevel::Debug;
 		FSMLogger *m_logger = nullptr;
 		bool inited = false;
+		
+	private:
+		
+		FSMLoggerProxy() { };
+	};
+	
+	class FSMLoggerHandle : public FSMLoggerProxy {
+		
 	};
 	
 	template <typename T>
@@ -117,6 +136,8 @@ namespace FSM {
 	FSMLogger& logger();
 	inline FSMLoggerProxy& logger(FSMLevel level) { return logger().get_proxy(level); }
 	inline FSMLogger& logger(const std::string &name) { return get_logger(name); }
+	
+	inline FSMLoggerProxy create_handle() { return FSMLoggerProxy(); }
 
 }
 

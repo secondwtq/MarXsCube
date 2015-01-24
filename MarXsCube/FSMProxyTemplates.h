@@ -20,7 +20,10 @@ namespace FSM {
 	
 	template<>
 	inline FSMLoggerProxy& operator << <LoggerEndline>(FSMLoggerProxy& proxy, const LoggerEndline& src) {
-		return proxy.log(CUBE_ENDLINE); }
+		FSMLoggerProxy& t = proxy.log(CUBE_ENDLINE);
+		proxy.reset();
+		return t;
+	}
 	
 	template<>
 	inline FSMLoggerProxy& operator << <std::string>(FSMLoggerProxy& proxy,  const std::string& src) {
