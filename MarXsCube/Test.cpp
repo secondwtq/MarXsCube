@@ -11,6 +11,9 @@
 #include "Pathfinder.h"
 #include "Generic.h"
 #include "Debug.h"
+
+#include "FSM.h"
+using namespace FSMHelper;
 using namespace sf;
 using namespace std;
 
@@ -174,7 +177,10 @@ int main() {
 	char currentdir[1024];
     getcwd(currentdir, 1024);
     printf("Working directory: %s, getting ready for logging...\n", currentdir);
-    
+
+	FSM::init();
+	FSM::logger(L::Debug) << "test FSM." << rn;
+	
 	Debug::createLogFile("log.txt");
 	
 	Generic::Init_Session();
@@ -313,6 +319,7 @@ int main() {
 	Generic::Dispose_PhysicsGeneral();
 	
 	Debug::closeLogFile();
+	FSM::dispose();
 
 	return 0;
 }

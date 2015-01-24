@@ -160,7 +160,12 @@
 		59FCBF2E1A713D8500BEF905 /* Atheverybeginning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Atheverybeginning.h; sourceTree = "<group>"; };
 		59FCBF301A7273AA00BEF905 /* atheverybeginning.lunc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = atheverybeginning.lunc; sourceTree = "<group>"; };
 		59FCBF341A73673100BEF905 /* FSM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FSM.cpp; sourceTree = "<group>"; };
-		59FCBF351A73673100BEF905 /* FSM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSM.h; sourceTree = "<group>"; };
+		59FCBF351A73673100BEF905 /* FSMLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMLogger.h; sourceTree = "<group>"; };
+		59FCBF381A73A04C00BEF905 /* FSMHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMHelper.h; sourceTree = "<group>"; };
+		59FCBF391A73A07200BEF905 /* FSMStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMStream.h; sourceTree = "<group>"; };
+		59FCBF3A1A73A0F600BEF905 /* FSMProxyTemplates.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMProxyTemplates.h; sourceTree = "<group>"; };
+		59FCBF3B1A73A11C00BEF905 /* FSMCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMCommon.h; sourceTree = "<group>"; };
+		59FCBF3C1A73A26300BEF905 /* FSM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSM.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,7 +360,12 @@
 		59FCBF371A73674300BEF905 /* FSM */ = {
 			isa = PBXGroup;
 			children = (
-				59FCBF351A73673100BEF905 /* FSM.h */,
+				59FCBF3C1A73A26300BEF905 /* FSM.h */,
+				59FCBF3B1A73A11C00BEF905 /* FSMCommon.h */,
+				59FCBF351A73673100BEF905 /* FSMLogger.h */,
+				59FCBF3A1A73A0F600BEF905 /* FSMProxyTemplates.h */,
+				59FCBF391A73A07200BEF905 /* FSMStream.h */,
+				59FCBF381A73A04C00BEF905 /* FSMHelper.h */,
 				59FCBF341A73673100BEF905 /* FSM.cpp */,
 			);
 			name = FSM;
