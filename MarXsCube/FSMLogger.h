@@ -29,30 +29,35 @@ namespace FSM {
 	class FSMLogger {
 		
 		friend void init();
+		friend FSMLogger &get_logger(const std::string& name);
 		
 	public:
 		
-		FSMLogger();
+		FSMLogger() : FSMLogger("<UNKNOWN LOGGER>") { }
+		
+		FSMLogger(const char *name);
+		FSMLogger(const std::string& name) : FSMLogger(name.c_str()) { }
 		
 		inline FSMLoggerProxy& operator[] (FSMLevel level) {
 			return this->get_proxy(level); }
 		
 		FSMLoggerProxy& get_proxy(FSMLevel level);
 		
-		void set_logger(FSMBasicStream& logger) { this->m_logger = &logger; }
-		FSMBasicStream &get_logger() { return *(this->m_logger); }
-		void clear_logger() { this->m_logger = nullptr; }
+		inline void set_logger(FSMBasicStream& logger) { this->m_logger = &logger; }
+		inline FSMBasicStream &get_logger() { return *(this->m_logger); }
+		inline void clear_logger() { this->m_logger = nullptr; }
 		
-		bool is_root() { return this->m_isroot; }
+		inline bool is_root() { return this->m_isroot; }
+		inline const std::string& getname() { return this->m_name; }
 		
 		void log(const char *src);
 		void log_noendl(const char *src);
 		
-		FSMLevel get_minlevel() { return this->m_minlevel; }
-		FSMLogger &set_minlevel(FSMLevel level) { this->m_minlevel = level; return *this; }
+		inline FSMLevel get_minlevel() { return this->m_minlevel; }
+		inline FSMLogger &set_minlevel(FSMLevel level) { this->m_minlevel = level; return *this; }
 		
-		FSMLevel get_deflevel() { return this->m_defaultlevel; }
-		FSMLogger &set_deflevel(FSMLevel level) { this->m_defaultlevel = level; return *this; }
+		inline FSMLevel get_deflevel() { return this->m_defaultlevel; }
+		inline FSMLogger &set_deflevel(FSMLevel level) { this->m_defaultlevel = level; return *this; }
 		
 	private:
 		FSMLevel m_minlevel = FSMLevel::Debug;
@@ -60,6 +65,7 @@ namespace FSM {
 		FSMBasicStream *m_logger = nullptr;
 		bool m_isroot = false;
 		std::vector<std::unique_ptr<FSMLoggerProxy> > m_proxies;
+		std::string m_name = "<UNKNOWN LOGGER>";
 	};
 	
 	class FSMLoggerProxy {
@@ -68,12 +74,14 @@ namespace FSM {
 		
 		inline FSMLoggerProxy& log(const char *src) {
 			if (this->m_level >= this->m_logger->get_minlevel()) {
-				if (this->inited) {
-					this->m_logger->log_noendl(src);
-				} else {
+				if (this->inited) this->m_logger->log_noendl(src);
+				else {
 					this->inited = true;
+					this->m_logger->log_noendl("[");
 					this->m_logger->log_noendl(FSMLevelNames[static_cast<std::size_t>(this->m_level)]);
-					this->m_logger->log_noendl(": ");
+					this->m_logger->log_noendl("] ");
+					this->m_logger->log_noendl(this->m_logger->getname().c_str());
+					this->m_logger->log_noendl(" - ");
 					this->m_logger->log_noendl(src);
 				}
 			}

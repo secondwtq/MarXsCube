@@ -47,7 +47,7 @@ void init() {
 	stream_stdout = new FSMStdStream();
 	stream_stdout->m_isroot = true;
 	
-	global_logger = new FSMLogger();
+	global_logger = new FSMLogger("root");
 	global_logger->m_isroot = true;
 	global_logger->set_logger(*stream_stdout);
 	
@@ -82,7 +82,7 @@ FSMLogger &get_logger(const std::string& name) {
 	if (logger_map.find(name) != logger_map.end()) {
 		return *logger_map.at(name);
 	} else {
-		FSMLogger *logger = new FSMLogger;
+		FSMLogger *logger = new FSMLogger(name);
 		logger_map.insert({ name, logger });
 		return *logger;
 	}
@@ -99,10 +99,11 @@ void dispose_logger(const std::string &name) {
 	}
 }
 
-FSMLogger::FSMLogger() {
+FSMLogger::FSMLogger(const char *name) : m_name(name) {
 	// init proxies
 	for (std::size_t i = (std::size_t)FSMLevel::Highest; i <= (std::size_t)FSMLevel::Lowest; i++)
-		this->m_proxies.push_back(std::unique_ptr<FSMLoggerProxy>(new FSMLoggerProxy(*this, static_cast<FSMLevel>(i))));
+		this->m_proxies.push_back(std::unique_ptr<FSMLoggerProxy>
+								  (new FSMLoggerProxy(*this, static_cast<FSMLevel>(i))));
 }
 
 void FSMLogger::log(const char *src) {

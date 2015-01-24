@@ -9,6 +9,8 @@
 #ifndef MarXsCube_FSMHelper_h
 #define MarXsCube_FSMHelper_h
 
+#include "FSMCommon.h"
+
 namespace FSMHelper {
 	using L = ::FSMLevel;
 	
