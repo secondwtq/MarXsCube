@@ -54,6 +54,8 @@
 		59FCBF361A73673100BEF905 /* FSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF341A73673100BEF905 /* FSM.cpp */; };
 		59FCBF3F1A73B8E200BEF905 /* BulletThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF3D1A73B8E200BEF905 /* BulletThread.cpp */; };
 		59FCBF431A73CA5700BEF905 /* Acheron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF411A73CA5700BEF905 /* Acheron.cpp */; };
+		59FCBF461A73CBEC00BEF905 /* SilconThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF441A73CBEC00BEF905 /* SilconThread.cpp */; };
+		59FCBF481A73D2AB00BEF905 /* Obsoleted.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF471A73D2AB00BEF905 /* Obsoleted.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -172,6 +174,9 @@
 		59FCBF3E1A73B8E200BEF905 /* BulletThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletThread.h; sourceTree = "<group>"; };
 		59FCBF411A73CA5700BEF905 /* Acheron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Acheron.cpp; sourceTree = "<group>"; };
 		59FCBF421A73CA5700BEF905 /* Acheron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Acheron.h; sourceTree = "<group>"; };
+		59FCBF441A73CBEC00BEF905 /* SilconThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SilconThread.cpp; sourceTree = "<group>"; };
+		59FCBF451A73CBEC00BEF905 /* SilconThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilconThread.h; sourceTree = "<group>"; };
+		59FCBF471A73D2AB00BEF905 /* Obsoleted.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Obsoleted.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +209,8 @@
 				5923C8DB19D00F730055E0D5 /* RenderElementsContainer.cpp */,
 				5916925F1A3E11D2001D4D35 /* SFLineShape.h */,
 				5916925E1A3E11D2001D4D35 /* SFLineShape.cpp */,
+				59FCBF451A73CBEC00BEF905 /* SilconThread.h */,
+				59FCBF441A73CBEC00BEF905 /* SilconThread.cpp */,
 			);
 			name = Silcon;
 			sourceTree = "<group>";
@@ -228,6 +235,7 @@
 			children = (
 				5926290C198AB66500858A67 /* CameraObject.h */,
 				59262928198AB66500858A67 /* CameraObject.cpp */,
+				59FCBF471A73D2AB00BEF905 /* Obsoleted.cpp */,
 			);
 			name = Obsoleted;
 			sourceTree = "<group>";
@@ -450,6 +458,7 @@
 				59262948198AB66500858A67 /* Object.cpp in Sources */,
 				59262944198AB66500858A67 /* Debug.cpp in Sources */,
 				59262954198AB66500858A67 /* Type_Object.cpp in Sources */,
+				59FCBF461A73CBEC00BEF905 /* SilconThread.cpp in Sources */,
 				59FCBF361A73673100BEF905 /* FSM.cpp in Sources */,
 				59262949198AB66500858A67 /* ObjectArrayImpl.cpp in Sources */,
 				59262951198AB66500858A67 /* Transform.cpp in Sources */,
@@ -462,6 +471,7 @@
 				59262955198AB66500858A67 /* Type_Techno.cpp in Sources */,
 				5923C8EF19D02A5E0055E0D5 /* PhysicsGeneral.cpp in Sources */,
 				59262947198AB66500858A67 /* Map.cpp in Sources */,
+				59FCBF481A73D2AB00BEF905 /* Obsoleted.cpp in Sources */,
 				5923C8E419D01EE60055E0D5 /* Generic.cpp in Sources */,
 				59262943198AB66500858A67 /* Config.cpp in Sources */,
 				59FCBF431A73CA5700BEF905 /* Acheron.cpp in Sources */,

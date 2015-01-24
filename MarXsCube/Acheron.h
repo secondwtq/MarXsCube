@@ -32,8 +32,8 @@ namespace Acheron {
 			this->m_target = target; }
 		
 		inline void start(SYNCSTATE synced) { this->start(static_cast<bool>(synced)); }
-		inline void invoke() { this->m_mutex.unlock(); this->m_cycle = true; this->m_cond.notify_all(); }
-		inline void pause() { this->m_mutex.lock(); }
+		inline void invoke() { if (this->m_running) { this->m_mutex.unlock(); this->m_cycle = true; this->m_cond.notify_all(); } }
+		inline void pause() { if (this->m_running) this->m_mutex.lock(); }
 		inline void invoke_and_stop() { this->_invoke(); this->stop(); }
 		
 		void start();
@@ -41,8 +41,13 @@ namespace Acheron {
 		inline void sync(bool value) { this->m_sync = value; }
 		
 		inline void _invoke() {
-			//			if (this->m_mutex.try_lock())
-			//				this->m_mutex.unlock();
+//						if (this->m_mutex.try_lock())
+//							this->m_mutex.unlock();
+//						else {
+//							this->m_mutex.lock();
+//							this->m_mutex.unlock();
+//						}
+			this->m_mutex.unlock();
 			this->m_cycle = true; this->m_cond.notify_all();
 		}
 		inline void stop() { this->m_running = false; this->m_thread.join(); }

@@ -19,22 +19,10 @@ using namespace std;
 
 #include "unistd.h"
 
-#include <thread>
-#include <mutex>
-#include <condition_variable>
-
 #include "Atheverybeginning.h"
 
 #include "BulletThread.h"
-
-bool game_running = false;
-bool should_update = false;
-std::mutex mut_phy;
-std::condition_variable update_phy;
-
-bool should_render = false;
-std::mutex mut_render;
-std::condition_variable update_render;
+#include "SilconThread.h"
 
 sf::RenderWindow *window_global = nullptr;
 
@@ -42,9 +30,6 @@ std::size_t global_counter = 0;
 std::size_t counter_render = 0;
 
 sf::Clock clock_render;
-
-std::thread t_thr_phy;
-std::thread t_thr_ren;
 
 #include "ModelLoader_obj.h"
 gl_vertarray verts_def;
@@ -59,8 +44,8 @@ int vert_texcid = 0;
 FSM::FSMLoggerProxy log_main = FSM::create_handle();
 
 void safe_session_close() {
-	game_running = false;
-	t_thr_ren.join();
+	Acheron::Bullet.invoke_and_stop();
+	Acheron::Silcon.invoke_and_stop();
 	TestManger::GetInstance().window->close();
 }
 
@@ -137,33 +122,6 @@ void render_gl() {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void thread_rendering() {
-	std::unique_lock<std::mutex> lk(mut_render);
-	
-	update_render.wait(lk, [] { return should_render; });
-	
-	window_global->setActive();
-	while (true) {
-		if (!game_running) return lk.unlock();
-		
-		counter_render++;
-		float fps = counter_render / clock_render.getElapsedTime().asSeconds();
-		printf("rendering... %lu %f\n", counter_render, fps);
-		window_global->clear(sf::Color::Black);
-		
-		window_global->pushGLStates();
-		for (size_t i = 0; i < RenderLayerType::Count; i++)
-			Generic::RenderLayerManger()->Layers[i].Update();
-		window_global->popGLStates();
-		
-		render_gl();
-		
-//		should_render = false;
-		window_global->display();
-//		lk.unlock();
-	}
-}
-
 int main() {
 	printf("MarXsCube by seCOnDatkE, 2014.\n\n");
 	
@@ -236,16 +194,15 @@ int main() {
 
 	Pathfinding::init(Map::GetInstance().size.x, Map::GetInstance().size.y);
 	obsTransform::UpdateVm(0, 0);
-
-	game_running = true;
-	t_thr_ren = std::thread(thread_rendering);
+	
 	Acheron::Bullet.start(Acheron::SYNCSTATE::SYNCED);
+	Acheron::Silcon.start(Acheron::SYNCSTATE::UNSYNCED);
 	
 	sf::Event event;
 	sf::Clock clock;
 	clock_render.restart();
 	while (window.isOpen()) {
-//		mut_render.lock();
+
 		Acheron::Bullet.pause();
 		
 		global_counter++;
@@ -296,15 +253,8 @@ int main() {
 		
 		ObjectManger::GetInstance().FinishRemove();
 
-		should_render = true;
 		Acheron::Bullet.invoke();
-		update_render.notify_all();
 	}
-	
-	Acheron::Bullet.invoke_and_stop();
-	should_render = true;
-	update_render.notify_all();
-//	t_thr_phy.join();
 	
 	Generic::Dispose_PhysicsGeneral();
 	
