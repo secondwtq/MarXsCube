@@ -19,18 +19,23 @@
 #include <memory>
 
 enum class FSMLevel {
+	Highest,
 	Fatal,
 	Error,
 	Warning,
 	Debug,
 	Message,
 	Trace,
+	Lowest,
 };
 
 namespace FSM {
 	
+	class FSMLogger;
+	
 	void init();
 	void dispose();
+	bool inited();
 	
 	class FSMBasicStream {
 	public:
@@ -92,11 +97,24 @@ namespace FSM {
 		std::vector<FSMBasicStream *> m_loggers;
 	};
 	
+	class FSMLoggerProxy {
+	public:
+		FSMLoggerProxy(FSMLogger& logger, FSMLevel level) : m_level(level), m_logger(&logger) { }
+		
+	private:
+		FSMLevel m_level = FSMLevel::Debug;
+		FSMLogger *m_logger = nullptr;
+	};
+	
 	class FSMLogger {
 		
 		friend void init();
 		
 	public:
+		
+		FSMLogger();
+		
+		FSMLoggerProxy& operator[] (FSMLevel level);
 		
 		void set_logger(FSMBasicStream& logger) { this->m_logger = &logger; }
 		FSMBasicStream &get_logger() { return *this->m_logger; }
@@ -104,15 +122,28 @@ namespace FSM {
 		
 		bool is_root() { return this->m_isroot; }
 		
+		void log(const char *src);
+		void log_noendl(const char *src);
+		
+		FSMLevel get_minlevel() { return this->m_minlevel; }
+		FSMLogger &set_minlevel(FSMLevel level) { this->m_minlevel = level; return *this; }
+		
+		FSMLevel get_deflevel() { return this->m_defaultlevel; }
+		FSMLogger &set_deflevel(FSMLevel level) { this->m_defaultlevel = level; return *this; }
+		
 	private:
 		FSMLevel m_minlevel = FSMLevel::Debug;
+		FSMLevel m_defaultlevel = FSMLevel::Debug;
 		FSMBasicStream *m_logger = nullptr;
 		bool m_isroot = false;
+		std::vector<FSMLoggerProxy> m_proxies;
 	};
 	
 	FSMLogger& logger();
 	
-	FSMLogger& l(const std::string &name);
+	FSMLogger& get_logger(const std::string &name);
+	
+	void dispose_logger(const std::string &name);
 }
 
 #endif /* defined(__MarXsCube__FSM__) */
