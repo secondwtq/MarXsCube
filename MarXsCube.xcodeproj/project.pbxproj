@@ -51,6 +51,7 @@
 		598D1DE11A3967FF0049653B /* RayTest_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */; };
 		598E6EEF1A6F649E000C68BE /* ModelLoader_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */; };
 		59FCBF2F1A713D8500BEF905 /* Atheverybeginning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF2D1A713D8500BEF905 /* Atheverybeginning.cpp */; };
+		59FCBF361A73673100BEF905 /* FSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF341A73673100BEF905 /* FSM.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -158,6 +159,8 @@
 		59FCBF2D1A713D8500BEF905 /* Atheverybeginning.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Atheverybeginning.cpp; sourceTree = "<group>"; };
 		59FCBF2E1A713D8500BEF905 /* Atheverybeginning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Atheverybeginning.h; sourceTree = "<group>"; };
 		59FCBF301A7273AA00BEF905 /* atheverybeginning.lunc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = atheverybeginning.lunc; sourceTree = "<group>"; };
+		59FCBF341A73673100BEF905 /* FSM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FSM.cpp; sourceTree = "<group>"; };
+		59FCBF351A73673100BEF905 /* FSM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSM.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +272,7 @@
 				592859051A37590A00D4AE91 /* Gmap */,
 				5923C8E619D026CE0055E0D5 /* Bullet */,
 				5932C84619D00C6800135717 /* Common */,
+				59FCBF371A73674300BEF905 /* FSM */,
 				5923C8DE19D0164B0055E0D5 /* Hafnium */,
 				5923C8D819D00E8B0055E0D5 /* Silcon */,
 				5923C8E519D0225A0055E0D5 /* Obsoleted */,
@@ -348,6 +352,15 @@
 			name = AtTheVeryBeginning;
 			sourceTree = "<group>";
 		};
+		59FCBF371A73674300BEF905 /* FSM */ = {
+			isa = PBXGroup;
+			children = (
+				59FCBF351A73673100BEF905 /* FSM.h */,
+				59FCBF341A73673100BEF905 /* FSM.cpp */,
+			);
+			name = FSM;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -417,6 +430,7 @@
 				59262948198AB66500858A67 /* Object.cpp in Sources */,
 				59262944198AB66500858A67 /* Debug.cpp in Sources */,
 				59262954198AB66500858A67 /* Type_Object.cpp in Sources */,
+				59FCBF361A73673100BEF905 /* FSM.cpp in Sources */,
 				59262949198AB66500858A67 /* ObjectArrayImpl.cpp in Sources */,
 				59262951198AB66500858A67 /* Transform.cpp in Sources */,
 				59262952198AB66500858A67 /* Type_Abstract.cpp in Sources */,

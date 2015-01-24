@@ -34,16 +34,16 @@ class AtTheVeryBeginning {
 	
 	friend void load_config(const std::string& filename);
 	
-public:
-	
-	AtTheVeryBeginning();
-	
-	void init(LuaStatus &L);
-	void register_interface();
-	
-private:
-	LuaStatus *_l = nullptr;
-	luabridge::LuaRef *_nil_ref = nullptr;
+	public:
+		
+		AtTheVeryBeginning();
+		
+		void init(LuaStatus &L);
+		void register_interface();
+		
+	private:
+		LuaStatus *_l = nullptr;
+		luabridge::LuaRef *_nil_ref = nullptr;
 };
 
 }
