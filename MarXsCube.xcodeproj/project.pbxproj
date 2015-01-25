@@ -43,6 +43,7 @@
 		59262954198AB66500858A67 /* Type_Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926293C198AB66500858A67 /* Type_Object.cpp */; };
 		59262955198AB66500858A67 /* Type_Techno.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926293D198AB66500858A67 /* Type_Techno.cpp */; };
 		592859091A37594700D4AE91 /* Gmap_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 592859071A37594700D4AE91 /* Gmap_Interface.cpp */; };
+		5944452F1A75389000941CEB /* CubeTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5944452D1A75389000941CEB /* CubeTransform.cpp */; };
 		595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */; };
 		595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */; };
 		595DDC13198ADD990046919B /* libLinearMath_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */; };
@@ -150,6 +151,8 @@
 		592859081A37594700D4AE91 /* Gmap_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gmap_Interface.h; sourceTree = "<group>"; };
 		5928590A1A375B0900D4AE91 /* bellman_ford.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bellman_ford.h; sourceTree = "<group>"; };
 		5928590C1A375F2000D4AE91 /* StdInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StdInterface.h; sourceTree = "<group>"; };
+		5944452D1A75389000941CEB /* CubeTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CubeTransform.cpp; sourceTree = "<group>"; };
+		5944452E1A75389000941CEB /* CubeTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubeTransform.h; sourceTree = "<group>"; };
 		595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletCollision_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletDynamics_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libLinearMath_xcode4_x64_release.a; sourceTree = "<group>"; };
@@ -316,7 +319,6 @@
 				59262919198AB66500858A67 /* Pathfinder.h */,
 				5926291E198AB66500858A67 /* Session.h */,
 				59262920198AB66500858A67 /* Techno.h */,
-				59262921198AB66500858A67 /* Transform.h */,
 				59262922198AB66500858A67 /* Type_Abstract.h */,
 				59262923198AB66500858A67 /* Type_Anim.h */,
 				59262924198AB66500858A67 /* Type_Object.h */,
@@ -335,15 +337,18 @@
 				59262935198AB66500858A67 /* Session.cpp */,
 				59262936198AB66500858A67 /* Techno.cpp */,
 				59262937198AB66500858A67 /* Test.cpp */,
-				59262939198AB66500858A67 /* Transform.cpp */,
 				5926293A198AB66500858A67 /* Type_Abstract.cpp */,
 				5926293B198AB66500858A67 /* Type_Anim.cpp */,
 				5926293C198AB66500858A67 /* Type_Object.cpp */,
 				5926293D198AB66500858A67 /* Type_Techno.cpp */,
 				598E6EEE1A6F649E000C68BE /* ModelLoader_obj.h */,
 				598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */,
+				59262921198AB66500858A67 /* Transform.h */,
+				59262939198AB66500858A67 /* Transform.cpp */,
 				59FCBF4A1A74840E00BEF905 /* GLFoundation.h */,
 				59FCBF491A74840E00BEF905 /* GLFoundation.cpp */,
+				5944452E1A75389000941CEB /* CubeTransform.h */,
+				5944452D1A75389000941CEB /* CubeTransform.cpp */,
 				59262903198AB62300858A67 /* MarXsCube.1 */,
 			);
 			path = MarXsCube;
@@ -456,6 +461,7 @@
 				59262941198AB66500858A67 /* Cell.cpp in Sources */,
 				5923C8DA19D00EB90055E0D5 /* RenderElement.cpp in Sources */,
 				5926294E198AB66500858A67 /* Techno.cpp in Sources */,
+				5944452F1A75389000941CEB /* CubeTransform.cpp in Sources */,
 				598E6EEF1A6F649E000C68BE /* ModelLoader_obj.cpp in Sources */,
 				5926294A198AB66500858A67 /* ObjectManger.cpp in Sources */,
 				5923C8EC19D0286F0055E0D5 /* InternalDraw.cpp in Sources */,
