@@ -8,6 +8,8 @@
 
 #include "Common.h"
 #include "SFML.h"
+
+#include "CubeTransform.h"
 #include "Transform.h"
 #include "InternalDraw.h"
 
@@ -48,7 +50,7 @@ void RenderElement_FramedDynamic::_Render_Overload(CoordStruct &loc) {LOGFUNC;
 
 void RenderElement_InternalLine::_Render_Overload(CoordStruct &loc) {LOGFUNC;
 	this->shape.m_thickness = this->thickness;
-	this->shape.setPoints(obsTransform::GetViewPos(this->point1), obsTransform::GetViewPos(this->point2));
+	this->shape.setPoints(CubeTransform::view_pos(this->point1), CubeTransform::view_pos(this->point2));
 	this->shape.setFillColor(sf::Color(this->color.x*255.0, this->color.y*255.0, this->color.z*255.0, this->color.w*255.0));
 	InternalDraw::Draw(this->shape);
 }

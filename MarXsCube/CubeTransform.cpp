@@ -6,9 +6,13 @@
 //  Copyright (c) 2015 MarXsCube Staff. All rights reserved.
 //
 
+#include "Common.h"
+#include "SFML.h"
+
 #include "CubeTransform.h"
 
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 namespace CubeTransform {
 	
@@ -22,12 +26,24 @@ namespace CubeTransform {
 	vec3 ct_vec_up { 0, 0, 1 };
 	vec3 ct_vec_zero { 0, 0, 0 };
 	
-	void generate_view_matrix() {
+	void update_view_matrix() {
 		vec3 za = normalize(ct_camera_pos - ct_look_at);
 		vec3 xa = normalize(cross(ct_vec_up, za));
 		vec3 ya = cross(za, xa);
 		
-//		ct_view_mat_temp = mat4(xa, ya, za, ct_vec_zero);
+		ct_view_mat = glm::lookAt(ct_camera_pos, ct_look_at, ct_vec_up);
 	}
+	
+	void generate_view_matrix(int ox, int oy) {
+		ct_look_at = { -ox, -oy, 0 };
+		ct_camera_pos = { 384-ox, 384-oy, 320 };
+
+		update_view_matrix();
+	}
+	
+	sf::Vector2f view_pos(const CoordStruct &coord) {
+		vec4 ret { (-coord.x), (-coord.y), (-coord.z), 1 };
+		ret = ct_view_mat * ret * float(TransformScaleFactor);
+		return sf::Vector2f(ret[0], ret[1]); }
 	
 }

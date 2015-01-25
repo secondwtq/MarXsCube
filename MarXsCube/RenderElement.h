@@ -6,6 +6,8 @@
 #include "Abstract.h"
 #include "SFLineShape.h"
 
+#include "CubeTransform.h"
+
 class RenderElementsContainer;
 
 class RenderElement {
@@ -133,26 +135,13 @@ protected:
 template <class T>
 inline void SetProjectionLocation_General(T *element, CoordStruct& loc) {
 	if (!element->UseShadowProjection)
-		element->renderSprite.setPosition(obsTransform::GetViewPos(loc+element->offset));
+		element->renderSprite.setPosition(CubeTransform::view_pos(loc+element->offset));
 	else {
 		auto _loc = loc + element->offset;
 		_loc = CoordStruct(element->ProjectionVector.z*_loc.x+element->ProjectionVector.x*_loc.z, element->ProjectionVector.z*_loc.y+element->ProjectionVector.y*_loc.z, 0);
-		element->renderSprite.setPosition(obsTransform::GetViewPos(_loc));
+		element->renderSprite.setPosition(CubeTransform::view_pos(_loc));
 	}
 }
-
-//template <class T>
-//inline sf::Vector2f SetProjectionLocation_pt(CoordStruct& loc, bool UseShadowProjection = false) {
-//	if (!UseShadowProjection)
-//		return obsTransform::GetViewPos(loc);
-//	else {
-//		return obsTransform::GetViewPos(loc);
-////		element->renderSprite.setPosition(obsTransform::GetViewPos(loc+element->offset));
-////		auto _loc = loc + element->offset;
-////		_loc = CoordStruct(element->ProjectionVector.z*_loc.x+element->ProjectionVector.x*_loc.z, element->ProjectionVector.z*_loc.y+element->ProjectionVector.y*_loc.z, 0);
-////		element->renderSprite.setPosition(obsTransform::GetViewPos(_loc));
-//	}
-//}
 
 #include "RenderElementsContainer.h"
 

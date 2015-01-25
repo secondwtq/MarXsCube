@@ -11,6 +11,8 @@
 #include "Pathfinder.h"
 #include "Generic.h"
 
+#include "CubeTransform.h"
+
 #include "FSM.h"
 using namespace FSMHelper;
 using namespace sf;
@@ -94,6 +96,7 @@ int main() {
 
 	Pathfinding::init(Map::GetInstance().size.x, Map::GetInstance().size.y);
 	obsTransform::UpdateVm(0, 0);
+	CubeTransform::generate_view_matrix(0, 0);
 	
 	Acheron::Bullet.start(Acheron::SYNCSTATE::SYNCED);
 	Acheron::Silcon.start(Acheron::SYNCSTATE::UNSYNCED);

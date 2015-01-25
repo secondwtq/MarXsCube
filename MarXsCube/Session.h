@@ -2,6 +2,8 @@
 #define CUBE_E_SESSION_H
 
 #include "Common.h"
+
+#include "CubeTransform.h"
 #include "Transform.h"
 
 class Abs_Abstract;
@@ -24,7 +26,8 @@ class Session {
 		float CameraOffestX = 0.0, CameraOffestY = 0.0;
 		CoordStruct CameraLocation = CameraLocationDefault;
 		void CameraMove(DirectionType::Type Direction, float offest = 2.0f);
-		void UpdateCameraOffest() { obsTransform::UpdateVm(CameraOffestX, CameraOffestY); }
+		void UpdateCameraOffest() { obsTransform::UpdateVm(CameraOffestX, CameraOffestY);
+					CubeTransform::generate_view_matrix(CameraOffestX, CameraOffestY); }
 
 		unsigned int MaxID = 0;
 		unsigned int addObject(Abs_Abstract &src);
