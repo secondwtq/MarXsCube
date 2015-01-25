@@ -21,8 +21,8 @@ function Functions.TestManger_onTestInit()
 	--		we just abandon original table
 	DATA_DOTS = transform_dots(DATA_DOTS)
 
-	local background = ModEnvironment.Functions.createTechno(OBJECTS.SATELITE_BG, Utility.CoordStruct(64*27+56, -36, 0))
-	background.temp_ZOffset = true
+	-- local background = ModEnvironment.Functions.createTechno(OBJECTS.SATELITE_BG, Utility.CoordStruct(64*27+56, -36, 0))
+	-- background.temp_ZOffset = true
 	local cycle = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(0, 0, 0), true)
 	local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(64, 256, 0), true)
 	ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))

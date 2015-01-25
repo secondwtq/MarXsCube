@@ -2,8 +2,15 @@
 #include "Common.h"
 
 #include <armadillo>
+#include <glm/glm.hpp>
 using namespace sf;
 using namespace arma;
+
+//#define GL_FACTOR 768.0
+#define GL_FACTOR 1.542168675
+
+glm::vec3 gl_campos { 384/GL_FACTOR, 384/GL_FACTOR, 320/GL_FACTOR };
+glm::vec3 gl_lookat { 0, 0, 0 };
 
 namespace obsTransform {
 
@@ -31,6 +38,9 @@ void gen_Vm() {LOGFUNC;
 void UpdateVm(int ox, int oy) {LOGFUNC;
 	look_at[0] = -ox, look_at[1] = -oy;
 	cam_pos[0] = 384-ox, cam_pos[1] = 384-oy;
+	
+	gl_lookat[0] = -oy/GL_FACTOR, gl_lookat[1] = -ox/GL_FACTOR;
+//	gl_campos[0] = (384+oy)/GL_FACTOR, gl_campos[1] = (384+ox)/GL_FACTOR;
 	gen_Vm();
 }
 

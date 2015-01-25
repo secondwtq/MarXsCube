@@ -5,7 +5,6 @@
 
 #include "Session.h"
 
-//Session *Session::instance = new Session();
 const CoordStruct Session::CameraLocationDefault = CoordStruct(384, 384, 320);
 
 unsigned int Session::addObject(Abs_Abstract &src) {LOGFUNC;

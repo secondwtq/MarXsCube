@@ -56,6 +56,7 @@
 		59FCBF431A73CA5700BEF905 /* Acheron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF411A73CA5700BEF905 /* Acheron.cpp */; };
 		59FCBF461A73CBEC00BEF905 /* SilconThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF441A73CBEC00BEF905 /* SilconThread.cpp */; };
 		59FCBF481A73D2AB00BEF905 /* Obsoleted.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF471A73D2AB00BEF905 /* Obsoleted.cpp */; };
+		59FCBF4B1A74840E00BEF905 /* GLFoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF491A74840E00BEF905 /* GLFoundation.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -177,6 +178,8 @@
 		59FCBF441A73CBEC00BEF905 /* SilconThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SilconThread.cpp; sourceTree = "<group>"; };
 		59FCBF451A73CBEC00BEF905 /* SilconThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilconThread.h; sourceTree = "<group>"; };
 		59FCBF471A73D2AB00BEF905 /* Obsoleted.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Obsoleted.cpp; sourceTree = "<group>"; };
+		59FCBF491A74840E00BEF905 /* GLFoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLFoundation.cpp; sourceTree = "<group>"; };
+		59FCBF4A1A74840E00BEF905 /* GLFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLFoundation.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,6 +342,8 @@
 				5926293D198AB66500858A67 /* Type_Techno.cpp */,
 				598E6EEE1A6F649E000C68BE /* ModelLoader_obj.h */,
 				598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */,
+				59FCBF4A1A74840E00BEF905 /* GLFoundation.h */,
+				59FCBF491A74840E00BEF905 /* GLFoundation.cpp */,
 				59262903198AB62300858A67 /* MarXsCube.1 */,
 			);
 			path = MarXsCube;
@@ -463,6 +468,7 @@
 				59262949198AB66500858A67 /* ObjectArrayImpl.cpp in Sources */,
 				59262951198AB66500858A67 /* Transform.cpp in Sources */,
 				59262952198AB66500858A67 /* Type_Abstract.cpp in Sources */,
+				59FCBF4B1A74840E00BEF905 /* GLFoundation.cpp in Sources */,
 				5926294F198AB66500858A67 /* Test.cpp in Sources */,
 				59FCBF3F1A73B8E200BEF905 /* BulletThread.cpp in Sources */,
 				59262940198AB66500858A67 /* CameraObject.cpp in Sources */,
