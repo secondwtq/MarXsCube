@@ -41,11 +41,14 @@ void load_obj() {
 extern glm::vec3 gl_campos;
 extern glm::vec3 gl_lookat;
 
+const double GL_FACTOR_SCALE = (DIVS / 10) * TransformScaleFactor * 1.1;
+
 void render_gl() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluLookAt(384, 384, 320, 0, 0, 0, 0, 0, 1);
 	glTranslatef(gl_lookat.x, gl_lookat.y, gl_lookat.z);
+	glScalef(GL_FACTOR_SCALE, GL_FACTOR_SCALE, GL_FACTOR_SCALE);
 	
 	glClear(GL_DEPTH_BUFFER_BIT);
 	
@@ -86,7 +89,6 @@ void init_opengl() {
 	glLoadIdentity();
 	glOrtho(0, width, height, 0, -16384.f, 16384.f);
 	glScalef(1, -1, 1);
-//	glOrtho(-1.f, 1.f, -1.f/ratio, 1.f/ratio, .1f, 500.f);
 	
 	tiler_shader_main.load_file(SHADERTYPE::VERTEX, "terrain_tiler.vert");
 	tiler_shader_main.load_file(SHADERTYPE::FRAG, "terrain_tiler.frag");

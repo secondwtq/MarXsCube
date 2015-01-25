@@ -7,7 +7,7 @@ using namespace sf;
 using namespace arma;
 
 //#define GL_FACTOR 768.0
-#define GL_FACTOR 1.542168675
+const double GL_FACTOR = 1.542168675;
 
 glm::vec3 gl_campos { 384/GL_FACTOR, 384/GL_FACTOR, 320/GL_FACTOR };
 glm::vec3 gl_lookat { 0, 0, 0 };
@@ -55,7 +55,7 @@ CoordStruct GetWorldPos(const CubePoint &pt) {LOGFUNC;
 	x = x * Vm.t().i();
 	x[0] -= x[2] * (6/5.0), x[1] -= x[2] * (6/5.0);
 	x[2] = 0;
-	x /= 0.6484375;
+	x /= TransformScaleFactor;
 	return CoordStruct(-x[0], -x[1], -x[2]);
 }
 

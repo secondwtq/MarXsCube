@@ -76,13 +76,11 @@ int main() {
 	printf("Running with OpenGL %d.%d.\n", settings_got.majorVersion, settings_got.minorVersion);
 	
 	ConfigManger config(luaState);
-	cout << "CubeCore: main - Registering LuaInterface... " << endl;
 	LuaInterface::RegisterInterface(luaState);
 	LuaUtils::initLuaUtils();
 	Generic::Init_FunObjectTableCreate_Forward(config);
 	Generic::Init_RenderLayerManger();
 	Generic::Init_PhysicsGeneral();
-	cout << "CubeCore: main - Loading Config... " << endl;
 	config.loadConfigFrom("Config.lua");
 	
 	init_opengl();
@@ -109,7 +107,7 @@ int main() {
 		
 		global_counter++;
 		float fps = global_counter / clock.getElapsedTime().asSeconds();
-		printf("updating... %lu %f\n", global_counter, fps);
+//		printf("updating... %lu %f\n", global_counter, fps);
 		
 		EventManger::GetInstance().GetEvent(EventManger::Events::GAME_UPDATE_BEGIN)();
 
