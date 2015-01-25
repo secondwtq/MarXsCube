@@ -44,12 +44,8 @@ extern glm::vec3 gl_lookat;
 void render_gl() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	std::cout << gl_lookat.x << " " << gl_lookat.y << " " << gl_lookat.z << endl;
-//	gluLookAt(gl_campos.x, gl_campos.y, gl_campos.z, gl_lookat.x, gl_lookat.y, gl_lookat.z, 0, 0, 1)
 	gluLookAt(384, 384, 320, 0, 0, 0, 0, 0, 1);
 	glTranslatef(gl_lookat.x, gl_lookat.y, gl_lookat.z);
-//	glScalef(0.001, 0.001, 0.001);
-//	gluLookAt(192, 192, 160, 0, 0, 0, 0, 0, 1);
 	
 	glClear(GL_DEPTH_BUFFER_BIT);
 	
@@ -81,14 +77,15 @@ void init_opengl() {
 	glClearDepth(1.f);
 	glDisable(GL_LIGHTING);
 	
-	glViewport(0, 0, window_global->getSize().x, window_global->getSize().y);
 	
+	GLdouble width = static_cast<double>(window_global->getSize().x),
+	height = static_cast<double>(window_global->getSize().y);
+	
+	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	GLfloat ratio = static_cast<float>(window_global->getSize().x) / window_global->getSize().y;
-	GLdouble width = static_cast<double>(window_global->getSize().x),
-			height = static_cast<double>(window_global->getSize().y);
-	glOrtho(-width/2, width/2, -height/2, height/2, .1f, 4096.f);
+	glOrtho(0, width, height, 0, -16384.f, 16384.f);
+	glScalef(1, -1, 1);
 //	glOrtho(-1.f, 1.f, -1.f/ratio, 1.f/ratio, .1f, 500.f);
 	
 	tiler_shader_main.load_file(SHADERTYPE::VERTEX, "terrain_tiler.vert");
