@@ -14,8 +14,6 @@
 
 #include "GLFoundation.h"
 
-#include "SilconThread.h"
-
 #include <SFML/OpenGL.hpp>
 #include <iostream>
 
@@ -146,18 +144,24 @@ void init_opengl() {
 	//	glDisableClientState(GL_COLOR_ARRAY);
 }
 
+#include "Generic.h"
+#include "Transform.h"
+#include "SilconThread.h"
+
 void raise_verts() {
 	gl_vert_object *verts = verts_idx_def.verts();
 	
+	CoordStruct current_pos = obsTransform::GetWorldPos(Generic::Session()->MousePosData.pos);
+	
 	for (std::size_t i = 0; i < verts_idx_def.count_vert(); i++) {
 		glm::vec3 pos_xy = verts[i].position;
-		glm::vec3 pos_cmp { 64*10, 64*10, pos_xy.z };
+		glm::vec3 pos_cmp { current_pos.y, current_pos.x, pos_xy.z };
 		
 		auto d = glm::distance(pos_xy, pos_cmp);
 		
-		if (d < 640) {
-			float t = pow((640-d) / 640.0, 2);
-			verts[i].position.z += 64*3*t;
+		if (d < 256) {
+			float t = pow((256-d) / 256.0, 2);
+			verts[i].position.z += 64*2*t;
 			verts[i].blendweight[0] = sqrt(sqrt(t));
 		}
 	}
