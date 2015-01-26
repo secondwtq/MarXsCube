@@ -13,4 +13,6 @@ void init_opengl();
 
 void render_gl();
 
+void raise_verts();
+
 #endif /* defined(__MarXsCube__GLFoundation__) */

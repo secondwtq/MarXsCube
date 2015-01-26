@@ -98,7 +98,8 @@ int main() {
 	CubeTransform::generate_view_matrix(0, 0);
 	
 	Acheron::Bullet.start(Acheron::SYNCSTATE::SYNCED);
-	Acheron::Silcon.start(Acheron::SYNCSTATE::UNSYNCED);
+	Acheron::Silcon.start(Acheron::SYNCSTATE::SYNCED_NONAUTO);
+	Acheron::Silcon.invoke();
 	
 	sf::Event event;
 	sf::Clock clock;
@@ -133,7 +134,7 @@ int main() {
 				case Event::MouseButtonPressed:
 					Generic::Session()->setMousePos_Press(event.mouseButton);
 					EventManger::GetInstance().GetEvent(EventManger::Events::UI_MOUSEPRESS)(Generic::Session()->getMousePos());
-					// Pathfinding::Find(nullptr, nullptr, nullptr);
+					raise_verts();
 					break;
 
 				case Event::MouseButtonReleased:

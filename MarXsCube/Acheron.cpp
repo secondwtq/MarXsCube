@@ -26,7 +26,7 @@ void Acheron::AcheronBase::function() {
 		if (this->m_sync) this->m_cond.wait(lk, [this] { return this->m_cycle; });
 		if (!this->m_running) return lk.unlock();
 		this->m_target();
-		if (this->m_running) this->m_cycle = false;
+		if (this->m_running) { if (this->m_auto_lock) this->m_cycle = false; }
 		else return lk.unlock();
 		lk.unlock();
 	}

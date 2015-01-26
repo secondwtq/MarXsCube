@@ -14,6 +14,8 @@
 
 #include "GLFoundation.h"
 
+#include "SilconThread.h"
+
 #include <SFML/OpenGL.hpp>
 #include <iostream>
 
@@ -47,7 +49,7 @@ void load_obj() {
 extern glm::vec3 gl_campos;
 extern glm::vec3 gl_lookat;
 
-const double GL_FACTOR_SCALE = (DIVS / 10) * TransformScaleFactor * 1.1;
+const double GL_FACTOR_SCALE = (DIVS / 64) * TransformScaleFactor * 1.06;
 
 void render_gl() {
 	glMatrixMode(GL_MODELVIEW);
@@ -124,7 +126,7 @@ void init_opengl() {
 	
 	glGenBuffers(1, &vert_buf_new);
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf_new);
-	glBufferData(GL_ARRAY_BUFFER, verts_idx_def.count_vert() * sizeof(gl_vert_object), verts_idx_def.verts(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, verts_idx_def.count_vert() * sizeof(gl_vert_object), verts_idx_def.verts(), GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	
 	glGenBuffers(1, &idx_buf);
@@ -134,4 +136,25 @@ void init_opengl() {
 	
 	//	glDisableClientState(GL_NORMAL_ARRAY);
 	//	glDisableClientState(GL_COLOR_ARRAY);
+}
+
+void raise_verts() {
+	gl_vert_object *verts = verts_idx_def.verts();
+	
+	for (std::size_t i = 0; i < verts_idx_def.count_vert(); i++) {
+		glm::vec3 pos_xy = verts[i].position;
+		glm::vec3 pos_cmp { 0, 0, pos_xy.z };
+		
+		auto d = glm::distance(pos_xy, pos_cmp);
+		
+		if (d < 640) {
+			verts[i].position.z += (640-d)/2;
+		}
+	}
+	
+	Acheron::Silcon.pause();
+	glBindBuffer(GL_ARRAY_BUFFER, vert_buf_new);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, verts_idx_def.count_vert() * sizeof(gl_vert_object), verts);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	Acheron::Silcon.invoke();
 }

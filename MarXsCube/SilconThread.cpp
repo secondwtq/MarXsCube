@@ -25,9 +25,9 @@ sf::Clock clock_render;
 void silcon_acheron_function() {
 	counter_render++;
 	float fps = counter_render / clock_render.getElapsedTime().asSeconds();
-	printf("rendering... %lu %f\n", counter_render, fps);
+//	printf("rendering... %lu %f\n", counter_render, fps);
 	window_global->clear(sf::Color::Black);
-	
+
 	render_gl();
 	
 	window_global->pushGLStates();
