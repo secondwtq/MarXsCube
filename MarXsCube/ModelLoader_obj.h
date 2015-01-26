@@ -77,6 +77,7 @@ struct gl_vert_object {
 	glm::vec3 position;
 	glm::vec3 normal;
 	glm::vec3 texcoord;
+	glm::vec3 blendweight { 0 };
 };
 
 void transfer_verts_idx(gl_vertarray_indexed& dest, const objfile &src);

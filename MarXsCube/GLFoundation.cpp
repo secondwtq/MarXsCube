@@ -21,18 +21,18 @@
 
 extern sf::RenderWindow *window_global;
 
-gl_vertarray verts_def;
 gl_shader tiler_shader_main;
 
 gl_vertarray_indexed verts_idx_def;
 GLIDX texture_main = 0;
+GLIDX texture_second = 0;
 
 int vert_attrid = 0;
 int vert_normid = 0;
 int vert_textid = 0;
 int vert_texcid = 0;
-
-GLuint vert_buf;
+int vert_text_second_id = 0;
+int vert_blendid = 0;
 
 GLuint vert_buf_new;
 GLuint idx_buf;
@@ -42,7 +42,6 @@ void load_obj() {
 	obj_test.filepath = "drawcall.obj";
 	obj_test.parse();
 	
-	transfer_verts(verts_def, obj_test);
 	transfer_verts_idx(verts_idx_def, obj_test);
 }
 
@@ -63,17 +62,25 @@ void render_gl() {
 	tiler_shader_main.use();
 	
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf_new);
-	glVertexAttribPointer(vert_attrid, 3, GL_FLOAT, GL_FALSE, 9*sizeof(float), (char *)0);
-	glVertexAttribPointer(vert_normid, 3, GL_FLOAT, GL_FALSE, 9*sizeof(float), (char *)(3*sizeof(GLfloat)));
-	glVertexAttribPointer(vert_texcid, 3, GL_FLOAT, GL_FALSE, 9*sizeof(float), (char *)(6*sizeof(GLfloat)));
+	glVertexAttribPointer(vert_attrid, 3, GL_FLOAT, GL_FALSE, 12*sizeof(float), (char *)0);
+	glVertexAttribPointer(vert_normid, 3, GL_FLOAT, GL_FALSE, 12*sizeof(float), (char *)(3*sizeof(GLfloat)));
+	glVertexAttribPointer(vert_texcid, 3, GL_FLOAT, GL_FALSE, 12*sizeof(float), (char *)(6*sizeof(GLfloat)));
+	glVertexAttribPointer(vert_blendid, 1, GL_FLOAT, GL_FALSE, 12*sizeof(float), (char *)(9*sizeof(GLfloat)));
 	glEnableVertexAttribArray(vert_attrid);
 	glEnableVertexAttribArray(vert_normid);
 	glEnableVertexAttribArray(vert_texcid);
+	glEnableVertexAttribArray(vert_blendid);
+	
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture_main);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glUniform1i(vert_textid, 0);
+//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, texture_second);
+	
+	glUniform1i(vert_texcid, 0);
+	glUniform1i(vert_text_second_id, 1);
 	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idx_buf);
 	glDrawElements(GL_TRIANGLES, (int)verts_idx_def.count_idx(), GL_UNSIGNED_INT, 0);
@@ -82,6 +89,7 @@ void render_gl() {
 	glDisableVertexAttribArray(vert_texcid);
 	glDisableVertexAttribArray(vert_normid);
 	glDisableVertexAttribArray(vert_attrid);
+	glDisableVertexAttribArray(vert_blendid);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
@@ -109,20 +117,20 @@ void init_opengl() {
 	
 	vert_attrid = tiler_shader_main.get_attribute("position");
 	vert_normid = tiler_shader_main.get_attribute("s_normal");
-	vert_textid = tiler_shader_main.get_attribute("s_texture_main");
+	
 	vert_texcid = tiler_shader_main.get_attribute("s_texcoord");
+	vert_blendid = tiler_shader_main.get_attribute("s_blendweight");
+	
+	vert_textid = tiler_shader_main.get_uniform("s_texture_main");
+	vert_text_second_id = tiler_shader_main.get_uniform("s_texture_second");
 	
 	texture_main = TextureManger::GetInstance().TextureHashs["DOGE"]->texture.m_texture;
+	texture_second = TextureManger::GetInstance().TextureHashs["JAGUAR"]->texture.m_texture;
 	
 	std::cout << tiler_shader_main.log(SHADERTYPE::VERTEX);
 	std::cout << tiler_shader_main.log(SHADERTYPE::FRAG);
 	
 	load_obj();
-	
-	glGenBuffers(1, &vert_buf);
-	glBindBuffer(GL_ARRAY_BUFFER, vert_buf);
-	glBufferData(GL_ARRAY_BUFFER, verts_def.len() * sizeof(float), verts_def.array(), GL_STATIC_DRAW);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	
 	glGenBuffers(1, &vert_buf_new);
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf_new);
@@ -143,12 +151,14 @@ void raise_verts() {
 	
 	for (std::size_t i = 0; i < verts_idx_def.count_vert(); i++) {
 		glm::vec3 pos_xy = verts[i].position;
-		glm::vec3 pos_cmp { 0, 0, pos_xy.z };
+		glm::vec3 pos_cmp { 64*10, 64*10, pos_xy.z };
 		
 		auto d = glm::distance(pos_xy, pos_cmp);
 		
 		if (d < 640) {
-			verts[i].position.z += (640-d)/2;
+			float t = pow((640-d) / 640.0, 2);
+			verts[i].position.z += 64*3*t;
+			verts[i].blendweight[0] = sqrt(sqrt(t));
 		}
 	}
 	

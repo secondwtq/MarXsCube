@@ -6,12 +6,15 @@
 varying vec3 frag_normal;
 varying vec3 frag_light_dir;
 varying vec3 frag_texcoord;
+varying float frag_blendweight;
 
 attribute vec3 position;
 attribute vec3 s_normal;
 attribute vec3 s_texcoord;
+attribute float s_blendweight;
 
 uniform sampler2D s_texture_main;
+uniform sampler2D s_texture_second;
 
 void main() {
 
@@ -20,6 +23,7 @@ void main() {
 	frag_normal = normalize(s_normal);
 	frag_light_dir = normalize(light_dir);
 	frag_texcoord = s_texcoord;
+	frag_blendweight = s_blendweight;
 
 	vec4 position_4 = vec4(position.xyz, 1);
 

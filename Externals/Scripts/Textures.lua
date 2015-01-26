@@ -88,3 +88,10 @@ TEXTURES.DOGE = TEXTURES.DUMMY:newObject({
 	frame_col = 1,
 	frame_row = 1,
 })
+
+TEXTURES.JAGUAR = TEXTURES.DUMMY:newObject({
+	filename = "./Textures/jaguar.png",
+	frame_count = 1,
+	frame_col = 1,
+	frame_row = 1,
+})
