@@ -25,14 +25,14 @@ void silcon_acheron_function() {
 //	printf("rendering... %lu %f\n", counter_render, fps);
 	window_global->clear(sf::Color::Black);
 	
-	render_gl();
+//	render_gl();
 	
 	window_global->pushGLStates();
 	for (size_t i = 0; i < RenderLayerType::Count; i++)
 		Generic::RenderLayerManger()->Layers[i].Update();
 	window_global->popGLStates();
 	
-//	render_gl();
+	render_gl();
 	
 	//		should_render = false;
 	window_global->display();

@@ -166,9 +166,9 @@ void objfile::parse() {
 			string_split(t, ' ', splits.begin());
 			
 			if (splits[0] == "v")		// read vertexs
-				this->raw_verts.push_back(vec3(-stof(splits[3]), stof(splits[1]), stof(splits[2])));
+				this->raw_verts.push_back(vec3(stof(splits[3]), stof(splits[1]), stof(splits[2])));
 			else if (splits[0] == "vn")		// read vertex normals
-				this->raw_normals.push_back({ -stof(splits[3]), stof(splits[1]), stof(splits[2]) });
+				this->raw_normals.push_back({ stof(splits[3]), stof(splits[1]), stof(splits[2]) });
 			
 			else if (splits[0] == "f") {		// read meshes
 				i32vec3 vert_idxs, vert_uvcoords;
@@ -186,7 +186,7 @@ void objfile::parse() {
 			
 			else if (splits[0] == "vt") {		// read texture coords
 				if (!splits[3].length()) splits[3] = "0";
-				this->raw_uvcoords.push_back({ stof(splits[1]), stof(splits[2]), stof(splits[3]) });
+				this->raw_uvcoords.push_back({ stof(splits[1]), 1-stof(splits[2]), stof(splits[3]) });
 			}
 			
 		}

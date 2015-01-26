@@ -19,12 +19,10 @@ namespace CubeTransform {
 	using namespace glm;
 
 	mat4 ct_view_mat;
-	mat4 ct_view_mat_temp;
 	
 	vec3 ct_camera_pos { 384, 384, 320 };
 	vec3 ct_look_at { 0, 0, 0 };
 	vec3 ct_vec_up { 0, 0, 1 };
-	vec3 ct_vec_zero { 0, 0, 0 };
 	
 	void update_view_matrix() {
 		vec3 za = normalize(ct_camera_pos - ct_look_at);

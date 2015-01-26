@@ -63,6 +63,8 @@ void render_gl() {
 	glEnableVertexAttribArray(vert_texcid);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture_main);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glUniform1i(vert_textid, 0);
 	glDrawArrays(GL_TRIANGLES, 0, (int)verts_def.len());
 	glDisableVertexAttribArray(vert_texcid);
