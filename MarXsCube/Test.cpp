@@ -28,9 +28,8 @@ using namespace std;
 sf::RenderWindow *window_global = nullptr;
 
 std::size_t global_counter = 0;
-std::size_t counter_render = 0;
 
-sf::Clock clock_render;
+extern sf::Clock clock_render;
 
 FSM::FSMLoggerProxy log_main = FSM::create_handle();
 

@@ -21,6 +21,8 @@ extern sf::RenderWindow *window_global;
 
 gl_vertarray verts_def;
 gl_shader tiler_shader_main;
+
+gl_vertarray_indexed verts_idx_def;
 GLIDX texture_main = 0;
 
 int vert_attrid = 0;
@@ -30,12 +32,16 @@ int vert_texcid = 0;
 
 GLuint vert_buf;
 
+GLuint vert_buf_new;
+GLuint idx_buf;
+
 void load_obj() {
 	objfile obj_test;
 	obj_test.filepath = "drawcall.obj";
 	obj_test.parse();
 	
 	transfer_verts(verts_def, obj_test);
+	transfer_verts_idx(verts_idx_def, obj_test);
 }
 
 extern glm::vec3 gl_campos;
@@ -53,11 +59,11 @@ void render_gl() {
 	glClear(GL_DEPTH_BUFFER_BIT);
 	
 	tiler_shader_main.use();
-	glBindBuffer(GL_ARRAY_BUFFER, vert_buf);
-	//	glVertexPointer(3, GL_FLOAT, 5*sizeof(GLfloat), (char *)0);
-	glVertexAttribPointer(vert_attrid, 3, GL_FLOAT, GL_FALSE, 8*sizeof(float), (char *)0);
-	glVertexAttribPointer(vert_normid, 3, GL_FLOAT, GL_FALSE, 8*sizeof(float), (char *)(3*sizeof(GLfloat)));
-	glVertexAttribPointer(vert_texcid, 2, GL_FLOAT, GL_FALSE, 8*sizeof(float), (char *)(6*sizeof(GLfloat)));
+	
+	glBindBuffer(GL_ARRAY_BUFFER, vert_buf_new);
+	glVertexAttribPointer(vert_attrid, 3, GL_FLOAT, GL_FALSE, 9*sizeof(float), (char *)0);
+	glVertexAttribPointer(vert_normid, 3, GL_FLOAT, GL_FALSE, 9*sizeof(float), (char *)(3*sizeof(GLfloat)));
+	glVertexAttribPointer(vert_texcid, 3, GL_FLOAT, GL_FALSE, 9*sizeof(float), (char *)(6*sizeof(GLfloat)));
 	glEnableVertexAttribArray(vert_attrid);
 	glEnableVertexAttribArray(vert_normid);
 	glEnableVertexAttribArray(vert_texcid);
@@ -66,7 +72,11 @@ void render_gl() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glUniform1i(vert_textid, 0);
-	glDrawArrays(GL_TRIANGLES, 0, (int)verts_def.len());
+	
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idx_buf);
+	glDrawElements(GL_TRIANGLES, (int)verts_idx_def.count_idx(), GL_UNSIGNED_INT, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	
 	glDisableVertexAttribArray(vert_texcid);
 	glDisableVertexAttribArray(vert_normid);
 	glDisableVertexAttribArray(vert_attrid);
@@ -81,7 +91,6 @@ void init_opengl() {
 	glDepthMask(GL_TRUE);
 	glClearDepth(1.f);
 	glDisable(GL_LIGHTING);
-	
 	
 	GLdouble width = static_cast<double>(window_global->getSize().x),
 	height = static_cast<double>(window_global->getSize().y);
@@ -112,6 +121,16 @@ void init_opengl() {
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf);
 	glBufferData(GL_ARRAY_BUFFER, verts_def.len() * sizeof(float), verts_def.array(), GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	
+	glGenBuffers(1, &vert_buf_new);
+	glBindBuffer(GL_ARRAY_BUFFER, vert_buf_new);
+	glBufferData(GL_ARRAY_BUFFER, verts_idx_def.count_vert() * sizeof(gl_vert_object), verts_idx_def.verts(), GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	
+	glGenBuffers(1, &idx_buf);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idx_buf);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, verts_idx_def.count_idx() * sizeof(GLIDX), verts_idx_def.indexes(), GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	
 	//	glDisableClientState(GL_NORMAL_ARRAY);
 	//	glDisableClientState(GL_COLOR_ARRAY);

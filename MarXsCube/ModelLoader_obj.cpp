@@ -19,6 +19,8 @@
 
 #include <iostream>
 
+#include <unordered_map>
+
 #include <algorithm>
 template <typename IterT>
 IterT string_split(const std::string& src, const char delim, IterT out) {
@@ -142,6 +144,52 @@ void transfer_verts(gl_vertarray& dest, const objfile &src) {
 //		if (i % 8 == 0) printf("\n");
 //		printf("%.2f ", dest.array()[i]);
 //	}
+}
+
+void transfer_verts_idx(gl_vertarray_indexed& dest, const objfile &src) {
+	dest.init_with(src.raw_verts.size(), src.raw_faces.size()*3);
+	
+	std::unordered_map<std::size_t, std::size_t> texcoord_cache;
+	
+	gl_vert_object *dest_verts = dest.verts();
+	
+	for (std::size_t i = 0; i < src.raw_verts.size(); i++) {
+		const glm::i32vec3& face = src.raw_faces[i];
+		
+		auto p1 = src.raw_verts[face[0]], p2 = src.raw_verts[face[1]], p3 = src.raw_verts[face[2]];
+		glm::vec3 v1 = p2 - p1, v2 = p3 - p1;
+		glm::vec3 normal { (v1.y*v2.z)-(v1.z*v2.y), -((v2.z*v1.x)-(v2.x*v1.z)), (v1.x*v2.y)-(v1.y*v2.x) };
+		
+		dest_verts[i].position = src.raw_verts[i];
+		if (src.raw_normals.size() > i)
+			dest_verts[i].normal = src.raw_normals[i];
+		else
+			dest_verts[i].normal = normal;
+		
+		if (texcoord_cache.find(i) != texcoord_cache.end()) {
+			dest_verts[i].texcoord = src.raw_uvcoords[texcoord_cache.at(i)];
+		} else {
+			for (int j = 0; j < src.raw_faces.size(); j++) {
+				for (int k = 0; k < 3; k++) {
+					auto vert_idx = src.raw_faces[j][k];
+					texcoord_cache[vert_idx] = src.raw_face_uvcoords[j][k];
+					if (vert_idx == i) {
+						dest_verts[i].texcoord = src.raw_uvcoords[src.raw_face_uvcoords[j][k]];
+						break;
+					}
+				}
+			}
+		}
+		
+	}
+	
+	GLIDX *dest_idxs = dest.indexes();
+	
+	for (std::size_t i = 0; i < src.raw_faces.size(); i++) {
+		glm::i32vec3 current_face = src.raw_faces[i];
+		for (int j = 0; j < 3; j++)
+			dest_idxs[i*3+j] = current_face[j];
+	}
 }
 
 void objfile::parse() {

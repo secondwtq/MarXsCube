@@ -5,11 +5,11 @@
 
 varying vec3 frag_normal;
 varying vec3 frag_light_dir;
-varying vec2 frag_texcoord;
+varying vec3 frag_texcoord;
 
 attribute vec3 position;
 attribute vec3 s_normal;
-attribute vec2 s_texcoord;
+attribute vec3 s_texcoord;
 
 uniform sampler2D s_texture_main;
 

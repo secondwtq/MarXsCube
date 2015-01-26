@@ -83,7 +83,7 @@ TEXTURES.SATELITE = TEXTURES.DUMMY:newObject({
 })
 
 TEXTURES.DOGE = TEXTURES.DUMMY:newObject({
-	filename = "./Textures/doge.jpg",
+	filename = "./Textures/doge.png",
 	frame_count = 1,
 	frame_col = 1,
 	frame_row = 1,

@@ -22,6 +22,7 @@ using FaceSpec = std::array<std::size_t, 3>;
 
 class objfile;
 class gl_vertarray;
+class gl_vertarray_indexed;
 
 void transfer_verts(gl_vertarray& dest, const objfile &src);
 
@@ -70,6 +71,45 @@ private:
 	float *_data = nullptr;
 	std::size_t _len = 0;
 	
+};
+
+struct gl_vert_object {
+	glm::vec3 position;
+	glm::vec3 normal;
+	glm::vec3 texcoord;
+};
+
+void transfer_verts_idx(gl_vertarray_indexed& dest, const objfile &src);
+
+class gl_vertarray_indexed {
+public:
+	
+	void clear() {
+		this->m_len_vert = 0;
+		delete [] this->m_vert_data;
+		this->m_len_idx = 0;
+		delete [] this->m_idx_data;
+	}
+	
+	void init_with(std::size_t count_vert, std::size_t count_idx) {
+		this->m_len_vert = count_vert;
+		this->m_len_idx = count_idx;
+		this->m_vert_data = new gl_vert_object[m_len_vert];
+		this->m_idx_data = new GLIDX[m_len_idx];
+	}
+	
+	gl_vert_object *verts() { return this->m_vert_data; }
+	GLIDX *indexes() { return this->m_idx_data; }
+	
+	std::size_t count_vert() { return this->m_len_vert; }
+	std::size_t count_idx() { return this->m_len_idx; }
+
+private:
+	gl_vert_object *m_vert_data = nullptr;
+	GLIDX *m_idx_data = nullptr;
+	
+	std::size_t m_len_vert = 0;
+	std::size_t m_len_idx = 0;
 };
 
 class objfile {
