@@ -39,6 +39,7 @@ void safe_session_close() {
 	TestManger::GetInstance().window->close();
 }
 
+#include "TilerBullet.h"
 #include "GLFoundation.h"
 
 int main() {
@@ -92,6 +93,7 @@ int main() {
 	window.setFramerateLimit(FPSLimit);
 	window.setVerticalSyncEnabled(true);
 	TestManger::GetInstance().initTest();
+	init_terrain_physhape();
 
 	Pathfinding::init(Map::GetInstance().size.x, Map::GetInstance().size.y);
 	obsTransform::UpdateVm(0, 0);
@@ -134,7 +136,7 @@ int main() {
 				case Event::MouseButtonPressed:
 					Generic::Session()->setMousePos_Press(event.mouseButton);
 					EventManger::GetInstance().GetEvent(EventManger::Events::UI_MOUSEPRESS)(Generic::Session()->getMousePos());
-					raise_verts();
+//					raise_verts();
 					break;
 
 				case Event::MouseButtonReleased:

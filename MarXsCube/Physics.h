@@ -17,7 +17,8 @@ enum PhysicsShapes {
 	BOX,
 	SPHERE,
 	CYLINDER,
-	COMPOUND
+	COMPOUND,
+	MESHES
 };
 
 class PhysicsShapeType {
@@ -38,6 +39,15 @@ class PhysicsShapeTypeBox : public PhysicsShapeType {
 
 		bool LoadFromConfig(ConfigManger &manger, luabridge::LuaRef ShapeRef);
 		btCollisionShape *createShape();
+};
+
+class PhysicsShapeTypeMeshStatic : public PhysicsShapeType {
+	public:
+		btCollisionShape *createShape();
+		void set_mesh(btTriangleMesh *mesh) { this->_mesh = mesh; }
+	
+	private:
+		btTriangleMesh *_mesh = nullptr;
 };
 
 class PhysicsObjectType {

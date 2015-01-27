@@ -14,6 +14,9 @@ local Helpers = require 'Helpers'
 -- args: mouse_status: same as Functions.Session_MousePress
 --		ray: the RayTestSingle object used to test ray collision
 function InputHandler.MousePress_OnObject(mouse_status, ray)
+	local hit_point = ray:hit_point()
+	print("hit on object", hit_point.x, hit_point.y, hit_point.z)
+
 	local techno_pressedon = Helpers.toTechno(ray:getFirstObject().attachedToObject).ExtTable
 	techno_pressedon.components.a['GraphVehicle']:select_single()
 end
@@ -22,19 +25,19 @@ end
 -- args: mouse_status: same as Functions.Session_MousePress
 function InputHandler.MousePress_OnCell(mouse_status)
 	local coord = Utility.GetCoordFromPoint(mouse_status.pos)
-	local rt_start = coord
+	local rt_start = Utility.CoordStruct(coord.x-600, coord.y-600, coord.z-500)
 	local rt_end = Utility.CoordStruct(coord.x+6000, coord.y+6000, coord.z+5000)
 	local ray_cell = Physics.RayTestSingleForCell.createRayTestForCell(rt_end, rt_start)
 	ray_cell:perform()
 
 	if ray_cell:hit() then
 		local hit_point = ray_cell:hit_point()
-		print(hit_point.x, hit_point.y, hit_point.z)
+		print("hit on cell", hit_point.x, hit_point.y, hit_point.z)
 
 		local nearest_node = find_nearest_node(hit_point, 64)
 		if nearest_node and TECHNO_SELECTED then
 			local idx_node = nearest_node.components.a['GraphNodeStore']:get_datafield 'idx_initial'
-			print('Selected node ', idx_node)
+			-- print('Selected node ', idx_node)
 			move_techno_graph(TECHNO_SELECTED, nearest_node)
 		end
 	end

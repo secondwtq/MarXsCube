@@ -35,8 +35,9 @@ int vert_blendid = 0;
 GLuint vert_buf_new;
 GLuint idx_buf;
 
+objfile obj_test;
+
 void load_obj() {
-	objfile obj_test;
 	obj_test.filepath = "drawcall.obj";
 	obj_test.parse();
 	
@@ -148,6 +149,8 @@ void init_opengl() {
 #include "Transform.h"
 #include "SilconThread.h"
 
+#include <cmath>
+
 void raise_verts() {
 	gl_vert_object *verts = verts_idx_def.verts();
 	
@@ -159,10 +162,10 @@ void raise_verts() {
 		
 		auto d = glm::distance(pos_xy, pos_cmp);
 		
-		if (d < 256) {
-			float t = pow((256-d) / 256.0, 2);
-			verts[i].position.z += 64*2*t;
-			verts[i].blendweight[0] = sqrt(sqrt(t));
+		if (d < 128) {
+			float t = pow((128-d) / 128.0, 2);
+			verts[i].position.z += 32*t;
+			verts[i].blendweight[0] = std::min(verts[i].blendweight[0]+sqrt(t), 1.0f);
 		}
 	}
 	

@@ -29,6 +29,11 @@ btCollisionShape *PhysicsShapeTypeBox::createShape() {LOGFUNC;
 	return new btBoxShape(btVector3(btScalar(size.x), btScalar(size.y), btScalar(size.z)));
 }
 
+btCollisionShape *PhysicsShapeTypeMeshStatic::createShape() {
+	bool use_quantization = true;
+	return new btBvhTriangleMeshShape(this->_mesh, use_quantization);
+}
+
 bool PhysicsObjectType::LoadFromConfig(ConfigManger &manger, LuaRef ParentRef) {LOGFUNC;
 	std::cout << "CubeCore: PhysicsObjectType::LoadFromConfig - Loading ";
 	LuaRef PhysicsRef = ParentRef["physics"];
@@ -63,7 +68,7 @@ PhysicsObject::~PhysicsObject() {LOGFUNC;
 }
 
 void PhysicsObject::SpawnAt(const CoordStruct &loc) {LOGFUNC;
-	if (attachedToObject->EnablePhysics != false) {
+	if ((!attachedToObject) || attachedToObject->EnablePhysics != false) {
 		offset = Type->offset;
 		_shape = Type->ShapeType->createShape();
 		btTransform trans = btTransform::getIdentity();
@@ -81,7 +86,8 @@ void PhysicsObject::SpawnAt(const CoordStruct &loc) {LOGFUNC;
 		// body->setContactProcessingThreshold(btScalar(-.1));
 		Generic::PhysicsGeneral()->dynaWorld->addRigidBody(body);
 
-		attachedToObject->collSphere = new btSphereShape(btScalar(attachedToObject->rCollSphere));
+		if (attachedToObject)
+			attachedToObject->collSphere = new btSphereShape(btScalar(attachedToObject->rCollSphere));
 
 		spawned = true;
 		// body->activate();
@@ -254,7 +260,7 @@ double PhysicsObject::getMainRotation() {
 }
 
 void PhysicsObject::setTransformCallback(const btTransform &centerOfMassWorldTrans) {LOGFUNC;
-	if (attachedToObject->EnablePhysics) {
+	if (attachedToObject && attachedToObject->EnablePhysics) {
 		// cout << "CubeCore: PhysicsObject::setTransformCallback - Updating ..." << endl;
 		// cout << (int)(centerOfMassWorldTrans.getOrigin().getX()) << (int)(centerOfMassWorldTrans.getOrigin().getY()) << (int)(centerOfMassWorldTrans.getOrigin().getZ()) << endl;
 		attachedToObject->setLocation(CoordStruct((int)(centerOfMassWorldTrans.getOrigin().getX()-offset.x()), (int)(centerOfMassWorldTrans.getOrigin().getY()-offset.y()), (int)(centerOfMassWorldTrans.getOrigin().getZ()-offset.z())));

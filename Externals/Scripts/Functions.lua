@@ -43,7 +43,8 @@ function Functions.Session_MousePress(mouseStatus)
 
 	if mouseStatus.left == true then
 		local x_ = function (ptr) return true end
-		local rt_start = coord
+		-- local rt_start = coord
+		local rt_start = Utility.CoordStruct(coord.x-600, coord.y-600, coord.z-500)
 		local rt_end = Utility.CoordStruct(coord.x+6000, coord.y+6000, coord.z+5000)
 		local ray = Physics.RayTestSingle.createRayTestSingle(rt_start, rt_end)
 		ray:perform()
@@ -63,7 +64,8 @@ function Functions.Session_MouseRelease(mouseEventData) end
 
 function Functions.Session_MouseMove(mouseStatus)
 	local coord = Utility.GetCoordFromPoint(mouseStatus.pos)
-	local ray = Physics.RayTestSingle.createRayTestSingle(coord, Utility.CoordStruct(coord.x+6000, coord.y+6000, coord.z+5000), function (ptr) return true end)
+	local rt_start = Utility.CoordStruct(coord.x-600, coord.y-600, coord.z-500)
+	local ray = Physics.RayTestSingle.createRayTestSingle(rt_start, Utility.CoordStruct(coord.x+6000, coord.y+6000, coord.z+5000), function (ptr) return true end)
 	ray:perform()
 	if (ray:hit()) then
 		local selected = ray:getFirstObject().attachedToObject

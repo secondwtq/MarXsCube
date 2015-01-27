@@ -23,20 +23,20 @@ void PhysicsGeneral::init() {
 	
 	dynaWorld->setInternalTickCallback(cubeTickCallback);
 	
-	btCollisionShape *ground = new btBoxShape(btVector3(btScalar(30 * 64), btScalar(30 * 64), btScalar(0.1)));
-	btTransform groundTrans;
-	groundTrans.setIdentity();
-	groundTrans.setOrigin(btVector3(30*64, 0, 0));
-	btDefaultMotionState *grMotionState = new btDefaultMotionState(groundTrans);
-	btRigidBody::btRigidBodyConstructionInfo grInfo(0., grMotionState, ground);
-	btRigidBody *grBody = new btRigidBody(grInfo);
-	grBody->setRestitution(btScalar(1));
-	grBody->setContactProcessingThreshold(btScalar(64));
-	
-	auto physicObj_Ground = new PhysicsObject(true);
-	physicObj_Ground->isCell = true;
-	grBody->setUserPointer(physicObj_Ground);
-	dynaWorld->addRigidBody(grBody);
+//	btCollisionShape *ground = new btBoxShape(btVector3(btScalar(30 * 64), btScalar(30 * 64), btScalar(0.1)));
+//	btTransform groundTrans;
+//	groundTrans.setIdentity();
+//	groundTrans.setOrigin(btVector3(30*64, 0, 0));
+//	btDefaultMotionState *grMotionState = new btDefaultMotionState(groundTrans);
+//	btRigidBody::btRigidBodyConstructionInfo grInfo(0., grMotionState, ground);
+//	btRigidBody *grBody = new btRigidBody(grInfo);
+//	grBody->setRestitution(btScalar(1));
+//	grBody->setContactProcessingThreshold(btScalar(64));
+//	
+//	auto physicObj_Ground = new PhysicsObject(true);
+//	physicObj_Ground->isCell = true;
+//	grBody->setUserPointer(physicObj_Ground);
+//	dynaWorld->addRigidBody(grBody);
 }
 
 void PhysicsGeneral::dispose() {

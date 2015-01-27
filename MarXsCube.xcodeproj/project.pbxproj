@@ -51,6 +51,7 @@
 		598D1DDE1A3966A70049653B /* RayTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDC1A3966A70049653B /* RayTest.cpp */; };
 		598D1DE11A3967FF0049653B /* RayTest_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */; };
 		598E6EEF1A6F649E000C68BE /* ModelLoader_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */; };
+		59C97B071A77784000AB3F02 /* TilerBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59C97B051A77784000AB3F02 /* TilerBullet.cpp */; };
 		59FCBF2F1A713D8500BEF905 /* Atheverybeginning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF2D1A713D8500BEF905 /* Atheverybeginning.cpp */; };
 		59FCBF361A73673100BEF905 /* FSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF341A73673100BEF905 /* FSM.cpp */; };
 		59FCBF3F1A73B8E200BEF905 /* BulletThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF3D1A73B8E200BEF905 /* BulletThread.cpp */; };
@@ -164,6 +165,8 @@
 		598D1DE01A3967FF0049653B /* RayTest_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest_Interface.h; sourceTree = "<group>"; };
 		598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModelLoader_obj.cpp; sourceTree = "<group>"; };
 		598E6EEE1A6F649E000C68BE /* ModelLoader_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLoader_obj.h; sourceTree = "<group>"; };
+		59C97B051A77784000AB3F02 /* TilerBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TilerBullet.cpp; sourceTree = "<group>"; };
+		59C97B061A77784000AB3F02 /* TilerBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TilerBullet.h; sourceTree = "<group>"; };
 		59FCBF2D1A713D8500BEF905 /* Atheverybeginning.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Atheverybeginning.cpp; sourceTree = "<group>"; };
 		59FCBF2E1A713D8500BEF905 /* Atheverybeginning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Atheverybeginning.h; sourceTree = "<group>"; };
 		59FCBF301A7273AA00BEF905 /* atheverybeginning.lunc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = atheverybeginning.lunc; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				59262939198AB66500858A67 /* Transform.cpp */,
 				59FCBF4A1A74840E00BEF905 /* GLFoundation.h */,
 				59FCBF491A74840E00BEF905 /* GLFoundation.cpp */,
+				59C97B051A77784000AB3F02 /* TilerBullet.cpp */,
+				59C97B061A77784000AB3F02 /* TilerBullet.h */,
 				5944452E1A75389000941CEB /* CubeTransform.h */,
 				5944452D1A75389000941CEB /* CubeTransform.cpp */,
 				59262903198AB62300858A67 /* MarXsCube.1 */,
@@ -471,6 +476,7 @@
 				59262954198AB66500858A67 /* Type_Object.cpp in Sources */,
 				59FCBF461A73CBEC00BEF905 /* SilconThread.cpp in Sources */,
 				59FCBF361A73673100BEF905 /* FSM.cpp in Sources */,
+				59C97B071A77784000AB3F02 /* TilerBullet.cpp in Sources */,
 				59262949198AB66500858A67 /* ObjectArrayImpl.cpp in Sources */,
 				59262951198AB66500858A67 /* Transform.cpp in Sources */,
 				59262952198AB66500858A67 /* Type_Abstract.cpp in Sources */,
