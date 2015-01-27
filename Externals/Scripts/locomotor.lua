@@ -51,7 +51,7 @@ end
 
 function comp_LocomotorDefault:on_update()
 	local obj = Helpers.Techno_TechnoRTTIIDTable(self:container_parent())
-	if not self:in_state 'IDLE' and obj:onGround() == true then
+	if not self:in_state 'IDLE' and (obj:onGround() == true) then
 		local loco_args = Helpers.scriptType_TechnoRTTITable(self:container_parent()):property 'physics'['nlocomotor_args']
 
 		local current_forward_vel = obj.Physics:getVelocity()
@@ -60,6 +60,7 @@ function comp_LocomotorDefault:on_update()
 		if self:in_state 'MOVING' then
 
 			-- if too near to final dest, then start braking
+			-- current_pos[3] = 0
 			if Helpers.vector3_distance(current_pos, self:get_datafield 'dest_vector3') < 128 then
 				-- all movement is treated as a waypointed navagation, define path with a vector3 array
 				if self:path_ended() then

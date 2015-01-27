@@ -23,9 +23,9 @@ function Functions.TestManger_onTestInit()
 
 	-- local background = ModEnvironment.Functions.createTechno(OBJECTS.SATELITE_BG, Utility.CoordStruct(64*27+56, -36, 0))
 	-- background.temp_ZOffset = true
-	local cycle = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(512, -512, 512), true)
-	local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(64, 256, 512), true)
-	local rail2 = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(64, 64, 512), true)
+	local cycle = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(512, -512, 0), true)
+	local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(256, 256, 0), true)
+	local rail2 = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(256, 64, 0), true)
 	ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
 
 	-- create GameObjects for nodes, and fill OBJ_DOTS
@@ -69,6 +69,7 @@ end
 -- coord must be a CoordStruct, max_dist can be empty
 function find_nearest_node(coord, max_dist)
 	local current_node = OBJ_DOTS[1]
+	coord.z = 0
 	local current_dis = Helpers.coord_distance(coord, OBJ_DOTS[1].GetCoord())
 
 	for i, nodeobj in ipairs(OBJ_DOTS) do

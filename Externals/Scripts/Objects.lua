@@ -46,22 +46,22 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 	physics = {
 		enabled = true,
 		initialstatic = false,
-		mass = 0.5,
+		mass = 2,
 		offset = { x = 0, y = 0, z = 24 },
 		angle_factor = { x = 1.0, y = 1.0, z = 1.0 },
 		ntype_locomotor = 'default',
 		nlocomotor_args = {
 			rot = 300,
 			stablespeed = 650,
-			engineforce = 300,
+			engineforce = 450,
 			brakingforce = 600,
 			rotate_negativeforce = 300,
 		},
 		shape = {
 			type = "BOX",
-			mass = 0.5,
+			mass = 2,
 			restitution = 0.5,
-			friction = 0.3,
+			friction = 0.8,
 			offset = { x = 0, y = 0, z = 0 },
 			size = { x = 48, y = 18, z = 24 }
 		}

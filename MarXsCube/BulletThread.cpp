@@ -14,8 +14,8 @@
 #include "BulletThread.h"
 
 void bullet_acheron_function() {
-	Generic::PhysicsGeneral()->dynaWorld->stepSimulation(1.f/(float)FPSLimit, 16,
-														 btScalar(1.)/btScalar((float)divPhysics));
+	Generic::PhysicsGeneral()->dynaWorld->stepSimulation(1.f/(float)30, 16,
+														 btScalar(1.)/60);
 }
 
 Acheron::AcheronBase Acheron::Bullet(bullet_acheron_function);

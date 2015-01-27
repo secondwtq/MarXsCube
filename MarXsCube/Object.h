@@ -33,7 +33,7 @@ class Abs_Object : public Abs_Abstract {
 
 		Abs_Object(Type_Object *Type);
 
-		bool onGround() { return GetHeight() == 0; }
+		bool onGround() { return abs(GetHeight()) <= 5; }
 
 		CoordStruct Destnation = CoordStruct(0, 0, 0);
 		void setDestnation(const CoordStruct &destnation) { Destnation = destnation; }

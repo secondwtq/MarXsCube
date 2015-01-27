@@ -34,7 +34,7 @@ function InputHandler.MousePress_OnCell(mouse_status)
 		local hit_point = ray_cell:hit_point()
 		print("hit on cell", hit_point.x, hit_point.y, hit_point.z)
 
-		local nearest_node = find_nearest_node(hit_point, 64)
+		local nearest_node = find_nearest_node(coord, 64)
 		if nearest_node and TECHNO_SELECTED then
 			local idx_node = nearest_node.components.a['GraphNodeStore']:get_datafield 'idx_initial'
 			-- print('Selected node ', idx_node)
