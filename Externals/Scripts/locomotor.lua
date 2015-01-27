@@ -60,7 +60,7 @@ function comp_LocomotorDefault:on_update()
 		if self:in_state 'MOVING' then
 
 			-- if too near to final dest, then start braking
-			-- current_pos[3] = 0
+			current_pos[3] = 0
 			if Helpers.vector3_distance(current_pos, self:get_datafield 'dest_vector3') < 128 then
 				-- all movement is treated as a waypointed navagation, define path with a vector3 array
 				if self:path_ended() then

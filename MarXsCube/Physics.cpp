@@ -30,7 +30,7 @@ btCollisionShape *PhysicsShapeTypeBox::createShape() {LOGFUNC;
 }
 
 btCollisionShape *PhysicsShapeTypeMeshStatic::createShape() {
-	bool use_quantization = false;
+	bool use_quantization = true;
 	return new btBvhTriangleMeshShape(this->_mesh, use_quantization);
 }
 

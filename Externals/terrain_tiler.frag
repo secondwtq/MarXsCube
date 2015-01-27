@@ -13,5 +13,5 @@ void main() {
 	float intensity = dot(frag_light_dir, frag_normal);
 
 	gl_FragColor = vec4(1, 1, 1, 0) * intensity *
-				mix(texture2D(s_texture_main, frag_texcoord.xy), texture2D(s_texture_second, frag_texcoord.xy), frag_blendweight);
+				mix(texture2D(s_texture_main, frag_texcoord.xy), texture2D(s_texture_second, frag_texcoord.xy), frag_blendweight) * 1.3;
 }
