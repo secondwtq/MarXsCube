@@ -128,62 +128,6 @@ void transfer_verts_idx(gl_vertarray_indexed& dest, const objfile &src) {
 	}
 }
 
-void transfer_verts_tiler(tiler_dataarray& dest, const objfile& src) {
-	std::unordered_map<std::size_t, std::size_t> texcoord_cache;
-	
-	for (std::size_t i = 0; i < src.raw_verts.size(); i++) {
-		
-		tiler_dataarray::VertObjectType vert;
-		
-		vert.position = src.raw_verts[i];
-		if (src.raw_normals.size() > i)
-			vert.normal = src.raw_normals[i];
-		
-		if (texcoord_cache.find(i) != texcoord_cache.end()) {
-			vert.texcoord = src.raw_uvcoords[texcoord_cache.at(i)];
-		} else {
-			for (int j = 0; j < src.raw_faces.size(); j++) {
-				for (int k = 0; k < 3; k++) {
-					auto vert_idx = src.raw_faces[j][k];
-					texcoord_cache[vert_idx] = src.raw_face_uvcoords[j][k];
-					if (vert_idx == i) {
-						vert.texcoord = src.raw_uvcoords[src.raw_face_uvcoords[j][k]];
-						break;
-					}
-				}
-			}
-		}
-		
-		vert.this_idx = static_cast<int>(i);
-		dest.vec_verts().push_back(vert);
-	}
-	
-	std::array<std::size_t, 2> cellface_buffer;
-	std::array<std::size_t, 6> cellvert_buffer;
-	for (std::size_t i = 0; i < src.raw_faces.size(); i++) {
-		glm::i32vec3 current_face = src.raw_faces[i];
-		for (int j = 0; j < 3; j++)
-			dest.vec_indexes().push_back(current_face[j]);
-		
-		if (i % 2 == 1) {
-			for (int j = 0; j < 3; j++)
-				cellvert_buffer[j+3] = current_face[j];
-			
-			dest.vec_cells().push_back({ cellvert_buffer });
-			
-			glm::vec3 center { 0 };
-			center = dest.vec_verts()[cellvert_buffer[0]].position + dest.vec_verts()[cellvert_buffer[1]].position +
-						dest.vec_verts()[cellvert_buffer[2]].position + dest.vec_verts()[cellvert_buffer[4]].position;
-			center /= 4.0f;
-			dest.vec_centers().push_back(center);
-		} else {
-			for (int j = 0; j < 3; j++)
-				cellvert_buffer[j] = current_face[j];
-		}
-	}
-	
-}
-
 void objfile::parse() {
 	
 	// placeholders

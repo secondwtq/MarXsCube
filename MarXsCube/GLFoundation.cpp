@@ -13,6 +13,7 @@
 #include "ModelLoader_obj.h"
 #include "GLShader.h"
 #include "GLFoundation.h"
+#include "TilerRenderingBasic.h"
 
 #include <SFML/OpenGL.hpp>
 #include <iostream>
