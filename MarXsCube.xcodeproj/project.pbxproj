@@ -52,6 +52,7 @@
 		598D1DE11A3967FF0049653B /* RayTest_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */; };
 		598E6EEF1A6F649E000C68BE /* ModelLoader_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */; };
 		59C97B071A77784000AB3F02 /* TilerBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59C97B051A77784000AB3F02 /* TilerBullet.cpp */; };
+		59C97B0A1A7913C800AB3F02 /* GLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59C97B081A7913C800AB3F02 /* GLShader.cpp */; };
 		59FCBF2F1A713D8500BEF905 /* Atheverybeginning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF2D1A713D8500BEF905 /* Atheverybeginning.cpp */; };
 		59FCBF361A73673100BEF905 /* FSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF341A73673100BEF905 /* FSM.cpp */; };
 		59FCBF3F1A73B8E200BEF905 /* BulletThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF3D1A73B8E200BEF905 /* BulletThread.cpp */; };
@@ -167,6 +168,8 @@
 		598E6EEE1A6F649E000C68BE /* ModelLoader_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLoader_obj.h; sourceTree = "<group>"; };
 		59C97B051A77784000AB3F02 /* TilerBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TilerBullet.cpp; sourceTree = "<group>"; };
 		59C97B061A77784000AB3F02 /* TilerBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TilerBullet.h; sourceTree = "<group>"; };
+		59C97B081A7913C800AB3F02 /* GLShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLShader.cpp; sourceTree = "<group>"; };
+		59C97B091A7913C800AB3F02 /* GLShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLShader.h; sourceTree = "<group>"; };
 		59FCBF2D1A713D8500BEF905 /* Atheverybeginning.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Atheverybeginning.cpp; sourceTree = "<group>"; };
 		59FCBF2E1A713D8500BEF905 /* Atheverybeginning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Atheverybeginning.h; sourceTree = "<group>"; };
 		59FCBF301A7273AA00BEF905 /* atheverybeginning.lunc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = atheverybeginning.lunc; sourceTree = "<group>"; };
@@ -346,6 +349,8 @@
 				5926293D198AB66500858A67 /* Type_Techno.cpp */,
 				598E6EEE1A6F649E000C68BE /* ModelLoader_obj.h */,
 				598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */,
+				59C97B091A7913C800AB3F02 /* GLShader.h */,
+				59C97B081A7913C800AB3F02 /* GLShader.cpp */,
 				59262921198AB66500858A67 /* Transform.h */,
 				59262939198AB66500858A67 /* Transform.cpp */,
 				59FCBF4A1A74840E00BEF905 /* GLFoundation.h */,
@@ -466,6 +471,7 @@
 				59262941198AB66500858A67 /* Cell.cpp in Sources */,
 				5923C8DA19D00EB90055E0D5 /* RenderElement.cpp in Sources */,
 				5926294E198AB66500858A67 /* Techno.cpp in Sources */,
+				59C97B0A1A7913C800AB3F02 /* GLShader.cpp in Sources */,
 				5944452F1A75389000941CEB /* CubeTransform.cpp in Sources */,
 				598E6EEF1A6F649E000C68BE /* ModelLoader_obj.cpp in Sources */,
 				5926294A198AB66500858A67 /* ObjectManger.cpp in Sources */,

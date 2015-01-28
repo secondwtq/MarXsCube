@@ -11,7 +11,7 @@
 
 #include "ObjectManger.h"
 #include "ModelLoader_obj.h"
-
+#include "GLShader.h"
 #include "GLFoundation.h"
 
 #include <SFML/OpenGL.hpp>
