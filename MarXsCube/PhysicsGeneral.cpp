@@ -15,7 +15,8 @@ Float3D GlobalGravity = Float3D(0, 0, -100);
 void PhysicsGeneral::init() {
 	collConf = new btDefaultCollisionConfiguration();
 	dispatcher = new btCollisionDispatcher(collConf);
-	overlapPairCache = new btAxisSweep3(btVector3(-1000,-1280,-200), btVector3(2250,1280,200)); // btDbvtBroadphase(); // btAxis3Sweep
+//	overlapPairCache = new btAxisSweep3(btVector3(-1000,-1280,-200), btVector3(2250,1280,200)); // btDbvtBroadphase(); // btAxis3Sweep
+	overlapPairCache = new btDbvtBroadphase();
 	solver = new btSequentialImpulseConstraintSolver();
 	
 	dynaWorld = new btDiscreteDynamicsWorld(dispatcher, overlapPairCache, solver, collConf);
