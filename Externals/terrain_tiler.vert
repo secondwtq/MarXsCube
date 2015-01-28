@@ -8,11 +8,14 @@ varying vec3 frag_light_dir;
 varying vec2 frag_texcoord;
 varying vec2 frag_height_texcoord;
 varying float frag_blendweight;
+varying float frag_texture_index;
 
 attribute vec3 position;
 attribute vec3 s_normal;
 attribute vec3 s_texcoord;
 attribute float s_blendweight;
+
+attribute float s_texindex;
 
 uniform sampler2D s_texture_main;
 uniform sampler2D s_texture_second;
@@ -51,6 +54,8 @@ void main() {
 	frag_texcoord = s_texcoord.xy;
 	frag_height_texcoord = s_texcoord.xy / 30.0;
 	frag_blendweight = s_blendweight;
+
+	frag_texture_index = s_texindex;
 
 	vec4 position_4 = vec4(position.xyz, 1);
 
