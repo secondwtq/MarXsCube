@@ -12,6 +12,10 @@ void main() {
 
 	float intensity = dot(frag_light_dir, frag_normal);
 
-	gl_FragColor = vec4(1, 1, 1, 0) * intensity *
-				mix(texture2D(s_texture_main, frag_texcoord.xy), texture2D(s_texture_second, frag_texcoord.xy), frag_blendweight) * 1.3;
+	vec2 texcoord_org = frag_texcoord.xy;
+	vec2 texcoord_scaled = texcoord_org / 30.0;
+	vec2 texcoord_scaled_2 = vec2(texcoord_org.y, texcoord_org.x) / 15.0;
+
+	gl_FragColor = vec4(1, 1, 1, 0) * intensity * texture2D(s_texture_main, texcoord_scaled) * texture2D(s_texture_main, texcoord_scaled_2) *
+				mix(texture2D(s_texture_main, texcoord_org), texture2D(s_texture_second, texcoord_org), frag_blendweight) * 32.0;
 }

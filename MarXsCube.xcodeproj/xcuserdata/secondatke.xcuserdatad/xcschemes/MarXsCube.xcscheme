@@ -73,7 +73,7 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "YES"
       customWorkingDirectory = "/Users/secondatke/Documents/branches/MarXsCube/Externals"
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
       <BuildableProductRunnable>
          <BuildableReference
