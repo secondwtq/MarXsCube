@@ -95,3 +95,10 @@ TEXTURES.JAGUAR = TEXTURES.DUMMY:newObject({
 	frame_col = 1,
 	frame_row = 1,
 })
+
+TEXTURES.HEIGHTFIELD = TEXTURES.DUMMY:newObject({
+	filename = "./Textures/heightfield.png",
+	frame_count = 1,
+	frame_col = 1,
+	frame_row = 1,
+})

@@ -24,12 +24,14 @@ gl_shader tiler_shader_main;
 gl_vertarray_indexed verts_idx_def;
 GLIDX texture_main = 0;
 GLIDX texture_second = 0;
+GLIDX texture_height = 0;
 
 int vert_attrid = 0;
 int vert_normid = 0;
 int vert_textid = 0;
 int vert_texcid = 0;
 int vert_text_second_id = 0;
+int vert_text_height_id = 0;
 int vert_blendid = 0;
 
 GLuint vert_buf_new;
@@ -77,9 +79,14 @@ void render_gl() {
 	
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, texture_second);
+	glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, texture_height);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	
 	glUniform1i(vert_texcid, 0);
 	glUniform1i(vert_text_second_id, 1);
+	glUniform1i(vert_text_height_id, 2);
 	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idx_buf);
 	glDrawElements(GL_TRIANGLES, (int)verts_idx_def.count_idx(), GL_UNSIGNED_INT, 0);
@@ -122,9 +129,11 @@ void init_opengl() {
 	
 	vert_textid = tiler_shader_main.get_uniform("s_texture_main");
 	vert_text_second_id = tiler_shader_main.get_uniform("s_texture_second");
+	vert_text_height_id = tiler_shader_main.get_uniform("s_texture_heightfield");
 	
 	texture_main = TextureManger::GetInstance().TextureHashs["DOGE"]->texture.m_texture;
 	texture_second = TextureManger::GetInstance().TextureHashs["JAGUAR"]->texture.m_texture;
+	texture_height = TextureManger::GetInstance().TextureHashs["HEIGHTFIELD"]->texture.m_texture;
 	
 	std::cout << tiler_shader_main.log(SHADERTYPE::VERTEX);
 	std::cout << tiler_shader_main.log(SHADERTYPE::FRAG);
