@@ -18,6 +18,8 @@ uniform sampler2D s_texture_main;
 uniform sampler2D s_texture_second;
 uniform sampler2D s_texture_heightfield;
 
+uniform sampler2D s_texture_tileset;
+
 #define USE_HEIGHTFIELD 1
 
 // solution fram
@@ -47,7 +49,7 @@ void main() {
 	frag_normal = normalize(s_normal);
 	frag_light_dir = normalize(light_dir);
 	frag_texcoord = s_texcoord.xy;
-	frag_height_texcoord = frag_texcoord / 30.0;
+	frag_height_texcoord = s_texcoord.xy / 30.0;
 	frag_blendweight = s_blendweight;
 
 	vec4 position_4 = vec4(position.xyz, 1);

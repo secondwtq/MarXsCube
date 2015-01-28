@@ -136,7 +136,7 @@ int main() {
 				case Event::MouseButtonPressed:
 					Generic::Session()->setMousePos_Press(event.mouseButton);
 					EventManger::GetInstance().GetEvent(EventManger::Events::UI_MOUSEPRESS)(Generic::Session()->getMousePos());
-//					raise_verts();
+					raise_verts();
 					break;
 
 				case Event::MouseButtonReleased:

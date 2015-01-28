@@ -234,7 +234,7 @@ void objfile::parse() {
 			
 			else if (splits[0] == "vt") {		// read texture coords
 				if (!splits[3].length()) splits[3] = "0";
-				this->raw_uvcoords.push_back({ stof(splits[1]), stof(splits[2]), stof(splits[3]) });
+				this->raw_uvcoords.push_back({ stof(splits[1]), 30-stof(splits[2]), stof(splits[3]) });
 			}
 			
 		}

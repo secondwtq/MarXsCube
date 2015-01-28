@@ -14,3 +14,4 @@ Camera Location: 100, -100, 81.65
 
 64 unit - one 'cell'
 
+Tileset: 2048x2048, each tile 256\*256, 8\*8 tiles

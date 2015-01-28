@@ -18,7 +18,10 @@ void main() {
 
 	vec2 texcoord_org = frag_texcoord.xy;
 	vec2 texcoord_scaled = texcoord_org / 30.0;
-	vec2 texcoord_scaled_2 = vec2(texcoord_org.y, texcoord_org.x) / 15.0;
+	vec2 texcoord_scaled_2 = fract(vec2(texcoord_org.y, texcoord_org.x) / 15.0);
+	texcoord_org = fract(frag_texcoord.xy);
+	texcoord_scaled = fract(texcoord_scaled.xy);
+	texcoord_scaled_2 = fract(texcoord_scaled_2.xy);
 
 #if LIGHTING_ONLY == 1
 	gl_FragColor = vec4(1, 1, 1, 0) * intensity;

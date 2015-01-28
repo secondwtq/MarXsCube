@@ -102,3 +102,10 @@ TEXTURES.HEIGHTFIELD = TEXTURES.DUMMY:newObject({
 	frame_col = 1,
 	frame_row = 1,
 })
+
+TEXTURES.TILESET = TEXTURES.DUMMY:newObject({
+	filename = "./Textures/tileset.png",
+	frame_count = 1,
+	frame_col = 1,
+	frame_row = 1,
+})
