@@ -1,11 +1,16 @@
-Terrain Template
+##Terrain Template##
 
-3ds Max:
+**(for 3ds Max)**
 
 Render Size: 800x600
 
-10 unit - one cell
+64 unit - one cell
 
 Camera Location: 100, -100, 81.65
 
-32mm Lens
+5.0mm Lens
+
+##Terrain##
+
+64 unit - one 'cell'
+

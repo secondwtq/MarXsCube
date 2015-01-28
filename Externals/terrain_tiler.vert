@@ -52,7 +52,7 @@ void main() {
 
 	vec4 position_4 = vec4(position.xyz, 1);
 
-#if USE_HEIGHTFIELD==1
+#if USE_HEIGHTFIELD == 1
     vec4 height = parse_heightfield(s_texture_heightfield, frag_height_texcoord);
     frag_normal = normalize(height.xyz);
 	position_4.z += height.w * 64.0;
