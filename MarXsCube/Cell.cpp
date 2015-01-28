@@ -50,7 +50,7 @@ void Abs_Cell::Render() {
 	if (ShowCenter) renderSprite.setColor(Color(255, 255, 255, 128));
 	// if (!PassableTo()) renderSprite.setColor(Color(0, 0, 0, 255));
 	if (obsTransform::x.x > (-size.x) && obsTransform::x.x <= (WIDTH+size.x) && obsTransform::x.y > (-size.y) && obsTransform::x.y <= (HEIGHT+size.y)) {
-		static auto shader_ptr = &TestManger::GetInstance().extTerrainShader;
+//		static auto shader_ptr = &TestManger::GetInstance().extTerrainShader;
 //		shader_ptr->setParameter("texture0", this->renderTexture->texture);
 //		shader_ptr->setParameter("texture1", this->texture1->texture);
 		//shader_ptr->setParameter("texture2", this->texture2->texture);

@@ -111,7 +111,7 @@ int main() {
 		Acheron::Bullet.pause();
 		
 		global_counter++;
-		float fps = global_counter / clock.getElapsedTime().asSeconds();
+//		float fps = global_counter / clock.getElapsedTime().asSeconds();
 //		printf("updating... %lu %f\n", global_counter, fps);
 		
 		EventManger::GetInstance().GetEvent(EventManger::Events::GAME_UPDATE_BEGIN)();
