@@ -128,6 +128,49 @@ void transfer_verts_idx(gl_vertarray_indexed& dest, const objfile &src) {
 	}
 }
 
+void transfer_verts_tiler(tiler_dataarray& dest, const objfile& src) {
+	std::unordered_map<std::size_t, std::size_t> texcoord_cache;
+	
+	for (std::size_t i = 0; i < src.raw_verts.size(); i++) {
+		const glm::i32vec3& face = src.raw_faces[i];
+		
+		gl_vert_object vert;
+		
+		auto p1 = src.raw_verts[face[0]], p2 = src.raw_verts[face[1]], p3 = src.raw_verts[face[2]];
+		glm::vec3 v1 = p2 - p1, v2 = p3 - p1;
+		glm::vec3 normal { (v1.y*v2.z)-(v1.z*v2.y), -((v2.z*v1.x)-(v2.x*v1.z)), (v1.x*v2.y)-(v1.y*v2.x) };
+		
+		vert.position = src.raw_verts[i];
+		if (src.raw_normals.size() > i)
+			vert.normal = src.raw_normals[i];
+		else
+			vert.normal = normal;
+		
+		if (texcoord_cache.find(i) != texcoord_cache.end()) {
+			vert.texcoord = src.raw_uvcoords[texcoord_cache.at(i)];
+		} else {
+			for (int j = 0; j < src.raw_faces.size(); j++) {
+				for (int k = 0; k < 3; k++) {
+					auto vert_idx = src.raw_faces[j][k];
+					texcoord_cache[vert_idx] = src.raw_face_uvcoords[j][k];
+					if (vert_idx == i) {
+						vert.texcoord = src.raw_uvcoords[src.raw_face_uvcoords[j][k]];
+						break;
+					}
+				}
+			}
+		}
+		
+		dest.vec_verts().push_back(vert);
+	}
+	
+	for (std::size_t i = 0; i < src.raw_faces.size(); i++) {
+		glm::i32vec3 current_face = src.raw_faces[i];
+		for (int j = 0; j < 3; j++)
+			dest.vec_indexes().push_back(current_face[j]);
+	}
+}
+
 void objfile::parse() {
 	
 	// placeholders

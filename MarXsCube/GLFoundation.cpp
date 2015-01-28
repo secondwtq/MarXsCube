@@ -21,7 +21,7 @@ extern sf::RenderWindow *window_global;
 
 gl_shader tiler_shader_main;
 
-gl_vertarray_indexed verts_idx_def;
+tiler_dataarray verts_data;
 GLIDX texture_main = 0;
 GLIDX texture_second = 0;
 GLIDX texture_height = 0;
@@ -46,7 +46,7 @@ void load_obj() {
 	obj_test.filepath = "drawcall.obj";
 	obj_test.parse();
 	
-	transfer_verts_idx(verts_idx_def, obj_test);
+	transfer_verts_tiler(verts_data, obj_test);
 }
 
 extern glm::vec3 gl_campos;
@@ -100,7 +100,7 @@ void render_gl() {
 	glUniform1i(vert_text_tileset_id, 3);
 	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idx_buf);
-	glDrawElements(GL_TRIANGLES, (int)verts_idx_def.count_idx(), GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, (int)verts_data.count_idx(), GL_UNSIGNED_INT, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	
 	glDisableVertexAttribArray(vert_tileindex);
@@ -157,12 +157,12 @@ void init_opengl() {
 	
 	glGenBuffers(1, &vert_buf_new);
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf_new);
-	glBufferData(GL_ARRAY_BUFFER, verts_idx_def.count_vert() * sizeof(gl_vert_object), verts_idx_def.verts(), GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, verts_data.count_vert() * sizeof(gl_vert_object), verts_data.verts(), GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	
 	glGenBuffers(1, &idx_buf);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idx_buf);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, verts_idx_def.count_idx() * sizeof(GLIDX), verts_idx_def.indexes(), GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, verts_data.count_idx() * sizeof(GLIDX), verts_data.indexes(), GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	
 	//	glDisableClientState(GL_NORMAL_ARRAY);
@@ -176,11 +176,11 @@ void init_opengl() {
 #include <cmath>
 
 void raise_verts() {
-	gl_vert_object *verts = verts_idx_def.verts();
+	gl_vert_object *verts = verts_data.verts();
 	
 	CoordStruct current_pos = obsTransform::GetWorldPos(Generic::Session()->MousePosData.pos);
 	
-	for (std::size_t i = 0; i < verts_idx_def.count_vert(); i++) {
+	for (std::size_t i = 0; i < verts_data.count_vert(); i++) {
 		glm::vec3 pos_xy = verts[i].position;
 		glm::vec3 pos_cmp { current_pos.y, current_pos.x, pos_xy.z };
 		
@@ -196,7 +196,11 @@ void raise_verts() {
 	
 	Acheron::Silcon.pause();
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf_new);
-	glBufferSubData(GL_ARRAY_BUFFER, 0, verts_idx_def.count_vert() * sizeof(gl_vert_object), verts);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, verts_data.count_vert() * sizeof(gl_vert_object), verts);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idx_buf);
+	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, verts_data.count_idx() * sizeof(GLIDX), verts_data.indexes());
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	Acheron::Silcon.invoke();
 }

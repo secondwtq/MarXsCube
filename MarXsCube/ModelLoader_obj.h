@@ -101,8 +101,29 @@ public:
 	float **vert_array = nullptr;
 };
 
-class ObjLoader {
+class tiler_dataarray;
+
+void transfer_verts_tiler(tiler_dataarray& dest, const objfile&src);
+
+class tiler_dataarray {
+public:
 	
+	void clear() {
+
+	}
+	
+	std::vector<gl_vert_object>& vec_verts() { return this->m_vert_data; }
+	std::vector<GLIDX>& vec_indexes() { return this->m_idx_data; }
+	
+	gl_vert_object *verts() { return this->m_vert_data.data(); }
+	GLIDX *indexes() { return this->m_idx_data.data(); }
+	
+	std::size_t count_vert() { return this->m_vert_data.size(); }
+	std::size_t count_idx() { return this->m_idx_data.size(); }
+	
+private:
+	std::vector<gl_vert_object> m_vert_data;
+	std::vector<GLIDX> m_idx_data;
 };
 
 #endif /* defined(__MarXsCube__ModelLoader_obj__) */
