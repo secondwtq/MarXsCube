@@ -70,7 +70,7 @@ void render_gl() {
 	glVertexAttribPointer(vert_normid, 3, GL_FLOAT, GL_FALSE, sizeof(gl_vert_object), (char *)(3*sizeof(GLfloat)));
 	glVertexAttribPointer(vert_texcid, 3, GL_FLOAT, GL_FALSE, sizeof(gl_vert_object), (char *)(6*sizeof(GLfloat)));
 	glVertexAttribPointer(vert_blendid, 1, GL_FLOAT, GL_FALSE, sizeof(gl_vert_object), (char *)(9*sizeof(GLfloat)));
-	glVertexAttribPointer(vert_tileindex, 1, GL_FLOAT, GL_FALSE, sizeof(gl_vert_object), (char *)(12*sizeof(GLfloat)));
+	glVertexAttribPointer(vert_tileindex, 3, GL_FLOAT, GL_FALSE, sizeof(gl_vert_object), (char *)(12*sizeof(GLfloat)));
 	glEnableVertexAttribArray(vert_attrid);
 	glEnableVertexAttribArray(vert_normid);
 	glEnableVertexAttribArray(vert_texcid);
@@ -186,11 +186,11 @@ void raise_verts() {
 		
 		auto d = glm::distance(pos_xy, pos_cmp);
 		
-		if (d < 128) {
-			float t = pow((128-d) / 128.0, 2);
+		if (d < 96) {
+			float t = pow((96-d) / 96.0, 2);
 //			verts[i].position.z += 32*t;
 //			verts[i].blendweight[0] = std::min(verts[i].blendweight[0]+sqrt(t), 1.0f);
-			verts[i].tile_index = 1.0;
+			verts[i].tile_index.x = 3.0;
 		}
 	}
 	

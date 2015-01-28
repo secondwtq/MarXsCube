@@ -9,13 +9,21 @@ varying vec3 frag_light_dir;
 varying vec2 frag_texcoord;
 varying float frag_blendweight;
 varying vec2 frag_height_texcoord;
-varying float frag_texture_index;
+varying vec3 frag_texture_index;
 
 uniform sampler2D s_texture_main;
 uniform sampler2D s_texture_second;
 uniform sampler2D s_texture_heightfield;
 
 uniform sampler2D s_texture_tileset;
+
+// from
+//		http://gamedev.stackexchange.com/questions/73586/how-can-i-repeat-scroll-a-tile-which-is-part-of-an-texture-atlas
+vec2 texatlas_offset(in float index, in float count) {
+	float _texture_id = index / count;
+	vec2 offset_tile = vec2(fract(_texture_id) * count, floor(_texture_id));
+	return vec2(offset_tile / count);
+}
 
 void main() {
 
@@ -28,9 +36,8 @@ void main() {
 	texcoord_scaled = fract(texcoord_scaled.xy);
 	texcoord_scaled_2 = fract(texcoord_scaled_2.xy);
 
-	float _texture_id = frag_texture_index / TEXATLAS_COUNT;
-	vec2 offset_tile = vec2(fract(_texture_id)*TEXATLAS_COUNT, floor(_texture_id));
-	vec2 offset = offset_tile / TEXATLAS_COUNT;
+	vec2 offset = texatlas_offset(frag_texture_index.x, TEXATLAS_COUNT);
+	vec2 offset_secondary = texatlas_offset(frag_texture_index.y, TEXATLAS_COUNT);
 
 	vec2 texcoord_atlas = fract(texcoord_org) / TEXATLAS_COUNT + offset;
 	vec2 texcoord_atlas_scaled = fract(texcoord_scaled) / TEXATLAS_COUNT + offset;
@@ -39,9 +46,9 @@ void main() {
 #if LIGHTING_ONLY == 1
 	gl_FragColor = vec4(1, 1, 1, 0) * intensity;
 #else
-	gl_FragColor = 12.0 * vec4(1, 1, 1, 0) * intensity * //texture2D(s_texture_main, texcoord_scaled) * texture2D(s_texture_main, texcoord_scaled_2) *
-					texture2D(s_texture_tileset, texcoord_atlas) * texture2D(s_texture_tileset, texcoord_atlas_scaled)
-					* texture2D(s_texture_tileset, texcoord_atlas_scaled_2);
+	gl_FragColor = 4.0 * vec4(1, 1, 1, 0) * intensity * //texture2D(s_texture_main, texcoord_scaled) * texture2D(s_texture_main, texcoord_scaled_2) *
+					texture2D(s_texture_tileset, texcoord_atlas);
+					// * texture2D(s_texture_tileset, texcoord_atlas_scaled) * texture2D(s_texture_tileset, texcoord_atlas_scaled_2);
 				// mix(texture2D(s_texture_main, texcoord_org), texture2D(s_texture_second, texcoord_org), frag_blendweight) * 32.0;
 #endif
 }

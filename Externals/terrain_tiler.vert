@@ -8,14 +8,13 @@ varying vec3 frag_light_dir;
 varying vec2 frag_texcoord;
 varying vec2 frag_height_texcoord;
 varying float frag_blendweight;
-varying float frag_texture_index;
+varying vec3 frag_texture_index;
 
 attribute vec3 position;
 attribute vec3 s_normal;
 attribute vec3 s_texcoord;
 attribute float s_blendweight;
-
-attribute float s_texindex;
+attribute vec3 s_texindex;
 
 uniform sampler2D s_texture_main;
 uniform sampler2D s_texture_second;
@@ -24,6 +23,8 @@ uniform sampler2D s_texture_heightfield;
 uniform sampler2D s_texture_tileset;
 
 #define USE_HEIGHTFIELD 1
+
+#define TEXATLAS_COUNT (8.0)
 
 // solution fram
 //		http://stackoverflow.com/questions/5281261/generating-a-normal-map-from-a-height-map
@@ -45,6 +46,12 @@ vec4 parse_heightfield(in sampler2D heightfield_sampler, in vec2 texcoord) {
     return vec4( cross(va,vb), s11 );
 }
 
+vec2 texatlas_offset(in float index, in float count) {
+	float _texture_id = index / count;
+	vec2 offset_tile = vec2(fract(_texture_id) * count, floor(_texture_id));
+	return vec2(offset_tile / count);
+}
+
 void main() {
 
 	vec3 light_dir = vec3(1.5, 1.5, 1);
@@ -56,6 +63,8 @@ void main() {
 	frag_blendweight = s_blendweight;
 
 	frag_texture_index = s_texindex;
+
+	// frag_texcoord = texatlas_offset(frag_texture_index.x, TEXATLAS_COUNT) + fract(frag_texcoord) / TEXATLAS_COUNT;
 
 	vec4 position_4 = vec4(position.xyz, 1);
 
