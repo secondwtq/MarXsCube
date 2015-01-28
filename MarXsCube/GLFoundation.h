@@ -15,4 +15,6 @@ void render_gl();
 
 void raise_verts();
 
+void tiler_array_test();
+
 #endif /* defined(__MarXsCube__GLFoundation__) */

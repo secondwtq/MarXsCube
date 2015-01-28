@@ -1,6 +1,7 @@
 // attribute vec4 gl_Color;
 
 #define LIGHTING_ONLY 0
+#define USE_LIGHTING 1
 
 #define TEXATLAS_COUNT (8.0)
 
@@ -27,7 +28,11 @@ vec2 texatlas_offset(in float index, in float count) {
 
 void main() {
 
+#if USE_LIGHTING == 1
 	float intensity = dot(frag_light_dir, frag_normal);
+#else
+	float intensity = 1.0;
+#endif
 
 	vec2 texcoord_org = frag_texcoord.xy;
 	vec2 texcoord_scaled = texcoord_org / 30.0;
@@ -46,8 +51,8 @@ void main() {
 #if LIGHTING_ONLY == 1
 	gl_FragColor = vec4(1, 1, 1, 0) * intensity;
 #else
-	gl_FragColor = 4.0 * vec4(1, 1, 1, 0) * intensity * //texture2D(s_texture_main, texcoord_scaled) * texture2D(s_texture_main, texcoord_scaled_2) *
-					texture2D(s_texture_tileset, texcoord_atlas);
+	gl_FragColor = 2.5 * vec4(1, 1, 1, 0) * intensity * //texture2D(s_texture_main, texcoord_scaled) * texture2D(s_texture_main, texcoord_scaled_2) *
+					texture2D(s_texture_tileset, texcoord_atlas) * texture2D(s_texture_tileset, texcoord_atlas_scaled);
 					// * texture2D(s_texture_tileset, texcoord_atlas_scaled) * texture2D(s_texture_tileset, texcoord_atlas_scaled_2);
 				// mix(texture2D(s_texture_main, texcoord_org), texture2D(s_texture_second, texcoord_org), frag_blendweight) * 32.0;
 #endif

@@ -66,11 +66,11 @@ void render_gl() {
 	tiler_shader_main.use();
 	
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf_new);
-	glVertexAttribPointer(vert_attrid, 3, GL_FLOAT, GL_FALSE, sizeof(gl_vert_object), (char *)0);
-	glVertexAttribPointer(vert_normid, 3, GL_FLOAT, GL_FALSE, sizeof(gl_vert_object), (char *)(3*sizeof(GLfloat)));
-	glVertexAttribPointer(vert_texcid, 3, GL_FLOAT, GL_FALSE, sizeof(gl_vert_object), (char *)(6*sizeof(GLfloat)));
-	glVertexAttribPointer(vert_blendid, 1, GL_FLOAT, GL_FALSE, sizeof(gl_vert_object), (char *)(9*sizeof(GLfloat)));
-	glVertexAttribPointer(vert_tileindex, 3, GL_FLOAT, GL_FALSE, sizeof(gl_vert_object), (char *)(12*sizeof(GLfloat)));
+	glVertexAttribPointer(vert_attrid, 3, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)0);
+	glVertexAttribPointer(vert_normid, 3, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)(3*sizeof(GLfloat)));
+	glVertexAttribPointer(vert_texcid, 3, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)(6*sizeof(GLfloat)));
+	glVertexAttribPointer(vert_blendid, 1, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)(9*sizeof(GLfloat)));
+	glVertexAttribPointer(vert_tileindex, 3, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)(12*sizeof(GLfloat)));
 	glEnableVertexAttribArray(vert_attrid);
 	glEnableVertexAttribArray(vert_normid);
 	glEnableVertexAttribArray(vert_texcid);
@@ -157,7 +157,9 @@ void init_opengl() {
 	
 	glGenBuffers(1, &vert_buf_new);
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf_new);
-	glBufferData(GL_ARRAY_BUFFER, verts_data.count_vert() * sizeof(gl_vert_object), verts_data.verts(), GL_DYNAMIC_DRAW);
+	// a hack, roughly use the twice of original buffer size to create buffer
+	//		cuz it seems the buffer size is fixed after initialized.
+	glBufferData(GL_ARRAY_BUFFER, verts_data.count_vert() * sizeof(tiler_dataarray::VertObjectType) * 2, verts_data.verts(), GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	
 	glGenBuffers(1, &idx_buf);
@@ -176,7 +178,7 @@ void init_opengl() {
 #include <cmath>
 
 void raise_verts() {
-	gl_vert_object *verts = verts_data.verts();
+	tiler_dataarray::VertObjectType *verts = verts_data.verts();
 	
 	CoordStruct current_pos = obsTransform::GetWorldPos(Generic::Session()->MousePosData.pos);
 	
@@ -196,7 +198,37 @@ void raise_verts() {
 	
 	Acheron::Silcon.pause();
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf_new);
-	glBufferSubData(GL_ARRAY_BUFFER, 0, verts_data.count_vert() * sizeof(gl_vert_object), verts);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, verts_data.count_vert() * sizeof(tiler_dataarray::VertObjectType), verts);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idx_buf);
+	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, verts_data.count_idx() * sizeof(GLIDX), verts_data.indexes());
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	Acheron::Silcon.invoke();
+}
+
+void tiler_array_test() {
+	
+	CoordStruct current_pos = obsTransform::GetWorldPos(Generic::Session()->MousePosData.pos);
+	
+	std::size_t nearest_cellidx = verts_data.find_nearest_cell({ current_pos.y, current_pos.x, 0 });
+	glm::vec3 nearest_cellcenter = verts_data.vec_centers()[nearest_cellidx];
+	printf("Cell: %lu %f %f\n", nearest_cellidx, nearest_cellcenter.x, nearest_cellcenter.y);
+	
+	verts_data.sepreate_cell(nearest_cellidx);
+	
+	std::array<std::size_t, 4> vert_idx_to_iter { 0, 1, 2, 4 };
+	for (std::size_t i : vert_idx_to_iter) {
+		verts_data.vert(verts_data.cell(nearest_cellidx).vertices[i]).position.z += 16.0;
+		verts_data.vert(verts_data.cell(nearest_cellidx).vertices[i]).tile_index.x = 2.0;
+//		verts_data.update_vertorigin(verts_data.cell(nearest_cellidx).vertices[i]);
+	}
+	
+	verts_data.update_idx();
+	
+	Acheron::Silcon.pause();
+	glBindBuffer(GL_ARRAY_BUFFER, vert_buf_new);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, verts_data.count_vert() * sizeof(tiler_dataarray::VertObjectType), verts_data.verts());
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idx_buf);

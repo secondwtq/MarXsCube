@@ -3,6 +3,10 @@
 // uniform mat4 gl_ModelViewProjectionMatrix;
 // attribute vec4 gl_Vertex;
 
+#define USE_HEIGHTFIELD 1
+
+#define TEXATLAS_COUNT (8.0)
+
 varying vec3 frag_normal;
 varying vec3 frag_light_dir;
 varying vec2 frag_texcoord;
@@ -21,10 +25,6 @@ uniform sampler2D s_texture_second;
 uniform sampler2D s_texture_heightfield;
 
 uniform sampler2D s_texture_tileset;
-
-#define USE_HEIGHTFIELD 1
-
-#define TEXATLAS_COUNT (8.0)
 
 // solution fram
 //		http://stackoverflow.com/questions/5281261/generating-a-normal-map-from-a-height-map

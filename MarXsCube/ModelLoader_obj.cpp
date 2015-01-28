@@ -132,19 +132,12 @@ void transfer_verts_tiler(tiler_dataarray& dest, const objfile& src) {
 	std::unordered_map<std::size_t, std::size_t> texcoord_cache;
 	
 	for (std::size_t i = 0; i < src.raw_verts.size(); i++) {
-		const glm::i32vec3& face = src.raw_faces[i];
 		
-		gl_vert_object vert;
-		
-		auto p1 = src.raw_verts[face[0]], p2 = src.raw_verts[face[1]], p3 = src.raw_verts[face[2]];
-		glm::vec3 v1 = p2 - p1, v2 = p3 - p1;
-		glm::vec3 normal { (v1.y*v2.z)-(v1.z*v2.y), -((v2.z*v1.x)-(v2.x*v1.z)), (v1.x*v2.y)-(v1.y*v2.x) };
+		tiler_dataarray::VertObjectType vert;
 		
 		vert.position = src.raw_verts[i];
 		if (src.raw_normals.size() > i)
 			vert.normal = src.raw_normals[i];
-		else
-			vert.normal = normal;
 		
 		if (texcoord_cache.find(i) != texcoord_cache.end()) {
 			vert.texcoord = src.raw_uvcoords[texcoord_cache.at(i)];
@@ -161,14 +154,34 @@ void transfer_verts_tiler(tiler_dataarray& dest, const objfile& src) {
 			}
 		}
 		
+		vert.this_idx = static_cast<int>(i);
 		dest.vec_verts().push_back(vert);
 	}
 	
+	std::array<std::size_t, 2> cellface_buffer;
+	std::array<std::size_t, 6> cellvert_buffer;
 	for (std::size_t i = 0; i < src.raw_faces.size(); i++) {
 		glm::i32vec3 current_face = src.raw_faces[i];
 		for (int j = 0; j < 3; j++)
 			dest.vec_indexes().push_back(current_face[j]);
+		
+		if (i % 2 == 1) {
+			for (int j = 0; j < 3; j++)
+				cellvert_buffer[j+3] = current_face[j];
+			
+			dest.vec_cells().push_back({ cellvert_buffer });
+			
+			glm::vec3 center { 0 };
+			center = dest.vec_verts()[cellvert_buffer[0]].position + dest.vec_verts()[cellvert_buffer[1]].position +
+						dest.vec_verts()[cellvert_buffer[2]].position + dest.vec_verts()[cellvert_buffer[4]].position;
+			center /= 4.0f;
+			dest.vec_centers().push_back(center);
+		} else {
+			for (int j = 0; j < 3; j++)
+				cellvert_buffer[j] = current_face[j];
+		}
 	}
+	
 }
 
 void objfile::parse() {
