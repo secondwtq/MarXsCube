@@ -49,7 +49,7 @@ void load_obj() {
 extern glm::vec3 gl_campos;
 extern glm::vec3 gl_lookat;
 
-const double GL_FACTOR_SCALE = (DIVS / 64) * TransformScaleFactor * 1.06;
+const double GL_FACTOR_SCALE = (DIVS / 64) * TransformScaleFactor * 1.0;
 
 void render_gl() {
 	glMatrixMode(GL_MODELVIEW);
@@ -79,10 +79,12 @@ void render_gl() {
 	
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, texture_second);
-	glActiveTexture(GL_TEXTURE2);
-	glBindTexture(GL_TEXTURE_2D, texture_height);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, texture_height);
+//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	
 	glUniform1i(vert_texcid, 0);
 	glUniform1i(vert_text_second_id, 1);

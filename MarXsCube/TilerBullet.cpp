@@ -41,7 +41,28 @@ static bool CustomMaterialCombinerCallback(btManifoldPoint& cp,	const btCollisio
 
 extern ContactAddedCallback gContactAddedCallback;
 
+#include "SFML.h"
+#include "BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h"
+
+sf::Color sfImageGetPixelFloat(const sf::Image& image, float x, float y) {
+	auto size = image.getSize();
+	return image.getPixel(x*size.x, y*size.y);
+}
+
 void init_terrain_physhape() {
+	sf::Texture *height_texture = &(TextureManger::GetInstance().TextureHashs["HEIGHTFIELD"]->texture);
+	sf::Image heightimage = height_texture->copyToImage();
+	
+	float *heightfield_data = new float[30*30];
+	for (std::size_t i = 0; i < 30; i++) {
+		for (std::size_t j = 0; j < 30; j++) {
+			heightfield_data[j*30+i] = (sfImageGetPixelFloat(heightimage, i/30.0, 1-(j/30.0)).r/255.0)*64.0;
+		}
+	}
+	btHeightfieldTerrainShape *ground_heightfield = new btHeightfieldTerrainShape(30, 30, heightfield_data, 1, 0, 64, 2, PHY_FLOAT, false);
+	ground_heightfield->setUseDiamondSubdivision(true);
+	ground_heightfield->setLocalScaling(btVector3(btScalar(64), btScalar(64), btScalar(1)));
+	
 	btTriangleMesh *mesh = new btTriangleMesh();
 	transfer_bullet_shape(*mesh, obj_test);
 	PhysicsShapeTypeMeshStatic *mesh_shape = new PhysicsShapeTypeMeshStatic();
@@ -56,16 +77,17 @@ void init_terrain_physhape() {
 	
 	btTransform groundTrans;
 	groundTrans.setIdentity();
-	groundTrans.setOrigin(btVector3(0, 0, 0));
+//	groundTrans.setOrigin(btVector3(0, 0, 0));
+	groundTrans.setOrigin(btVector3(15*64, 0, 32));
 	btDefaultMotionState *grMotionState = new btDefaultMotionState(groundTrans);
-	btRigidBody::btRigidBodyConstructionInfo grInfo(0., grMotionState, ground_shape);
+	btRigidBody::btRigidBodyConstructionInfo grInfo(0., grMotionState, ground_heightfield);
 	btRigidBody *grBody = new btRigidBody(grInfo);
 	grBody->setRestitution(btScalar(1));
 	grBody->setCollisionFlags(grBody->getCollisionFlags() | btCollisionObject::CF_STATIC_OBJECT);
 	grBody->setCollisionFlags(grBody->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
 	btTriangleInfoMap* triangleInfoMap = new btTriangleInfoMap();
-	gContactAddedCallback = CustomMaterialCombinerCallback;
-	btGenerateInternalEdgeInfo(ground_shape, triangleInfoMap);
+//	gContactAddedCallback = CustomMaterialCombinerCallback;
+//	btGenerateInternalEdgeInfo(ground_shape, triangleInfoMap);
 //	grBody->setContactProcessingThreshold(btScalar(64));
 
 	auto ground_phy = new PhysicsObject(true);
