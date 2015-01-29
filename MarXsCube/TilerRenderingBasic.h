@@ -111,7 +111,7 @@ public:
 	
 	void sepreate_cell(std::size_t idx);
 	
-	std::size_t find_cell(std::size_t idx, const glm::vec3& offset, float threshold = 16.0f) {
+	std::size_t find_cell(std::size_t idx, const glm::vec3& offset, float threshold = 8.0f) {
 		glm::vec3 org_center = this->m_cell_center.at(idx);
 		
 		// you'll need to swap x and y coord, WHY?
@@ -125,15 +125,15 @@ public:
 		return -1;
 	}
 	
-	std::size_t cell_left(std::size_t idx) { return this->find_cell(idx, { -64, 0, 0 }); }
-	std::size_t cell_right(std::size_t idx) { return this->find_cell(idx, { 64, 0, 0 }); }
-	std::size_t cell_top(std::size_t idx) { return this->find_cell(idx, { 0, 64, 0 }); }
-	std::size_t cell_bottom(std::size_t idx) { return this->find_cell(idx, { 0, -64, 0 }); }
+	std::size_t cell_left(std::size_t idx) { return this->find_cell(idx, { -32, 0, 0 }); }
+	std::size_t cell_right(std::size_t idx) { return this->find_cell(idx, { 32, 0, 0 }); }
+	std::size_t cell_top(std::size_t idx) { return this->find_cell(idx, { 0, 32, 0 }); }
+	std::size_t cell_bottom(std::size_t idx) { return this->find_cell(idx, { 0, -32, 0 }); }
 	
-	std::size_t cell_lefttop(std::size_t idx) { return this->find_cell(idx, { -64, 64, 0 }); }
-	std::size_t cell_leftbottom(std::size_t idx) { return this->find_cell(idx, { -64, -64, 0 }); }
-	std::size_t cell_righttop(std::size_t idx) { return this->find_cell(idx, { 64, 64, 0 }); }
-	std::size_t cell_rightbottom(std::size_t idx) { return this->find_cell(idx, { 64, -64, 0 }); }
+	std::size_t cell_lefttop(std::size_t idx) { return this->find_cell(idx, { -32, 32, 0 }); }
+	std::size_t cell_leftbottom(std::size_t idx) { return this->find_cell(idx, { -32, -32, 0 }); }
+	std::size_t cell_righttop(std::size_t idx) { return this->find_cell(idx, { 32, 32, 0 }); }
+	std::size_t cell_rightbottom(std::size_t idx) { return this->find_cell(idx, { 32, -32, 0 }); }
 	
 private:
 	std::vector<VertObjectType> m_vert_data;

@@ -161,7 +161,7 @@ void init_opengl() {
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf_new);
 	// a hack, roughly use the twice of original buffer size to create buffer
 	//		cuz it seems the buffer size is fixed after initialized.
-	glBufferData(GL_ARRAY_BUFFER, verts_data.count_vert() * sizeof(tiler_dataarray::VertObjectType) * 2, verts_data.verts(), GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, verts_data.count_vert() * sizeof(tiler_dataarray::VertObjectType)*1.5, verts_data.verts(), GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	
 	glGenBuffers(1, &idx_buf);
@@ -215,7 +215,6 @@ void tiler_array_test() {
 	
 	std::size_t nearest_cellidx = verts_data.find_nearest_cell({ current_pos.y, current_pos.x, 0 });
 	glm::vec3 nearest_cellcenter = verts_data.vec_centers()[nearest_cellidx];
-	printf("Cell: %lu %f %f\n", nearest_cellidx, nearest_cellcenter.x, nearest_cellcenter.y);
 	
 	verts_data.sepreate_cell(nearest_cellidx);
 	
@@ -270,7 +269,9 @@ void tiler_array_test() {
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf_new);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, verts_data.count_vert() * sizeof(tiler_dataarray::VertObjectType), verts_data.verts());
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	Acheron::Silcon.invoke();
 	
+	Acheron::Silcon.pause();
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idx_buf);
 	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, verts_data.count_idx() * sizeof(GLIDX), verts_data.indexes());
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);

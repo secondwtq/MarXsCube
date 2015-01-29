@@ -79,14 +79,19 @@ void main() {
 #if LIGHTING_ONLY == 1
 	gl_FragColor = vec4(1, 1, 1, 0) * intensity;
 #else
-	gl_FragColor = 24.0 * vec4(1, 1, 1, 0) * intensity * //texture2D(s_texture_main, texcoord_scaled) * texture2D(s_texture_main, texcoord_scaled_2) *
-					mix(texture2D(s_texture_tileset, texcoord_atlas_primary), 
-						texture2D(s_texture_tileset, texcoord_atlas_secondary), frag_blendweights.x) * 
-					mix(sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset, 1.0/15.0, TEXATLAS_COUNT), 
-						sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset_secondary, 1.0/15.0, TEXATLAS_COUNT), frag_blendweights.x) *
-					mix(sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset, 1.0/30.0, TEXATLAS_COUNT), 
-						sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset_secondary, 1.0/30.0, TEXATLAS_COUNT), frag_blendweights.x); 
-					// * texture2D(s_texture_tileset, texcoord_atlas_scaled) * texture2D(s_texture_tileset, texcoord_atlas_scaled_2);
-				// mix(texture2D(s_texture_main, texcoord_org), texture2D(s_texture_second, texcoord_org), frag_blendweights) * 32.0;
+	
+	vec4 color_original = mix(texture2D(s_texture_tileset, texcoord_atlas_primary), 
+						texture2D(s_texture_tileset, texcoord_atlas_secondary), frag_blendweights.x);
+	vec4 color_scaled_1 = mix(sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset, 1.0/6.0, TEXATLAS_COUNT), 
+						sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset_secondary, 1.0/6.0, TEXATLAS_COUNT), frag_blendweights.x);
+	vec4 color_scaled_2 = mix(sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset, 1.0/12.0, TEXATLAS_COUNT), 
+						sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset_secondary, 1.0/12.0, TEXATLAS_COUNT), frag_blendweights.x);
+
+	vec4 colort1 = mix(color_original, color_scaled_1, 0.3);
+	vec4 colort2 = mix(colort1, color_scaled_2, 0.3);
+
+	gl_FragColor = 3.0 * vec4(1, 1, 1, 0) * intensity *
+					 colort2;
+
 #endif
 }
