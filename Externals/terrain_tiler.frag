@@ -26,6 +26,39 @@ vec2 texatlas_offset(in float index, in float count) {
 	return vec2(offset_tile / count);
 }
 
+// vec4 sample_scale_and_offset(in vec2 texcoord, in sampler2D tileset, in vec2 offset, in vec3 scale, in float count) {
+// 	vec2 texcoord_org = texcoord;
+// 	vec4 ret = vec4(1.0, 1.0, 1.0, 1.0);
+
+// 	if (scale.x != 0.0) {
+// 		vec2 texcoord_scaled = fract(texcoord / scale.x);
+// 		vec2 texcoord_atlas = fract(texcoord_scaled) / count + offset;
+// 		ret *= texture2D(tileset, texcoord_atlas);
+// 	}
+
+// 	if (scale.y != 0.0) {
+// 		vec2 texcoord_scaled = fract(texcoord / scale.y);
+// 		vec2 texcoord_atlas = fract(texcoord_scaled) / count + offset;
+// 		ret *= texture2D(tileset, texcoord_atlas);
+// 	}
+
+// 	if (scale.z != 0.0) {
+// 		vec2 texcoord_scaled = fract(texcoord / scale.z);
+// 		vec2 texcoord_atlas = fract(texcoord_scaled) / count + offset;
+// 		ret *= texture2D(tileset, texcoord_atlas);
+// 	}
+
+// 	return ret;
+// }
+
+vec4 sample_scale_and_offset(in vec2 texcoord, in sampler2D tileset, in vec2 offset, in float scale, in float count) {
+	vec2 texcoord_org = texcoord * scale;
+
+	vec2 texcoord_scaled = fract(texcoord_org);
+	vec2 texcoord_atlas = fract(texcoord_scaled) / count + offset;
+	return texture2D(tileset, texcoord_atlas);
+}
+
 void main() {
 
 #if USE_LIGHTING == 1
@@ -35,27 +68,24 @@ void main() {
 #endif
 
 	vec2 texcoord_org = frag_texcoord.xy;
-	vec2 texcoord_scaled = texcoord_org / 30.0;
-	vec2 texcoord_scaled_2 = fract(vec2(texcoord_org.y, texcoord_org.x) / 15.0);
 	texcoord_org = fract(frag_texcoord.xy);
-	texcoord_scaled = fract(texcoord_scaled.xy);
-	texcoord_scaled_2 = fract(texcoord_scaled_2.xy);
 
 	vec2 offset = texatlas_offset(frag_texture_indexes.x, TEXATLAS_COUNT);
 	vec2 offset_secondary = texatlas_offset(frag_texture_indexes.y, TEXATLAS_COUNT);
 
 	vec2 texcoord_atlas_primary = fract(texcoord_org) / TEXATLAS_COUNT + offset;
-	vec2 texcoord_atlas_scaled = fract(texcoord_scaled) / TEXATLAS_COUNT + offset;
-	vec2 texcoord_atlas_scaled_2 = fract(texcoord_scaled_2) / TEXATLAS_COUNT + offset;
-
 	vec2 texcoord_atlas_secondary = fract(texcoord_org) / TEXATLAS_COUNT + offset_secondary;
 
 #if LIGHTING_ONLY == 1
 	gl_FragColor = vec4(1, 1, 1, 0) * intensity;
 #else
-	gl_FragColor = 2.5 * vec4(1, 1, 1, 0) * intensity * //texture2D(s_texture_main, texcoord_scaled) * texture2D(s_texture_main, texcoord_scaled_2) *
+	gl_FragColor = 24.0 * vec4(1, 1, 1, 0) * intensity * //texture2D(s_texture_main, texcoord_scaled) * texture2D(s_texture_main, texcoord_scaled_2) *
 					mix(texture2D(s_texture_tileset, texcoord_atlas_primary), 
-						texture2D(s_texture_tileset, texcoord_atlas_secondary), frag_blendweights.x);
+						texture2D(s_texture_tileset, texcoord_atlas_secondary), frag_blendweights.x) * 
+					mix(sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset, 1.0/15.0, TEXATLAS_COUNT), 
+						sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset_secondary, 1.0/15.0, TEXATLAS_COUNT), frag_blendweights.x) *
+					mix(sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset, 1.0/30.0, TEXATLAS_COUNT), 
+						sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset_secondary, 1.0/30.0, TEXATLAS_COUNT), frag_blendweights.x); 
 					// * texture2D(s_texture_tileset, texcoord_atlas_scaled) * texture2D(s_texture_tileset, texcoord_atlas_scaled_2);
 				// mix(texture2D(s_texture_main, texcoord_org), texture2D(s_texture_second, texcoord_org), frag_blendweights) * 32.0;
 #endif

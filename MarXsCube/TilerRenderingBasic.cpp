@@ -52,7 +52,7 @@ void transfer_verts_tiler(tiler_dataarray& dest, const objfile& src) {
 			for (int j = 0; j < 3; j++)
 				cellvert_buffer[j+3] = current_face[j];
 			
-			dest.vec_cells().push_back({ cellvert_buffer });
+			dest.vec_cells().push_back({ cellvert_buffer, static_cast<int>(dest.vec_cells().size()) });
 			
 			glm::vec3 center { 0 };
 			center = dest.vec_verts()[cellvert_buffer[0]].position + dest.vec_verts()[cellvert_buffer[1]].position +

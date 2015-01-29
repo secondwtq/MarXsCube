@@ -31,9 +31,8 @@ struct tiler_vert {
 	int origin_vert = -1;
 	
 	std::size_t get_origin() {
-		if (this->ismapped) {
-			return this->origin_vert;
-		} else return this->this_idx;
+		if (this->ismapped) return this->origin_vert;
+		else return this->this_idx;
 	}
 };
 
@@ -43,11 +42,15 @@ struct tiler_drawcell {
 	
 	std::array<std::size_t, CELL_VERTS_TOTAL> vertices;
 	bool seperated = false;
+	int this_idx = -1;
 	
-	tiler_drawcell(std::array<std::size_t, CELL_VERTS_TOTAL> pvertices) : vertices(pvertices) { }
+	tiler_drawcell(std::array<std::size_t, CELL_VERTS_TOTAL> pvertices, int idx)
+											: vertices(pvertices), this_idx(idx) { }
 	
 };
 
+// NOTICE: the helpers in this class is not a good design
+//		and they are not thread safe.
 class tiler_dataarray {
 public:
 	
@@ -60,6 +63,7 @@ public:
 	
 	tiler_drawcell &cell(std::size_t idx) { return this->m_cells.at(idx); }
 	VertObjectType &vert(std::size_t idx) { return this->m_vert_data.at(idx); }
+	const glm::vec3& center(std::size_t idx) { return this->m_cell_center.at(idx); }
 	
 	VertObjectType *verts() { return this->m_vert_data.data(); }
 	GLIDX *indexes() { return this->m_idx_data.data(); }
@@ -106,6 +110,30 @@ public:
 	}
 	
 	void sepreate_cell(std::size_t idx);
+	
+	std::size_t find_cell(std::size_t idx, const glm::vec3& offset, float threshold = 16.0f) {
+		glm::vec3 org_center = this->m_cell_center.at(idx);
+		
+		// you'll need to swap x and y coord, WHY?
+		glm::vec3 center_tofind = org_center + glm::vec3(offset.y, offset.x, 0);
+		
+		for (std::size_t i = 0; i < this->m_cell_center.size(); i++) {
+			if (glm::distance(center_tofind, this->center(i)) <= threshold) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	std::size_t cell_left(std::size_t idx) { return this->find_cell(idx, { -64, 0, 0 }); }
+	std::size_t cell_right(std::size_t idx) { return this->find_cell(idx, { 64, 0, 0 }); }
+	std::size_t cell_top(std::size_t idx) { return this->find_cell(idx, { 0, 64, 0 }); }
+	std::size_t cell_bottom(std::size_t idx) { return this->find_cell(idx, { 0, -64, 0 }); }
+	
+	std::size_t cell_lefttop(std::size_t idx) { return this->find_cell(idx, { -64, 64, 0 }); }
+	std::size_t cell_leftbottom(std::size_t idx) { return this->find_cell(idx, { -64, -64, 0 }); }
+	std::size_t cell_righttop(std::size_t idx) { return this->find_cell(idx, { 64, 64, 0 }); }
+	std::size_t cell_rightbottom(std::size_t idx) { return this->find_cell(idx, { 64, -64, 0 }); }
 	
 private:
 	std::vector<VertObjectType> m_vert_data;
