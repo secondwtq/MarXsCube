@@ -36,7 +36,8 @@ int vert_text_second_id = 0;
 int vert_text_height_id = 0;
 int vert_text_tileset_id = 0;
 int vert_blendid = 0;
-int vert_tileindex = 0;
+int vert_tileindexes = 0;
+int vert_blend_secondaryid = 0;
 
 GLuint vert_buf_new;
 GLuint idx_buf;
@@ -70,13 +71,13 @@ void render_gl() {
 	glVertexAttribPointer(vert_attrid, 3, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)0);
 	glVertexAttribPointer(vert_normid, 3, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)(3*sizeof(GLfloat)));
 	glVertexAttribPointer(vert_texcid, 3, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)(6*sizeof(GLfloat)));
-	glVertexAttribPointer(vert_blendid, 1, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)(9*sizeof(GLfloat)));
-	glVertexAttribPointer(vert_tileindex, 3, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)(12*sizeof(GLfloat)));
+	glVertexAttribPointer(vert_blendid, 3, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)(9*sizeof(GLfloat)));
+	glVertexAttribPointer(vert_tileindexes, 3, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)(12*sizeof(GLfloat)));
 	glEnableVertexAttribArray(vert_attrid);
 	glEnableVertexAttribArray(vert_normid);
 	glEnableVertexAttribArray(vert_texcid);
 	glEnableVertexAttribArray(vert_blendid);
-	glEnableVertexAttribArray(vert_tileindex);
+	glEnableVertexAttribArray(vert_tileindexes);
 	
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture_main);
@@ -104,7 +105,7 @@ void render_gl() {
 	glDrawElements(GL_TRIANGLES, (int)verts_data.count_idx(), GL_UNSIGNED_INT, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	
-	glDisableVertexAttribArray(vert_tileindex);
+	glDisableVertexAttribArray(vert_tileindexes);
 	glDisableVertexAttribArray(vert_texcid);
 	glDisableVertexAttribArray(vert_normid);
 	glDisableVertexAttribArray(vert_attrid);
@@ -138,8 +139,8 @@ void init_opengl() {
 	vert_normid = tiler_shader_main.get_attribute("s_normal");
 	
 	vert_texcid = tiler_shader_main.get_attribute("s_texcoord");
-	vert_blendid = tiler_shader_main.get_attribute("s_blendweight");
-	vert_tileindex = tiler_shader_main.get_attribute("s_texindex");
+	vert_blendid = tiler_shader_main.get_attribute("s_blendweights");
+	vert_tileindexes = tiler_shader_main.get_attribute("s_texindexes");
 	
 	vert_textid = tiler_shader_main.get_uniform("s_texture_main");
 	vert_text_second_id = tiler_shader_main.get_uniform("s_texture_second");
@@ -193,7 +194,7 @@ void raise_verts() {
 			float t = pow((96-d) / 96.0, 2);
 //			verts[i].position.z += 32*t;
 //			verts[i].blendweight[0] = std::min(verts[i].blendweight[0]+sqrt(t), 1.0f);
-			verts[i].tile_index.x = 3.0;
+			verts[i].tile_indexes.x = 3.0;
 		}
 	}
 	
@@ -221,9 +222,12 @@ void tiler_array_test() {
 	std::array<std::size_t, 4> vert_idx_to_iter { 0, 1, 2, 4 };
 	for (std::size_t i : vert_idx_to_iter) {
 		verts_data.vert(verts_data.cell(nearest_cellidx).vertices[i]).position.z += 16.0;
-		verts_data.vert(verts_data.cell(nearest_cellidx).vertices[i]).tile_index.x = 2.0;
-//		verts_data.update_vertorigin(verts_data.cell(nearest_cellidx).vertices[i]);
+		verts_data.vert(verts_data.cell(nearest_cellidx).vertices[i]).tile_indexes.x = 0.0;
+		verts_data.vert(verts_data.cell(nearest_cellidx).vertices[i]).tile_indexes.y = 1.0;
+		verts_data.update_vertorigin(verts_data.cell(nearest_cellidx).vertices[i]);
+		verts_data.update_map_of(verts_data.vert(verts_data.cell(nearest_cellidx).vertices[i]).get_origin());
 	}
+	verts_data.vert(verts_data.cell(nearest_cellidx).vertices[0]).blendweights.x = 1.0;
 	
 	verts_data.update_idx();
 	

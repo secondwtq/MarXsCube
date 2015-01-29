@@ -8,9 +8,9 @@
 varying vec3 frag_normal;
 varying vec3 frag_light_dir;
 varying vec2 frag_texcoord;
-varying float frag_blendweight;
+varying vec3 frag_blendweights;
 varying vec2 frag_height_texcoord;
-varying vec3 frag_texture_index;
+varying vec3 frag_texture_indexes;
 
 uniform sampler2D s_texture_main;
 uniform sampler2D s_texture_second;
@@ -41,19 +41,22 @@ void main() {
 	texcoord_scaled = fract(texcoord_scaled.xy);
 	texcoord_scaled_2 = fract(texcoord_scaled_2.xy);
 
-	vec2 offset = texatlas_offset(frag_texture_index.x, TEXATLAS_COUNT);
-	vec2 offset_secondary = texatlas_offset(frag_texture_index.y, TEXATLAS_COUNT);
+	vec2 offset = texatlas_offset(frag_texture_indexes.x, TEXATLAS_COUNT);
+	vec2 offset_secondary = texatlas_offset(frag_texture_indexes.y, TEXATLAS_COUNT);
 
-	vec2 texcoord_atlas = fract(texcoord_org) / TEXATLAS_COUNT + offset;
+	vec2 texcoord_atlas_primary = fract(texcoord_org) / TEXATLAS_COUNT + offset;
 	vec2 texcoord_atlas_scaled = fract(texcoord_scaled) / TEXATLAS_COUNT + offset;
 	vec2 texcoord_atlas_scaled_2 = fract(texcoord_scaled_2) / TEXATLAS_COUNT + offset;
+
+	vec2 texcoord_atlas_secondary = fract(texcoord_org) / TEXATLAS_COUNT + offset_secondary;
 
 #if LIGHTING_ONLY == 1
 	gl_FragColor = vec4(1, 1, 1, 0) * intensity;
 #else
 	gl_FragColor = 2.5 * vec4(1, 1, 1, 0) * intensity * //texture2D(s_texture_main, texcoord_scaled) * texture2D(s_texture_main, texcoord_scaled_2) *
-					texture2D(s_texture_tileset, texcoord_atlas) * texture2D(s_texture_tileset, texcoord_atlas_scaled);
+					mix(texture2D(s_texture_tileset, texcoord_atlas_primary), 
+						texture2D(s_texture_tileset, texcoord_atlas_secondary), frag_blendweights.x);
 					// * texture2D(s_texture_tileset, texcoord_atlas_scaled) * texture2D(s_texture_tileset, texcoord_atlas_scaled_2);
-				// mix(texture2D(s_texture_main, texcoord_org), texture2D(s_texture_second, texcoord_org), frag_blendweight) * 32.0;
+				// mix(texture2D(s_texture_main, texcoord_org), texture2D(s_texture_second, texcoord_org), frag_blendweights) * 32.0;
 #endif
 }

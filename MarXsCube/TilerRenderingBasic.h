@@ -23,12 +23,18 @@ struct tiler_vert {
 	glm::vec3 position;
 	glm::vec3 normal;
 	glm::vec3 texcoord;
-	glm::vec3 blendweight { 0 };
-	glm::vec3 tile_index { 0 };
+	glm::vec3 blendweights { 0 };
+	glm::vec3 tile_indexes { 0 };
 	
 	bool ismapped = false;
 	int this_idx = -1;
 	int origin_vert = -1;
+	
+	std::size_t get_origin() {
+		if (this->ismapped) {
+			return this->origin_vert;
+		} else return this->this_idx;
+	}
 };
 
 void transfer_verts_tiler(tiler_dataarray& dest, const objfile& src);
@@ -75,8 +81,21 @@ public:
 	std::size_t count_idx() { return this->m_idx_data.size(); }
 	
 	void update_vertorigin(std::size_t idx) {
-		if (this->vert(idx).ismapped)
-			this->vert(this->vert(idx).origin_vert).position = this->vert(idx).position;
+		if (this->vert(idx).ismapped) {
+			const VertObjectType& vert = this->vert(idx);
+			this->vert(vert.origin_vert).position = vert.position;
+		}
+	}
+	
+	void update_map_of(std::size_t idx) {
+		if (!this->vert(idx).ismapped) {
+			const VertObjectType& vert = this->vert(idx);
+			for (std::size_t i = 0; i < this->count_vert(); i++) {
+				if (this->vert(i).origin_vert == vert.this_idx) {
+					this->vert(i).position = vert.position;
+				}
+			}
+		}
 	}
 	
 	void update_idx() {

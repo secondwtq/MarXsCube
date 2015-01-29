@@ -11,14 +11,14 @@ varying vec3 frag_normal;
 varying vec3 frag_light_dir;
 varying vec2 frag_texcoord;
 varying vec2 frag_height_texcoord;
-varying float frag_blendweight;
-varying vec3 frag_texture_index;
+varying vec3 frag_blendweights;
+varying vec3 frag_texture_indexes;
 
 attribute vec3 position;
 attribute vec3 s_normal;
 attribute vec3 s_texcoord;
-attribute float s_blendweight;
-attribute vec3 s_texindex;
+attribute vec3 s_blendweights;
+attribute vec3 s_texindexes;
 
 uniform sampler2D s_texture_main;
 uniform sampler2D s_texture_second;
@@ -60,9 +60,9 @@ void main() {
 	frag_light_dir = normalize(light_dir);
 	frag_texcoord = s_texcoord.xy;
 	frag_height_texcoord = s_texcoord.xy / 30.0;
-	frag_blendweight = s_blendweight;
+	frag_blendweights = s_blendweights;
 
-	frag_texture_index = s_texindex;
+	frag_texture_indexes = s_texindexes;
 
 	// frag_texcoord = texatlas_offset(frag_texture_index.x, TEXATLAS_COUNT) + fract(frag_texcoord) / TEXATLAS_COUNT;
 
