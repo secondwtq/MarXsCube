@@ -19,4 +19,4 @@ Abs_Abstract::~Abs_Abstract() {LOGFUNC;
 	delete Physics;
 }
 
-void Abs_Abstract::setLayer(int Layer) {LOGFUNC; this->Layer = (RenderLayerType::Type)Layer; }
+void Abs_Abstract::setLayer(int Layer) { this->Layer = (RenderLayerType::Type)Layer; }

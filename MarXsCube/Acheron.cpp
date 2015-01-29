@@ -10,6 +10,8 @@
 
 #include "Acheron.h"
 
+#include "GProfiler.h"
+
 #include <thread>
 #include <functional>
 

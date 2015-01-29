@@ -41,7 +41,9 @@ namespace LuaUtils {
    		return (double)(((double)clock() / (double)CLOCKS_PER_SEC) * 1000.0);
 	}
 
-	Abs_Techno *toTechno(Abs_Abstract *src) { return dynamic_cast<Abs_Techno *>(src); }
+	// gperf said it maybe very slow, so try static_cast
+	//		also I heard that dynamic_cast is not encouraged to use in games.
+	Abs_Techno *toTechno(Abs_Abstract *src) { return static_cast<Abs_Techno *>(src); }
 	
 	luabridge::LuaRef CreateObjectTable_Default(lua_State* L) {
 		return luabridge::newTable(L); }

@@ -191,7 +191,7 @@ void raise_verts() {
 		auto d = glm::distance(pos_xy, pos_cmp);
 		
 		if (d < 96) {
-			float t = pow((96-d) / 96.0, 2);
+//			float t = pow((96-d) / 96.0, 2);
 //			verts[i].position.z += 32*t;
 //			verts[i].blendweight[0] = std::min(verts[i].blendweight[0]+sqrt(t), 1.0f);
 			verts[i].tile_indexes.x = 3.0;

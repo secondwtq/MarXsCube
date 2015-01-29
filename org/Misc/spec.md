@@ -14,4 +14,10 @@ Camera Location: 100, -100, 81.65
 
 64 unit - one 'cell'
 
-Tileset: 2048x2048, each tile 256\*256, 8\*8 tiles
+Tileset: ~~2048x2048, each tile 256\*256, 8\*8 tiles~~
+
+1024*1024, each tile 128\*128, 8\*8 tiles (considering 2048\*2048 & 16\*16)
+
+Tileset index starting from 0
+
+Each cell has 4 quads - one quad 32\*32

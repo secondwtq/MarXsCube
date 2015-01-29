@@ -167,6 +167,7 @@
 		598D1DE01A3967FF0049653B /* RayTest_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest_Interface.h; sourceTree = "<group>"; };
 		598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModelLoader_obj.cpp; sourceTree = "<group>"; };
 		598E6EEE1A6F649E000C68BE /* ModelLoader_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLoader_obj.h; sourceTree = "<group>"; };
+		59B9C16D1A7A275E0073E694 /* GProfiler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GProfiler.h; sourceTree = "<group>"; };
 		59C97B051A77784000AB3F02 /* TilerBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TilerBullet.cpp; sourceTree = "<group>"; };
 		59C97B061A77784000AB3F02 /* TilerBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TilerBullet.h; sourceTree = "<group>"; };
 		59C97B081A7913C800AB3F02 /* GLShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLShader.cpp; sourceTree = "<group>"; };
@@ -365,6 +366,7 @@
 				5944452E1A75389000941CEB /* CubeTransform.h */,
 				5944452D1A75389000941CEB /* CubeTransform.cpp */,
 				59262903198AB62300858A67 /* MarXsCube.1 */,
+				59B9C16D1A7A275E0073E694 /* GProfiler.h */,
 			);
 			path = MarXsCube;
 			sourceTree = "<group>";
@@ -621,15 +623,17 @@
 			buildSettings = {
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_THREADSAFE_STATICS = NO;
+				GCC_THREADSAFE_STATICS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/include,
 					"/Users/secondatke/Documents/Assets/Librarys/SFML-master/include",
 					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/include",
@@ -637,8 +641,10 @@
 					/Users/secondatke/Documents/Assets/Librarys/LuaBridge/include,
 					/Users/secondatke/Documents/Assets/Librarys/glm/include,
 				);
+				KEEP_PRIVATE_EXTERNS = YES;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					/usr/local/lib,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/lib,
 					/Users/secondatke/Documents/branches/project_U/lib,
 					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/lib",
@@ -656,6 +662,7 @@
 					10000,
 					"-image_base",
 					100000000,
+					"-lprofiler",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -666,15 +673,17 @@
 			buildSettings = {
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = fast;
-				GCC_THREADSAFE_STATICS = NO;
+				GCC_THREADSAFE_STATICS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/include,
 					"/Users/secondatke/Documents/Assets/Librarys/SFML-master/include",
 					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/include",
@@ -682,8 +691,10 @@
 					/Users/secondatke/Documents/Assets/Librarys/LuaBridge/include,
 					/Users/secondatke/Documents/Assets/Librarys/glm/include,
 				);
+				KEEP_PRIVATE_EXTERNS = YES;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					/usr/local/lib,
 					/Users/secondatke/Documents/Assets/Librarys/Bullet/lib,
 					/Users/secondatke/Documents/branches/project_U/lib,
 					"/Users/secondatke/Documents/Assets/Librarys/LuaJIT-2.0.3/lib",
@@ -701,6 +712,7 @@
 					10000,
 					"-image_base",
 					100000000,
+					"-lprofiler",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

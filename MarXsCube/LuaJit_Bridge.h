@@ -9,7 +9,7 @@
 #ifndef LuaJit_Bridge_h
 #define LuaJit_Bridge_h
 
-#include <lua.hpp>
+#include <luajit-2.0.3/lua.hpp>
 
 #include <LuaBridge/LuaBridge.h>
 

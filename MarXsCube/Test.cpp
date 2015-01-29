@@ -25,6 +25,8 @@ using namespace std;
 #include "BulletThread.h"
 #include "SilconThread.h"
 
+#include "GProfiler.h"
+
 sf::RenderWindow *window_global = nullptr;
 
 std::size_t global_counter = 0;
@@ -106,6 +108,7 @@ int main() {
 	sf::Event event;
 	sf::Clock clock;
 	clock_render.restart();
+	
 	while (window.isOpen()) {
 
 		Acheron::Bullet.pause();

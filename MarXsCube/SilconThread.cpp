@@ -7,17 +7,15 @@
 //
 
 #include "Common.h"
+#include "SFML.h"
 
 #include "Generic.h"
 #include "Acheron.h"
+#include "GLFoundation.h"
 
 #include "SilconThread.h"
 
-#include "SFML.h"
-
 extern sf::RenderWindow *window_global;
-
-#include "GLFoundation.h"
 
 std::size_t counter_render = 0;
 sf::Clock clock_render;
