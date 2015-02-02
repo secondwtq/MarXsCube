@@ -28,8 +28,11 @@ function comp_LocomotorDefault:on_init()
 
 	local scriptType = Helpers.scriptType_TechnoRTTITable(self:container_parent())
 	local phyargs = scriptType:property 'physics'
+	self:set_datafield('enabled', false)
+
 	if phyargs['ntype_locomotor'] == 'default' then
 
+		self:set_datafield('enabled', true)
 		self:set_datafield('state', 'IDLE') -- state, NONE, IDLE, BRAKING, MOVING
 		self:set_datafield('dest_vector3', {0, 0, 0}) -- current dest coord, a part of path
 		self:set_datafield('dest_vecarray', { })
@@ -50,6 +53,8 @@ function comp_LocomotorDefault:in_state(state)
 end
 
 function comp_LocomotorDefault:on_update()
+	if not self:get_datafield 'enabled' then return end
+
 	local obj = Helpers.Techno_TechnoRTTIIDTable(self:container_parent())
 	if not self:in_state 'IDLE' and (obj:onGround() == true) then
 		local loco_args = Helpers.scriptType_TechnoRTTITable(self:container_parent()):property 'physics'['nlocomotor_args']

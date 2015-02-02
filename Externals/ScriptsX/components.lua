@@ -111,6 +111,12 @@ _module_components.components_container = lobject.object:new({
 		end
 	end,
 
+	spawn = function (self)
+		for i, v in ipairs(self.__components) do
+			v:on_spawn()
+		end
+	end,
+
 	phy_transform = function (self)
 		for i, v in ipairs(self.__components) do
 			v:on_phytrans()
@@ -205,6 +211,10 @@ _module_components.component = lobject.object:new({
 	end,
 
 	on_update = function (self)
+
+	end,
+
+	on_spawn = function (self)
 
 	end,
 

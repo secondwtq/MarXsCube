@@ -3,6 +3,7 @@ Import("Anims.lua")
 local composer = require('composer')
 local gmap_comps = require('gmap_comps')
 local locomotor = require 'locomotor'
+local blocomotor = require 'loco_bvehicle'
 
 OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 	type = "TECHNO",
@@ -40,7 +41,8 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		composer.comp_RenderElementsManger,
 		composer.comp_RenderBasicBody,
 		locomotor.comp_LocomotorDefault,
-		gmap_comps.comp_GraphVehicle
+		gmap_comps.comp_GraphVehicle,
+		blocomotor.comp_BVehicle
 	},
 
 	physics = {
@@ -49,7 +51,8 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		mass = 2,
 		offset = { x = 0, y = 0, z = 24 },
 		angle_factor = { x = 1.0, y = 1.0, z = 1.0 },
-		ntype_locomotor = 'default',
+		ntype_locomotor = 'bvehicle',
+		use_vehicle = true,
 		nlocomotor_args = {
 			rot = 300,
 			stablespeed = 650,

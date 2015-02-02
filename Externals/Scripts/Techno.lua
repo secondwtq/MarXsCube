@@ -78,6 +78,8 @@ function Functions.Abs_Techno_onSpawn(self, table)
 
 	if scriptType.physics.initialstatic == true then
 		self.Physics:setToStatic() end
+
+	table.components:spawn()
 end
 
 -- Components Container should be created in Object RTTIID table
