@@ -13,6 +13,7 @@
 #include "ObjectManger.h"
 #include "Session.h"
 #include "Config.h"
+#include "FSM.h"
 
 class PhysicsGeneral;
 
@@ -30,6 +31,26 @@ public:
 	static inline RenderLayerManger *RenderLayerManger() {
 		return Generic::render_layer_manger;
 	}
+	
+	static inline void Init_Logger() {
+		FSM::init();
+		core_logger = FSM::logger("CubeCore").set_deflogger().get_proxy();
+		FSM::logger(FSMHelper::L::Debug) << "FSM ready." << FSMHelper::rn;
+	}
+	
+	static inline FSM::FSMLoggerProxy& corelog() { return core_logger; }
+	
+	static inline void Dispose_Logger_n_FSM() {
+		FSM::dispose_logger("CubeCore");
+		return FSM::dispose();
+	}
+	
+	static inline void Init_LuaStatus() {
+		state = new LuaStatus();
+		state->init();
+	}
+	
+	static inline LuaStatus *lua_state() { return state; }
 	
 	static inline void Init_Session() {
 		Generic::session = new class Session();
@@ -68,6 +89,10 @@ public:
 	static class PhysicsGeneral *physics_general;
 	
 	static class luabridge::LuaRef *foo_object_table_create;
+	
+	static class LuaStatus *state;
+	
+	static class FSM::FSMLoggerProxy core_logger;
 };
 
 #include "PhysicsGeneral.h"

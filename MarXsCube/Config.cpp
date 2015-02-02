@@ -1,13 +1,17 @@
-#include "Config.h"
 #include "ObjectManger.h"
-#include <algorithm>
-#include <cctype>
-using namespace luabridge;
-using namespace std;
-
 #include "Type_Anim.h"
 #include "Type_Techno.h"
 #include "Anim.h"
+
+#include "Generic.h"
+#include "Config.h"
+
+#include <algorithm>
+#include <cctype>
+
+using namespace std;
+using namespace luabridge;
+using namespace FSMHelper;
 
 EventManger *EventManger::instance = nullptr;
 
@@ -33,7 +37,7 @@ namespace {
 
 void LuaStatus::init() {LOGFUNC;
 	if (!_loaded) {
-		cout << "CubeCore: LuaStatus::init - Initing luaState... " << endl;
+		Generic::corelog()[L::Debug] << "Initing LuaState ..." << rn;
 		State = luaL_newstate();
 		luaL_openlibs(State);
 		getGlobalNamespace(State).beginNamespace("Utility").addFunction("DoImport", &LUA_ImportFile).endNamespace();
@@ -65,8 +69,7 @@ void LuaStatus::load(const char *filename, LuaLoadCallback callback) {LOGFUNC;
 }
 
 ConfigManger::ConfigManger(LuaStatus &state) : ConfigState(&state) {LOGFUNC;
-	printf("ConfigManger constructed.\n");
-}
+	printf("ConfigManger constructed.\n"); }
 
 void ConfigManger::loadObject(string name, LuaRef args) {LOGFUNC;
 	cout << "CubeCore: ConfigManger::loadObject - Loading " << name << " ..." << endl;

@@ -115,7 +115,7 @@ namespace FSM {
 	};
 	
 	template <typename T>
-	inline std::string& convert_to_string(const T& src) {
+	inline const std::string& convert_to_string(const T& src) {
 		static std::string unknown { "FSM::convert_to_string() - [UNKNOWN CONVERTION]" };
 		return unknown; }
 
@@ -124,6 +124,10 @@ namespace FSM {
 		return proxy.log(convert_to_string(src).c_str()); }
 	
 	inline FSMLoggerProxy& operator << (FSMLoggerProxy& proxy,  const char *src) {
+		return proxy.log(src); }
+	
+	// 150202: fix behavior on char array (pre-defined).
+	inline FSMLoggerProxy& operator << (FSMLoggerProxy& proxy,  char src[]) {
 		return proxy.log(src); }
 	
 	void init();

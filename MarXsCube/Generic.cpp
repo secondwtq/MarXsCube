@@ -21,6 +21,9 @@ class RenderLayerManger *Generic::render_layer_manger = nullptr;
 class PhysicsGeneral *Generic::physics_general = nullptr;
 class luabridge::LuaRef *Generic::foo_object_table_create;
 
+class FSM::FSMLoggerProxy Generic::core_logger = FSM::create_handle();
+class LuaStatus *Generic::state = nullptr;
+
 void Generic::Init_PhysicsGeneral() {
 	Generic::physics_general = new class PhysicsGeneral(); }
 

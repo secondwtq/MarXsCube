@@ -87,5 +87,7 @@ void AtTheVeryBeginning::register_interface() {
 }
 
 template bool getatvb<bool>(const std::string& key);
-	
+template std::string getatvb<std::string>(const std::string& key);
+template unsigned int getatvb<unsigned int>(const std::string& key);
+
 }

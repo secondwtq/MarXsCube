@@ -29,6 +29,10 @@ namespace FSM {
 	inline FSMLoggerProxy& operator << <std::string>(FSMLoggerProxy& proxy,  const std::string& src) {
 		return proxy.log(src.c_str()); }
 	
+	template <>
+	inline const std::string& convert_to_string(const unsigned int& src) {
+		return std::to_string(src); }
+	
 }
 
 #endif

@@ -25,15 +25,16 @@ using namespace std;
 #include "BulletThread.h"
 #include "SilconThread.h"
 
-#include "GProfiler.h"
-
 sf::RenderWindow *window_global = nullptr;
 
 std::size_t global_counter = 0;
 
 extern sf::Clock clock_render;
 
-FSM::FSMLoggerProxy log_main = FSM::create_handle();
+namespace {
+	const std::size_t BUFSIZE_WORKINGDIR_PATH = 1024;
+	char workingdir_buffer[BUFSIZE_WORKINGDIR_PATH] { 0 };
+}
 
 void safe_session_close() {
 	Acheron::Bullet.invoke_and_stop();
@@ -44,43 +45,76 @@ void safe_session_close() {
 #include "TilerBullet.h"
 #include "GLFoundation.h"
 
-int main() {
-	printf("MarXsCube by seCOnDatkE, 2014.\n\n");
-	
-	char currentdir[1024];
-    getcwd(currentdir, 1024);
-    printf("Working directory: %s, getting ready for logging...\n", currentdir);
+void cube_init_workingdir();
 
-	FSM::init();
-	FSM::logger(L::Debug) << "test FSM." << rn;
+void cube_init_first() {
+	printf("MarXsCube by seCOnDatkE, 2014-2015.\n\n");
+	printf("Initing FSM ...\n");
 	
-	log_main = FSM::logger("main").set_deflogger().get_proxy();
-	log_main << "test default logger" << rn;
+	Generic::Init_Logger();
 	
-	Generic::Init_Session();
+	cube_init_workingdir();
+}
 
-	LuaStatus luaState;
-	luaState.init();
-	
-	AtTheVeryBeginning::init_atvb(luaState);
+void cube_init_workingdir() {
+	getcwd(workingdir_buffer, BUFSIZE_WORKINGDIR_PATH);
+	Generic::corelog()[L::Debug] << "Working directory: " << workingdir_buffer << rn;
+}
+
+void cube_init_atvb() {
+	Generic::corelog()[L::Debug] << "Initing AtTheVeryBeginning ..." << rn;
+	AtTheVeryBeginning::init_atvb(*Generic::lua_state());
 	AtTheVeryBeginning::load_config("atheverybeginning.lua");
-	
-	sf::ContextSettings settings;
-	settings.stencilBits = 8;
-	settings.depthBits = 24;
-	settings.antialiasingLevel = 4;
-	settings.majorVersion = 2;
-	settings.minorVersion = 1;
+}
 
-	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Gmap | MarXsCube by seCOnDatkE 2014 - Prototype",
-						sf::Style::Titlebar || sf::Style::Close, settings);
-	window_global = &window;
+struct CubeInit_WindowSetting {
+public:
+	sf::ContextSettings context;
 	
-	sf::ContextSettings settings_got = window.getSettings();
-	printf("Running with OpenGL %d.%d.\n", settings_got.majorVersion, settings_got.minorVersion);
+	std::string window_title;
 	
-	ConfigManger config(luaState);
-	LuaInterface::RegisterInterface(luaState);
+	unsigned int width, height;
+};
+
+CubeInit_WindowSetting cube_read_context_setting() {
+	Generic::corelog()[L::Debug] << "Reading window setting..." << rn;
+	
+	CubeInit_WindowSetting ret;
+	sf::ContextSettings ret_context;
+	ret_context.majorVersion = AtTheVeryBeginning::getatvb<unsigned int>("context_version_major");
+	ret_context.minorVersion = AtTheVeryBeginning::getatvb<unsigned int>("context_version_minor");
+	ret_context.antialiasingLevel = AtTheVeryBeginning::getatvb<unsigned int>("context_antialias");
+	ret_context.stencilBits = 8;
+	ret_context.depthBits = 24;
+	
+	ret.context = ret_context;
+	ret.window_title = AtTheVeryBeginning::getatvb<std::string>("window_title") + " | MarXsCube Prototype";
+	ret.width = AtTheVeryBeginning::getatvb<unsigned int>("width");
+	ret.height = AtTheVeryBeginning::getatvb<unsigned int>("height");
+	return ret;
+}
+
+void cube_init_window() {
+	CubeInit_WindowSetting window_setting = cube_read_context_setting();
+	
+	Generic::corelog()[L::Debug] << "Creating window..." << rn;
+	window_global = new sf::RenderWindow(sf::VideoMode(window_setting.width, window_setting.height), window_setting.window_title, sf::Style::Titlebar || sf::Style::Close, window_setting.context);
+	
+	sf::ContextSettings settings_got = window_global->getSettings();
+	Generic::corelog()[L::Debug] << "Running with OpenGL " << settings_got.majorVersion << "." << settings_got.minorVersion << rn;
+}
+
+int main() {
+
+	cube_init_first();
+	Generic::Init_LuaStatus();
+	Generic::Init_Session();
+	cube_init_atvb();
+
+	cube_init_window();
+	
+	ConfigManger config(*Generic::lua_state());
+	LuaInterface::RegisterInterface(*Generic::lua_state());
 	LuaUtils::initLuaUtils();
 	Generic::Init_FunObjectTableCreate_Forward(config);
 	Generic::Init_RenderLayerManger();
@@ -91,9 +125,9 @@ int main() {
 	
 	Generic::Init_FunObjectTableCreate(config);
 
-	TestManger::GetInstance().window = &window;
-	window.setFramerateLimit(FPSLimit);
-	window.setVerticalSyncEnabled(true);
+	TestManger::GetInstance().window = window_global;
+	window_global->setFramerateLimit(FPSLimit);
+	window_global->setVerticalSyncEnabled(true);
 	TestManger::GetInstance().initTest();
 	init_terrain_physhape();
 
@@ -109,7 +143,7 @@ int main() {
 	sf::Clock clock;
 	clock_render.restart();
 	
-	while (window.isOpen()) {
+	while (window_global->isOpen()) {
 
 		Acheron::Bullet.pause();
 		
@@ -122,7 +156,7 @@ int main() {
 		Generic::Session()->setMousePos_Ab();
 		Generic::Session()->updateMouseButtonStatus();
 		
-		while (window.pollEvent(event)) {
+		while (window_global->pollEvent(event)) {
 			switch (event.type) {
 				case Event::Closed: safe_session_close(); break;
 
@@ -166,9 +200,7 @@ int main() {
 	}
 	
 	Generic::Dispose_PhysicsGeneral();
-	
-	FSM::dispose_logger("main");
-	FSM::dispose();
+	Generic::Dispose_Logger_n_FSM();
 
 	return 0;
 }
