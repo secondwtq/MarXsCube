@@ -28,10 +28,6 @@ using namespace std;
 
 sf::RenderWindow *window_global = nullptr;
 
-std::size_t global_counter = 0;
-
-extern sf::Clock clock_render;
-
 namespace {
 	const std::size_t BUFSIZE_WORKINGDIR_PATH = 1024;
 	char workingdir_buffer[BUFSIZE_WORKINGDIR_PATH] { 0 };
@@ -117,16 +113,10 @@ int main() {
 	Acheron::Silcon.invoke();
 	
 	sf::Event event;
-	sf::Clock clock;
-	clock_render.restart();
 	
 	while (window_global->isOpen()) {
 
 		Acheron::Bullet.pause();
-		
-		global_counter++;
-//		float fps = global_counter / clock.getElapsedTime().asSeconds();
-//		printf("updating... %lu %f\n", global_counter, fps);
 		
 		EventManger::GetInstance().GetEvent(EventManger::Events::GAME_UPDATE_BEGIN)();
 
