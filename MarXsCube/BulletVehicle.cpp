@@ -24,11 +24,11 @@ void BulletVehicle::spawn() {
 }
 
 namespace {
-	float wheelFriction = 100000.0;
+	float wheelFriction = 1.0f;
 	float suspensionStiffness = 10.f;
 	float suspensionDamping = 1.3f;
 	float suspensionCompression = 4.4f;
-	float rollInfluence = 0.8f;
+	float rollInfluence = 2.0f;
 	btScalar suspensionRestLength(3.0);
 }
 
@@ -45,13 +45,13 @@ void BulletVehicle::setup_wheels() {
 		wheel.m_frictionSlip = wheelFriction;
 		wheel.m_rollInfluence = rollInfluence;
 		
-		wheel.m_maxSuspensionForce = 1000000.0f;
+		wheel.m_maxSuspensionForce = 3000000.0f;
 	}
 }
 
 void BulletVehicle::launch() {
 	for (int i = 0; i < this->m_vehicle->getNumWheels(); i++) {
-		m_vehicle->applyEngineForce(120, i);
+		m_vehicle->applyEngineForce(240, i);
 		m_vehicle->setBrake(2000, i);
 		m_vehicle->setSteeringValue(0, i);
 	}
