@@ -14,6 +14,7 @@
 #include "GLShader.h"
 #include "GLFoundation.h"
 #include "TilerRenderingBasic.h"
+#include "ATVBCube.h"
 
 #include <SFML/OpenGL.hpp>
 #include <iostream>
@@ -122,8 +123,8 @@ void init_opengl() {
 	glClearDepth(1.f);
 	glDisable(GL_LIGHTING);
 	
-	GLdouble width = static_cast<double>(window_global->getSize().x),
-	height = static_cast<double>(window_global->getSize().y);
+	GLdouble width = static_cast<double>(ATVBCube::get_window_setting().width),
+	height = static_cast<double>(ATVBCube::get_window_setting().height);
 	
 	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);

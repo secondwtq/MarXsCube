@@ -67,7 +67,7 @@
          <EnvironmentVariable
             key = "CPUPROFILE"
             value = "cube.prof"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
       </EnvironmentVariables>
       <AdditionalOptions>

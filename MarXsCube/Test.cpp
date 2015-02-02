@@ -14,6 +14,7 @@
 #include "CubeTransform.h"
 
 #include "FSM.h"
+#include "ATVBCube.h"
 using namespace FSMHelper;
 using namespace sf;
 using namespace std;
@@ -67,41 +68,19 @@ void cube_init_atvb() {
 	AtTheVeryBeginning::load_config("atheverybeginning.lua");
 }
 
-struct CubeInit_WindowSetting {
-public:
-	sf::ContextSettings context;
-	
-	std::string window_title;
-	
-	unsigned int width, height;
-};
-
-CubeInit_WindowSetting cube_read_context_setting() {
-	Generic::corelog()[L::Debug] << "Reading window setting..." << rn;
-	
-	CubeInit_WindowSetting ret;
-	sf::ContextSettings ret_context;
-	ret_context.majorVersion = AtTheVeryBeginning::getatvb<unsigned int>("context_version_major");
-	ret_context.minorVersion = AtTheVeryBeginning::getatvb<unsigned int>("context_version_minor");
-	ret_context.antialiasingLevel = AtTheVeryBeginning::getatvb<unsigned int>("context_antialias");
-	ret_context.stencilBits = 8;
-	ret_context.depthBits = 24;
-	
-	ret.context = ret_context;
-	ret.window_title = AtTheVeryBeginning::getatvb<std::string>("window_title") + " | MarXsCube Prototype";
-	ret.width = AtTheVeryBeginning::getatvb<unsigned int>("width");
-	ret.height = AtTheVeryBeginning::getatvb<unsigned int>("height");
-	return ret;
-}
-
 void cube_init_window() {
-	CubeInit_WindowSetting window_setting = cube_read_context_setting();
+	ATVBCube::read_context_setting();
+	
+	const ATVBCube::CubeInit_WindowSetting *window_setting = &ATVBCube::get_window_setting();
 	
 	Generic::corelog()[L::Debug] << "Creating window..." << rn;
-	window_global = new sf::RenderWindow(sf::VideoMode(window_setting.width, window_setting.height), window_setting.window_title, sf::Style::Titlebar || sf::Style::Close, window_setting.context);
+	window_global = new sf::RenderWindow(sf::VideoMode(window_setting->width, window_setting->height), window_setting->window_title, sf::Style::Titlebar || sf::Style::Close, window_setting->context);
 	
 	sf::ContextSettings settings_got = window_global->getSettings();
 	Generic::corelog()[L::Debug] << "Running with OpenGL " << settings_got.majorVersion << "." << settings_got.minorVersion << rn;
+	
+	window_global->setFramerateLimit(ATVBCube::get_window_setting().fps_limit);
+	window_global->setVerticalSyncEnabled(ATVBCube::get_window_setting().enable_vsync);
 }
 
 int main() {
@@ -126,8 +105,6 @@ int main() {
 	Generic::Init_FunObjectTableCreate(config);
 
 	TestManger::GetInstance().window = window_global;
-	window_global->setFramerateLimit(FPSLimit);
-	window_global->setVerticalSyncEnabled(true);
 	TestManger::GetInstance().initTest();
 	init_terrain_physhape();
 

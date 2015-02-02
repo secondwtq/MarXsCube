@@ -12,8 +12,6 @@ typedef unsigned int GLIDX;
 // typedef unsigned int size_t;
 
 extern int DIVS;
-extern int WIDTH, HEIGHT;
-extern int FPSLimit;
 extern int divPhysics;
 extern double PI;
 extern double TransformScaleFactor;
