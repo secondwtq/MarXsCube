@@ -40,7 +40,7 @@ function comp_BVehicle:on_spawn()
 		obj.Physics.vehicle.parent = obj.Physics
 		obj.Physics.vehicle:spawn()
 
-		local wheel_radius = 7
+		local wheel_radius = 6
 		local wheel_height = -0
 		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(48, 18, wheel_height), wheel_radius)
 		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-48, 18, wheel_height), wheel_radius)

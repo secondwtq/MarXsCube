@@ -64,7 +64,7 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 			type = "COMPBOX",
 			mass = 6,
 			restitution = 0.2,
-			friction = 0.8,
+			friction = 1.0,
 			offset_comp = { x = 0, y = 0, z = 24 },
 			offset = { x = 0, y = 0, z = 0 },
 			size = { x = 48, y = 18, z = 24 }

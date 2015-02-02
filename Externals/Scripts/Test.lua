@@ -24,8 +24,8 @@ function Functions.TestManger_onTestInit()
 	-- local background = ModEnvironment.Functions.createTechno(OBJECTS.SATELITE_BG, Utility.CoordStruct(64*27+56, -36, 0))
 	-- background.temp_ZOffset = true
 	local cycle = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(256, 0, 48), true)
-	-- local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(256, 256, 128), true)
-	-- local rail2 = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(256, 64, 128), true)
+	local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(256, 256, 128), true)
+	local rail2 = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(256, 64, 128), true)
 	ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
 
 	-- create GameObjects for nodes, and fill OBJ_DOTS
