@@ -45,13 +45,13 @@ void BulletVehicle::setup_wheels() {
 		wheel.m_frictionSlip = wheelFriction;
 		wheel.m_rollInfluence = rollInfluence;
 		
-		wheel.m_maxSuspensionForce = 300000.0f;
+		wheel.m_maxSuspensionForce = 10000.0f;
 	}
 }
 
 void BulletVehicle::launch() {
 	for (int i = 0; i < this->m_vehicle->getNumWheels(); i++) {
-		m_vehicle->applyEngineForce(10000, i);
+		m_vehicle->applyEngineForce(5000, i);
 //		m_vehicle->setBrake(2000, i);
 //		m_vehicle->setSteeringValue(1, i);
 	}
