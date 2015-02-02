@@ -346,6 +346,7 @@ namespace LuaInterface {
 			beginNamespace("Physics").
 				beginClass<PhysicsObject>("PhysicsObject").
 					addData("attachedToObject", &PhysicsObject::attachedToObject).
+					addData("vehicle", &PhysicsObject::vehicle).
 					addFunction("setDirection", &PhysicsObject::setDirection).
 					addFunction("setDirectionTo", &PhysicsObject::setDirectionTo).
 					addFunction("setLocation", &PhysicsObject::setLocation).
@@ -374,6 +375,11 @@ namespace LuaInterface {
 					addFunction("getMainRotation", &PhysicsObject::getMainRotation).
 					addFunction("checkCollide", &PhysicsObject::checkCollide).
 					addFunction("checkCollide_", &PhysicsObject::checkCollide_).
+				endClass().
+				beginClass<BulletVehicle>("BulletVehicle").
+					addData("parent", &BulletVehicle::parent).
+					addStaticFunction("create", &BulletVehicle::create).
+					addFunction("spawn", &BulletVehicle::spawn).
 				endClass().
 			endNamespace();
 		

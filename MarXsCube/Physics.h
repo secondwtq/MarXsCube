@@ -68,6 +68,8 @@ class PhysicsShape {
 		PhysicsShapeType *Type;
 };
 
+class BulletVehicle;
+
 class PhysicsObject {
 	public:
 		static ObjectArray<PhysicsObject> Array;
@@ -82,6 +84,7 @@ class PhysicsObject {
 		btRigidBody *body = nullptr;
 		Abs_Abstract *attachedToObject = nullptr;
 		btVector3 offset = btVector3(btScalar(0), btScalar(0), btScalar(0));
+		BulletVehicle *vehicle = nullptr;
 	
 		double main_rotation = 0.0;
 	
@@ -162,5 +165,7 @@ class PhysicsObject {
 
 #include "Config.h"
 #include "Abstract.h"
+
+#include "BulletVehicle.h"
 
 #endif
