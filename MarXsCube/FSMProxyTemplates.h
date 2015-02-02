@@ -31,7 +31,7 @@ namespace FSM {
 	
 	template <>
 	inline const std::string& convert_to_string(const unsigned int& src) {
-		return std::to_string(src); }
+		return std::move(std::to_string(src)); }
 	
 }
 

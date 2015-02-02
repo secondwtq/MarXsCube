@@ -52,6 +52,7 @@
 		598D1DE11A3967FF0049653B /* RayTest_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */; };
 		598E6EEF1A6F649E000C68BE /* ModelLoader_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */; };
 		599985E91A7F3F9900E6CE68 /* ATVBCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 599985E71A7F3F9900E6CE68 /* ATVBCube.cpp */; };
+		599985EF1A7F4BED00E6CE68 /* Startup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 599985ED1A7F4BED00E6CE68 /* Startup.cpp */; };
 		59C97B071A77784000AB3F02 /* TilerBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59C97B051A77784000AB3F02 /* TilerBullet.cpp */; };
 		59C97B0A1A7913C800AB3F02 /* GLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59C97B081A7913C800AB3F02 /* GLShader.cpp */; };
 		59C97B0D1A7942CA00AB3F02 /* TilerRenderingBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59C97B0B1A7942CA00AB3F02 /* TilerRenderingBasic.cpp */; };
@@ -170,6 +171,8 @@
 		598E6EEE1A6F649E000C68BE /* ModelLoader_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLoader_obj.h; sourceTree = "<group>"; };
 		599985E71A7F3F9900E6CE68 /* ATVBCube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ATVBCube.cpp; sourceTree = "<group>"; };
 		599985E81A7F3F9900E6CE68 /* ATVBCube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATVBCube.h; sourceTree = "<group>"; };
+		599985ED1A7F4BED00E6CE68 /* Startup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Startup.cpp; sourceTree = "<group>"; };
+		599985EE1A7F4BED00E6CE68 /* Startup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Startup.h; sourceTree = "<group>"; };
 		59B9C16D1A7A275E0073E694 /* GProfiler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GProfiler.h; sourceTree = "<group>"; };
 		59C97B051A77784000AB3F02 /* TilerBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TilerBullet.cpp; sourceTree = "<group>"; };
 		59C97B061A77784000AB3F02 /* TilerBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TilerBullet.h; sourceTree = "<group>"; };
@@ -349,6 +352,8 @@
 				59262933198AB66500858A67 /* Pathfinder.cpp */,
 				59262935198AB66500858A67 /* Session.cpp */,
 				59262936198AB66500858A67 /* Techno.cpp */,
+				599985EE1A7F4BED00E6CE68 /* Startup.h */,
+				599985ED1A7F4BED00E6CE68 /* Startup.cpp */,
 				59262937198AB66500858A67 /* Test.cpp */,
 				5926293A198AB66500858A67 /* Type_Abstract.cpp */,
 				5926293B198AB66500858A67 /* Type_Anim.cpp */,
@@ -515,6 +520,7 @@
 				59C97B0D1A7942CA00AB3F02 /* TilerRenderingBasic.cpp in Sources */,
 				59262942198AB66500858A67 /* Common.cpp in Sources */,
 				591692601A3E11D2001D4D35 /* SFLineShape.cpp in Sources */,
+				599985EF1A7F4BED00E6CE68 /* Startup.cpp in Sources */,
 				599985E91A7F3F9900E6CE68 /* ATVBCube.cpp in Sources */,
 				5926293E198AB66500858A67 /* Abstract.cpp in Sources */,
 				5923C8E919D027480055E0D5 /* LWindow.cpp in Sources */,
