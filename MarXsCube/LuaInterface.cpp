@@ -383,6 +383,7 @@ namespace LuaInterface {
 					addFunction("setup_wheels", &BulletVehicle::setup_wheels).
 					addFunction("add_wheel", &BulletVehicle::add_wheel).
 					addFunction("launch", &BulletVehicle::launch).
+					addFunction("clear_steer", &BulletVehicle::clear_steer).
 				endClass().
 			endNamespace();
 		

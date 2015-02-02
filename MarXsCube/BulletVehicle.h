@@ -28,6 +28,8 @@ public:
 	
 	void setup_wheels();
 	
+	void clear_steer();
+	
 	PhysicsObject *parent = nullptr;
 	
 private:

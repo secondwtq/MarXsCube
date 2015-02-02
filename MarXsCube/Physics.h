@@ -41,6 +41,14 @@ class PhysicsShapeTypeBox : public PhysicsShapeType {
 		btCollisionShape *createShape();
 };
 
+class PhysicsShapeTypeCompBox : public PhysicsShapeTypeBox {
+	public:
+		CoordStruct offset { 0, 0, 0 };
+	
+		bool LoadFromConfig(ConfigManger &manger, luabridge::LuaRef ShapeRef);
+		btCollisionShape *createShape();
+};
+
 class PhysicsShapeTypeMeshStatic : public PhysicsShapeType {
 	public:
 		btCollisionShape *createShape();

@@ -23,9 +23,9 @@ function Functions.TestManger_onTestInit()
 
 	-- local background = ModEnvironment.Functions.createTechno(OBJECTS.SATELITE_BG, Utility.CoordStruct(64*27+56, -36, 0))
 	-- background.temp_ZOffset = true
-	local cycle = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(256, 0, 96), true)
-	local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(256, 256, 128), true)
-	local rail2 = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(256, 64, 128), true)
+	local cycle = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(256, 0, 48), true)
+	-- local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(256, 256, 128), true)
+	-- local rail2 = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(256, 64, 128), true)
 	ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
 
 	-- create GameObjects for nodes, and fill OBJ_DOTS
@@ -46,11 +46,11 @@ function Functions.TestManger_onTestInit()
 	end
 
 	cycle.ExtTable.components.a['GraphVehicle']:update_currentnode()
-	rail.ExtTable.components.a['GraphVehicle']:update_currentnode()
+	-- rail.ExtTable.components.a['GraphVehicle']:update_currentnode()
 	-- rail2.ExtTable.components.a['GraphVehicle']:update_currentnode()
 	
-	move_techno_graph(cycle.ExtTable, OBJ_DOTS[9+1])
-	move_techno_graph(rail.ExtTable, OBJ_DOTS[19+1])
+	-- move_techno_graph(cycle.ExtTable, OBJ_DOTS[9+1])
+	-- move_techno_graph(rail.ExtTable, OBJ_DOTS[19+1])
 
 end
 
@@ -100,6 +100,12 @@ function move_techno_graph(technot, target_node)
 		Helpers.tblinsert(path_nodes_vec3, coord)
 	end
 
-	-- move object
-	technot.components.a['LocomotorDefault']:move_path(path_nodes_vec3)
+	local script_type = Helpers.scriptType_TechnoRTTITable(technot)
+	if script_type:property 'physics' ['use_vehicle'] == true then
+		Helpers.Techno_TechnoRTTIIDTable(technot).Physics.vehicle:launch()
+	else
+		-- move object
+		technot.components.a['LocomotorDefault']:move_path(path_nodes_vec3)	
+	end
+
 end

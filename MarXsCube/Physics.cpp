@@ -25,8 +25,26 @@ bool PhysicsShapeTypeBox::LoadFromConfig(ConfigManger &manger, luabridge::LuaRef
 	return true;
 }
 
+bool PhysicsShapeTypeCompBox::LoadFromConfig(ConfigManger &manger, luabridge::LuaRef ShapeRef) {LOGFUNC;
+	std::cout << "CubeCore: PhysicsShapeTypeCompBox::LoadFromConfig - Loading ..." << std::endl;
+	PhysicsShapeTypeBox::LoadFromConfig(manger, ShapeRef);
+	LuaRef offsetRef = ShapeRef["offset_comp"];
+	this->offset = CoordStruct(offsetRef["x"], offsetRef["y"], offsetRef["z"]);
+	return true;
+}
+
 btCollisionShape *PhysicsShapeTypeBox::createShape() {LOGFUNC;
 	return new btBoxShape(btVector3(btScalar(size.x), btScalar(size.y), btScalar(size.z)));
+}
+
+btCollisionShape *PhysicsShapeTypeCompBox::createShape() {LOGFUNC;
+	btCollisionShape *inner_shape = new btBoxShape(btVector3(btScalar(size.x), btScalar(size.y), btScalar(size.z)));
+	btCompoundShape* compound = new btCompoundShape();
+	btTransform local_trans;
+	local_trans.setIdentity();
+	local_trans.setOrigin(btVector3(btScalar(offset.x), btScalar(offset.y), btScalar(offset.z)));
+	compound->addChildShape(local_trans, inner_shape);
+	return compound;
 }
 
 btCollisionShape *PhysicsShapeTypeMeshStatic::createShape() {
@@ -35,7 +53,7 @@ btCollisionShape *PhysicsShapeTypeMeshStatic::createShape() {
 }
 
 bool PhysicsObjectType::LoadFromConfig(ConfigManger &manger, LuaRef ParentRef) {LOGFUNC;
-	std::cout << "CubeCore: PhysicsObjectType::LoadFromConfig - Loading ";
+	std::cout << "CubeCore: PhysicsObjectType::LoadFromConfig - Loading " << std::endl;
 	LuaRef PhysicsRef = ParentRef["physics"];
 	EnablePhysics = PhysicsRef["enabled"];
 	ShapeRef = PhysicsRef["shape"];
@@ -49,6 +67,8 @@ bool PhysicsObjectType::LoadFromConfig(ConfigManger &manger, LuaRef ParentRef) {
 		angleFact = btVector3(btScalar(angleFactRef["x"]), btScalar(angleFactRef["y"]), btScalar(angleFactRef["z"]));
 		if (ShapeRef["type"] == "BOX") 
 			ShapeType = new PhysicsShapeTypeBox();
+		else if (ShapeRef["type"] == "COMPBOX")
+			ShapeType = new PhysicsShapeTypeCompBox();
 		ShapeType->LoadFromConfig(manger, ShapeRef);
 	}
 
