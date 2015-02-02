@@ -63,7 +63,7 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		shape = {
 			type = "BOX",
 			mass = 2,
-			restitution = 0.5,
+			restitution = 0.2,
 			friction = 0.8,
 			offset = { x = 0, y = 0, z = 0 },
 			size = { x = 48, y = 18, z = 24 }

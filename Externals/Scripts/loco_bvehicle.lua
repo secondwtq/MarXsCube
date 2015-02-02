@@ -34,16 +34,27 @@ function comp_BVehicle:on_spawn()
 	local script_type = Helpers.scriptType_TechnoRTTITable(self:container_parent())
 	local phyargs = script_type:property 'physics'
 	local obj = Helpers.Techno_TechnoRTTIIDTable(self:container_parent())
-	
+
 	if phyargs['use_vehicle'] then
 		obj.Physics.vehicle = Physics.BulletVehicle.create()
 		obj.Physics.vehicle.parent = obj.Physics
 		obj.Physics.vehicle:spawn()
+
+		local wheel_radius = 8
+		local wheel_height = -4
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(9, 10, wheel_height), wheel_radius)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-9, 10, wheel_height), wheel_radius)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(9, -10, wheel_height), wheel_radius)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-9, -10, wheel_height), wheel_radius)
+
+		obj.Physics.vehicle:setup_wheels()
+		obj.Physics.vehicle:launch()
 	end
 end
 
 function comp_BVehicle:on_update()
-
+	local obj = Helpers.Techno_TechnoRTTIIDTable(self:container_parent())
+	obj.Physics.vehicle:launch()
 end
 
 bvehicle_locomotor.comp_BVehicle = comp_BVehicle

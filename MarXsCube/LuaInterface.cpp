@@ -380,6 +380,9 @@ namespace LuaInterface {
 					addData("parent", &BulletVehicle::parent).
 					addStaticFunction("create", &BulletVehicle::create).
 					addFunction("spawn", &BulletVehicle::spawn).
+					addFunction("setup_wheels", &BulletVehicle::setup_wheels).
+					addFunction("add_wheel", &BulletVehicle::add_wheel).
+					addFunction("launch", &BulletVehicle::launch).
 				endClass().
 			endNamespace();
 		

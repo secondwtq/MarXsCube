@@ -9,6 +9,8 @@
 #ifndef __MarXsCube__BulletVehicle__
 #define __MarXsCube__BulletVehicle__
 
+#include "Common.h"
+
 #include "PhysicsCommon.h"
 #include "Physics.h"
 #include "BulletDynamics/Vehicle/btRaycastVehicle.h"
@@ -19,6 +21,12 @@ public:
 	static BulletVehicle *create() { return new BulletVehicle(); }
 	
 	void spawn();
+	
+	void launch();
+	
+	void add_wheel(const CoordStruct& location, float radius);
+	
+	void setup_wheels();
 	
 	PhysicsObject *parent = nullptr;
 	
