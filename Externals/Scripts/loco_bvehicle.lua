@@ -40,12 +40,12 @@ function comp_BVehicle:on_spawn()
 		obj.Physics.vehicle.parent = obj.Physics
 		obj.Physics.vehicle:spawn()
 
-		local wheel_radius = 6
-		local wheel_height = -0
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(48, 18, wheel_height), wheel_radius)
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-48, 18, wheel_height), wheel_radius)
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(48, -18, wheel_height), wheel_radius)
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-48, -18, wheel_height), wheel_radius)
+		local wheel_radius = 10
+		local wheel_height = 10
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(45, 15, wheel_height), wheel_radius)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-45, 15, wheel_height), wheel_radius)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(45, -15, wheel_height), wheel_radius)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-45, -15, wheel_height), wheel_radius)
 
 		obj.Physics.vehicle:setup_wheels()
 		-- obj.Physics.vehicle:launch()
@@ -53,10 +53,7 @@ function comp_BVehicle:on_spawn()
 end
 
 function comp_BVehicle:on_update()
-	if self:get_datafield 'enabled' then
-		local obj = Helpers.Techno_TechnoRTTIIDTable(self:container_parent())
-		obj.Physics.vehicle:clear_steer()
-	end
+
 end
 
 bvehicle_locomotor.comp_BVehicle = comp_BVehicle

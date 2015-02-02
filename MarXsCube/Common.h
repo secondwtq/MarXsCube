@@ -16,7 +16,7 @@ extern int divPhysics;
 extern double PI;
 extern double TransformScaleFactor;
 
-#define PHY_SCALE 0.05
+#define PHY_SCALE 0.1
 
 #define CUBE_ENDLINE "\n"
 

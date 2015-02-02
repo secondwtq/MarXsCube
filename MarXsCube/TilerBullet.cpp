@@ -85,12 +85,8 @@ void init_terrain_physhape() {
 	PhysicsShapeTypeMeshStatic *mesh_shape = new PhysicsShapeTypeMeshStatic();
 	mesh_shape->set_mesh(mesh);
 	
-	btAlignedObjectArray<btVector3> verts;
-	transfer_bullet_hull(verts, obj_test);
-	btConvexHullShape *ground_hull = new btConvexHullShape(&(verts[0].getX()), verts.size());
-	
 	btBvhTriangleMeshShape *ground_shape = static_cast<btBvhTriangleMeshShape *>(mesh_shape->createShape());
-	btCollisionShape *ground_box = new btBoxShape(btVector3(btScalar(30 * 64), btScalar(30 * 64), btScalar(1)));
+	ground_shape->setMargin(btScalar(0.1f));
 	
 	btTransform groundTrans;
 	groundTrans.setIdentity();
@@ -98,7 +94,7 @@ void init_terrain_physhape() {
 	btDefaultMotionState *grMotionState = new btDefaultMotionState(groundTrans);
 	btRigidBody::btRigidBodyConstructionInfo grInfo(0., grMotionState, ground_shape);
 	btRigidBody *grBody = new btRigidBody(grInfo);
-	grBody->setRestitution(btScalar(1));
+	grBody->setRestitution(btScalar(0.5));
 	grBody->setCollisionFlags(grBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
 	grBody->setCollisionFlags(grBody->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
 	btTriangleInfoMap* triangleInfoMap = new btTriangleInfoMap();
