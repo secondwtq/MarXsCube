@@ -33,7 +33,7 @@ namespace {
 }
 
 void BulletVehicle::add_wheel(const CoordStruct& location, float radius) {
-	this->m_vehicle->addWheel(btVector3(location.x, location.y, location.z), wheel_direction, wheel_axis, suspensionRestLength, btScalar(radius), this->m_tuning, true);
+	this->m_vehicle->addWheel(coord2bt(location), wheel_direction, wheel_axis, suspensionRestLength, btScalar(radius*PHY_SCALE), this->m_tuning, true);
 }
 
 void BulletVehicle::setup_wheels() {

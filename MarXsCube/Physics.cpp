@@ -21,7 +21,7 @@ bool PhysicsShapeTypeBox::LoadFromConfig(ConfigManger &manger, luabridge::LuaRef
 	std::cout << "CubeCore: PhysicsShapeTypeBox::LoadFromConfig - Loading ..." << std::endl;
 	PhysicsShapeType::LoadFromConfig(manger, ShapeRef);
 	LuaRef sizeRef = ShapeRef["size"];
-	size = CoordStruct(sizeRef["x"], sizeRef["y"], sizeRef["z"]);
+	size = CoordStruct((double)sizeRef["x"]*PHY_SCALE, (double)sizeRef["y"]*PHY_SCALE, (double)sizeRef["z"]*PHY_SCALE);
 	return true;
 }
 
@@ -29,7 +29,7 @@ bool PhysicsShapeTypeCompBox::LoadFromConfig(ConfigManger &manger, luabridge::Lu
 	std::cout << "CubeCore: PhysicsShapeTypeCompBox::LoadFromConfig - Loading ..." << std::endl;
 	PhysicsShapeTypeBox::LoadFromConfig(manger, ShapeRef);
 	LuaRef offsetRef = ShapeRef["offset_comp"];
-	this->offset = CoordStruct(offsetRef["x"], offsetRef["y"], offsetRef["z"]);
+	this->offset = CoordStruct((double)offsetRef["x"]*PHY_SCALE, (double)offsetRef["y"]*PHY_SCALE, (double)offsetRef["z"]*PHY_SCALE);
 	return true;
 }
 
@@ -61,7 +61,7 @@ bool PhysicsObjectType::LoadFromConfig(ConfigManger &manger, LuaRef ParentRef) {
 	if (EnablePhysics) {
 		mass = PhysicsRef["mass"];
 		LuaRef offsetRef = PhysicsRef["offset"];
-		offset = btVector3(btScalar(offsetRef["x"]), btScalar(offsetRef["y"]), btScalar(offsetRef["z"]));
+		offset = btVector3(btScalar((double)offsetRef["x"]*PHY_SCALE), btScalar((double)offsetRef["y"]*PHY_SCALE), btScalar((double)offsetRef["z"]*PHY_SCALE));
 
 		LuaRef angleFactRef = PhysicsRef["angle_factor"];
 		angleFact = btVector3(btScalar(angleFactRef["x"]), btScalar(angleFactRef["y"]), btScalar(angleFactRef["z"]));
@@ -92,8 +92,8 @@ void PhysicsObject::SpawnAt(const CoordStruct &loc) {LOGFUNC;
 		offset = Type->offset;
 		_shape = Type->ShapeType->createShape();
 		btTransform trans = btTransform::getIdentity();
-		btVector3 localInertia(0,0,0);
-		btVector3 _loc = btVector3(btScalar(loc.x), btScalar(loc.y), btScalar(loc.z))+offset;
+		btVector3 localInertia(0, 0, 0);
+		btVector3 _loc = btVector3(btScalar(loc.x*PHY_SCALE), btScalar(loc.y*PHY_SCALE), btScalar(loc.z*PHY_SCALE))+offset;
 		trans.setOrigin(_loc);
 		if (Type->mass != 0.f) _shape->calculateLocalInertia(Type->mass,localInertia);
 		MotionState = new MoState(trans, this);
@@ -103,7 +103,6 @@ void PhysicsObject::SpawnAt(const CoordStruct &loc) {LOGFUNC;
 		body->setFriction(btScalar(Type->ShapeType->friction));
 		body->setAngularFactor(Type->angleFact);
 		body->setUserPointer(this);
-		// body->setContactProcessingThreshold(btScalar(-.1));
 		Generic::PhysicsGeneral()->dynaWorld->addRigidBody(body);
 
 		if (attachedToObject)
@@ -128,15 +127,6 @@ void cubeTickCallback(btDynamicsWorld *world, btScalar timeStep) {
 				pA->collCache.insert(pB);
 		}
 
-		// int numContacts = contactManifold->getNumContacts();
-		// for (int j = 0; j<numContacts; j++) {
-		// 	btManifoldPoint& pt = contactManifold->getContactPoint(j);
-		// 	if (pt.getDistance()<0.f) {
-		// 		const btVector3& ptA = pt.getPositionWorldOnA();
-		// 		const btVector3& ptB = pt.getPositionWorldOnB();
-		// 		const btVector3& normalOnB = pt.m_normalWorldOnB;
-		// 	}
-		// }
 	}
 }
 
@@ -161,7 +151,7 @@ bool PhysicsObject::checkCollide_() {
 
 void PhysicsObject::setLocation(const CoordStruct &loc) {LOGFUNC;
 	btTransform tr = body->getCenterOfMassTransform();
-	tr.setOrigin(btVector3(btScalar(loc.x), btScalar(loc.y), btScalar(loc.z))+offset);
+	tr.setOrigin(btVector3(btScalar(loc.x*PHY_SCALE), btScalar(loc.y*PHY_SCALE), btScalar(loc.z*PHY_SCALE))+offset);
 	body->setCenterOfMassTransform(tr);
 	setTransformCallback(tr);
 }
@@ -283,7 +273,9 @@ void PhysicsObject::setTransformCallback(const btTransform &centerOfMassWorldTra
 	if (attachedToObject && attachedToObject->EnablePhysics) {
 		// cout << "CubeCore: PhysicsObject::setTransformCallback - Updating ..." << endl;
 		// cout << (int)(centerOfMassWorldTrans.getOrigin().getX()) << (int)(centerOfMassWorldTrans.getOrigin().getY()) << (int)(centerOfMassWorldTrans.getOrigin().getZ()) << endl;
-		attachedToObject->setLocation(CoordStruct((int)(centerOfMassWorldTrans.getOrigin().getX()-offset.x()), (int)(centerOfMassWorldTrans.getOrigin().getY()-offset.y()), (int)(centerOfMassWorldTrans.getOrigin().getZ()-offset.z())));
+		attachedToObject->setLocation(CoordStruct((int)((centerOfMassWorldTrans.getOrigin().getX()-offset.x())/PHY_SCALE),
+												  (int)((centerOfMassWorldTrans.getOrigin().getY()-offset.y())/PHY_SCALE),
+												  (int)((centerOfMassWorldTrans.getOrigin().getZ()-offset.z())/PHY_SCALE)));
 		// auto x = centerOfMassWorldTrans.getRotation().getAxis();
 		// attachedToObject->
 		btMatrix3x3 rot = centerOfMassWorldTrans.getBasis();

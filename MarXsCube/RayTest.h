@@ -41,8 +41,8 @@ namespace Physics {
 			class RayTestClass {
 			public:
 				CallbackT callback;
-				RayTestClass(const CoordStruct& start, const CoordStruct& end) : callback(btVector3(btScalar(start.x), btScalar(start.y), btScalar(start.z)),
-																			btVector3(btScalar(end.x), btScalar(end.y), btScalar(end.z))) {LOGFUNC; }
+				RayTestClass(const CoordStruct& start, const CoordStruct& end) : callback(btVector3(btScalar(start.x*PHY_SCALE), btScalar(start.y*PHY_SCALE), btScalar(start.z*PHY_SCALE)),
+																			btVector3(btScalar(end.x*PHY_SCALE), btScalar(end.y*PHY_SCALE), btScalar(end.z*PHY_SCALE))) {LOGFUNC; }
 				void perform() {LOGFUNC;
 					Generic::PhysicsGeneral()->dynaWorld->rayTest(callback.m_rayFromWorld, callback.m_rayToWorld, callback); }
 				
@@ -52,7 +52,7 @@ namespace Physics {
 				bool hit() {LOGFUNC; return callback.hasHit(); }
 				
 				CoordStruct hit_point() {
-					return CoordStruct(this->callback.m_hitPointWorld.x(), this->callback.m_hitPointWorld.y(), this->callback.m_hitPointWorld.z()); }
+					return CoordStruct(this->callback.m_hitPointWorld.x()/PHY_SCALE, this->callback.m_hitPointWorld.y()/PHY_SCALE, this->callback.m_hitPointWorld.z()/PHY_SCALE); }
 				
 			};
 		}

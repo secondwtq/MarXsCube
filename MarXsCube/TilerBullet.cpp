@@ -52,6 +52,9 @@ void transfer_bullet_shape(btTriangleMesh& dest, const objfile &src) {
 		
 		height1 = heightf1 * 64, height2 = heightf2 * 64, height3 = heightf3 * 64;
 		
+		gv1 *= PHY_SCALE, gv2 *= PHY_SCALE, gv3 *= PHY_SCALE;
+		height1 *= PHY_SCALE, height2 *= PHY_SCALE, height3 *= PHY_SCALE;
+		
 		btVector3 bv1 { gv1.y, gv1.x, gv1.z+height1 }, bv2 { gv2.y, gv2.x, gv2.z+height2 }, bv3 { gv3.y, gv3.x, gv3.z+height3 };
 		dest.addTriangle(bv1, bv2, bv3);
 	}

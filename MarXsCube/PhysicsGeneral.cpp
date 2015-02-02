@@ -10,7 +10,7 @@
 #include "Physics.h"
 #include "PhysicsGeneral.h"
 
-Float3D GlobalGravity = Float3D(0, 0, -100);
+Float3D GlobalGravity = Float3D(0, 0, -9.8);
 
 void PhysicsGeneral::init() {
 	collConf = new btDefaultCollisionConfiguration();

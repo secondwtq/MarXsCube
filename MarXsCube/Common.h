@@ -16,6 +16,8 @@ extern int divPhysics;
 extern double PI;
 extern double TransformScaleFactor;
 
+#define PHY_SCALE 0.05
+
 #define CUBE_ENDLINE "\n"
 
 //	RTTIType

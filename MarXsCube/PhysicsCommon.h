@@ -18,4 +18,7 @@ class ObjectCollideCache {
 		inline std::size_t size() { return objects.size(); }
 };
 
+inline btVector3 coord2bt(const CoordStruct& src) {
+	return btVector3(btScalar(src.x*PHY_SCALE), btScalar(src.y*PHY_SCALE), btScalar(src.z*PHY_SCALE)); }
+
 #endif
