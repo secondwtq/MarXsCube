@@ -53,8 +53,11 @@
 		598E6EEF1A6F649E000C68BE /* ModelLoader_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */; };
 		599985E91A7F3F9900E6CE68 /* ATVBCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 599985E71A7F3F9900E6CE68 /* ATVBCube.cpp */; };
 		599985EF1A7F4BED00E6CE68 /* Startup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 599985ED1A7F4BED00E6CE68 /* Startup.cpp */; };
-		599985F21A7F540200E6CE68 /* BulletVehicle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 599985F01A7F540200E6CE68 /* BulletVehicle.cpp */; };
+		599985F21A7F540200E6CE68 /* RaycastVehicle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 599985F01A7F540200E6CE68 /* RaycastVehicle.cpp */; };
 		599985F51A80A7E400E6CE68 /* BulletDebugDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 599985F31A80A7E400E6CE68 /* BulletDebugDraw.cpp */; };
+		599985F81A80DC0F00E6CE68 /* ConstraintVehicle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 599985F61A80DC0F00E6CE68 /* ConstraintVehicle.cpp */; };
+		599985FD1A80DCC600E6CE68 /* BulletVehicle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 599985FB1A80DCC600E6CE68 /* BulletVehicle.cpp */; };
+		599986001A80DDD700E6CE68 /* BulletVehicle_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 599985FE1A80DDD700E6CE68 /* BulletVehicle_Interface.cpp */; };
 		59C97B071A77784000AB3F02 /* TilerBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59C97B051A77784000AB3F02 /* TilerBullet.cpp */; };
 		59C97B0A1A7913C800AB3F02 /* GLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59C97B081A7913C800AB3F02 /* GLShader.cpp */; };
 		59C97B0D1A7942CA00AB3F02 /* TilerRenderingBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59C97B0B1A7942CA00AB3F02 /* TilerRenderingBasic.cpp */; };
@@ -175,10 +178,16 @@
 		599985E81A7F3F9900E6CE68 /* ATVBCube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATVBCube.h; sourceTree = "<group>"; };
 		599985ED1A7F4BED00E6CE68 /* Startup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Startup.cpp; sourceTree = "<group>"; };
 		599985EE1A7F4BED00E6CE68 /* Startup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Startup.h; sourceTree = "<group>"; };
-		599985F01A7F540200E6CE68 /* BulletVehicle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletVehicle.cpp; sourceTree = "<group>"; };
-		599985F11A7F540200E6CE68 /* BulletVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletVehicle.h; sourceTree = "<group>"; };
+		599985F01A7F540200E6CE68 /* RaycastVehicle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RaycastVehicle.cpp; sourceTree = "<group>"; };
+		599985F11A7F540200E6CE68 /* RaycastVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RaycastVehicle.h; sourceTree = "<group>"; };
 		599985F31A80A7E400E6CE68 /* BulletDebugDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletDebugDraw.cpp; sourceTree = "<group>"; };
 		599985F41A80A7E400E6CE68 /* BulletDebugDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletDebugDraw.h; sourceTree = "<group>"; };
+		599985F61A80DC0F00E6CE68 /* ConstraintVehicle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstraintVehicle.cpp; sourceTree = "<group>"; };
+		599985F71A80DC0F00E6CE68 /* ConstraintVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstraintVehicle.h; sourceTree = "<group>"; };
+		599985FB1A80DCC600E6CE68 /* BulletVehicle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletVehicle.cpp; sourceTree = "<group>"; };
+		599985FC1A80DCC600E6CE68 /* BulletVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletVehicle.h; sourceTree = "<group>"; };
+		599985FE1A80DDD700E6CE68 /* BulletVehicle_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletVehicle_Interface.cpp; sourceTree = "<group>"; };
+		599985FF1A80DDD700E6CE68 /* BulletVehicle_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletVehicle_Interface.h; sourceTree = "<group>"; };
 		59B9C16D1A7A275E0073E694 /* GProfiler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GProfiler.h; sourceTree = "<group>"; };
 		59C97B051A77784000AB3F02 /* TilerBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TilerBullet.cpp; sourceTree = "<group>"; };
 		59C97B061A77784000AB3F02 /* TilerBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TilerBullet.h; sourceTree = "<group>"; };
@@ -280,16 +289,12 @@
 				5926291B198AB66500858A67 /* PhysicsCheck.h */,
 				59262934198AB66500858A67 /* Physics.cpp */,
 				5923C8EE19D02A5E0055E0D5 /* PhysicsGeneral.cpp */,
-				598D1DDD1A3966A70049653B /* RayTest.h */,
-				598D1DDC1A3966A70049653B /* RayTest.cpp */,
-				598D1DE01A3967FF0049653B /* RayTest_Interface.h */,
-				598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */,
 				59FCBF3E1A73B8E200BEF905 /* BulletThread.h */,
 				59FCBF3D1A73B8E200BEF905 /* BulletThread.cpp */,
-				599985F11A7F540200E6CE68 /* BulletVehicle.h */,
-				599985F01A7F540200E6CE68 /* BulletVehicle.cpp */,
 				599985F41A80A7E400E6CE68 /* BulletDebugDraw.h */,
 				599985F31A80A7E400E6CE68 /* BulletDebugDraw.cpp */,
+				599985FA1A80DC7100E6CE68 /* RayTest */,
+				599985F91A80DC5F00E6CE68 /* Vehicle */,
 			);
 			name = Bullet;
 			sourceTree = "<group>";
@@ -410,6 +415,32 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
+		599985F91A80DC5F00E6CE68 /* Vehicle */ = {
+			isa = PBXGroup;
+			children = (
+				599985FC1A80DCC600E6CE68 /* BulletVehicle.h */,
+				599985F11A7F540200E6CE68 /* RaycastVehicle.h */,
+				599985F71A80DC0F00E6CE68 /* ConstraintVehicle.h */,
+				599985FB1A80DCC600E6CE68 /* BulletVehicle.cpp */,
+				599985F01A7F540200E6CE68 /* RaycastVehicle.cpp */,
+				599985F61A80DC0F00E6CE68 /* ConstraintVehicle.cpp */,
+				599985FF1A80DDD700E6CE68 /* BulletVehicle_Interface.h */,
+				599985FE1A80DDD700E6CE68 /* BulletVehicle_Interface.cpp */,
+			);
+			name = Vehicle;
+			sourceTree = "<group>";
+		};
+		599985FA1A80DC7100E6CE68 /* RayTest */ = {
+			isa = PBXGroup;
+			children = (
+				598D1DDD1A3966A70049653B /* RayTest.h */,
+				598D1DDC1A3966A70049653B /* RayTest.cpp */,
+				598D1DE01A3967FF0049653B /* RayTest_Interface.h */,
+				598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */,
+			);
+			name = RayTest;
+			sourceTree = "<group>";
+		};
 		59FCBF311A72818100BEF905 /* AtTheVeryBeginning */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,6 +522,7 @@
 				598D1DDE1A3966A70049653B /* RayTest.cpp in Sources */,
 				599985F51A80A7E400E6CE68 /* BulletDebugDraw.cpp in Sources */,
 				598D1DE11A3967FF0049653B /* RayTest_Interface.cpp in Sources */,
+				599986001A80DDD700E6CE68 /* BulletVehicle_Interface.cpp in Sources */,
 				5926294D198AB66500858A67 /* Session.cpp in Sources */,
 				5926294B198AB66500858A67 /* Pathfinder.cpp in Sources */,
 				5926293F198AB66500858A67 /* Anim.cpp in Sources */,
@@ -520,6 +552,7 @@
 				59262940198AB66500858A67 /* CameraObject.cpp in Sources */,
 				59262946198AB66500858A67 /* LuaUtils.cpp in Sources */,
 				59262945198AB66500858A67 /* LuaInterface.cpp in Sources */,
+				599985FD1A80DCC600E6CE68 /* BulletVehicle.cpp in Sources */,
 				59262955198AB66500858A67 /* Type_Techno.cpp in Sources */,
 				5923C8EF19D02A5E0055E0D5 /* PhysicsGeneral.cpp in Sources */,
 				59262947198AB66500858A67 /* Map.cpp in Sources */,
@@ -528,9 +561,10 @@
 				59262943198AB66500858A67 /* Config.cpp in Sources */,
 				59FCBF431A73CA5700BEF905 /* Acheron.cpp in Sources */,
 				5926294C198AB66500858A67 /* Physics.cpp in Sources */,
+				599985F81A80DC0F00E6CE68 /* ConstraintVehicle.cpp in Sources */,
 				59C97B0D1A7942CA00AB3F02 /* TilerRenderingBasic.cpp in Sources */,
 				59262942198AB66500858A67 /* Common.cpp in Sources */,
-				599985F21A7F540200E6CE68 /* BulletVehicle.cpp in Sources */,
+				599985F21A7F540200E6CE68 /* RaycastVehicle.cpp in Sources */,
 				591692601A3E11D2001D4D35 /* SFLineShape.cpp in Sources */,
 				599985EF1A7F4BED00E6CE68 /* Startup.cpp in Sources */,
 				599985E91A7F3F9900E6CE68 /* ATVBCube.cpp in Sources */,

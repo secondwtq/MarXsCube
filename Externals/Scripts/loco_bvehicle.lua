@@ -36,7 +36,7 @@ function comp_BVehicle:on_spawn()
 	local obj = Helpers.Techno_TechnoRTTIIDTable(self:container_parent())
 
 	if phyargs['use_vehicle'] then
-		obj.Physics.vehicle = Physics.BulletVehicle.create()
+		obj.Physics.vehicle = Physics.RaycastVehicle.create()
 		obj.Physics.vehicle.parent = obj.Physics
 		obj.Physics.vehicle:spawn()
 

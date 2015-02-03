@@ -27,6 +27,7 @@
 
 #include "StdInterface.h"
 #include "RayTest_Interface.h"
+#include "BulletVehicle_Interface.h"
 
 #include "Gmap_Interface.h"
 
@@ -376,19 +377,10 @@ namespace LuaInterface {
 					addFunction("checkCollide", &PhysicsObject::checkCollide).
 					addFunction("checkCollide_", &PhysicsObject::checkCollide_).
 				endClass().
-				beginClass<BulletVehicle>("BulletVehicle").
-					addData("parent", &BulletVehicle::parent).
-					addStaticFunction("create", &BulletVehicle::create).
-					addFunction("spawn", &BulletVehicle::spawn).
-					addFunction("setup_wheels", &BulletVehicle::setup_wheels).
-					addFunction("add_wheel", &BulletVehicle::add_wheel).
-					addFunction("launch", &BulletVehicle::launch).
-					addFunction("clear_steer", &BulletVehicle::clear_steer).
-					addFunction("brake_atonce", &BulletVehicle::brake_atonce).
-				endClass().
 			endNamespace();
 		
 		LuaInterface::RegisterInterface_Physics_RayTest(L);
+		LuaInterface::RegisterInterface_Physics_Vehicle(L);
 	}
 
 }

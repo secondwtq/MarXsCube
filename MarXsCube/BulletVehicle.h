@@ -2,7 +2,7 @@
 //  BulletVehicle.h
 //  MarXsCube
 //
-//  Created by SeconDatke on 2/2/15.
+//  Created by SeconDatke on 2/3/15.
 //  Copyright (c) 2015 MarXsCube Staff. All rights reserved.
 //
 
@@ -11,33 +11,29 @@
 
 #include "Common.h"
 
-#include "PhysicsCommon.h"
-#include "Physics.h"
-#include "BulletDynamics/Vehicle/btRaycastVehicle.h"
+class PhysicsObject;
 
 class BulletVehicle {
 public:
 	
-	static BulletVehicle *create() { return new BulletVehicle(); }
+	virtual void spawn() = 0;
 	
-	void spawn();
+	virtual void launch() = 0;
 	
-	void launch();
+	virtual void add_wheel(const CoordStruct& location, float radius) = 0;
 	
-	void add_wheel(const CoordStruct& location, float radius);
+	virtual void setup_wheels() = 0;
 	
-	void setup_wheels();
+	virtual void clear_steer() = 0;
 	
-	void clear_steer();
+	virtual void brake_atonce() = 0;
 	
-	void brake_atonce();
+	virtual ~BulletVehicle() { }
 	
 	PhysicsObject *parent = nullptr;
 	
-private:
-	btVehicleRaycaster *m_vehicle_raycaster = nullptr;
-	btRaycastVehicle *m_vehicle = nullptr;
-	btRaycastVehicle::btVehicleTuning m_tuning;
 };
+
+#include "Physics.h"
 
 #endif /* defined(__MarXsCube__BulletVehicle__) */
