@@ -17,13 +17,12 @@
 // reference: from Bullet official demos
 // TODO: scaling and coord unfinished
 
-#define DEBUG_DRAW_SCALE 3
+#define DEBUG_DRAW_SCALE 1
 
 void BulletDebugDrawer::render() {
 	GLFoundation::unbind_shader();
-	glDisable(GL_DEPTH_TEST);
+	glClear(GL_DEPTH_BUFFER_BIT);
 	Generic::PhysicsGeneral()->dynaWorld->debugDrawWorld();
-	glEnable(GL_DEPTH_TEST);
 }
 
 void BulletDebugDrawer::drawLine(const btVector3& from, const btVector3& to,

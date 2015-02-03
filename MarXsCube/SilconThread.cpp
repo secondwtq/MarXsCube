@@ -28,7 +28,7 @@ void silcon_acheron_function() {
 		Generic::RenderLayerManger()->Layers[i].Update();
 	window_global->popGLStates();
 	
-	BulletDebugDrawer::render();
+//	BulletDebugDrawer::render();
 	
 	window_global->display();
 }

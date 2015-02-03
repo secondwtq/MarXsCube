@@ -271,23 +271,14 @@ double PhysicsObject::getMainRotation() {
 
 void PhysicsObject::setTransformCallback(const btTransform &centerOfMassWorldTrans) {LOGFUNC;
 	if (attachedToObject && attachedToObject->EnablePhysics) {
-		// cout << "CubeCore: PhysicsObject::setTransformCallback - Updating ..." << endl;
-		// cout << (int)(centerOfMassWorldTrans.getOrigin().getX()) << (int)(centerOfMassWorldTrans.getOrigin().getY()) << (int)(centerOfMassWorldTrans.getOrigin().getZ()) << endl;
 		attachedToObject->setLocation(CoordStruct((int)((centerOfMassWorldTrans.getOrigin().getX()-offset.x())/PHY_SCALE),
 												  (int)((centerOfMassWorldTrans.getOrigin().getY()-offset.y())/PHY_SCALE),
 												  (int)((centerOfMassWorldTrans.getOrigin().getZ()-offset.z())/PHY_SCALE)));
-		// auto x = centerOfMassWorldTrans.getRotation().getAxis();
-		// attachedToObject->
 		btMatrix3x3 rot = centerOfMassWorldTrans.getBasis();
 		float x, y, z;
 		rot.getEulerZYX(z, y, x);
-		attachedToObject->setMainRotation(z * (180.0 / PI));
+		attachedToObject->setMainRotation(-z * (180.0 / PI));
 		this->main_rotation = z;
-		// printf("%lf %lf %lf\n", x.x(), x.y(), x.z());
-		
-//		if (attachedToObject->WhatAmI() == RTTIType_Techno) {
-//			EventManger::GetInstance().GetEvent(EventManger::Events::TECHNO_PHYUPDATE)(LuaUtils::toTechno(attachedToObject), LuaUtils::toTechno(attachedToObject)->ExtTable);
-//		}
 	}
 }
 
