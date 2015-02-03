@@ -29,5 +29,8 @@ void LuaInterface::RegisterInterface_Physics_Vehicle(LuaStatus &L) {
 		deriveClass<RaycastVehicle, BulletVehicle>("RaycastVehicle").
 			addStaticFunction("create", &RaycastVehicle::create).
 		endClass().
+		deriveClass<ConstraintVehicle, BulletVehicle>("ConstraintVehicle").
+			addStaticFunction("create", &ConstraintVehicle::create).
+		endClass().
 	endNamespace();
 }

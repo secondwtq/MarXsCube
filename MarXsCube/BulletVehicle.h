@@ -20,7 +20,7 @@ public:
 	
 	virtual void launch() = 0;
 	
-	virtual void add_wheel(const CoordStruct& location, float radius) = 0;
+	virtual void add_wheel(const CoordStruct& location, float radius, float width) = 0;
 	
 	virtual void setup_wheels() = 0;
 	

@@ -24,7 +24,7 @@ public:
 	
 	void launch();
 	
-	void add_wheel(const CoordStruct& location, float radius);
+	void add_wheel(const CoordStruct& location, float radius, float width);
 	
 	void setup_wheels();
 	

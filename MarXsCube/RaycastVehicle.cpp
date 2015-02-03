@@ -32,7 +32,7 @@ namespace {
 	btScalar suspensionRestLength(1.0);
 }
 
-void RaycastVehicle::add_wheel(const CoordStruct& location, float radius) {
+void RaycastVehicle::add_wheel(const CoordStruct& location, float radius, float width) {
 	this->m_vehicle->addWheel(coord2bt(location), wheel_direction, wheel_axis, suspensionRestLength, btScalar(radius*PHY_SCALE), this->m_tuning, true);
 }
 
@@ -54,7 +54,7 @@ void RaycastVehicle::setup_wheels() {
 
 void RaycastVehicle::launch() {
 	for (int i = 0; i < this->m_vehicle->getNumWheels(); i++) {
-		m_vehicle->applyEngineForce(5000, i);
+		m_vehicle->applyEngineForce(10000, i);
 //		m_vehicle->setBrake(2000, i);
 //		m_vehicle->setSteeringValue(1, i);
 	}
