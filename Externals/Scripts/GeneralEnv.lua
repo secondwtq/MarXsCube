@@ -71,10 +71,12 @@ ModEnvironment.Functions = { }
 
 function ModEnvironment.Functions.applyKeyboardCommandTo(self, keycode)
 	if keycode == Enums.Key.S then
-		if self:WhatAmI() == Enums.RTTITypeID.Techno then
-			local _self = Utility.toTechno(self)
-			if _self:onGround() then _self.Physics:setVelocity(0) end
-			util.getObjectTable(_self).Mission = Enums.ModEnv.Mission.Idle
+		if self.Techno:WhatAmI() == Enums.RTTITypeID.Techno then
+			local _self = Utility.toTechno(self.Techno)
+			-- if _self:onGround() then _self.Physics:setVelocity(0) end
+			-- util.getObjectTable(_self).Mission = Enums.ModEnv.Mission.Idle
+			print 'braking'
+			_self.Physics.vehicle:brake_atonce()
 		end
 	end
 	if keycode == Enums.Key.D then

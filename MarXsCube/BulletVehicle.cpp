@@ -66,3 +66,10 @@ void BulletVehicle::clear_steer() {
 //		m_vehicle->setBrake(500, i);
 	}
 }
+
+void BulletVehicle::brake_atonce() {
+	for (int i = 0; i < this->m_vehicle->getNumWheels(); i++) {
+		m_vehicle->setBrake(2000, i);
+		m_vehicle->setSteeringValue(0, i);
+	}
+}

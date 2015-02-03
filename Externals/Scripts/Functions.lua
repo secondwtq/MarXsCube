@@ -28,9 +28,7 @@ function Functions.Session_KeyPress(keyevent)
 	if (keyevent.code == Enums.Key.Up) then sesInst:CameraMove(dir.NorthWest, step) end
 	if (keyevent.code == Enums.Key.Down) then sesInst:CameraMove(dir.SouthEast, step) end
 
-	if ModEnvironment.CurGenState == Enums.ModEnv.GenStates.Selected_Single then
-		ModEnvironment.Functions.applyKeyboardCommandTo(ModEnvironment.SelectedUnit_Single, keyevent.code)
-	end
+	ModEnvironment.Functions.applyKeyboardCommandTo(TECHNO_SELECTED, keyevent.code)
 end
 
 function Functions.Session_MousePress(mouseStatus)

@@ -15,6 +15,9 @@
 #include <SFML/OpenGL.hpp>
 
 // reference: from Bullet official demos
+// TODO: scaling and coord unfinished
+
+#define DEBUG_DRAW_SCALE 3
 
 void BulletDebugDrawer::render() {
 	GLFoundation::unbind_shader();
@@ -27,8 +30,8 @@ void BulletDebugDrawer::drawLine(const btVector3& from, const btVector3& to,
 								 const btVector3& fromColor, const btVector3& toColor) {
 	glBegin(GL_LINES);
 	{
-		btVector3 sfrom = from * PHY_SCALE_INV,
-					sto = to * PHY_SCALE_INV;
+		btVector3 sfrom = from * PHY_SCALE_INV * DEBUG_DRAW_SCALE,
+					sto = to * PHY_SCALE_INV * DEBUG_DRAW_SCALE;
 		glColor3f(fromColor.getX(), fromColor.getY(), fromColor.getZ());
 		glVertex3d(sfrom.getY(), sfrom.getX(), sfrom.getZ());
 		glColor3f(toColor.getX(), toColor.getY(), toColor.getZ());

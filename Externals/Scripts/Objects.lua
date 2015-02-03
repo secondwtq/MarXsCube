@@ -66,7 +66,7 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 			friction = 100.0,
 			offset_comp = { x = 0, y = 0, z = 24 },
 			offset = { x = 0, y = 0, z = 0 },
-			size = { x = 48, y = 18, z = 24 }
+			size = { x = 48, y = 24, z = 24 }
 		}
 	}
 })

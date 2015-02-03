@@ -7,7 +7,7 @@ AtTheVeryBeginning.together({
 	context_version_minor = 1,
 	context_antialias = 4,
 	window_title = "Demo Window",
-	window_width = 1280, window_height = 720,
+	window_width = 1920, window_height = 1080,
 
 	window_fps_limit = 60,
 	window_vsync = true,

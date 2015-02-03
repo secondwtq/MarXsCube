@@ -30,6 +30,8 @@ public:
 	
 	void clear_steer();
 	
+	void brake_atonce();
+	
 	PhysicsObject *parent = nullptr;
 	
 private:
