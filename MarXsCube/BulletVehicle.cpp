@@ -45,6 +45,9 @@ void BulletVehicle::setup_wheels() {
 		wheel.m_frictionSlip = wheelFriction;
 		wheel.m_rollInfluence = rollInfluence;
 		
+		//The wheels sink through the ground when the suspension cannot support the weight of the vehicle.
+		// You need to increase the suspension stiffness, max travel or suspension length.
+		// *Increasing the suspension too much will make the simulation unstable.*
 		wheel.m_maxSuspensionForce = 10000.0f;
 	}
 }

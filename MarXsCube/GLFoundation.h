@@ -17,4 +17,10 @@ void raise_verts();
 
 void tiler_array_test();
 
+class GLFoundation {
+	public:
+	
+		static void unbind_shader();
+};
+
 #endif /* defined(__MarXsCube__GLFoundation__) */

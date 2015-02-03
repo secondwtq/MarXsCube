@@ -8,6 +8,9 @@
 
 #include "Common.h"
 #include "Physics.h"
+
+#include "BulletDebugDraw.h"
+
 #include "PhysicsGeneral.h"
 
 Float3D GlobalGravity = Float3D(0, 0, -9.8);
@@ -23,6 +26,9 @@ void PhysicsGeneral::init() {
 	dynaWorld->setGravity(btVector3(btScalar(GlobalGravity.x), btScalar(GlobalGravity.y), btScalar(GlobalGravity.z)));
 	
 	dynaWorld->setInternalTickCallback(cubeTickCallback);
+	
+	dynaWorld->setDebugDrawer(new BulletDebugDrawer);
+	dynaWorld->getDebugDrawer()->setDebugMode(btIDebugDraw::DBG_DrawWireframe);
 	
 //	btCollisionShape *ground = new btBoxShape(btVector3(btScalar(30 * 64), btScalar(30 * 64), btScalar(0.1)));
 //	btTransform groundTrans;

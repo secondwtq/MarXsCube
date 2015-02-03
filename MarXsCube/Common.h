@@ -17,6 +17,7 @@ extern double PI;
 extern double TransformScaleFactor;
 
 #define PHY_SCALE 0.1
+#define PHY_SCALE_INV 10.0
 
 #define CUBE_ENDLINE "\n"
 

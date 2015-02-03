@@ -45,6 +45,9 @@ GLuint idx_buf;
 
 objfile obj_test;
 
+void GLFoundation::unbind_shader() {
+	return glUseProgram(0); }
+
 void load_obj() {
 	obj_test.filepath = "drawcall.obj";
 	obj_test.parse();
@@ -112,6 +115,7 @@ void render_gl() {
 	glDisableVertexAttribArray(vert_attrid);
 	glDisableVertexAttribArray(vert_blendid);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	
 }
 
 void init_opengl() {
