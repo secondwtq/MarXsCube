@@ -28,7 +28,11 @@ void PhysicsGeneral::init() {
 	dynaWorld->setInternalTickCallback(cubeTickCallback);
 	
 	dynaWorld->setDebugDrawer(new BulletDebugDrawer);
-	dynaWorld->getDebugDrawer()->setDebugMode(btIDebugDraw::DBG_DrawWireframe);
+	
+	auto DEBUGDRAW_GENERAL = btIDebugDraw::DBG_DrawWireframe;
+	auto DEBUGDRAW_CONSTRAINTS = btIDebugDraw::DBG_DrawConstraints | btIDebugDraw::DBG_DrawConstraintLimits;
+	
+	dynaWorld->getDebugDrawer()->setDebugMode(DEBUGDRAW_GENERAL | DEBUGDRAW_CONSTRAINTS);
 	
 //	btCollisionShape *ground = new btBoxShape(btVector3(btScalar(30 * 64), btScalar(30 * 64), btScalar(0.1)));
 //	btTransform groundTrans;

@@ -17,7 +17,7 @@
 // reference: from Bullet official demos
 // TODO: scaling and coord unfinished
 
-#define DEBUG_DRAW_SCALE 1
+#define DEBUG_DRAW_SCALE 3
 
 void BulletDebugDrawer::render() {
 	GLFoundation::unbind_shader();

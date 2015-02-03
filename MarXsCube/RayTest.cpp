@@ -19,7 +19,7 @@ Physics::RayTest::RayTestSingleForCell *Physics::RayTest::createRayTestForCell(C
 
 bool Physics::RayTest::_impl::ClosestRayResultCallback_Custom::needsCollision(btBroadphaseProxy* proxy0) const {LOGFUNC;
 	PhysicsObject *ptr = (PhysicsObject *)(((btCollisionObject *)proxy0->m_clientObject)->getUserPointer());
-	return ((!ptr->isEmpty));
+	return (ptr && (!ptr->isEmpty));
 }
 
 bool Physics::RayTest::_impl::ClosestRayResultCallback_ForCell::needsCollision(btBroadphaseProxy* proxy0) const {LOGFUNC;

@@ -122,6 +122,7 @@ void cubeTickCallback(btDynamicsWorld *world, btScalar timeStep) {
 		btPersistentManifold* contactManifold =  world->getDispatcher()->getManifoldByIndexInternal(i);
 		PhysicsObject *pA = (PhysicsObject *)(static_cast<const btCollisionObject*>(contactManifold->getBody0())->getUserPointer()),
 						*pB = (PhysicsObject *)(static_cast<const btCollisionObject*>(contactManifold->getBody1())->getUserPointer());
+		if ((!pA) || (!pB)) continue;
 		if ((pA->isEmpty == false) && (pB->isEmpty == false)) {
 				pA->collCache.insert(pA);
 				pA->collCache.insert(pB);

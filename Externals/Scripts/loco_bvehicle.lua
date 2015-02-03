@@ -36,16 +36,16 @@ function comp_BVehicle:on_spawn()
 	local obj = Helpers.Techno_TechnoRTTIIDTable(self:container_parent())
 
 	if phyargs['use_vehicle'] then
-		obj.Physics.vehicle = Physics.RaycastVehicle.create()
+		obj.Physics.vehicle = Physics.ConstraintVehicle.create()
 		obj.Physics.vehicle.parent = obj.Physics
 		obj.Physics.vehicle:spawn()
 
 		local wheel_radius = 15
-		local wheel_height = 10
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(40, 20, wheel_height), wheel_radius, 1)
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-40, 20, wheel_height), wheel_radius, 1)
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(40, -20, wheel_height), wheel_radius, 1)
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-40, -20, wheel_height), wheel_radius, 1)
+		local wheel_height = 0
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(40, 20, wheel_height), wheel_radius, 12)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(40, -20, wheel_height), wheel_radius, 12)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-40, 20, wheel_height), wheel_radius, 12)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-40, -20, wheel_height), wheel_radius, 12)
 
 		obj.Physics.vehicle:setup_wheels()
 		-- obj.Physics.vehicle:launch()

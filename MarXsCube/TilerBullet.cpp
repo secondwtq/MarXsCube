@@ -95,6 +95,7 @@ void init_terrain_physhape() {
 	btRigidBody::btRigidBodyConstructionInfo grInfo(0., grMotionState, ground_shape);
 	btRigidBody *grBody = new btRigidBody(grInfo);
 	grBody->setRestitution(btScalar(0.5));
+	grBody->setFriction(btScalar(0.8));
 	grBody->setCollisionFlags(grBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
 	grBody->setCollisionFlags(grBody->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
 	btTriangleInfoMap* triangleInfoMap = new btTriangleInfoMap();
