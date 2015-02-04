@@ -27,6 +27,10 @@ void ATVBSetting<BulletDebugSetting>::load() {
 	scale = value<float>("bullet_debugdraw_scale");
 }
 	
+void ATVBSetting<BulletGeneralSetting>::load() {
+	gravity = value<Float3D>("bullet_gravity");
+}
+	
 void read_context_setting() {
 	Generic::corelog()[L::Debug] << "Reading window setting..." << rn;
 	

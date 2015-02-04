@@ -13,8 +13,11 @@
 #include "Acheron.h"
 #include "GLFoundation.h"
 #include "BulletDebugDraw.h"
+#include "ATVBCube.h"
 
 #include "SilconThread.h"
+
+using namespace ATVBCube::Helper;
 
 extern sf::RenderWindow *window_global;
 
@@ -28,7 +31,8 @@ void silcon_acheron_function() {
 		Generic::RenderLayerManger()->Layers[i].Update();
 	window_global->popGLStates();
 	
-	BulletDebugDrawer::render();
+	if (ATVBCube::setting<S::BulletDebugSetting>().enabled)
+		BulletDebugDrawer::render();
 	
 	window_global->display();
 }

@@ -9,6 +9,7 @@
 #ifndef __MarXsCube__ATVBCube__
 #define __MarXsCube__ATVBCube__
 
+#include "Common.h"
 #include "SFML.h"
 #include "Atheverybeginning.h"
 
@@ -19,6 +20,7 @@ namespace ATVBCube {
 	enum ATVBSettingType {
 		WindowSetting,
 		BulletDebugSetting,
+		BulletGeneralSetting
 	};
 	
 	namespace Helper {
@@ -32,8 +34,6 @@ namespace ATVBCube {
 			template <typename T>
 			T value(const std::string& key) {
 				return AtTheVeryBeginning::getatvb<T>(key); }
-		
-			virtual void load() { }
 		
 			virtual ~ATVBSettingP() { }
 		
@@ -49,6 +49,16 @@ namespace ATVBCube {
 	public:
 		
 		void load() { }
+		
+	};
+	
+	template <>
+	class ATVBSetting<BulletGeneralSetting> : public ATVBSettingP<BulletGeneralSetting> {
+	public:
+		
+		Float3D gravity { 0, 0, -9.8 };
+		
+		void load();
 		
 	};
 	

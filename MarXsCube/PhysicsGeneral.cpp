@@ -20,6 +20,9 @@ using namespace ATVBCube::Helper;
 Float3D GlobalGravity = Float3D(0, 0, -9.8);
 
 void PhysicsGeneral::init() {
+	ATVBCube::load<S::BulletGeneralSetting>();
+	GlobalGravity = ATVBCube::setting<S::BulletGeneralSetting>().gravity;
+	
 	collConf = new btDefaultCollisionConfiguration();
 	dispatcher = new btCollisionDispatcher(collConf);
 //	overlapPairCache = new btAxisSweep3(btVector3(-1000,-1280,-200), btVector3(2250,1280,200)); // btDbvtBroadphase(); // btAxis3Sweep

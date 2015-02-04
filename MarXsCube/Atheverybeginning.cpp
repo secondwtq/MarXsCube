@@ -90,5 +90,16 @@ template bool getatvb<bool>(const std::string& key);
 template std::string getatvb<std::string>(const std::string& key);
 template unsigned int getatvb<unsigned int>(const std::string& key);
 template float getatvb<float>(const std::string& key);
+	
+template<>
+Float3D getatvb(const std::string& key) {
+	if (atvb_map.find(key) != atvb_map.end()) {
+		LuaRef &r = atvb_map.at(key);
+		return { r[1].cast<float>(), r[2].cast<float>(), r[3].cast<float>() };
+	} else {
+		cout << "AtTheVeryBeginning::getatvb - no value found for key " << key << endl;
+		return { 0, 0, 0 };
+	}
+}
 
 }
