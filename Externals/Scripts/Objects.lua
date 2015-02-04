@@ -47,7 +47,7 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 	physics = {
 		enabled = true,
 		initialstatic = false,
-		mass = 1000,
+		mass = 600,
 		offset = { x = 0, y = 0, z = 0 },
 		angle_factor = { x = 1.0, y = 1.0, z = 1.0 },
 		ntype_locomotor = 'bvehicle',
@@ -62,10 +62,10 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		shape = {
 			type = "COMPBOX",
 			restitution = 0.2,
-			friction = 100.0,
-			offset_comp = { x = 0, y = 0, z = 20 },
+			friction = 0.8,
+			offset_comp = { x = 0, y = 0, z = 25 },
 			offset = { x = 0, y = 0, z = 0 },
-			size = { x = 48, y = 24, z = 20 }
+			size = { x = 48, y = 30, z = 20 }
 		}
 	}
 })

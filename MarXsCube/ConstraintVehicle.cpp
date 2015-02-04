@@ -24,8 +24,8 @@ void ConstraintVehicle::launch() {
 		
 		motor = this->m_constraints[i]->getRotationalLimitMotor(2);
 		motor->m_enableMotor = true;
-		motor->m_loLimit = -0.1f;
-		motor->m_hiLimit = 0.1f;
+		motor->m_loLimit = -0.01f;
+		motor->m_hiLimit = 0.01f;
 		motor->m_maxLimitForce = 100.0f;
 	}
 }
@@ -38,7 +38,7 @@ void ConstraintVehicle::brake_atonce() {
 	for (std::size_t i = 0; i < 2; i++) {
 		btRotationalLimitMotor *motor = this->m_constraints[i]->getRotationalLimitMotor(2);
 		motor->m_enableMotor = true;
-		motor->m_maxMotorForce = 100.0f;
+		motor->m_maxMotorForce = 1.0f;
 		motor->m_targetVelocity = -10.0f;
 		motor->m_loLimit = -1.0f;
 		motor->m_hiLimit = 1.0f;
@@ -71,7 +71,7 @@ void ConstraintVehicle::add_wheel(const CoordStruct &location, float radius, flo
 	btDefaultMotionState* motion_state = new btDefaultMotionState(tr);
 	btRigidBody::btRigidBodyConstructionInfo rb_info(mass, motion_state, tyre_shape, local_intertia);
 	btRigidBody *tyre_body = new btRigidBody(rb_info);
-	tyre_body->setFriction(btScalar(2.0));
+	tyre_body->setFriction(btScalar(1.0));
 	tyre_body->setUserPointer(nullptr);
 	Generic::PhysicsGeneral()->dynaWorld->addRigidBody(tyre_body);
 	tyre_body->setActivationState(DISABLE_DEACTIVATION);

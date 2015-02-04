@@ -42,10 +42,10 @@ function comp_BVehicle:on_spawn()
 
 		local wheel_radius = 15
 		local wheel_height = 0
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(40, 20, wheel_height), wheel_radius, 12)
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(40, -20, wheel_height), wheel_radius, 12)
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-40, 20, wheel_height), wheel_radius, 12)
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-40, -20, wheel_height), wheel_radius, 12)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(45, 25, wheel_height), wheel_radius, 12)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(45, -25, wheel_height), wheel_radius, 12)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-45, 25, wheel_height), wheel_radius, 12)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-45, -25, wheel_height), wheel_radius, 12)
 
 		obj.Physics.vehicle:setup_wheels()
 		-- obj.Physics.vehicle:launch()
