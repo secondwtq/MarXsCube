@@ -12,5 +12,7 @@ AtTheVeryBeginning.together({
 	window_fps_limit = 60,
 	window_vsync = true,
 
+	bullet_debugdraw = true,
+	bullet_debugdraw_scale = 3.0,
 
 })

@@ -11,7 +11,11 @@
 
 #include "BulletDebugDraw.h"
 
+#include "ATVBCube.h"
+
 #include "PhysicsGeneral.h"
+
+using namespace ATVBCube::Helper;
 
 Float3D GlobalGravity = Float3D(0, 0, -9.8);
 
@@ -27,12 +31,17 @@ void PhysicsGeneral::init() {
 	
 	dynaWorld->setInternalTickCallback(cubeTickCallback);
 	
-	dynaWorld->setDebugDrawer(new BulletDebugDrawer);
+	
+	BulletDebugDrawer *debug_drawer = new BulletDebugDrawer();
+	dynaWorld->setDebugDrawer(debug_drawer);
 	
 	auto DEBUGDRAW_GENERAL = btIDebugDraw::DBG_DrawWireframe;
 	auto DEBUGDRAW_CONSTRAINTS = btIDebugDraw::DBG_DrawConstraints | btIDebugDraw::DBG_DrawConstraintLimits;
 	
-	dynaWorld->getDebugDrawer()->setDebugMode(DEBUGDRAW_GENERAL | DEBUGDRAW_CONSTRAINTS);
+	debug_drawer->setDebugMode(DEBUGDRAW_GENERAL | DEBUGDRAW_CONSTRAINTS);
+	
+	ATVBCube::load<S::BulletDebugSetting>();
+	debug_drawer->set_draw_scale(ATVBCube::setting<S::BulletDebugSetting>().scale);
 	
 //	btCollisionShape *ground = new btBoxShape(btVector3(btScalar(30 * 64), btScalar(30 * 64), btScalar(0.1)));
 //	btTransform groundTrans;

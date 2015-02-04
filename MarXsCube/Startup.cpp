@@ -60,4 +60,5 @@ void cube_init_window() {
 	
 	window_global->setFramerateLimit(ATVBCube::get_window_setting().fps_limit);
 	window_global->setVerticalSyncEnabled(ATVBCube::get_window_setting().enable_vsync);
+	
 }

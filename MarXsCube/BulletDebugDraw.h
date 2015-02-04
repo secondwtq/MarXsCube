@@ -37,11 +37,15 @@ public:
 	
 	virtual int getDebugMode() const { return this->m_debugMode; }
 	
+	void set_draw_scale(float scale) { this->m_draw_scale = scale; }
+	
 	static void render();
 	
 	private:
 
 		int m_debugMode;
+	
+		float m_draw_scale = 3.0f;
 	
 };
 

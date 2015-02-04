@@ -15,9 +15,16 @@
 using namespace FSMHelper;
 
 namespace ATVBCube {
+	
+using namespace Helper;
 
 namespace {
 	CubeInit_WindowSetting _window_setting;
+}
+	
+void ATVBSetting<BulletDebugSetting>::load() {
+	enabled = value<bool>("bullet_debugdraw");
+	scale = value<float>("bullet_debugdraw_scale");
 }
 	
 void read_context_setting() {
