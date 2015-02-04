@@ -25,9 +25,6 @@ namespace CubeTransform {
 	vec3 ct_vec_up { 0, 0, 1 };
 	
 	void update_view_matrix() {
-//		vec3 za = normalize(ct_camera_pos - ct_look_at);
-//		vec3 xa = normalize(cross(ct_vec_up, za));
-//		vec3 ya = cross(za, xa);
 		ct_view_mat = glm::lookAt(ct_camera_pos, ct_look_at, ct_vec_up);
 	}
 	

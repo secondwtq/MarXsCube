@@ -45,6 +45,8 @@ GLuint idx_buf;
 
 objfile obj_test;
 
+using namespace ATVBCube::Helper;
+
 void GLFoundation::unbind_shader() {
 	return glUseProgram(0); }
 
@@ -127,8 +129,8 @@ void init_opengl() {
 	glClearDepth(1.f);
 	glDisable(GL_LIGHTING);
 	
-	GLdouble width = static_cast<double>(ATVBCube::get_window_setting().width),
-	height = static_cast<double>(ATVBCube::get_window_setting().height);
+	GLsizei width = ATVBCube::setting<S::WindowSetting>().width,
+	height = ATVBCube::setting<S::WindowSetting>().height;
 	
 	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);

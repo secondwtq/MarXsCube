@@ -19,6 +19,7 @@
 extern sf::RenderWindow *window_global;
 
 using namespace FSMHelper;
+using namespace ATVBCube::Helper;
 
 namespace {
 	const std::size_t BUFSIZE_WORKINGDIR_PATH = 1024;
@@ -48,17 +49,16 @@ void cube_init_atvb() {
 }
 
 void cube_init_window() {
-	ATVBCube::read_context_setting();
-	
-	const ATVBCube::CubeInit_WindowSetting *window_setting = &ATVBCube::get_window_setting();
+	ATVBCube::load<S::WindowSetting>();
 	
 	Generic::corelog()[L::Debug] << "Creating window..." << rn;
-	window_global = new sf::RenderWindow(sf::VideoMode(window_setting->width, window_setting->height), window_setting->window_title, sf::Style::Titlebar || sf::Style::Close, window_setting->context);
+	window_global = new sf::RenderWindow(sf::VideoMode(ATVBCube::setting<S::WindowSetting>().width, ATVBCube::setting<S::WindowSetting>().height),
+						ATVBCube::setting<S::WindowSetting>().window_title, sf::Style::Titlebar || sf::Style::Close, ATVBCube::setting<S::WindowSetting>().context);
 	
 	sf::ContextSettings settings_got = window_global->getSettings();
 	Generic::corelog()[L::Debug] << "Running with OpenGL " << settings_got.majorVersion << "." << settings_got.minorVersion << rn;
 	
-	window_global->setFramerateLimit(ATVBCube::get_window_setting().fps_limit);
-	window_global->setVerticalSyncEnabled(ATVBCube::get_window_setting().enable_vsync);
+	window_global->setFramerateLimit(ATVBCube::setting<S::WindowSetting>().fps_limit);
+	window_global->setVerticalSyncEnabled(ATVBCube::setting<S::WindowSetting>().enable_vsync);
 	
 }

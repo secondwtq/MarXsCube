@@ -92,6 +92,7 @@ template <typename T>
 class Vector3DT : public VectorT<T> {
 	public:
 		T x, y, z;
+		Vector3DT() { }
 		Vector3DT(T _x, T _y, T _z) : x(_x), y(_y), z(_z) { }
 
 		Vector3DT<T> &operator+=(const Vector3DT<T> &o) { x+=o.x, y+=o.y; z+=o.z; return *this; }

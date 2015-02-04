@@ -52,24 +52,41 @@ namespace ATVBCube {
 		
 	};
 	
+	template<>
+	class ATVBSetting<WindowSetting> : public ATVBSettingP<WindowSetting> {
+		public:
+			
+			sf::ContextSettings context;
+			
+			std::string window_title;
+			
+			unsigned int width, height;
+			
+			unsigned int fps_limit;
+			bool enable_vsync;
+			
+			void load();
+		
+	};
+	
 	template <>
 	class ATVBSetting<BulletGeneralSetting> : public ATVBSettingP<BulletGeneralSetting> {
-	public:
-		
-		Float3D gravity { 0, 0, -9.8 };
-		
-		void load();
+		public:
+			
+			Float3D gravity { 0, 0, -9.8 };
+			
+			void load();
 		
 	};
 	
 	template <>
 	class ATVBSetting<BulletDebugSetting> : public ATVBSettingP<BulletDebugSetting> {
-	public:
-		
-		bool enabled = false;
-		float scale = 1.0f;
-		
-		void load();
+		public:
+			
+			bool enabled = false;
+			float scale = 1.0f;
+			
+			void load();
 		
 	};
 	
@@ -83,22 +100,6 @@ namespace ATVBCube {
 	
 	template <ATVBSettingType SettingT>
 	ATVBSettingP<SettingT> *ATVBSettingP<SettingT>::m_instance = new ATVBSetting<SettingT>();
-	
-	struct CubeInit_WindowSetting {
-	public:
-		sf::ContextSettings context;
-		
-		std::string window_title;
-		
-		unsigned int width, height;
-		
-		unsigned int fps_limit;
-		bool enable_vsync;
-	};
-	
-	void read_context_setting();
-	
-	CubeInit_WindowSetting& get_window_setting();
 	
 }
 
