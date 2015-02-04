@@ -38,7 +38,7 @@ void ConstraintVehicle::brake_atonce() {
 	for (std::size_t i = 0; i < 2; i++) {
 		btRotationalLimitMotor *motor = this->m_constraints[i]->getRotationalLimitMotor(2);
 		motor->m_enableMotor = true;
-		motor->m_maxMotorForce = 1.0f;
+		motor->m_maxMotorForce = 10.0f;
 		motor->m_targetVelocity = -10.0f;
 		motor->m_loLimit = -1.0f;
 		motor->m_hiLimit = 1.0f;

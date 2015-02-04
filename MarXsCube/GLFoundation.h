@@ -21,7 +21,7 @@ class GLFoundation {
 	public:
 	
 		static void unbind_shader();
-		static void view(float lkax, float lkab);
+		static void view(float lkax, float lkay);
 };
 
 #endif /* defined(__MarXsCube__GLFoundation__) */

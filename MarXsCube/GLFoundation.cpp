@@ -48,17 +48,17 @@ objfile obj_test;
 
 using namespace ATVBCube::Helper;
 
-const double GL_FACTOR_SCALE = (DIVS / 64) * TransformScaleFactor * 1.0;
+const float SCALE_FACTOR = TransformScaleFactor;
 
 void GLFoundation::unbind_shader() {
 	return glUseProgram(0); }
 
-void GLFoundation::view(float lkax, float lkab) {
+void GLFoundation::view(float lkax, float lkay) {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluLookAt(384, 384, 320, 0, 0, 0, 0, 0, 1);
-	glTranslatef(lkax, lkab, 0);
-	glScalef(GL_FACTOR_SCALE, GL_FACTOR_SCALE, GL_FACTOR_SCALE);
+	glTranslatef(lkay * SCALE_FACTOR, lkax * SCALE_FACTOR, 0);
+	glScalef(SCALE_FACTOR, SCALE_FACTOR, SCALE_FACTOR);
 }
 
 void load_obj() {
@@ -101,7 +101,7 @@ void init_opengl() {
 	glDisable(GL_LIGHTING);
 	
 	GLsizei width = ATVBCube::setting<S::WindowSetting>().width,
-			height = ATVBCube::setting<S::WindowSetting>().height;
+	height = ATVBCube::setting<S::WindowSetting>().height;
 	
 	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);
@@ -135,7 +135,7 @@ void init_opengl() {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idx_buf);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, verts_data.count_idx() * sizeof(GLIDX), verts_data.indexes(), GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
+	
 }
 
 #include "Generic.h"
@@ -156,9 +156,9 @@ void raise_verts() {
 		auto d = glm::distance(pos_xy, pos_cmp);
 		
 		if (d < 96) {
-//			float t = pow((96-d) / 96.0, 2);
-//			verts[i].position.z += 32*t;
-//			verts[i].blendweight[0] = std::min(verts[i].blendweight[0]+sqrt(t), 1.0f);
+			//			float t = pow((96-d) / 96.0, 2);
+			//			verts[i].position.z += 32*t;
+			//			verts[i].blendweight[0] = std::min(verts[i].blendweight[0]+sqrt(t), 1.0f);
 			verts[i].tile_indexes.x = 3.0;
 		}
 	}
@@ -185,13 +185,13 @@ void tiler_array_test() {
 	
 	std::array<std::size_t, 4> vert_idx_to_iter { 0, 1, 2, 4 };
 	for (std::size_t i : vert_idx_to_iter) {
-//		verts_data.vert(verts_data.cell(nearest_cellidx).vertices[i]).position.z += 16.0;
+		//		verts_data.vert(verts_data.cell(nearest_cellidx).vertices[i]).position.z += 16.0;
 		verts_data.vert(verts_data.cell(nearest_cellidx).vertices[i]).tile_indexes.x = 3.0;
 		verts_data.vert(verts_data.cell(nearest_cellidx).vertices[i]).tile_indexes.y = 3.0;
 		verts_data.update_vertorigin(verts_data.cell(nearest_cellidx).vertices[i]);
 		verts_data.update_map_of(verts_data.vert(verts_data.cell(nearest_cellidx).vertices[i]).get_origin());
 	}
-//	verts_data.vert(verts_data.cell(nearest_cellidx).vertices[0]).blendweights.x = 1.0;
+	//	verts_data.vert(verts_data.cell(nearest_cellidx).vertices[0]).blendweights.x = 1.0;
 	
 	tiler_drawcell &leftcell = verts_data.cell(verts_data.cell_left(nearest_cellidx));
 	tiler_drawcell &rightcell = verts_data.cell(verts_data.cell_right(nearest_cellidx));
@@ -203,7 +203,7 @@ void tiler_array_test() {
 	tiler_drawcell &rightbottomcell = verts_data.cell(verts_data.cell_rightbottom(nearest_cellidx));
 	
 	std::array<tiler_drawcell *, 8> edge_cells { &leftcell, &rightcell, &topcell, &bottomcell,
-												&lefttopcell, &leftbottomcell, &righttopcell, &rightbottomcell };
+		&lefttopcell, &leftbottomcell, &righttopcell, &rightbottomcell };
 	
 	for (auto cell : edge_cells) {
 		verts_data.sepreate_cell(cell->this_idx);
