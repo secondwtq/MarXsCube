@@ -41,7 +41,6 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		composer.comp_RenderElementsManger,
 		composer.comp_RenderBasicBody,
 		locomotor.comp_LocomotorDefault,
-		gmap_comps.comp_GraphVehicle,
 		blocomotor.comp_BVehicle
 	},
 
@@ -104,7 +103,6 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 		composer.comp_RenderElementsManger,
 		composer.comp_RenderBasicBody,
 		locomotor.comp_LocomotorDefault,
-		gmap_comps.comp_GraphVehicle
 	},
 
 	physics = {

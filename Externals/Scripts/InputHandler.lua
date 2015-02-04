@@ -18,7 +18,7 @@ function InputHandler.MousePress_OnObject(mouse_status, ray)
 	-- print("hit on object", hit_point.x, hit_point.y, hit_point.z)
 
 	local techno_pressedon = Helpers.toTechno(ray:getFirstObject().attachedToObject).ExtTable
-	techno_pressedon.components.a['GraphVehicle']:select_single()
+	TECHNO_SELECTED = techno_pressedon
 end
 
 -- called when mouse pressed on an empty cell
@@ -34,11 +34,8 @@ function InputHandler.MousePress_OnCell(mouse_status)
 		local hit_point = ray_cell:hit_point()
 		-- print("hit on cell", hit_point.x, hit_point.y, hit_point.z)
 
-		local nearest_node = find_nearest_node(coord, 64)
-		if nearest_node and TECHNO_SELECTED then
-			local idx_node = nearest_node.components.a['GraphNodeStore']:get_datafield 'idx_initial'
-			-- print('Selected node ', idx_node)
-			move_techno_graph(TECHNO_SELECTED, nearest_node)
+		if TECHNO_SELECTED then
+			Helpers.Techno_TechnoRTTIIDTable(TECHNO_SELECTED).Physics.vehicle:launch()
 		end
 	end
 
