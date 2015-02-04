@@ -26,31 +26,6 @@ vec2 texatlas_offset(in float index, in float count) {
 	return vec2(offset_tile / count);
 }
 
-// vec4 sample_scale_and_offset(in vec2 texcoord, in sampler2D tileset, in vec2 offset, in vec3 scale, in float count) {
-// 	vec2 texcoord_org = texcoord;
-// 	vec4 ret = vec4(1.0, 1.0, 1.0, 1.0);
-
-// 	if (scale.x != 0.0) {
-// 		vec2 texcoord_scaled = fract(texcoord / scale.x);
-// 		vec2 texcoord_atlas = fract(texcoord_scaled) / count + offset;
-// 		ret *= texture2D(tileset, texcoord_atlas);
-// 	}
-
-// 	if (scale.y != 0.0) {
-// 		vec2 texcoord_scaled = fract(texcoord / scale.y);
-// 		vec2 texcoord_atlas = fract(texcoord_scaled) / count + offset;
-// 		ret *= texture2D(tileset, texcoord_atlas);
-// 	}
-
-// 	if (scale.z != 0.0) {
-// 		vec2 texcoord_scaled = fract(texcoord / scale.z);
-// 		vec2 texcoord_atlas = fract(texcoord_scaled) / count + offset;
-// 		ret *= texture2D(tileset, texcoord_atlas);
-// 	}
-
-// 	return ret;
-// }
-
 vec4 sample_scale_and_offset(in vec2 texcoord, in sampler2D tileset, in vec2 offset, in float scale, in float count) {
 	vec2 texcoord_org = texcoord * scale;
 

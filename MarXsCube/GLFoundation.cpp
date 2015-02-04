@@ -15,6 +15,7 @@
 #include "GLFoundation.h"
 #include "TilerRenderingBasic.h"
 #include "ATVBCube.h"
+#include "CubeTransform.h"
 
 #include <SFML/OpenGL.hpp>
 #include <iostream>
@@ -57,16 +58,14 @@ void load_obj() {
 	transfer_verts_tiler(verts_data, obj_test);
 }
 
-extern glm::vec3 gl_campos;
-extern glm::vec3 gl_lookat;
-
 const double GL_FACTOR_SCALE = (DIVS / 64) * TransformScaleFactor * 1.0;
 
 void render_gl() {
+	glm::vec3 look_at_vec = CubeTransform::look_at_vector();
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluLookAt(384, 384, 320, 0, 0, 0, 0, 0, 1);
-	glTranslatef(gl_lookat.x, gl_lookat.y, gl_lookat.z);
+	glTranslatef(look_at_vec.y, look_at_vec.x, 0);
 	glScalef(GL_FACTOR_SCALE, GL_FACTOR_SCALE, GL_FACTOR_SCALE);
 	
 	glClear(GL_DEPTH_BUFFER_BIT);
@@ -87,17 +86,11 @@ void render_gl() {
 	
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture_main);
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, texture_second);
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glActiveTexture(GL_TEXTURE2);
 	glBindTexture(GL_TEXTURE_2D, texture_height);
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	
 	glActiveTexture(GL_TEXTURE3);
 	glBindTexture(GL_TEXTURE_2D, texture_tileset);
@@ -130,7 +123,7 @@ void init_opengl() {
 	glDisable(GL_LIGHTING);
 	
 	GLsizei width = ATVBCube::setting<S::WindowSetting>().width,
-	height = ATVBCube::setting<S::WindowSetting>().height;
+			height = ATVBCube::setting<S::WindowSetting>().height;
 	
 	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);
@@ -175,9 +168,7 @@ void init_opengl() {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idx_buf);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, verts_data.count_idx() * sizeof(GLIDX), verts_data.indexes(), GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-	
-	//	glDisableClientState(GL_NORMAL_ARRAY);
-	//	glDisableClientState(GL_COLOR_ARRAY);
+
 }
 
 #include "Generic.h"

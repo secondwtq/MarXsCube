@@ -13,8 +13,10 @@ AtTheVeryBeginning.together({
 	window_vsync = true,
 
 	bullet_debugdraw = false,
-	bullet_debugdraw_scale = 3.0,
+	bullet_debugdraw_scale = 1.0,
 
 	bullet_gravity = { 0, 0, -9.8 },
+
+	tiler_max_height_bullet = 128.0,
 
 })

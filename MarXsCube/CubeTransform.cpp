@@ -28,6 +28,8 @@ namespace CubeTransform {
 		ct_view_mat = glm::lookAt(ct_camera_pos, ct_look_at, ct_vec_up);
 	}
 	
+	vec3 look_at_vector() { return ct_look_at; }
+	
 	void generate_view_matrix(int ox, int oy) {
 		ct_look_at = { -ox, -oy, 0 };
 		ct_camera_pos = { 384-ox, 384-oy, 320 };

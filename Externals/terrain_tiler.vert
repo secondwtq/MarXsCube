@@ -71,7 +71,7 @@ void main() {
 #if USE_HEIGHTFIELD == 1
     vec4 height = parse_heightfield(s_texture_heightfield, frag_height_texcoord);
     frag_normal = normalize(height.xyz);
-	position_4.z += height.w * 64.0;
+	position_4.z += height.w * 128.0;
 #endif
 	// position_4.z += texture2D(s_texture_heightfield, frag_height_texcoord).x * 128.0;
 

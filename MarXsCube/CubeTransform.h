@@ -12,11 +12,15 @@
 #include "Common.h"
 #include "SFML.h"
 
+#include <glm/glm.hpp>
+
 namespace CubeTransform {
 	
 	void generate_view_matrix(int ox, int oy);
 	
 	sf::Vector2f view_pos(const CoordStruct &coord);
+	
+	glm::vec3 look_at_vector();
 	
 }
 

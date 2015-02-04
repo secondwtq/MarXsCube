@@ -12,9 +12,12 @@
 #include "ModelLoader_obj.h"
 #include "TilerBullet.h"
 #include "Generic.h"
+#include "ATVBCube.h"
 
 #include "BulletCollision/CollisionDispatch/btInternalEdgeUtility.h"
 #include "BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h"
+
+using namespace ATVBCube::Helper;
 
 extern objfile obj_test;
 
@@ -33,6 +36,8 @@ sf::Color sfImageGetPixelFloat(const sf::Image& image, float x, float y) {
 }
 
 void transfer_bullet_shape(btTriangleMesh& dest, const objfile &src) {
+	float max_height = ATVBCube::setting<S::TilerGeneralSetting>().maxheight_phy;
+	
 	sf::Texture *height_texture = &(TextureManger::GetInstance().TextureHashs["HEIGHTFIELD"]->texture);
 	sf::Image heightimage = height_texture->copyToImage();
 	
@@ -50,7 +55,7 @@ void transfer_bullet_shape(btTriangleMesh& dest, const objfile &src) {
 				heightf2 = sfImageGetPixelFloat(heightimage, gt2.x, gt2.y).r/255.0,
 				heightf3 = sfImageGetPixelFloat(heightimage, gt3.x, gt3.y).r/255.0;
 		
-		height1 = heightf1 * 64, height2 = heightf2 * 64, height3 = heightf3 * 64;
+		height1 = heightf1 * max_height, height2 = heightf2 * max_height, height3 = heightf3 * max_height;
 		
 		gv1 *= PHY_SCALE, gv2 *= PHY_SCALE, gv3 *= PHY_SCALE;
 		height1 *= PHY_SCALE, height2 *= PHY_SCALE, height3 *= PHY_SCALE;
@@ -101,7 +106,6 @@ void init_terrain_physhape() {
 	btTriangleInfoMap* triangleInfoMap = new btTriangleInfoMap();
 	gContactAddedCallback = CustomMaterialCombinerCallback;
 	btGenerateInternalEdgeInfo(ground_shape, triangleInfoMap);
-//	grBody->setContactProcessingThreshold(btScalar(64));
 
 	auto ground_phy = new PhysicsObject(true);
 	ground_phy->isCell = true;

@@ -16,6 +16,7 @@
 #include "FSM.h"
 #include "ATVBCube.h"
 using namespace FSMHelper;
+using namespace ATVBCube::Helper;
 using namespace sf;
 using namespace std;
 
@@ -42,6 +43,7 @@ int main() {
 	Generic::Init_LuaStatus();
 	Generic::Init_Session();
 	cube_init_atvb();
+	ATVBCube::load<S::TilerGeneralSetting>();
 
 	cube_init_window();
 	

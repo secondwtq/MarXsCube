@@ -20,7 +20,8 @@ namespace ATVBCube {
 	enum ATVBSettingType {
 		WindowSetting,
 		BulletDebugSetting,
-		BulletGeneralSetting
+		BulletGeneralSetting,
+		TilerGeneralSetting
 	};
 	
 	namespace Helper {
@@ -88,6 +89,15 @@ namespace ATVBCube {
 			
 			void load();
 		
+	};
+	
+	template <>
+	class ATVBSetting<TilerGeneralSetting> : public ATVBSettingP<TilerGeneralSetting> {
+		public:
+		
+			float maxheight_phy = 64.f;
+			
+			void load();
 	};
 	
 	template <ATVBSettingType SettingT>

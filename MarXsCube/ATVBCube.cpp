@@ -43,4 +43,8 @@ void ATVBSetting<BulletGeneralSetting>::load() {
 	gravity = value<Float3D>("bullet_gravity");
 }
 	
+void ATVBSetting<TilerGeneralSetting>::load() {
+	maxheight_phy = value<float>("tiler_max_height_bullet");
+}
+	
 }
