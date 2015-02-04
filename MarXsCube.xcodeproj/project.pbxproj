@@ -42,6 +42,7 @@
 		59262954198AB66500858A67 /* Type_Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926293C198AB66500858A67 /* Type_Object.cpp */; };
 		59262955198AB66500858A67 /* Type_Techno.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5926293D198AB66500858A67 /* Type_Techno.cpp */; };
 		592859091A37594700D4AE91 /* Gmap_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 592859071A37594700D4AE91 /* Gmap_Interface.cpp */; };
+		593458641A8251F600DE4C28 /* GLShaderExt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 593458621A8251F600DE4C28 /* GLShaderExt.cpp */; };
 		5944452F1A75389000941CEB /* CubeTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5944452D1A75389000941CEB /* CubeTransform.cpp */; };
 		595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */; };
 		595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */; };
@@ -158,6 +159,8 @@
 		592859081A37594700D4AE91 /* Gmap_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gmap_Interface.h; sourceTree = "<group>"; };
 		5928590A1A375B0900D4AE91 /* bellman_ford.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bellman_ford.h; sourceTree = "<group>"; };
 		5928590C1A375F2000D4AE91 /* StdInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StdInterface.h; sourceTree = "<group>"; };
+		593458621A8251F600DE4C28 /* GLShaderExt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLShaderExt.cpp; sourceTree = "<group>"; };
+		593458631A8251F600DE4C28 /* GLShaderExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLShaderExt.h; sourceTree = "<group>"; };
 		5944452D1A75389000941CEB /* CubeTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CubeTransform.cpp; sourceTree = "<group>"; };
 		5944452E1A75389000941CEB /* CubeTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubeTransform.h; sourceTree = "<group>"; };
 		595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletCollision_xcode4_x64_release.a; sourceTree = "<group>"; };
@@ -377,6 +380,8 @@
 				59C97B0B1A7942CA00AB3F02 /* TilerRenderingBasic.cpp */,
 				59C97B091A7913C800AB3F02 /* GLShader.h */,
 				59C97B081A7913C800AB3F02 /* GLShader.cpp */,
+				593458631A8251F600DE4C28 /* GLShaderExt.h */,
+				593458621A8251F600DE4C28 /* GLShaderExt.cpp */,
 				59262921198AB66500858A67 /* Transform.h */,
 				59262939198AB66500858A67 /* Transform.cpp */,
 				59FCBF4A1A74840E00BEF905 /* GLFoundation.h */,
@@ -540,6 +545,7 @@
 				59FCBF361A73673100BEF905 /* FSM.cpp in Sources */,
 				59C97B071A77784000AB3F02 /* TilerBullet.cpp in Sources */,
 				59262949198AB66500858A67 /* ObjectArrayImpl.cpp in Sources */,
+				593458641A8251F600DE4C28 /* GLShaderExt.cpp in Sources */,
 				59262951198AB66500858A67 /* Transform.cpp in Sources */,
 				59262952198AB66500858A67 /* Type_Abstract.cpp in Sources */,
 				59FCBF4B1A74840E00BEF905 /* GLFoundation.cpp in Sources */,

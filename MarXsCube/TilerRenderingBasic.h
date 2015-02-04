@@ -16,6 +16,7 @@
 
 #define CELL_EDGES 4
 #define CELL_VERTS_TOTAL 6
+#define CELL_FACE_DISTANCE 32
 
 class tiler_dataarray;
 
@@ -61,8 +62,8 @@ public:
 	std::vector<tiler_drawcell>& vec_cells() { return this->m_cells; }
 	std::vector<glm::vec3>& vec_centers() { return this->m_cell_center; }
 	
-	tiler_drawcell &cell(std::size_t idx) { return this->m_cells.at(idx); }
-	VertObjectType &vert(std::size_t idx) { return this->m_vert_data.at(idx); }
+	tiler_drawcell& cell(std::size_t idx) { return this->m_cells.at(idx); }
+	VertObjectType& vert(std::size_t idx) { return this->m_vert_data.at(idx); }
 	const glm::vec3& center(std::size_t idx) { return this->m_cell_center.at(idx); }
 	
 	VertObjectType *verts() { return this->m_vert_data.data(); }
@@ -125,15 +126,15 @@ public:
 		return -1;
 	}
 	
-	std::size_t cell_left(std::size_t idx) { return this->find_cell(idx, { -32, 0, 0 }); }
-	std::size_t cell_right(std::size_t idx) { return this->find_cell(idx, { 32, 0, 0 }); }
-	std::size_t cell_top(std::size_t idx) { return this->find_cell(idx, { 0, 32, 0 }); }
-	std::size_t cell_bottom(std::size_t idx) { return this->find_cell(idx, { 0, -32, 0 }); }
+	std::size_t cell_left(std::size_t idx) { return this->find_cell(idx, { -CELL_FACE_DISTANCE, 0, 0 }); }
+	std::size_t cell_right(std::size_t idx) { return this->find_cell(idx, { CELL_FACE_DISTANCE, 0, 0 }); }
+	std::size_t cell_top(std::size_t idx) { return this->find_cell(idx, { 0, CELL_FACE_DISTANCE, 0 }); }
+	std::size_t cell_bottom(std::size_t idx) { return this->find_cell(idx, { 0, -CELL_FACE_DISTANCE, 0 }); }
 	
-	std::size_t cell_lefttop(std::size_t idx) { return this->find_cell(idx, { -32, 32, 0 }); }
-	std::size_t cell_leftbottom(std::size_t idx) { return this->find_cell(idx, { -32, -32, 0 }); }
-	std::size_t cell_righttop(std::size_t idx) { return this->find_cell(idx, { 32, 32, 0 }); }
-	std::size_t cell_rightbottom(std::size_t idx) { return this->find_cell(idx, { 32, -32, 0 }); }
+	std::size_t cell_lefttop(std::size_t idx) { return this->find_cell(idx, { -CELL_FACE_DISTANCE, CELL_FACE_DISTANCE, 0 }); }
+	std::size_t cell_leftbottom(std::size_t idx) { return this->find_cell(idx, { -CELL_FACE_DISTANCE, -CELL_FACE_DISTANCE, 0 }); }
+	std::size_t cell_righttop(std::size_t idx) { return this->find_cell(idx, { CELL_FACE_DISTANCE, CELL_FACE_DISTANCE, 0 }); }
+	std::size_t cell_rightbottom(std::size_t idx) { return this->find_cell(idx, { CELL_FACE_DISTANCE, -CELL_FACE_DISTANCE, 0 }); }
 	
 private:
 	std::vector<VertObjectType> m_vert_data;

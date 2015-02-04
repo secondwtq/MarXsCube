@@ -27,11 +27,12 @@ public:
 	
 	void create();
 	
-	int get_attribute(const char *name);
-	int get_uniform(const char *name);
+	int attribute(const char *name);
+	int uniform(const char *name);
 	
 	void use();
-	
+
+private:
 	unsigned int obj_id = 0;
 	unsigned int vert_id = 0, frag_id = 0;
 };

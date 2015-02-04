@@ -69,10 +69,8 @@ void gl_shader::use() {
 	glUseProgram(this->obj_id);
 }
 
-int gl_shader::get_attribute(const char *name) {
-	return glGetAttribLocation(this->obj_id, name);
-}
+int gl_shader::attribute(const char *name) {
+	return glGetAttribLocation(this->obj_id, name); }
 
-int gl_shader::get_uniform(const char *name) {
-	return glGetUniformLocation(this->obj_id, name);
-}
+int gl_shader::uniform(const char *name) {
+	return glGetUniformLocation(this->obj_id, name); }

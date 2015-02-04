@@ -1,5 +1,11 @@
 TEXTURES.DUMMY = BASES.BaseTexture:newObject({ })
 
+function define_tex (filename)
+	return TEXTURES.DUMMY:newObject({
+		filename = "./Textures/" .. filename, frame_count = 1,
+		frame_col = 1, frame_row = 1 })
+end
+
 TEXTURES.TESTANIM_TEX = TEXTURES.DUMMY:newObject({
 	filename = "./Textures/TESTANIM.png",
 	frame_count = 45,
@@ -96,16 +102,6 @@ TEXTURES.JAGUAR = TEXTURES.DUMMY:newObject({
 	frame_row = 1,
 })
 
-TEXTURES.HEIGHTFIELD = TEXTURES.DUMMY:newObject({
-	filename = "./Textures/heightfield.png",
-	frame_count = 1,
-	frame_col = 1,
-	frame_row = 1,
-})
+TEXTURES.HEIGHTFIELD = define_tex "heightfield.png"
 
-TEXTURES.TILESET = TEXTURES.DUMMY:newObject({
-	filename = "./Textures/tileset.png",
-	frame_count = 1,
-	frame_col = 1,
-	frame_row = 1,
-})
+TEXTURES.TILESET = define_tex "tileset.png"

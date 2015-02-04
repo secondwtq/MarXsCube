@@ -11,7 +11,7 @@
 
 #include "ObjectManger.h"
 #include "ModelLoader_obj.h"
-#include "GLShader.h"
+#include "GLShaderExt.h"
 #include "GLFoundation.h"
 #include "TilerRenderingBasic.h"
 #include "ATVBCube.h"
@@ -22,7 +22,7 @@
 
 extern sf::RenderWindow *window_global;
 
-gl_shader tiler_shader_main;
+tiler_shader tiler_shader_main;
 
 tiler_dataarray verts_data;
 GLIDX texture_main = 0;
@@ -48,8 +48,18 @@ objfile obj_test;
 
 using namespace ATVBCube::Helper;
 
+const double GL_FACTOR_SCALE = (DIVS / 64) * TransformScaleFactor * 1.0;
+
 void GLFoundation::unbind_shader() {
 	return glUseProgram(0); }
+
+void GLFoundation::view(float lkax, float lkab) {
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(384, 384, 320, 0, 0, 0, 0, 0, 1);
+	glTranslatef(lkax, lkab, 0);
+	glScalef(GL_FACTOR_SCALE, GL_FACTOR_SCALE, GL_FACTOR_SCALE);
+}
 
 void load_obj() {
 	obj_test.filepath = "drawcall.obj";
@@ -58,59 +68,27 @@ void load_obj() {
 	transfer_verts_tiler(verts_data, obj_test);
 }
 
-const double GL_FACTOR_SCALE = (DIVS / 64) * TransformScaleFactor * 1.0;
-
 void render_gl() {
 	glm::vec3 look_at_vec = CubeTransform::look_at_vector();
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	gluLookAt(384, 384, 320, 0, 0, 0, 0, 0, 1);
-	glTranslatef(look_at_vec.y, look_at_vec.x, 0);
-	glScalef(GL_FACTOR_SCALE, GL_FACTOR_SCALE, GL_FACTOR_SCALE);
+	GLFoundation::view(look_at_vec.x, look_at_vec.y);
 	
 	glClear(GL_DEPTH_BUFFER_BIT);
 	
-	tiler_shader_main.use();
-	
 	glBindBuffer(GL_ARRAY_BUFFER, vert_buf_new);
-	glVertexAttribPointer(vert_attrid, 3, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)0);
-	glVertexAttribPointer(vert_normid, 3, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)(3*sizeof(GLfloat)));
-	glVertexAttribPointer(vert_texcid, 3, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)(6*sizeof(GLfloat)));
-	glVertexAttribPointer(vert_blendid, 3, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)(9*sizeof(GLfloat)));
-	glVertexAttribPointer(vert_tileindexes, 3, GL_FLOAT, GL_FALSE, sizeof(tiler_dataarray::VertObjectType), (char *)(12*sizeof(GLfloat)));
-	glEnableVertexAttribArray(vert_attrid);
-	glEnableVertexAttribArray(vert_normid);
-	glEnableVertexAttribArray(vert_texcid);
-	glEnableVertexAttribArray(vert_blendid);
-	glEnableVertexAttribArray(vert_tileindexes);
 	
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture_main);
+	tiler_shader_main.use_n_load();
 	
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, texture_second);
-	glActiveTexture(GL_TEXTURE2);
-	glBindTexture(GL_TEXTURE_2D, texture_height);
-	
-	glActiveTexture(GL_TEXTURE3);
-	glBindTexture(GL_TEXTURE_2D, texture_tileset);
-	
-	glUniform1i(vert_texcid, 0);
-	glUniform1i(vert_text_second_id, 1);
-	glUniform1i(vert_text_height_id, 2);
-	glUniform1i(vert_text_tileset_id, 3);
+	BIND_TEXTURE(tiler_shader_main, texture_main, texture_main, 0);
+	BIND_TEXTURE(tiler_shader_main, texture_second, texture_second, 1);
+	BIND_TEXTURE(tiler_shader_main, texture_heightfield, texture_height, 2);
+	BIND_TEXTURE(tiler_shader_main, texture_tileset, texture_tileset, 3);
 	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idx_buf);
 	glDrawElements(GL_TRIANGLES, (int)verts_data.count_idx(), GL_UNSIGNED_INT, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	
-	glDisableVertexAttribArray(vert_tileindexes);
-	glDisableVertexAttribArray(vert_texcid);
-	glDisableVertexAttribArray(vert_normid);
-	glDisableVertexAttribArray(vert_attrid);
-	glDisableVertexAttribArray(vert_blendid);
+	tiler_shader_main.disable_attributes();
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	
 }
 
 void init_opengl() {
@@ -134,18 +112,7 @@ void init_opengl() {
 	tiler_shader_main.load_file(SHADERTYPE::VERTEX, "terrain_tiler.vert");
 	tiler_shader_main.load_file(SHADERTYPE::FRAG, "terrain_tiler.frag");
 	tiler_shader_main.create();
-	
-	vert_attrid = tiler_shader_main.get_attribute("position");
-	vert_normid = tiler_shader_main.get_attribute("s_normal");
-	
-	vert_texcid = tiler_shader_main.get_attribute("s_texcoord");
-	vert_blendid = tiler_shader_main.get_attribute("s_blendweights");
-	vert_tileindexes = tiler_shader_main.get_attribute("s_texindexes");
-	
-	vert_textid = tiler_shader_main.get_uniform("s_texture_main");
-	vert_text_second_id = tiler_shader_main.get_uniform("s_texture_second");
-	vert_text_height_id = tiler_shader_main.get_uniform("s_texture_heightfield");
-	vert_text_tileset_id = tiler_shader_main.get_uniform("s_texture_tileset");
+	tiler_shader_main.init_shader();
 	
 	texture_main = TextureManger::GetInstance().TextureHashs["DOGE"]->texture.m_texture;
 	texture_second = TextureManger::GetInstance().TextureHashs["JAGUAR"]->texture.m_texture;

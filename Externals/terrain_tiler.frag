@@ -12,11 +12,11 @@ varying vec3 frag_blendweights;
 varying vec2 frag_height_texcoord;
 varying vec3 frag_texture_indexes;
 
-uniform sampler2D s_texture_main;
-uniform sampler2D s_texture_second;
-uniform sampler2D s_texture_heightfield;
+uniform sampler2D texture_main;
+uniform sampler2D texture_second;
+uniform sampler2D texture_heightfield;
 
-uniform sampler2D s_texture_tileset;
+uniform sampler2D texture_tileset;
 
 // from
 //		http://gamedev.stackexchange.com/questions/73586/how-can-i-repeat-scroll-a-tile-which-is-part-of-an-texture-atlas
@@ -55,12 +55,12 @@ void main() {
 	gl_FragColor = vec4(1, 1, 1, 0) * intensity;
 #else
 	
-	vec4 color_original = mix(texture2D(s_texture_tileset, texcoord_atlas_primary), 
-						texture2D(s_texture_tileset, texcoord_atlas_secondary), frag_blendweights.x);
-	vec4 color_scaled_1 = mix(sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset, 1.0/6.0, TEXATLAS_COUNT), 
-						sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset_secondary, 1.0/6.0, TEXATLAS_COUNT), frag_blendweights.x);
-	vec4 color_scaled_2 = mix(sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset, 1.0/12.0, TEXATLAS_COUNT), 
-						sample_scale_and_offset(frag_texcoord, s_texture_tileset, offset_secondary, 1.0/12.0, TEXATLAS_COUNT), frag_blendweights.x);
+	vec4 color_original = mix(texture2D(texture_tileset, texcoord_atlas_primary), 
+						texture2D(texture_tileset, texcoord_atlas_secondary), frag_blendweights.x);
+	vec4 color_scaled_1 = mix(sample_scale_and_offset(frag_texcoord, texture_tileset, offset, 1.0/6.0, TEXATLAS_COUNT), 
+						sample_scale_and_offset(frag_texcoord, texture_tileset, offset_secondary, 1.0/6.0, TEXATLAS_COUNT), frag_blendweights.x);
+	vec4 color_scaled_2 = mix(sample_scale_and_offset(frag_texcoord, texture_tileset, offset, 1.0/12.0, TEXATLAS_COUNT), 
+						sample_scale_and_offset(frag_texcoord, texture_tileset, offset_secondary, 1.0/12.0, TEXATLAS_COUNT), frag_blendweights.x);
 
 	vec4 colort1 = mix(color_original, color_scaled_1, 0.3);
 	vec4 colort2 = mix(colort1, color_scaled_2, 0.3);
