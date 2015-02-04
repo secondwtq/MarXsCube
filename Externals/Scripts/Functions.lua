@@ -16,7 +16,9 @@ end
 
 function Functions.Session_KeyPress(keyevent)
 	-- ESC, then close the game
-	if (keyevent.code == Enums.Key.Esc) then Utility.closeSession() end
+	if (keyevent.code == Enums.Key.Esc) then
+		Utility.closeSession()
+	end
 
 	local sesInst = Objects.Session.GetInstance()
 	local step = Enums.General.CameraKeyMoveStep

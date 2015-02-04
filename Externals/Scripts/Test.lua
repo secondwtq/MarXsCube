@@ -51,7 +51,6 @@ function Functions.TestManger_onTestInit()
 	
 	-- move_techno_graph(cycle.ExtTable, OBJ_DOTS[9+1])
 	-- move_techno_graph(rail.ExtTable, OBJ_DOTS[19+1])
-
 end
 
 function transform_dots(src)
@@ -60,7 +59,7 @@ function transform_dots(src)
 		-- local t = { -1*(dot[1] * 192 - 64 * 2), dot[2] * 192 + 64 * 28 }
 		local t = { -1*(dot[1] * 176 - 64 * 2), dot[2] * 128 + 64 * 28 }
 
-		Helpers.tblinsert(data_dots_new, t)
+		table.insert(data_dots_new, #data_dots_new+1, t)
 	end
 	return data_dots_new
 end

@@ -144,9 +144,6 @@ function events_container.__index(table, value)
 	return
 		function ()
 			local parent = rawget(table, 'parent')
-			for i, v in ipairs(parent.__subcomponents) do
-				if v[value] then v[value](v) end
-			end
 		end
 end
 
@@ -161,10 +158,6 @@ _module_components.component = lobject.object:new({
 	name = "DEFAULT_COMPNODE",
 	alias = "DEFAULT_COMPNODE_ALIAS",
 
-	subcomponents = { },
-
-	__subcomponents = { },
-
 	events = { },
 
 	_on_create = function (self, parent)
@@ -172,27 +165,11 @@ _module_components.component = lobject.object:new({
 
 		parent.a[self.alias] = self
 
-		-- init subcomponents
-		local _n_subcomp = { }
-		for i, v in ipairs(self.__subcomponents) do
-			table.insert(_n_subcomp, v:new())
-		end
-
-		self.__subcomponents = _n_subcomp
-
-		for i, v in ipairs(self.__subcomponents) do
-			v:_on_create(self)
-		end
-
 		self:on_create(parent)
 	end,
 
 	_on_update = function (self)
-		for i, v in ipairs(self.__subcomponents) do
-			v:_on_update()
-		end
-
-		self:on_update();
+		self:on_update()
 	end,
 
 	on_create = function (self, parent)
@@ -219,16 +196,9 @@ _module_components.component = lobject.object:new({
 	end,
 
 	__init__ = function (self)
-		-- print("initing component", self)
-		self.__subcomponents = { }
-
 		self.events = { }
 		setmetatable(self.events, events_container)
 		rawset(self.events, "parent", self)
-
-		for i, v in ipairs(self.subcomponents) do
-			table.insert(self.__subcomponents, v)
-		end
 	end,
 
 	set_datafield = function(self, fieldname, value)

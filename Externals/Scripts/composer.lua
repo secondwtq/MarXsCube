@@ -172,20 +172,10 @@ __composer.comp_TechnoColorMultiply = comp_TechnoColorMultiply
 --
 --		* 2014.10.6 initial commit.
 
-local subcomp_RenderBasicBody = components.subcomponent:new({
-
-	name = "RenderBasicBody_Initial",
-
-})
-
 local comp_RenderBasicBody = components.component:new({
 
 	name = "RenderBasicBody",
 	alias = "RenderBasicBody",
-
-	subcomponents = {
-		subcomp_RenderBasicBody
-	}
 
 })
 
@@ -264,23 +254,12 @@ __composer.comp_RenderBasicBody = comp_RenderBasicBody
 --
 --	no on_update currently, only on_create and some comp methods
 
-local subcomp_RenderElementsManger = components.subcomponent:new({
-	name = "RenderElementsManger_Initial",
-})
-
-function subcomp_RenderElementsManger:on_create()
-	self:set_datafield('elements', { })
-	self:set_datafield('elements_dict', { })
-end
-
 local comp_RenderElementsManger = components.component:new({
 
 	name = "RenderElementsManger",
 	alias = "RenderElementsManger",
 
-	subcomponents = {
-		subcomp_RenderElementsManger,
-	},
+	on_create = Placeholders.ComponentMethod,
 
 	add_element = Placeholders.ComponentMethod,
 
@@ -291,6 +270,11 @@ local comp_RenderElementsManger = components.component:new({
 	get_element_named = Placeholders.ComponentMethod,
 
 })
+
+function comp_RenderElementsManger:on_create()
+	self:set_datafield('elements', { })
+	self:set_datafield('elements_dict', { })
+end
 
 function comp_RenderElementsManger:add_element(index, name, element)
 	local element_container = Helpers.Techno_TechnoRTTIIDTable(self:container_parent()).elements
