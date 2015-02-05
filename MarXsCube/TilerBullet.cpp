@@ -10,15 +10,11 @@
 #include "Physics.h"
 
 #include "ModelLoader_obj.h"
-#include "TilerBullet.h"
 #include "Generic.h"
 #include "ATVBCube.h"
-
-#include "BulletCollision/CollisionDispatch/btInternalEdgeUtility.h"
+#include "TilerBullet.h"
 
 using namespace ATVBCube::Helper;
-
-extern objfile obj_test;
 
 #include "SFML.h"
 

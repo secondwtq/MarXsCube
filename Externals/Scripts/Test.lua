@@ -28,6 +28,7 @@ function Functions.TestManger_onTestInit()
 		terrain:load_shader()
 		terrain:create_bullet()
 		terrain:load_buffer()
+		Generic.TilerRenderingManger():add_chunk(terrain)
 	end
 
 	-- transform the coord of original data for display in map

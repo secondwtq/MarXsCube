@@ -12,13 +12,14 @@
 #include "Common.h"
 #include "SFML.h"
 #include "PhysicsCommon.h"
-#include "Physics.h"
 #include "ModelLoader_obj.h"
 #include "GLFoundation.h"
 #include "GLShaderExt.h"
 #include "TilerRenderingBasic.h"
 
 #include <string>
+
+class PhysicsObject;
 
 class TilerObject {
 public:
@@ -46,7 +47,7 @@ public:
 	
 	void set_heightfield(const TextureAtlas *texture) {
 		this->m_tex_heightfield_s = &(texture->texture);
-		this->m_tex_tileset = texture->texture.m_texture; }
+		this->m_tex_heightfield = texture->texture.m_texture; }
 	
 	void load_objfile(const std::string& path);
 	
@@ -83,5 +84,7 @@ private:
 	btDefaultMotionState *m_bmotion_state = nullptr;
 	PhysicsObject *m_bphyobj = nullptr;
 };
+
+#include "Physics.h"
 
 #endif /* defined(__MarXsCube__TilerObject__) */

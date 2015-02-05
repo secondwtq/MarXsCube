@@ -14,6 +14,7 @@
 #include "Session.h"
 #include "Config.h"
 #include "FSM.h"
+#include "TilerRendering.h"
 
 class PhysicsGeneral;
 
@@ -29,8 +30,10 @@ public:
 	}
 	
 	static inline RenderLayerManger *RenderLayerManger() {
-		return Generic::render_layer_manger;
-	}
+		return Generic::render_layer_manger; }
+	
+	static inline TilerRenderingManger *TilerRenderingManger() {
+		return Generic::m_tilermanger; }
 	
 	static inline void Init_Logger() {
 		FSM::init();
@@ -57,8 +60,10 @@ public:
 	}
 	
 	static inline void Init_RenderLayerManger() {
-		Generic::render_layer_manger = new class RenderLayerManger();
-	}
+		Generic::render_layer_manger = new class RenderLayerManger(); }
+	
+	static inline void init_TilerRenderingManger() {
+		Generic::m_tilermanger = new class TilerRenderingManger(); }
  
 	static inline void RemoveObject(Abs_Abstract *src) {
 		Generic::Session()->removeObject(src);
@@ -93,6 +98,8 @@ public:
 	static class LuaStatus *state;
 	
 	static class FSM::FSMLoggerProxy core_logger;
+	
+	static class TilerRenderingManger *m_tilermanger;
 };
 
 #include "PhysicsGeneral.h"

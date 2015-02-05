@@ -7,7 +7,9 @@
 //
 
 #include "Common.h"
+#include "Generic.h"
 #include "TilerObject.h"
+#include "TilerRendering.h"
 #include "Tiler_Interface.h"
 
 void LuaInterface::RegisterInterface_Tiler(LuaStatus &L) {
@@ -25,5 +27,11 @@ void LuaInterface::RegisterInterface_Tiler(LuaStatus &L) {
 				addFunction("load_buffer", &TilerObject::load_buffer).
 				addStaticFunction("create", &TilerObject::create).
 			endClass().
+			beginClass<TilerRenderingManger>("TilerRenderingManger").
+				addFunction("add_chunk", &TilerRenderingManger::add_chunk).
+			endClass().
+		endNamespace().
+		beginNamespace("Generic").
+			addFunction("TilerRenderingManger", &Generic::TilerRenderingManger).
 		endNamespace();
 }

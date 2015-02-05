@@ -71,6 +71,9 @@ template void gl_buffer<IBO, DYNAMIC>::init_with(void *data, std::size_t size);
 void GLFoundation::unbind_shader() {
 	return glUseProgram(0); }
 
+void GLFoundation::clear_depth() {
+	return glClear(GL_DEPTH_BUFFER_BIT); }
+
 void GLFoundation::view(float lkax, float lkay) {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();

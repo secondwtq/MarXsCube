@@ -13,12 +13,14 @@
 #include "PhysicsGeneral.h"
 #include "Config.h"
 #include "LuaJit_Bridge.h"
+#include "TilerRendering.h"
 
 #include "Generic.h"
 
 class Session *Generic::session = nullptr;
 class RenderLayerManger *Generic::render_layer_manger = nullptr;
 class PhysicsGeneral *Generic::physics_general = nullptr;
+class TilerRenderingManger *Generic::m_tilermanger = nullptr;
 class luabridge::LuaRef *Generic::foo_object_table_create;
 
 class FSM::FSMLoggerProxy Generic::core_logger = FSM::create_handle();

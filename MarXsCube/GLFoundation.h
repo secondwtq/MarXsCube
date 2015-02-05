@@ -9,6 +9,7 @@
 #ifndef __MarXsCube__GLFoundation__
 #define __MarXsCube__GLFoundation__
 
+#include "Common.h"
 #include <SFML/OpenGL.hpp>
 #include <vector>
 
@@ -25,6 +26,7 @@ class GLFoundation {
 	
 		static void unbind_shader();
 		static void view(float lkax, float lkay);
+		static void clear_depth();
 	
 		template<typename BufferT>
 		static void unbind(const BufferT& src) {

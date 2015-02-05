@@ -53,6 +53,7 @@ int main() {
 	Generic::Init_FunObjectTableCreate_Forward(config);
 	Generic::Init_RenderLayerManger();
 	Generic::Init_PhysicsGeneral();
+	Generic::init_TilerRenderingManger();
 	config.loadConfigFrom("Config.lua");
 	
 	init_opengl();
