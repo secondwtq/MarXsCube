@@ -9,6 +9,10 @@
 #ifndef __MarXsCube__TilerBullet__
 #define __MarXsCube__TilerBullet__
 
-void init_terrain_physhape();
+#include "SFML.h"
+#include "PhysicsCommon.h"
+#include "ModelLoader_obj.h"
+
+void transfer_bullet_shape(btTriangleMesh& dest, const objfile &src, const sf::Texture *heightfield);
 
 #endif /* defined(__MarXsCube__TilerBullet__) */

@@ -27,11 +27,10 @@ sf::Color sfImageGetPixelFloat(const sf::Image& image, float x, float y) {
 	return image.getPixel(x*size.x, y*size.y);
 }
 
-void transfer_bullet_shape(btTriangleMesh& dest, const objfile &src) {
+void transfer_bullet_shape(btTriangleMesh& dest, const objfile &src, const sf::Texture *heightfield) {
 	float max_height = ATVBCube::setting<S::TilerGeneralSetting>().maxheight_phy;
 	
-	sf::Texture *height_texture = &(TextureManger::GetInstance().TextureHashs["HEIGHTFIELD"]->texture);
-	sf::Image heightimage = height_texture->copyToImage();
+	sf::Image heightimage = heightfield->copyToImage();
 	
 	for (std::size_t i = 0; i < src.raw_faces.size(); i++) {
 		glm::i32vec3 face = src.raw_faces[i];
@@ -55,32 +54,4 @@ void transfer_bullet_shape(btTriangleMesh& dest, const objfile &src) {
 		btVector3 bv1 { gv1.y, gv1.x, gv1.z+height1 }, bv2 { gv2.y, gv2.x, gv2.z+height2 }, bv3 { gv3.y, gv3.x, gv3.z+height3 };
 		dest.addTriangle(bv1, bv2, bv3);
 	}
-}
-
-void init_terrain_physhape() {
-	btTriangleMesh *mesh = new btTriangleMesh();
-	transfer_bullet_shape(*mesh, obj_test);
-	PhysicsShapeTypeMeshStatic *mesh_shape = new PhysicsShapeTypeMeshStatic();
-	mesh_shape->set_mesh(mesh);
-	
-	btBvhTriangleMeshShape *ground_shape = static_cast<btBvhTriangleMeshShape *>(mesh_shape->createShape());
-	ground_shape->setMargin(btScalar(0.1f));
-	
-	btTransform groundTrans;
-	groundTrans.setIdentity();
-	groundTrans.setOrigin(btVector3(0, 0, 0));
-	btDefaultMotionState *grMotionState = new btDefaultMotionState(groundTrans);
-	btRigidBody::btRigidBodyConstructionInfo grInfo(0., grMotionState, ground_shape);
-	btRigidBody *grBody = new btRigidBody(grInfo);
-	grBody->setRestitution(btScalar(0.5));
-	grBody->setFriction(btScalar(0.8));
-	grBody->setCollisionFlags(grBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
-	grBody->setCollisionFlags(grBody->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
-	btTriangleInfoMap* triangleInfoMap = new btTriangleInfoMap();
-	btGenerateInternalEdgeInfo(ground_shape, triangleInfoMap);
-
-	auto ground_phy = new PhysicsObject(true);
-	ground_phy->isCell = true;
-	grBody->setUserPointer(ground_phy);
-	Generic::PhysicsGeneral()->dynaWorld->addRigidBody(grBody);
 }

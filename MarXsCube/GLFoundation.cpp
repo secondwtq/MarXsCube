@@ -50,6 +50,24 @@ using namespace ATVBCube::Helper;
 
 const float SCALE_FACTOR = TransformScaleFactor;
 
+template <SILCON_GLBUFFER_TYPE BufferT, SILCON_GLBUFFER_USAGE UsageT>
+void gl_buffer<BufferT, UsageT>::init_with(void *data, std::size_t size) {
+	glGenBuffers(1, &(this->m_buffer_id));
+	glBindBuffer(BufferT, this->m_buffer_id);
+	glBufferData(BufferT, size, data, UsageT);
+	glBindBuffer(BufferT, 0);
+}
+
+template <SILCON_GLBUFFER_TYPE BufferT, SILCON_GLBUFFER_USAGE UsageT>
+void gl_buffer<BufferT, UsageT>::use() {
+	glBindBuffer(BufferT, this->m_buffer_id); }
+
+template void gl_buffer<VBO, DYNAMIC>::use();
+template void gl_buffer<IBO, DYNAMIC>::use();
+
+template void gl_buffer<VBO, DYNAMIC>::init_with(void *data, std::size_t size);
+template void gl_buffer<IBO, DYNAMIC>::init_with(void *data, std::size_t size);
+
 void GLFoundation::unbind_shader() {
 	return glUseProgram(0); }
 

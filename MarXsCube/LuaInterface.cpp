@@ -28,6 +28,7 @@
 #include "StdInterface.h"
 #include "RayTest_Interface.h"
 #include "BulletVehicle_Interface.h"
+#include "Tiler_Interface.h"
 
 #include "Gmap_Interface.h"
 
@@ -48,6 +49,8 @@ namespace LuaInterface {
 		RegisterInterface_New(L);
 		
 		RegisterInterface_User_Gmap(L);
+		
+		RegisterInterface_Tiler(L);
 		
 		// RegisterInterface_Std<int>(L, "int");
 	}

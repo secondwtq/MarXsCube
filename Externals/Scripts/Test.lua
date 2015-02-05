@@ -1,3 +1,5 @@
+Utility.DoImport("mapdef.lua")
+
 gmap_dots = require 'gmap_dots'
 gmap_edges = require 'gmap_edges'
 Helpers = require 'Helpers'
@@ -16,6 +18,17 @@ TECHNO_SELECTED = nil
 function Functions.TestManger_onTestInit()
 	Objects.Map.GetInstance():CreateEmptyMap(60, 50) -- create map
 	GRAPH_GLOBAL = Appins.Gmap.Graph(#DATA_DOTS) -- create graph data structure
+
+	for i, chunk in ipairs(map.default.chunks) do
+		local terrain = Tiler.TilerChunkObject.create()
+		terrain:location(Utility.CoordStruct(unpack(chunk.location)))
+		terrain:set_heightfield(Helpers.texture(chunk.heightfield))
+		terrain:set_tileset(Helpers.texture(chunk.tileset))
+		terrain:load_objfile(chunk.source)
+		terrain:load_shader()
+		terrain:create_bullet()
+		terrain:load_buffer()
+	end
 
 	-- transform the coord of original data for display in map
 	--		we just abandon original table

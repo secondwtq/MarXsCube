@@ -61,7 +61,6 @@ int main() {
 
 	TestManger::GetInstance().window = window_global;
 	TestManger::GetInstance().initTest();
-	init_terrain_physhape();
 
 	Pathfinding::init(Map::GetInstance().size.x, Map::GetInstance().size.y);
 	obsTransform::UpdateVm(0, 0);
