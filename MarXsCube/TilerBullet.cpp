@@ -15,18 +15,10 @@
 #include "ATVBCube.h"
 
 #include "BulletCollision/CollisionDispatch/btInternalEdgeUtility.h"
-#include "BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h"
 
 using namespace ATVBCube::Helper;
 
 extern objfile obj_test;
-
-static bool CustomMaterialCombinerCallback(btManifoldPoint& cp,	const btCollisionObjectWrapper* colObj0Wrap, int partId0, int index0,const btCollisionObjectWrapper* colObj1Wrap,int partId1,int index1) {
-	btAdjustInternalEdgeContacts(cp,colObj1Wrap,colObj0Wrap, partId1,index1, BT_TRIANGLE_CONVEX_DOUBLE_SIDED+BT_TRIANGLE_CONCAVE_DOUBLE_SIDED);
-	return true;
-}
-
-extern ContactAddedCallback gContactAddedCallback;
 
 #include "SFML.h"
 
@@ -65,25 +57,6 @@ void transfer_bullet_shape(btTriangleMesh& dest, const objfile &src) {
 	}
 }
 
-void transfer_bullet_hull(btAlignedObjectArray<btVector3>& dest, const objfile &src) {
-	for (std::size_t i = 0; i < src.raw_verts.size(); i++) {
-		glm::vec3 vert = src.raw_verts[i];
-		dest.push_back({ vert.y, vert.x, vert.z });
-	}
-}
-
-void generate_heightfield() {
-	sf::Texture *height_texture = &(TextureManger::GetInstance().TextureHashs["HEIGHTFIELD"]->texture);
-	sf::Image heightimage = height_texture->copyToImage();
-	
-	float *heightfield_data = new float[30*30];
-	for (std::size_t i = 0; i < 30; i++) {
-		for (std::size_t j = 0; j < 30; j++) {
-			heightfield_data[j*30+i] = (sfImageGetPixelFloat(heightimage, i/30.0, 1-(j/30.0)).r/255.0)*64.0;
-		}
-	}
-}
-
 void init_terrain_physhape() {
 	btTriangleMesh *mesh = new btTriangleMesh();
 	transfer_bullet_shape(*mesh, obj_test);
@@ -104,7 +77,6 @@ void init_terrain_physhape() {
 	grBody->setCollisionFlags(grBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
 	grBody->setCollisionFlags(grBody->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
 	btTriangleInfoMap* triangleInfoMap = new btTriangleInfoMap();
-	gContactAddedCallback = CustomMaterialCombinerCallback;
 	btGenerateInternalEdgeInfo(ground_shape, triangleInfoMap);
 
 	auto ground_phy = new PhysicsObject(true);

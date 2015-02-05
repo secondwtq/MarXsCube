@@ -12,16 +12,19 @@
 #include <Bullet/btBulletDynamicsCommon.h>
 
 class PhysicsGeneral {
-public:
-	btDefaultCollisionConfiguration *collConf;
-	btCollisionDispatcher *dispatcher;
-	btBroadphaseInterface *overlapPairCache;
-	btSequentialImpulseConstraintSolver *solver;
-	btDiscreteDynamicsWorld *dynaWorld;
-	
-public:
-	void init();
-	void dispose();
+	public:
+		btDefaultCollisionConfiguration *collConf;
+		btCollisionDispatcher *dispatcher;
+		btBroadphaseInterface *overlapPairCache;
+		btSequentialImpulseConstraintSolver *solver;
+		btDiscreteDynamicsWorld *dynaWorld;
+		
+	public:
+		void init();
+		void dispose();
+		
+	private:
+		void init_debugdrawer();
 };
 
 void cubeTickCallback(btDynamicsWorld *world, btScalar timeStep);

@@ -47,9 +47,9 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 	physics = {
 		enabled = true,
 		initialstatic = false,
-		mass = 600,
+		mass = 1000,
 		offset = { x = 0, y = 0, z = 0 },
-		angle_factor = { x = 1.0, y = 1.0, z = 1.0 },
+		angle_factor = { x = 1,0, y = 1.0, z = 1.0 },
 		ntype_locomotor = 'bvehicle',
 		use_vehicle = true,
 		nlocomotor_args = {
@@ -108,7 +108,7 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 	physics = {
 		enabled = true,
 		initialstatic = false,
-		mass = 5.0,
+		mass = 500,
 		offset = { x = 0, y = 0, z = 48 },
 		angle_factor = { x = 1.0, y = 1.0, z = 1.0 },
 		ntype_locomotor = 'default',

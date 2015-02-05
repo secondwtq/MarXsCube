@@ -15,9 +15,31 @@
 
 #include "PhysicsGeneral.h"
 
+#include "BulletCollision/CollisionDispatch/btInternalEdgeUtility.h"
+
 using namespace ATVBCube::Helper;
 
 Float3D GlobalGravity = Float3D(0, 0, -9.8);
+
+static bool CustomMaterialCombinerCallback(btManifoldPoint& cp,	const btCollisionObjectWrapper* colObj0Wrap, int partId0, int index0,const btCollisionObjectWrapper* colObj1Wrap,int partId1,int index1) {
+	btAdjustInternalEdgeContacts(cp,colObj1Wrap,colObj0Wrap, partId1,index1, BT_TRIANGLE_CONVEX_DOUBLE_SIDED+BT_TRIANGLE_CONCAVE_DOUBLE_SIDED);
+	return true;
+}
+
+extern ContactAddedCallback gContactAddedCallback;
+
+void PhysicsGeneral::init_debugdrawer() {
+	BulletDebugDrawer *debug_drawer = new BulletDebugDrawer();
+	this->dynaWorld->setDebugDrawer(debug_drawer);
+	
+	auto DEBUGDRAW_GENERAL = btIDebugDraw::DBG_DrawWireframe;
+	auto DEBUGDRAW_CONSTRAINTS = btIDebugDraw::DBG_DrawConstraints | btIDebugDraw::DBG_DrawConstraintLimits;
+	
+	debug_drawer->setDebugMode(DEBUGDRAW_GENERAL | DEBUGDRAW_CONSTRAINTS);
+	
+	ATVBCube::load<S::BulletDebugSetting>();
+	debug_drawer->set_draw_scale(ATVBCube::setting<S::BulletDebugSetting>().scale);
+}
 
 void PhysicsGeneral::init() {
 	ATVBCube::load<S::BulletGeneralSetting>();
@@ -33,19 +55,10 @@ void PhysicsGeneral::init() {
 	dynaWorld->setGravity(btVector3(btScalar(GlobalGravity.x), btScalar(GlobalGravity.y), btScalar(GlobalGravity.z)));
 	
 	dynaWorld->setInternalTickCallback(cubeTickCallback);
+	gContactAddedCallback = CustomMaterialCombinerCallback;
 	
-	
-	BulletDebugDrawer *debug_drawer = new BulletDebugDrawer();
-	dynaWorld->setDebugDrawer(debug_drawer);
-	
-	auto DEBUGDRAW_GENERAL = btIDebugDraw::DBG_DrawWireframe;
-	auto DEBUGDRAW_CONSTRAINTS = btIDebugDraw::DBG_DrawConstraints | btIDebugDraw::DBG_DrawConstraintLimits;
-	
-	debug_drawer->setDebugMode(DEBUGDRAW_GENERAL | DEBUGDRAW_CONSTRAINTS);
-	
-	ATVBCube::load<S::BulletDebugSetting>();
-	debug_drawer->set_draw_scale(ATVBCube::setting<S::BulletDebugSetting>().scale);
-	
+	this->init_debugdrawer();
+
 //	btCollisionShape *ground = new btBoxShape(btVector3(btScalar(30 * 64), btScalar(30 * 64), btScalar(0.1)));
 //	btTransform groundTrans;
 //	groundTrans.setIdentity();
