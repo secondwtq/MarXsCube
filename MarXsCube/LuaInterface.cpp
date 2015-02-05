@@ -26,6 +26,7 @@
 #include "Generic.h"
 
 #include "StdInterface.h"
+#include "GLM_Interface.h"
 #include "RayTest_Interface.h"
 #include "BulletVehicle_Interface.h"
 #include "Tesla_Interface.h"
@@ -48,6 +49,7 @@ namespace LuaInterface {
 		RegisterInterface_Map(L);
 		RegisterInterface_New(L);
 		
+		RegisterInterface_GLM(L);
 		RegisterInterface_User_Gmap(L);
 		
 		RegisterInterface_Tesla(L);
