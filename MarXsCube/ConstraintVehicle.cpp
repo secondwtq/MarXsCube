@@ -20,7 +20,7 @@ void ConstraintVehicle::launch() {
 		btRotationalLimitMotor *motor = this->m_constraints[i]->getRotationalLimitMotor(0);
 		motor->m_enableMotor = true;
 		motor->m_maxMotorForce = 100.0f;
-		motor->m_targetVelocity = -10.0f;
+		motor->m_targetVelocity = -30.0f;
 		
 		motor = this->m_constraints[i]->getRotationalLimitMotor(2);
 		motor->m_enableMotor = true;

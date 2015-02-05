@@ -66,6 +66,7 @@
 		59C97B0A1A7913C800AB3F02 /* GLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59C97B081A7913C800AB3F02 /* GLShader.cpp */; };
 		59C97B0D1A7942CA00AB3F02 /* TeslaRenderingBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59C97B0B1A7942CA00AB3F02 /* TeslaRenderingBasic.cpp */; };
 		59F431DC1A839A47008795D9 /* GLM_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F431DA1A839A47008795D9 /* GLM_Interface.cpp */; };
+		59F431E71A83AF0F008795D9 /* GritFoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F431E51A83AF0F008795D9 /* GritFoundation.cpp */; };
 		59FCBF2F1A713D8500BEF905 /* Atheverybeginning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF2D1A713D8500BEF905 /* Atheverybeginning.cpp */; };
 		59FCBF361A73673100BEF905 /* FSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF341A73673100BEF905 /* FSM.cpp */; };
 		59FCBF3F1A73B8E200BEF905 /* BulletThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF3D1A73B8E200BEF905 /* BulletThread.cpp */; };
@@ -210,6 +211,8 @@
 		59C97B0C1A7942CA00AB3F02 /* TeslaRenderingBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeslaRenderingBasic.h; sourceTree = "<group>"; };
 		59F431DA1A839A47008795D9 /* GLM_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLM_Interface.cpp; sourceTree = "<group>"; };
 		59F431DB1A839A47008795D9 /* GLM_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLM_Interface.h; sourceTree = "<group>"; };
+		59F431E51A83AF0F008795D9 /* GritFoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GritFoundation.cpp; sourceTree = "<group>"; };
+		59F431E61A83AF0F008795D9 /* GritFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GritFoundation.h; sourceTree = "<group>"; };
 		59FCBF2D1A713D8500BEF905 /* Atheverybeginning.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Atheverybeginning.cpp; sourceTree = "<group>"; };
 		59FCBF2E1A713D8500BEF905 /* Atheverybeginning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Atheverybeginning.h; sourceTree = "<group>"; };
 		59FCBF301A7273AA00BEF905 /* atheverybeginning.lunc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = atheverybeginning.lunc; sourceTree = "<group>"; };
@@ -319,15 +322,7 @@
 		592628F5198AB62300858A67 = {
 			isa = PBXGroup;
 			children = (
-				591201C61A6D1DA500ECB42A /* OpenGL.framework */,
-				591201C31A6D1D9400ECB42A /* libGLEW.a */,
-				591201BD1A6D078900ECB42A /* libsfml-graphics.2.2.0.dylib */,
-				591201BE1A6D078900ECB42A /* libsfml-window.2.2.0.dylib */,
-				591201BF1A6D078900ECB42A /* libsfml-system.2.2.0.dylib */,
-				597D223C1A3D93E8006B296B /* libluajit_darwinclang.a */,
-				595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */,
-				595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */,
-				595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */,
+				59F431E21A83AC45008795D9 /* lib */,
 				59262900198AB62300858A67 /* MarXsCube */,
 				592628FF198AB62300858A67 /* Products */,
 				59262968198ABCFA00858A67 /* Externals */,
@@ -348,57 +343,32 @@
 				59FCBF311A72818100BEF905 /* AtTheVeryBeginning */,
 				5923C8E619D026CE0055E0D5 /* Bullet */,
 				5932C84619D00C6800135717 /* Common */,
+				59F431E01A83AC0E008795D9 /* CubeCore */,
 				59FCBF371A73674300BEF905 /* FSM */,
 				592859051A37590A00D4AE91 /* Gmap */,
+				59F431E41A83AD12008795D9 /* Grit */,
 				5923C8DE19D0164B0055E0D5 /* Hafnium */,
+				59F431DF1A83AB85008795D9 /* Misc */,
 				5923C8D819D00E8B0055E0D5 /* Silcon */,
 				59BF15F01A837202000DA821 /* Tesla */,
+				59F431E11A83AC31008795D9 /* Transform */,
 				59F431DD1A83A92D008795D9 /* Verdandi */,
 				59F431DE1A83A944008795D9 /* Wonderland */,
 				5923C8E519D0225A0055E0D5 /* Obsoleted */,
-				59FCBF421A73CA5700BEF905 /* Acheron.h */,
-				5923C8E319D01EE60055E0D5 /* Generic.h */,
-				59FCBF411A73CA5700BEF905 /* Acheron.cpp */,
-				5923C8E219D01EE60055E0D5 /* Generic.cpp */,
-				5926290A198AB66500858A67 /* Abstract.h */,
-				5926290B198AB66500858A67 /* Anim.h */,
-				5926290D198AB66500858A67 /* Cell.h */,
 				5926290F198AB66500858A67 /* Config.h */,
 				59262913198AB66500858A67 /* Map.h */,
-				59262915198AB66500858A67 /* Object.h */,
 				59262916198AB66500858A67 /* ObjectArray.h */,
 				59262917198AB66500858A67 /* ObjectManger.h */,
 				59262918198AB66500858A67 /* ObjectTypeArray.h */,
-				59262919198AB66500858A67 /* Pathfinder.h */,
 				5926291E198AB66500858A67 /* Session.h */,
-				59262920198AB66500858A67 /* Techno.h */,
-				59262922198AB66500858A67 /* Type_Abstract.h */,
-				59262923198AB66500858A67 /* Type_Anim.h */,
-				59262924198AB66500858A67 /* Type_Object.h */,
-				59262925198AB66500858A67 /* Type_Techno.h */,
-				59262926198AB66500858A67 /* Abstract.cpp */,
-				59262927198AB66500858A67 /* Anim.cpp */,
-				59262929198AB66500858A67 /* Cell.cpp */,
 				5926292B198AB66500858A67 /* Config.cpp */,
 				5926292F198AB66500858A67 /* Map.cpp */,
-				59262930198AB66500858A67 /* Object.cpp */,
 				59262931198AB66500858A67 /* ObjectArrayImpl.cpp */,
 				59262932198AB66500858A67 /* ObjectManger.cpp */,
-				59262933198AB66500858A67 /* Pathfinder.cpp */,
 				59262935198AB66500858A67 /* Session.cpp */,
-				59262936198AB66500858A67 /* Techno.cpp */,
 				599985EE1A7F4BED00E6CE68 /* Startup.h */,
 				599985ED1A7F4BED00E6CE68 /* Startup.cpp */,
 				59262937198AB66500858A67 /* Test.cpp */,
-				5926293A198AB66500858A67 /* Type_Abstract.cpp */,
-				5926293B198AB66500858A67 /* Type_Anim.cpp */,
-				5926293C198AB66500858A67 /* Type_Object.cpp */,
-				5926293D198AB66500858A67 /* Type_Techno.cpp */,
-				59262921198AB66500858A67 /* Transform.h */,
-				59262939198AB66500858A67 /* Transform.cpp */,
-				5944452E1A75389000941CEB /* CubeTransform.h */,
-				5944452D1A75389000941CEB /* CubeTransform.cpp */,
-				59B9C16D1A7A275E0073E694 /* GProfiler.h */,
 			);
 			path = MarXsCube;
 			sourceTree = "<group>";
@@ -491,6 +461,81 @@
 			name = Wonderland;
 			sourceTree = "<group>";
 		};
+		59F431DF1A83AB85008795D9 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				59B9C16D1A7A275E0073E694 /* GProfiler.h */,
+				59262919198AB66500858A67 /* Pathfinder.h */,
+				59FCBF421A73CA5700BEF905 /* Acheron.h */,
+				5923C8E319D01EE60055E0D5 /* Generic.h */,
+				59FCBF411A73CA5700BEF905 /* Acheron.cpp */,
+				5923C8E219D01EE60055E0D5 /* Generic.cpp */,
+				59262933198AB66500858A67 /* Pathfinder.cpp */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+		59F431E01A83AC0E008795D9 /* CubeCore */ = {
+			isa = PBXGroup;
+			children = (
+				5926290A198AB66500858A67 /* Abstract.h */,
+				5926290B198AB66500858A67 /* Anim.h */,
+				5926290D198AB66500858A67 /* Cell.h */,
+				59262915198AB66500858A67 /* Object.h */,
+				59262920198AB66500858A67 /* Techno.h */,
+				59262922198AB66500858A67 /* Type_Abstract.h */,
+				59262923198AB66500858A67 /* Type_Anim.h */,
+				59262924198AB66500858A67 /* Type_Object.h */,
+				59262925198AB66500858A67 /* Type_Techno.h */,
+				59262926198AB66500858A67 /* Abstract.cpp */,
+				59262927198AB66500858A67 /* Anim.cpp */,
+				59262929198AB66500858A67 /* Cell.cpp */,
+				59262930198AB66500858A67 /* Object.cpp */,
+				59262936198AB66500858A67 /* Techno.cpp */,
+				5926293A198AB66500858A67 /* Type_Abstract.cpp */,
+				5926293B198AB66500858A67 /* Type_Anim.cpp */,
+				5926293C198AB66500858A67 /* Type_Object.cpp */,
+				5926293D198AB66500858A67 /* Type_Techno.cpp */,
+			);
+			name = CubeCore;
+			sourceTree = "<group>";
+		};
+		59F431E11A83AC31008795D9 /* Transform */ = {
+			isa = PBXGroup;
+			children = (
+				59262921198AB66500858A67 /* Transform.h */,
+				59262939198AB66500858A67 /* Transform.cpp */,
+				5944452E1A75389000941CEB /* CubeTransform.h */,
+				5944452D1A75389000941CEB /* CubeTransform.cpp */,
+			);
+			name = Transform;
+			sourceTree = "<group>";
+		};
+		59F431E21A83AC45008795D9 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				591201C61A6D1DA500ECB42A /* OpenGL.framework */,
+				591201C31A6D1D9400ECB42A /* libGLEW.a */,
+				591201BD1A6D078900ECB42A /* libsfml-graphics.2.2.0.dylib */,
+				591201BE1A6D078900ECB42A /* libsfml-window.2.2.0.dylib */,
+				591201BF1A6D078900ECB42A /* libsfml-system.2.2.0.dylib */,
+				597D223C1A3D93E8006B296B /* libluajit_darwinclang.a */,
+				595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */,
+				595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */,
+				595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
+		59F431E41A83AD12008795D9 /* Grit */ = {
+			isa = PBXGroup;
+			children = (
+				59F431E61A83AF0F008795D9 /* GritFoundation.h */,
+				59F431E51A83AF0F008795D9 /* GritFoundation.cpp */,
+			);
+			name = Grit;
+			sourceTree = "<group>";
+		};
 		59FCBF311A72818100BEF905 /* AtTheVeryBeginning */ = {
 			isa = PBXGroup;
 			children = (
@@ -581,6 +626,7 @@
 				592859091A37594700D4AE91 /* Gmap_Interface.cpp in Sources */,
 				59262941198AB66500858A67 /* Cell.cpp in Sources */,
 				5923C8DA19D00EB90055E0D5 /* RenderElement.cpp in Sources */,
+				59F431E71A83AF0F008795D9 /* GritFoundation.cpp in Sources */,
 				5926294E198AB66500858A67 /* Techno.cpp in Sources */,
 				59C97B0A1A7913C800AB3F02 /* GLShader.cpp in Sources */,
 				5944452F1A75389000941CEB /* CubeTransform.cpp in Sources */,
