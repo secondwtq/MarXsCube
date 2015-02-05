@@ -12,7 +12,7 @@
 #include "Generic.h"
 #include "Acheron.h"
 #include "GLFoundation.h"
-#include "TilerRendering.h"
+#include "TeslaRendering.h"
 #include "BulletDebugDraw.h"
 #include "ATVBCube.h"
 
@@ -25,7 +25,7 @@ extern sf::RenderWindow *window_global;
 void silcon_acheron_function() {
 	window_global->clear(sf::Color::Black);
 
-	Generic::TilerRenderingManger()->Render();
+	Generic::TeslaRenderingManger()->Render();
 	
 	window_global->pushGLStates();
 	for (size_t i = 0; i < RenderLayerType::Count; i++)

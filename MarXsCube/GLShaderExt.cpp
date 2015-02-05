@@ -24,7 +24,7 @@
 
 #define DISABLE_ATTRIBUTE(name) (glDisableVertexAttribArray(this->NAME_ATTRIBUTE(name)))
 
-void tiler_shader::init_shader() {
+void tesla_shader::init_shader() {
 	DEF_ATTRIBUTE(position);
 	DEF_ATTRIBUTE(normal);
 	DEF_ATTRIBUTE(texcoord);
@@ -37,7 +37,7 @@ void tiler_shader::init_shader() {
 	DEF_SAMPLER(texture_tileset);
 }
 
-void tiler_shader::attribute_attr() {
+void tesla_shader::attribute_attr() {
 	
 	SET_ATTRIBUTE3(position, 0);
 	SET_ATTRIBUTE3(normal, 3);
@@ -47,7 +47,7 @@ void tiler_shader::attribute_attr() {
 
 }
 
-void tiler_shader::disable_attributes() {
+void tesla_shader::disable_attributes() {
 	
 	DISABLE_ATTRIBUTE(position);
 	DISABLE_ATTRIBUTE(normal);

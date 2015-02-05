@@ -21,7 +21,7 @@ namespace ATVBCube {
 		WindowSetting,
 		BulletDebugSetting,
 		BulletGeneralSetting,
-		TilerGeneralSetting
+		TeslaGeneralSetting
 	};
 	
 	namespace Helper {
@@ -92,7 +92,7 @@ namespace ATVBCube {
 	};
 	
 	template <>
-	class ATVBSetting<TilerGeneralSetting> : public ATVBSettingP<TilerGeneralSetting> {
+	class ATVBSetting<TeslaGeneralSetting> : public ATVBSettingP<TeslaGeneralSetting> {
 		public:
 		
 			float maxheight_phy = 64.f;

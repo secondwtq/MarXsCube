@@ -9,13 +9,8 @@
 #include "Common.h"
 #include "SFML.h"
 
-#include "ObjectManger.h"
-#include "ModelLoader_obj.h"
-#include "GLShaderExt.h"
 #include "GLFoundation.h"
-#include "TilerRenderingBasic.h"
 #include "ATVBCube.h"
-#include "CubeTransform.h"
 
 #include <SFML/OpenGL.hpp>
 #include <iostream>

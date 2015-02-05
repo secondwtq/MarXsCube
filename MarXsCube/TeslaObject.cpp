@@ -1,5 +1,5 @@
 //
-//  TilerObject.cpp
+//  TeslaObject.cpp
 //  MarXsCube
 //
 //  Created by SeconDatke on 2/5/15.
@@ -10,13 +10,13 @@
 #include "GLFoundation.h"
 #include "CubeTransform.h"
 #include "Generic.h"
-#include "TilerBullet.h"
-#include "TilerObject.h"
+#include "TeslaBullet.h"
+#include "TeslaObject.h"
 
 #include <SFML/OpenGL.hpp>
 #include "BulletCollision/CollisionDispatch/btInternalEdgeUtility.h"
 
-void TilerObject::create_bullet() {
+void TeslaObject::create_bullet() {
 	transfer_bullet_shape(*this->m_bmesh, *this->m_basic_model, this->m_tex_heightfield_s);
 	
 	this->m_bshape = new btBvhTriangleMeshShape(this->m_bmesh, true);
@@ -38,29 +38,29 @@ void TilerObject::create_bullet() {
 	Generic::PhysicsGeneral()->dynaWorld->addRigidBody(this->m_bbody);
 }
 
-void TilerObject::load_shader() {
-	this->m_shader_unique = new tiler_shader;
-	this->m_shader_unique->load_file(SHADERTYPE::VERTEX, "terrain_tiler.vert");
-	this->m_shader_unique->load_file(SHADERTYPE::FRAG, "terrain_tiler.frag");
+void TeslaObject::load_shader() {
+	this->m_shader_unique = new tesla_shader;
+	this->m_shader_unique->load_file(SHADERTYPE::VERTEX, "tesla.vert");
+	this->m_shader_unique->load_file(SHADERTYPE::FRAG, "tesla.frag");
 	this->m_shader_unique->create();
 	this->m_shader_unique->init_shader();
 	
 	this->m_shader = this->m_shader_unique;
 }
 
-void TilerObject::load_objfile(const std::string& path) {
+void TeslaObject::load_objfile(const std::string& path) {
 	this->m_basic_model->filepath = path;
 	this->m_basic_model->parse();
 	
-	transfer_verts_tiler(*this->m_mesh_data, *this->m_basic_model);
+	transfer_verts_tesla(*this->m_mesh_data, *this->m_basic_model);
 }
 
-void TilerObject::load_buffer() {
+void TeslaObject::load_buffer() {
 	this->m_buffer_vert->init_with(this->m_mesh_data->vec_verts());
 	this->m_buffer_idx->init_with(this->m_mesh_data->vec_indexes());
 }
 
-void TilerObject::Render() {
+void TeslaObject::Render() {
 	glm::vec3 look_at_vec = CubeTransform::look_at_vector();
 	GLFoundation::view(look_at_vec.x+this->m_location.x, look_at_vec.y+this->m_location.y);
 	

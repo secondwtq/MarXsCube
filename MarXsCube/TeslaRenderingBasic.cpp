@@ -1,5 +1,5 @@
 //
-//  TilerRenderingBasic.cpp
+//  TeslaRenderingBasic.cpp
 //  MarXsCube
 //
 //  Created by SeconDatke on 1/29/15.
@@ -7,17 +7,17 @@
 //
 
 #include "ModelLoader_obj.h"
-#include "TilerRenderingBasic.h"
+#include "TeslaRenderingBasic.h"
 
 #include <array>
 #include <unordered_map>
 
-void transfer_verts_tiler(tiler_dataarray& dest, const objfile& src) {
+void transfer_verts_tesla(tesla_dataarray& dest, const objfile& src) {
 	std::unordered_map<std::size_t, std::size_t> texcoord_cache;
 	
 	for (std::size_t i = 0; i < src.raw_verts.size(); i++) {
 		
-		tiler_dataarray::VertObjectType vert;
+		tesla_dataarray::VertObjectType vert;
 		
 		vert.position = src.raw_verts[i];
 		if (src.raw_normals.size() > i)
@@ -65,10 +65,10 @@ void transfer_verts_tiler(tiler_dataarray& dest, const objfile& src) {
 	}
 }
 
-void tiler_dataarray::sepreate_cell(std::size_t idx) {
+void tesla_dataarray::sepreate_cell(std::size_t idx) {
 	if (!m_cells[idx].seperated) {
 		// set as seperated
-		tiler_drawcell& cell = m_cells[idx];
+		tesla_drawcell& cell = m_cells[idx];
 		cell.seperated = true;
 		
 		// map vertices
@@ -84,7 +84,7 @@ void tiler_dataarray::sepreate_cell(std::size_t idx) {
 	}
 }
 
-std::size_t tiler_dataarray::find_nearest_cell(const glm::vec3 &pt) {
+std::size_t tesla_dataarray::find_nearest_cell(const glm::vec3 &pt) {
 	std::size_t ret = 0;
 	float current_distance = glm::distance(pt, m_cell_center[0]);
 	
@@ -97,7 +97,7 @@ std::size_t tiler_dataarray::find_nearest_cell(const glm::vec3 &pt) {
 	return ret;
 }
 
-tiler_dataarray::VertObjectType &tiler_dataarray::map_vert(std::size_t from, std::size_t to) {
+tesla_dataarray::VertObjectType &tesla_dataarray::map_vert(std::size_t from, std::size_t to) {
 	VertObjectType *vert_from = &this->m_vert_data.at(from);
 	if (vert_from->ismapped)
 		vert_from = &this->m_vert_data.at(vert_from->origin_vert);

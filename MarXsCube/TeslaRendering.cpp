@@ -1,5 +1,5 @@
 //
-//  TilerRendering.cpp
+//  TeslaRendering.cpp
 //  MarXsCube
 //
 //  Created by SeconDatke on 2/5/15.
@@ -7,10 +7,10 @@
 //
 
 #include "GLFoundation.h"
-#include "TilerObject.h"
-#include "TilerRendering.h"
+#include "TeslaObject.h"
+#include "TeslaRendering.h"
 
-void TilerRenderingManger::Render() {
+void TeslaRenderingManger::Render() {
 	glm::vec3 look_at_vec = CubeTransform::look_at_vector();
 	GLFoundation::clear_depth();
 	GLFoundation::view(look_at_vec.x, look_at_vec.y);

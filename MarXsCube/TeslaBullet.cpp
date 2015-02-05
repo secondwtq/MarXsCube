@@ -1,5 +1,5 @@
 //
-//  TilerBullet.cpp
+//  TeslaBullet.cpp
 //  MarXsCube
 //
 //  Created by SeconDatke on 1/27/15.
@@ -12,7 +12,7 @@
 #include "ModelLoader_obj.h"
 #include "Generic.h"
 #include "ATVBCube.h"
-#include "TilerBullet.h"
+#include "TeslaBullet.h"
 
 using namespace ATVBCube::Helper;
 
@@ -24,7 +24,7 @@ sf::Color sfImageGetPixelFloat(const sf::Image& image, float x, float y) {
 }
 
 void transfer_bullet_shape(btTriangleMesh& dest, const objfile &src, const sf::Texture *heightfield) {
-	float max_height = ATVBCube::setting<S::TilerGeneralSetting>().maxheight_phy;
+	float max_height = ATVBCube::setting<S::TeslaGeneralSetting>().maxheight_phy;
 	
 	sf::Image heightimage = heightfield->copyToImage();
 	

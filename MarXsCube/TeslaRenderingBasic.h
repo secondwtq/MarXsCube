@@ -1,13 +1,13 @@
 //
-//  TilerRenderingBasic.h
+//  TeslaRenderingBasic.h
 //  MarXsCube
 //
 //  Created by SeconDatke on 1/29/15.
 //  Copyright (c) 2015 MarXsCube Staff. All rights reserved.
 //
 
-#ifndef __MarXsCube__TilerRenderingBasic__
-#define __MarXsCube__TilerRenderingBasic__
+#ifndef __MarXsCube__TeslaRenderingBasic__
+#define __MarXsCube__TeslaRenderingBasic__
 
 #include "ModelLoader_obj.h"
 
@@ -18,9 +18,9 @@
 #define CELL_VERTS_TOTAL 6
 #define CELL_FACE_DISTANCE 32
 
-class tiler_dataarray;
+class tesla_dataarray;
 
-struct tiler_vert {
+struct tesla_vert {
 	glm::vec3 position;
 	glm::vec3 normal;
 	glm::vec3 texcoord;
@@ -37,32 +37,32 @@ struct tiler_vert {
 	}
 };
 
-void transfer_verts_tiler(tiler_dataarray& dest, const objfile& src);
+void transfer_verts_tesla(tesla_dataarray& dest, const objfile& src);
 
-struct tiler_drawcell {
+struct tesla_drawcell {
 	
 	std::array<std::size_t, CELL_VERTS_TOTAL> vertices;
 	bool seperated = false;
 	int this_idx = -1;
 	
-	tiler_drawcell(std::array<std::size_t, CELL_VERTS_TOTAL> pvertices, int idx)
+	tesla_drawcell(std::array<std::size_t, CELL_VERTS_TOTAL> pvertices, int idx)
 											: vertices(pvertices), this_idx(idx) { }
 	
 };
 
 // NOTICE: the helpers in this class is not a good design
 //		and they are not thread safe.
-class tiler_dataarray {
+class tesla_dataarray {
 public:
 	
-	typedef tiler_vert VertObjectType;
+	typedef tesla_vert VertObjectType;
 	
 	std::vector<VertObjectType>& vec_verts() { return this->m_vert_data; }
 	std::vector<GLIDX>& vec_indexes() { return this->m_idx_data; }
-	std::vector<tiler_drawcell>& vec_cells() { return this->m_cells; }
+	std::vector<tesla_drawcell>& vec_cells() { return this->m_cells; }
 	std::vector<glm::vec3>& vec_centers() { return this->m_cell_center; }
 	
-	tiler_drawcell& cell(std::size_t idx) { return this->m_cells.at(idx); }
+	tesla_drawcell& cell(std::size_t idx) { return this->m_cells.at(idx); }
 	VertObjectType& vert(std::size_t idx) { return this->m_vert_data.at(idx); }
 	const glm::vec3& center(std::size_t idx) { return this->m_cell_center.at(idx); }
 	
@@ -140,8 +140,8 @@ private:
 	std::vector<VertObjectType> m_vert_data;
 	std::vector<GLIDX> m_idx_data;
 	
-	std::vector<tiler_drawcell> m_cells;
+	std::vector<tesla_drawcell> m_cells;
 	std::vector<glm::vec3> m_cell_center;
 };
 
-#endif /* defined(__MarXsCube__TilerRenderingBasic__) */
+#endif /* defined(__MarXsCube__TeslaRenderingBasic__) */

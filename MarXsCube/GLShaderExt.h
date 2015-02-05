@@ -9,7 +9,6 @@
 #ifndef __MarXsCube__GLShaderExt__
 #define __MarXsCube__GLShaderExt__
 
-#include "TilerRenderingBasic.h"
 #include "GLShader.h"
 #include <OpenGL/gltypes.h>
 
@@ -39,10 +38,12 @@ public:
 	virtual ~gl_shader_ext() { }
 };
 
-class tiler_shader : public gl_shader_ext {
+#include "TeslaRenderingBasic.h"
+
+class tesla_shader : public gl_shader_ext {
 public:
 	
-	typedef tiler_dataarray::VertObjectType type_vert_obj;
+	typedef tesla_dataarray::VertObjectType type_vert_obj;
 	
 	void init_shader();
 	

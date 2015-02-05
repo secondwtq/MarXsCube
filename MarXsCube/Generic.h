@@ -14,7 +14,7 @@
 #include "Session.h"
 #include "Config.h"
 #include "FSM.h"
-#include "TilerRendering.h"
+#include "TeslaRendering.h"
 
 class PhysicsGeneral;
 
@@ -32,8 +32,8 @@ public:
 	static inline RenderLayerManger *RenderLayerManger() {
 		return Generic::render_layer_manger; }
 	
-	static inline TilerRenderingManger *TilerRenderingManger() {
-		return Generic::m_tilermanger; }
+	static inline TeslaRenderingManger *TeslaRenderingManger() {
+		return Generic::m_teslamanger; }
 	
 	static inline void Init_Logger() {
 		FSM::init();
@@ -62,8 +62,8 @@ public:
 	static inline void Init_RenderLayerManger() {
 		Generic::render_layer_manger = new class RenderLayerManger(); }
 	
-	static inline void init_TilerRenderingManger() {
-		Generic::m_tilermanger = new class TilerRenderingManger(); }
+	static inline void init_TeslaRenderingManger() {
+		Generic::m_teslamanger = new class TeslaRenderingManger(); }
  
 	static inline void RemoveObject(Abs_Abstract *src) {
 		Generic::Session()->removeObject(src);
@@ -99,7 +99,7 @@ public:
 	
 	static class FSM::FSMLoggerProxy core_logger;
 	
-	static class TilerRenderingManger *m_tilermanger;
+	static class TeslaRenderingManger *m_teslamanger;
 };
 
 #include "PhysicsGeneral.h"

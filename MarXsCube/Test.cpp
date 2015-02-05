@@ -42,7 +42,7 @@ int main() {
 	Generic::Init_LuaStatus();
 	Generic::Init_Session();
 	cube_init_atvb();
-	ATVBCube::load<S::TilerGeneralSetting>();
+	ATVBCube::load<S::TeslaGeneralSetting>();
 
 	cube_init_window();
 	
@@ -52,7 +52,7 @@ int main() {
 	Generic::Init_FunObjectTableCreate_Forward(config);
 	Generic::Init_RenderLayerManger();
 	Generic::Init_PhysicsGeneral();
-	Generic::init_TilerRenderingManger();
+	Generic::init_TeslaRenderingManger();
 	config.loadConfigFrom("Config.lua");
 	
 	init_opengl();

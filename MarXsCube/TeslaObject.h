@@ -1,13 +1,13 @@
 //
-//  TilerObject.h
+//  TeslaObject.h
 //  MarXsCube
 //
 //  Created by SeconDatke on 2/5/15.
 //  Copyright (c) 2015 MarXsCube Staff. All rights reserved.
 //
 
-#ifndef __MarXsCube__TilerObject__
-#define __MarXsCube__TilerObject__
+#ifndef __MarXsCube__TeslaObject__
+#define __MarXsCube__TeslaObject__
 
 #include "Common.h"
 #include "SFML.h"
@@ -15,20 +15,20 @@
 #include "ModelLoader_obj.h"
 #include "GLFoundation.h"
 #include "GLShaderExt.h"
-#include "TilerRenderingBasic.h"
+#include "TeslaRenderingBasic.h"
 
 #include <string>
 
 class PhysicsObject;
 
-class TilerObject {
+class TeslaObject {
 public:
 	
-	TilerObject () {
+	TeslaObject () {
 		this->m_buffer_vert = new gl_buffer<VBO, DYNAMIC>;
 		this->m_buffer_idx = new gl_buffer<IBO, DYNAMIC>;
 		this->m_basic_model = new objfile;
-		this->m_mesh_data = new tiler_dataarray;
+		this->m_mesh_data = new tesla_dataarray;
 		this->m_btri_map = new btTriangleInfoMap();
 		this->m_bmesh = new btTriangleMesh();
 		this->m_btrans.setIdentity();
@@ -57,7 +57,7 @@ public:
 	
 	void load_buffer();
 	
-	static TilerObject *create() { return new TilerObject(); }
+	static TeslaObject *create() { return new TeslaObject(); }
 	
 private:
 	
@@ -72,10 +72,10 @@ private:
 	gl_buffer<IBO, DYNAMIC> *m_buffer_idx = nullptr;
 	
 	gl_shader_ext *m_shader = nullptr;
-	tiler_shader *m_shader_unique = nullptr;
+	tesla_shader *m_shader_unique = nullptr;
 	
 	objfile *m_basic_model = nullptr;
-	tiler_dataarray *m_mesh_data = nullptr;
+	tesla_dataarray *m_mesh_data = nullptr;
 	
 	btTriangleMesh *m_bmesh = nullptr;
 	btBvhTriangleMeshShape *m_bshape = nullptr;
@@ -87,4 +87,4 @@ private:
 
 #include "Physics.h"
 
-#endif /* defined(__MarXsCube__TilerObject__) */
+#endif /* defined(__MarXsCube__TeslaObject__) */

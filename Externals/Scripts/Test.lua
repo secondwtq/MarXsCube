@@ -20,7 +20,7 @@ function Functions.TestManger_onTestInit()
 	GRAPH_GLOBAL = Appins.Gmap.Graph(#DATA_DOTS) -- create graph data structure
 
 	for i, chunk in ipairs(map.default.chunks) do
-		local terrain = Tiler.TilerChunkObject.create()
+		local terrain = Tesla.TeslaChunkObject.create()
 		terrain:location(Utility.CoordStruct(unpack(chunk.location)))
 		terrain:set_heightfield(Helpers.texture(chunk.heightfield))
 		terrain:set_tileset(Helpers.texture(chunk.tileset))
@@ -28,7 +28,7 @@ function Functions.TestManger_onTestInit()
 		terrain:load_shader()
 		terrain:create_bullet()
 		terrain:load_buffer()
-		Generic.TilerRenderingManger():add_chunk(terrain)
+		Generic.TeslaRenderingManger():add_chunk(terrain)
 	end
 
 	-- transform the coord of original data for display in map
