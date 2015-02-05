@@ -15,12 +15,6 @@
 
 void init_opengl();
 
-void render_gl();
-
-void raise_verts();
-
-void tiler_array_test();
-
 class GLFoundation {
 	public:
 	

@@ -13,7 +13,7 @@ map.default.chunks[1] = {
 
 map.default.chunks[2] = {
 	source = "drawcall.obj",
-	heightfield = "HEIGHTFIELD",
+	heightfield = "HEIGHTFIELD_TEST",
 	tileset = "TILESET",
 	location = { 1920, 0, 0 }
 }

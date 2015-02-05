@@ -25,6 +25,8 @@ using namespace std;
 
 #include "BulletThread.h"
 #include "SilconThread.h"
+#include "GLFoundation.h"
+#include "WonderlandFoundation.h"
 
 sf::RenderWindow *window_global = nullptr;
 
@@ -33,9 +35,6 @@ void safe_session_close() {
 	Acheron::Silcon.invoke_and_stop();
 	TestManger::GetInstance().window->close();
 }
-
-#include "TilerBullet.h"
-#include "GLFoundation.h"
 
 int main() {
 

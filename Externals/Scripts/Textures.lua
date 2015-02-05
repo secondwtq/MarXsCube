@@ -103,5 +103,6 @@ TEXTURES.JAGUAR = TEXTURES.DUMMY:newObject({
 })
 
 TEXTURES.HEIGHTFIELD = define_tex "heightfield.png"
+TEXTURES.HEIGHTFIELD_TEST = define_tex "heightfield_test.png"
 
 TEXTURES.TILESET = define_tex "tileset.png"
