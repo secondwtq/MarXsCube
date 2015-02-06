@@ -24,6 +24,7 @@ function grit_test()
 	print(vec:at(1).x, vec:at(1).y)
 	print(vec:at(2).x, vec:at(2).y)
 	print(vec:at(3).x, vec:at(3).y)
+	print(vec:at(4).x, vec:at(4).y)
 
 end
 
@@ -31,15 +32,18 @@ end
 function Functions.TestManger_onTestInit()
 
 	local vec0 = Utility.CubePoint(256, 256)
-	local vec1 = Utility.CubePoint(256, -256)
-	local vec2 = Utility.CubePoint(768, -256)
-	local vec3 = Utility.CubePoint(768, 256)
+	local vec1 = Utility.CubePoint(512, 512)
+	local vec2 = Utility.CubePoint(768, 256)
+	local vec3 = Utility.CubePoint(768, -256)
+	local vec4 = Utility.CubePoint(512, -768)
+	local vec5 = Utility.CubePoint(256, -256)
 	local obs = Grit.GritObstacle.create()
 	obs:pts():push_back(vec0)
-	obs:pts():push_back(vec3)
-	obs:pts():push_back(vec2)
 	obs:pts():push_back(vec1)
-	print(obs:pts():size())
+	obs:pts():push_back(vec2)
+	obs:pts():push_back(vec3)
+	obs:pts():push_back(vec4)
+	obs:pts():push_back(vec5)
 	Grit.instance():add_obs(obs)
 
 	Objects.Map.GetInstance():CreateEmptyMap(60, 50) -- create map

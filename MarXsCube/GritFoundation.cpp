@@ -73,7 +73,7 @@ void Grit::generate_map() {
 	Generic::corelog() << "linking nodes" << rn;
 	this->link_nodes(this->m_nodes);
 	
-	printf("poly counts: %u\n", this->m_map->all_polys().size());
+	Generic::corelog() << "poly counts: " <<  this->m_map->all_polys().size() << rn;
 }
 
 void Grit::create_polymap() {
@@ -82,7 +82,7 @@ void Grit::create_polymap() {
 	
 	for (auto obs : this->m_obses) {
 		// magic
-		std::vector<GPointType> pts_inflated = inflate_poly(obs->pts, 4);
+		std::vector<GPointType> pts_inflated = inflate_poly(obs->pts, 10);
 		obs_polys.push_back(new GritPoly(pts_inflated));
 	}
 	
@@ -102,7 +102,7 @@ void Grit::create_nodes() {
 	for (std::size_t i = 0; i < vect.size(); i++) {
 		// magic?
 		Generic::corelog() << "handling polygon" << rn;
-		std::vector<GPointType> pts_inflated = this->inflate_poly(vect[i]->pts, 2);
+		std::vector<GPointType> pts_inflated = this->inflate_poly(vect[i]->pts, 5);
 		for (std::size_t i = 0; i < pts_inflated.size(); i++) {
 			Generic::corelog() << "handling point" << rn;
 			if (pt_is_concave(pts_inflated, i)) {
@@ -143,6 +143,8 @@ void Grit::link_nodes(const std::vector<GritNode *>& node_list) {
 
 // finished.
 bool Grit::check_los(const GPointType& pa, const GPointType& pb) {
+//	Generic::corelog() << "check_los: start " << pa.x << ", " << pa.y << ", "
+//												<< pb.x << ", " << pb.y << rn;
 	
 	if (gmag2(gsub2(pa, pb)) < 1e-3) //magic again.. maybe the floating point precision issue
 	{
@@ -151,16 +153,13 @@ bool Grit::check_los(const GPointType& pa, const GPointType& pb) {
 	}
 	
 	for (auto poly : this->m_map->all_polys()) {
-		printf("check_los: checking poly %lu\n", poly);
 		for (std::size_t i = 0; i < poly->pts.size(); i++) {
-			printf("check_los: checking point %u\n", i);
 			if (segments_cross(pa, pb, poly->pts[i], poly->pts[(i+1) % poly->pts.size()])) {
 				return false;
 			}
 		}
 	}
 	
-	printf("check_los: returning true ...\n");
 	return true;
 }
 
@@ -205,10 +204,13 @@ bool Grit::pt_is_valid(const GPointType& pt) {
 
 // finished.
 bool Grit::pt_is_concave(const std::vector<GPointType>& pts, std::size_t pt) {
+	
 	GPointType cur = pts[pt], next = pts[(pt+1) % pts.size()],
 				prev = pts[(!pt) ? pts.size()-1 : pt-1];
 	GPointType left { cur.x - prev.x, cur.y - prev.y },
 				right { next.x - cur.x, next.y - cur.y };
+	if ((left.x*right.y - left.y*right.x) > 0)
+		Generic::corelog() << "concave point detected!" << rn;
 	return (left.x*right.y - left.y*right.x) > 0;
 }
 
@@ -249,8 +251,6 @@ bool Grit::segments_cross(const GPointType& a, const GPointType& b, const GPoint
 
 // finished.
 bool Grit::pt_in_poly(const GPointType& pt, const std::vector<GPointType>& polypts) {
-	printf("%d %d\n", pt.x, pt.y);
-	
 	GUnitT x_min = 1e+12; //magic
 	for (auto p : polypts)
 		x_min = std::min(x_min, p.x);
