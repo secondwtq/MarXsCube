@@ -17,7 +17,105 @@
 #define GLVEC2(gpoint) (glm::vec2(((gpoint).x), ((gpoint).y)))
 #define GVEC2(glpt) (GPointType((GUnitT)((glpt).x), (GUnitT)((glpt).y)));
 
+void Grit::late_update() {
+	if (this->m_flag_generate) {
+		this->m_flag_generate = false;
+		this->generate_map();
+	}
+}
+
+void Grit::generate_map() {
+	this->create_polymap();
+	this->create_nodes();
+	this->link_nodes(this->m_nodes);
+}
+
+void Grit::create_polymap() {
+	
+	std::vector<GritPoly *> obs_polys;
+	
+	for (auto obs : this->m_obses) {
+		
+	}
+	
+	std::vector<GritPoly *> master_polys;
+	// WIP.
+	
+	// creation
+	this->m_map = new GritPolyMap(master_polys, obs_polys);
+}
+
+bool Grit::check_los(const GPointType& pa, const GPointType& pb) {
+	return true;
+}
+
+void Grit::link_node(GritNode& node, std::vector<GritNode *>& to_nodes) {
+	// original code may need opt. here
+	
+	std::size_t node_idx = -1;
+	for (std::size_t i = 0; i < to_nodes.size(); i++) {
+		if (*to_nodes[i] == node) {
+			node_idx = i;
+			break;
+		}
+	}
+	for (std::size_t i = 0; i < to_nodes.size(); i++) {
+		// compare
+		if (node == *to_nodes[i])
+			continue;
+		
+		if (check_los(node.pos, to_nodes[i]->pos)) {
+			node.links.push_back(i);
+			to_nodes[i]->links.push_back(node_idx);
+		}
+	}
+}
+
+void Grit::link_nodes(const std::vector<GritNode *>& node_list) {
+	for (std::size_t i = 0; i < node_list.size(); i++) {
+		node_list[i]->links.clear();
+		
+		for (std::size_t j = 0; j < node_list.size(); j++) {
+			if (*node_list[i] == *node_list[j])
+				continue;
+			
+			if (j > i)
+				continue;
+			
+			if (check_los(node_list[i]->pos, node_list[j]->pos)) {
+				node_list[i]->links.push_back(j);
+				node_list[j]->links.push_back(i);
+			}
+		}
+	}
+}
+
+void Grit::create_nodes() {
+	this->m_nodes.clear();
+	
+	const std::vector<GritPoly *> vect = this->m_map->all_polys();
+	for (std::size_t i = 0; i < vect.size(); i++) {
+		// magic?
+		std::vector<GPointType> pts_inflated = this->inflate_poly(vect[i]->pts, 2);
+		for (std::size_t i = 0; i < pts_inflated.size(); i++) {
+			if (pt_is_concave(pts_inflated, i)) continue;
+			if (!pt_is_valid(pts_inflated[i])) continue;
+			
+			// creation
+			this->m_nodes.push_back(new GritNode(pts_inflated[i]));
+		}
+	}
+}
+
 bool Grit::pt_is_valid(const GPointType& pt) {
+	
+	const std::vector<GritPoly *> vect = this->m_map->all_polys();
+	for (std::size_t i = 0; i < vect.size(); i++) {
+		bool is_master = i < this->m_map->master_polys.size();
+		if (is_master ? (!pt_in_poly(pt, vect[i]->pts)) :
+						pt_in_poly(pt, vect[i]->pts))
+			return false;
+	}
 	
 	return true;
 }
@@ -35,7 +133,7 @@ std::vector<GPointType> Grit::inflate_poly(const std::vector<GPointType>& pts, G
 	std::vector<GPointType> ret;
 	
 	for (std::size_t i = 0; i < pts.size(); i++) {
-		glm::vec2 ab = glm::normalize(GLVEC2(pts[(i+1) % pts.size()]) = GLVEC2(pts[i])),
+		glm::vec2 ab = glm::normalize(GLVEC2(pts[(i+1) % pts.size()]) - GLVEC2(pts[i])),
 			ac = glm::normalize(GLVEC2(pts[(!i) ? pts.size()-1 : i-1]) - GLVEC2(pts[i]));
 		glm::vec2 mid = glm::normalize(ab + ac);
 		
