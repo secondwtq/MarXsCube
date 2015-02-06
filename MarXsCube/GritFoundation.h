@@ -47,6 +47,8 @@ public:
 	
 	void late_update();
 	
+	std::vector<GPointType> find_path(const GPointType& start, const GPointType& end);
+	
 	void add_obs(GritObstacle *obs) {
 		if (std::find(this->m_obses.begin(), this->m_obses.end(), obs) == this->m_obses.end()) {
 			this->m_obses.push_back(obs);
@@ -105,8 +107,19 @@ public:
 	bool operator<=(const GritNode& other) {
 		return this->cost_est <= other.cost_est; }
 	
-	void compare() { }
-	void clone() { }
+	GritNode *clone() {
+		GritNode *ret = new GritNode(this->pos);
+		ret->cost = this->cost;
+		ret->cost_est = this->cost_est;
+		
+		if (this->parent)
+			ret->parent = this->parent->clone();
+		
+		for (auto idx : this->links)
+			ret->links.push_back(idx);
+		
+		return ret;
+	}
 };
 
 #endif /* defined(__MarXsCube__GritFoundation__) */

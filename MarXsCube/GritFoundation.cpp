@@ -8,6 +8,7 @@
 
 #include "Common.h"
 #include "GritFoundation.h"
+#include "GritAStar.h"
 
 #include <algorithm>
 #include <vector>
@@ -16,6 +17,37 @@
 
 #define GLVEC2(gpoint) (glm::vec2(((gpoint).x), ((gpoint).y)))
 #define GVEC2(glpt) (GPointType((GUnitT)((glpt).x), (GUnitT)((glpt).y)));
+
+std::vector<GPointType> Grit::find_path(const GPointType& start, const GPointType& end) {
+	std::vector<GPointType> ret;
+	
+	if (check_los(start, end)) {
+		ret.push_back(start);
+		ret.push_back(end);
+		return ret;
+	}
+	
+	std::vector<GritNode *> tmp_nodes;
+	for (auto node : this->m_nodes)
+		tmp_nodes.push_back(node->clone());
+	
+	GPointType start_org = start;
+	if (!pt_is_valid(start)) {
+		
+	}
+	
+	GritNode *node_start = new GritNode(start),
+			*node_end = new GritNode(end);
+	
+	tmp_nodes.push_back(node_start);
+	tmp_nodes.push_back(node_end);
+	
+	link_node(*node_start, tmp_nodes);
+	link_node(*node_end, tmp_nodes);
+	
+	GritAStar::path(*node_start, *node_end, tmp_nodes, ret);
+	return ret;
+}
 
 void Grit::late_update() {
 	if (this->m_flag_generate) {

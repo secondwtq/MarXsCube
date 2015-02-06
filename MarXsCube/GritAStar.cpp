@@ -10,7 +10,7 @@
 
 float GritAStar::GA_HEURIST_WEIGHT = 1.f;
 
-void GritAStar::path(GritNode& start, GritNode& end, std::vector<GritNode *>& all_nodes) {
+void GritAStar::path(GritNode& start, GritNode& end, std::vector<GritNode *>& all_nodes, std::vector<GPointType>& cache) {
 	
 	int n = 0;
 	
@@ -63,4 +63,9 @@ void GritAStar::path(GritNode& start, GritNode& end, std::vector<GritNode *>& al
 	}
 	
 	// WIP
+	
+	while (current) {
+		cache.push_back(current->pos);
+		current = current->parent;
+	}
 }

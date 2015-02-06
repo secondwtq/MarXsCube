@@ -62,7 +62,7 @@ class GritAStar {
 		return gmag2(gsub2(a.pos, b.pos)); }
 	
 public:
-	static void path(GritNode& start, GritNode& end, std::vector<GritNode *>& all_nodes);
+	static void path(GritNode& start, GritNode& end, std::vector<GritNode *>& all_nodes, std::vector<GPointType>& cache);
 	
 };
 
