@@ -25,6 +25,12 @@ class GritPolyMap;
 class GritObstacle {
 public:
 	std::vector<GPointType> pts;
+	
+	std::vector<GPointType> *lua_pts() {
+		return &this->pts; }
+	
+	static GritObstacle *create()
+		{ return new GritObstacle; }
 };
 
 class Grit {
@@ -80,6 +86,11 @@ public:
 	
 	std::vector<GritPoly *> all_polys() {
 		std::vector<GritPoly *> ret;
+		
+		for (auto poly : master_polys)
+			ret.push_back(poly);
+		for (auto poly : obs_polys)
+			ret.push_back(poly);
 		
 		return ret;
 	}

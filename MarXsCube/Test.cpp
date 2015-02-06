@@ -67,6 +67,7 @@ int main() {
 	Generic::Init_FunObjectTableCreate(config);
 
 	TestManger::GetInstance().window = window_global;
+	grit_global.late_update();
 	TestManger::GetInstance().initTest();
 
 	Pathfinding::init(Map::GetInstance().size.x, Map::GetInstance().size.y);

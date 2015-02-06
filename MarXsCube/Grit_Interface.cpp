@@ -18,6 +18,11 @@ void LuaInterface::RegisterInterface_Grit(LuaStatus& L) {
 			addFunction("instance", &get_grit).
 			beginClass<Grit>("Grit").
 				addFunction("find_path", &Grit::find_path).
+				addFunction("add_obs", &Grit::add_obs).
+			endClass().
+			beginClass<GritObstacle>("GritObstacle").
+				addFunction("pts", &GritObstacle::lua_pts).
+				addStaticFunction("create", &GritObstacle::create).
 			endClass().
 		endNamespace();
 }

@@ -22,11 +22,26 @@ function grit_test()
 	print(vec:size())
 	print(vec:at(0).x, vec:at(0).y)
 	print(vec:at(1).x, vec:at(1).y)
+	print(vec:at(2).x, vec:at(2).y)
+	print(vec:at(3).x, vec:at(3).y)
 
 end
 
 -- run when game started
 function Functions.TestManger_onTestInit()
+
+	local vec0 = Utility.CubePoint(256, 256)
+	local vec1 = Utility.CubePoint(256, -256)
+	local vec2 = Utility.CubePoint(768, -256)
+	local vec3 = Utility.CubePoint(768, 256)
+	local obs = Grit.GritObstacle.create()
+	obs:pts():push_back(vec0)
+	obs:pts():push_back(vec3)
+	obs:pts():push_back(vec2)
+	obs:pts():push_back(vec1)
+	print(obs:pts():size())
+	Grit.instance():add_obs(obs)
+
 	Objects.Map.GetInstance():CreateEmptyMap(60, 50) -- create map
 	GRAPH_GLOBAL = Appins.Gmap.Graph(#DATA_DOTS) -- create graph data structure
 

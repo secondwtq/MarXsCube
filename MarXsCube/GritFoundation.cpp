@@ -7,13 +7,17 @@
 //
 
 #include "Common.h"
+#include "FSM.h"
 #include "GritFoundation.h"
 #include "GritAStar.h"
+#include "Generic.h"
 
 #include <algorithm>
 #include <vector>
 
 #include <glm/glm.hpp>
+
+using namespace FSMHelper;
 
 #define GLVEC2(gpoint) (glm::vec2(((gpoint).x), ((gpoint).y)))
 #define GVEC2(glpt) (GPointType((GUnitT)((glpt).x), (GUnitT)((glpt).y)));
@@ -21,11 +25,14 @@
 std::vector<GPointType> Grit::find_path(const GPointType& start, const GPointType& end) {
 	std::vector<GPointType> ret;
 	
+	Generic::corelog() << "find_path: Checking los" << rn;
 	if (check_los(start, end)) {
 		ret.push_back(start);
 		ret.push_back(end);
+		printf("Find path: returning (direct) ... \n");
 		return ret;
 	}
+	Generic::corelog() << "find_path: los failed, needs more work..." << rn;
 	
 	std::vector<GritNode *> tmp_nodes;
 	for (auto node : this->m_nodes)
@@ -45,7 +52,9 @@ std::vector<GPointType> Grit::find_path(const GPointType& start, const GPointTyp
 	link_node(*node_start, tmp_nodes);
 	link_node(*node_end, tmp_nodes);
 	
+	Generic::corelog() << "find_path: finding path... totally " << tmp_nodes.size() << " nodes" << rn;
 	GritAStar::path(node_start, node_end, &tmp_nodes, &ret);
+	Generic::corelog() << "find_path: finished, " << ret.size() << " nodes" << rn;
 	return ret;
 }
 
@@ -57,9 +66,14 @@ void Grit::late_update() {
 }
 
 void Grit::generate_map() {
+	printf("Regererating map ...\n");
 	this->create_polymap();
 	this->create_nodes();
+	
+	Generic::corelog() << "linking nodes" << rn;
 	this->link_nodes(this->m_nodes);
+	
+	printf("poly counts: %u\n", this->m_map->all_polys().size());
 }
 
 void Grit::create_polymap() {
@@ -81,17 +95,27 @@ void Grit::create_polymap() {
 
 // finished. ( all_poly issue
 void Grit::create_nodes() {
+	Generic::corelog() << "regenerating nodes" << rn;
 	this->m_nodes.clear();
 	
 	const std::vector<GritPoly *> vect = this->m_map->all_polys();
 	for (std::size_t i = 0; i < vect.size(); i++) {
 		// magic?
+		Generic::corelog() << "handling polygon" << rn;
 		std::vector<GPointType> pts_inflated = this->inflate_poly(vect[i]->pts, 2);
 		for (std::size_t i = 0; i < pts_inflated.size(); i++) {
-			if (pt_is_concave(pts_inflated, i)) continue;
-			if (!pt_is_valid(pts_inflated[i])) continue;
+			Generic::corelog() << "handling point" << rn;
+			if (pt_is_concave(pts_inflated, i)) {
+				Generic::corelog() << "skipping because of concave point" << rn;
+				continue;
+			}
+			if (!pt_is_valid(pts_inflated[i])) {
+				Generic::corelog() << "skipping because of invalid point" << rn;
+				continue;
+			}
 			
 			// creation
+			Generic::corelog() << "adding point" << rn;
 			this->m_nodes.push_back(new GritNode(pts_inflated[i]));
 		}
 	}
@@ -121,13 +145,22 @@ void Grit::link_nodes(const std::vector<GritNode *>& node_list) {
 bool Grit::check_los(const GPointType& pa, const GPointType& pb) {
 	
 	if (gmag2(gsub2(pa, pb)) < 1e-3) //magic again.. maybe the floating point precision issue
+	{
+		printf("check_los: returning (directly) ...\n");
 		return true;
+	}
 	
-	for (auto poly : this->m_map->all_polys())
-		for (std::size_t i = 0; i < poly->pts.size(); i++)
-			if (segments_cross(pa, pb, poly->pts[i], poly->pts[(i+1) % poly->pts.size()]))
+	for (auto poly : this->m_map->all_polys()) {
+		printf("check_los: checking poly %lu\n", poly);
+		for (std::size_t i = 0; i < poly->pts.size(); i++) {
+			printf("check_los: checking point %u\n", i);
+			if (segments_cross(pa, pb, poly->pts[i], poly->pts[(i+1) % poly->pts.size()])) {
 				return false;
+			}
+		}
+	}
 	
+	printf("check_los: returning true ...\n");
 	return true;
 }
 
@@ -161,6 +194,7 @@ bool Grit::pt_is_valid(const GPointType& pt) {
 	const std::vector<GritPoly *> vect = this->m_map->all_polys();
 	for (std::size_t i = 0; i < vect.size(); i++) {
 		bool is_master = i < this->m_map->master_polys.size();
+		Generic::corelog() << "pt_is_valid: handling point, " << (is_master ? "master" : "not master") << rn;
 		if (is_master ? (!pt_in_poly(pt, vect[i]->pts)) :
 						pt_in_poly(pt, vect[i]->pts))
 			return false;
@@ -175,7 +209,6 @@ bool Grit::pt_is_concave(const std::vector<GPointType>& pts, std::size_t pt) {
 				prev = pts[(!pt) ? pts.size()-1 : pt-1];
 	GPointType left { cur.x - prev.x, cur.y - prev.y },
 				right { next.x - cur.x, next.y - cur.y };
-	
 	return (left.x*right.y - left.y*right.x) > 0;
 }
 
@@ -185,10 +218,10 @@ std::vector<GPointType> Grit::inflate_poly(const std::vector<GPointType>& pts, G
 	
 	for (std::size_t i = 0; i < pts.size(); i++) {
 		glm::vec2 ab = glm::normalize(GLVEC2(pts[(i+1) % pts.size()]) - GLVEC2(pts[i])),
-			ac = glm::normalize(GLVEC2(pts[(!i) ? pts.size()-1 : i-1]) - GLVEC2(pts[i]));
+			ac = glm::normalize(GLVEC2(pts[(!i) ? (pts.size()-1) : (i-1)]) - GLVEC2(pts[i]));
 		glm::vec2 mid = glm::normalize(ab + ac);
-		
-		mid *= (float)(pt_is_concave(pts, i) ? -dist : dist);
+
+		mid *= (float)(pt_is_concave(pts, i) ? dist : -dist);
 		GPointType offseted = pts[i];
 		offseted += GVEC2(mid);
 		ret.push_back(offseted);
@@ -216,7 +249,9 @@ bool Grit::segments_cross(const GPointType& a, const GPointType& b, const GPoint
 
 // finished.
 bool Grit::pt_in_poly(const GPointType& pt, const std::vector<GPointType>& polypts) {
-	GUnitT x_min = 0.f;
+	printf("%d %d\n", pt.x, pt.y);
+	
+	GUnitT x_min = 1e+12; //magic
 	for (auto p : polypts)
 		x_min = std::min(x_min, p.x);
 	

@@ -16,6 +16,7 @@ namespace LuaInterface {
 template <typename ValueT>
 void RegisterInterface_Std_Vector(LuaStatus &L, const char *name_type) {
 	ValueT& (std::vector<ValueT>::*vec_at)(std::size_t) = &std::vector<ValueT>::at;
+	void (std::vector<ValueT>::*vec_push_back)(const ValueT&) = &std::vector<ValueT>::push_back;
 	
 	luabridge::getGlobalNamespace(L).
 		beginNamespace("Utility").
@@ -26,7 +27,7 @@ void RegisterInterface_Std_Vector(LuaStatus &L, const char *name_type) {
 						addFunction("empty", &std::vector<ValueT>::empty).
 						addFunction("size", &std::vector<ValueT>::size).
 						addFunction("length", &std::vector<ValueT>::size).
-//						addFunction("push_back", &std::vector<ValueT>::push_back).
+						addFunction("push_back", vec_push_back).
 					endClass().
 				endNamespace().
 			endNamespace().
