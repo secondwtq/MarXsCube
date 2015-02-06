@@ -216,6 +216,7 @@
 		59F431E61A83AF0F008795D9 /* GritFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GritFoundation.h; sourceTree = "<group>"; };
 		59FCB5091A84850C0048D776 /* GritAStar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GritAStar.cpp; sourceTree = "<group>"; };
 		59FCB50A1A84850C0048D776 /* GritAStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GritAStar.h; sourceTree = "<group>"; };
+		59FCB50C1A8488030048D776 /* GritMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GritMath.h; sourceTree = "<group>"; };
 		59FCBF2D1A713D8500BEF905 /* Atheverybeginning.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Atheverybeginning.cpp; sourceTree = "<group>"; };
 		59FCBF2E1A713D8500BEF905 /* Atheverybeginning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Atheverybeginning.h; sourceTree = "<group>"; };
 		59FCBF301A7273AA00BEF905 /* atheverybeginning.lunc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = atheverybeginning.lunc; sourceTree = "<group>"; };
@@ -533,6 +534,7 @@
 		59F431E41A83AD12008795D9 /* Grit */ = {
 			isa = PBXGroup;
 			children = (
+				59FCB50C1A8488030048D776 /* GritMath.h */,
 				59F431E61A83AF0F008795D9 /* GritFoundation.h */,
 				59F431E51A83AF0F008795D9 /* GritFoundation.cpp */,
 				59FCB50A1A84850C0048D776 /* GritAStar.h */,

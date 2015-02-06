@@ -10,6 +10,7 @@
 #define __MarXsCube__GritFoundation__
 
 #include "Common.h"
+#include "GritMath.h"
 
 #include <algorithm>
 #include <vector>
