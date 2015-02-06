@@ -32,6 +32,9 @@ using namespace std;
 
 Grit grit_global;
 
+Grit *get_grit() {
+	return &grit_global; }
+
 sf::RenderWindow *window_global = nullptr;
 
 void safe_session_close() {

@@ -14,6 +14,17 @@ GRAPH_GLOBAL = None
 
 TECHNO_SELECTED = nil
 
+function grit_test()
+
+	local start = Utility.CubePoint(0, 0)
+	local eend = Utility.CubePoint(1024, 0)
+	local vec = Grit.instance():find_path(start, eend)
+	print(vec:size())
+	print(vec:at(0).x, vec:at(0).y)
+	print(vec:at(1).x, vec:at(1).y)
+
+end
+
 -- run when game started
 function Functions.TestManger_onTestInit()
 	Objects.Map.GetInstance():CreateEmptyMap(60, 50) -- create map

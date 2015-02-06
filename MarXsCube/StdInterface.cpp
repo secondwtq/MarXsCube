@@ -26,6 +26,7 @@ void RegisterInterface_Std_Vector(LuaStatus &L, const char *name_type) {
 						addFunction("empty", &std::vector<ValueT>::empty).
 						addFunction("size", &std::vector<ValueT>::size).
 						addFunction("length", &std::vector<ValueT>::size).
+//						addFunction("push_back", &std::vector<ValueT>::push_back).
 					endClass().
 				endNamespace().
 			endNamespace().

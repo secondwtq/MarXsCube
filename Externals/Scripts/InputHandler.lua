@@ -39,6 +39,8 @@ function InputHandler.MousePress_OnCell(mouse_status)
 		end
 	end
 
+	grit_test()
+
 end
 
 return InputHandler
