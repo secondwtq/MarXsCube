@@ -10,28 +10,28 @@
 
 float GritAStar::GA_HEURIST_WEIGHT = 1.f;
 
-void GritAStar::path(GritNode& start, GritNode& end, std::vector<GritNode *>& all_nodes, std::vector<GPointType>& cache) {
+void GritAStar::path(GritNode *start, GritNode *end, std::vector<GritNode *> *all_nodes, std::vector<GPointType> *cache) {
 	
 	int n = 0;
 	
 	GritAStar::pri_queue<GritNode> open, close;
 	
-	open.push(&start);
-	start.cost = 0;
-	start.cost_est = estimate(start, end, GA_HEURIST_WEIGHT);
+	open.push(start);
+	start->cost = 0;
+	start->cost_est = estimate(*start, *end, GA_HEURIST_WEIGHT);
 	
 	GritNode *current = nullptr;
 	
 	while (open.size()) {
 		current = open.front();
 		
-		if (current == &end)
+		if (current == end)
 			break;
 		
 		std::vector<std::size_t> *links = &current->links;
 		
 		for (std::size_t i = 0; i < links->size(); i++) {
-			GritNode *end_node = all_nodes[(*links)[i]];
+			GritNode *end_node = (*all_nodes)[(*links)[i]];
 			
 			float cost_inc = cost(*current, *end_node);
 			float cost_end = current->cost + cost_inc;
@@ -46,7 +46,7 @@ void GritAStar::path(GritNode& start, GritNode& end, std::vector<GritNode *>& al
 					continue;
 			}
 			
-			float node_end_heurist = estimate(*end_node, end, GA_HEURIST_WEIGHT);
+			float node_end_heurist = estimate(*end_node, *end, GA_HEURIST_WEIGHT);
 			end_node->cost = cost_end;
 			end_node->parent = current;
 			end_node->cost_est = cost_end + node_end_heurist;
@@ -65,7 +65,7 @@ void GritAStar::path(GritNode& start, GritNode& end, std::vector<GritNode *>& al
 	// WIP
 	
 	while (current) {
-		cache.push_back(current->pos);
+		cache->push_back(current->pos);
 		current = current->parent;
 	}
 }

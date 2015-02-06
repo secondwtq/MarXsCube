@@ -57,13 +57,12 @@ public:
 	}
 	
 	void remove_obs(GritObstacle *obs) {
-		this->m_flag_generate = true;
-	}
+		this->m_flag_generate = true; }
 	
 	std::vector<GritNode *> m_nodes;
 	std::vector<GritObstacle *> m_obses;
 	GritPolyMap *m_map;
-	bool m_flag_generate;
+	bool m_flag_generate = true;
 };
 
 class GritPoly {

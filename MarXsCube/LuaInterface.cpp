@@ -30,6 +30,7 @@
 #include "RayTest_Interface.h"
 #include "BulletVehicle_Interface.h"
 #include "Tesla_Interface.h"
+#include "Grit_Interface.h"
 
 #include "Gmap_Interface.h"
 
@@ -53,8 +54,10 @@ namespace LuaInterface {
 		RegisterInterface_User_Gmap(L);
 		
 		RegisterInterface_Tesla(L);
+		RegisterInterface_Grit(L);
 		
-		// RegisterInterface_Std<int>(L, "int");
+		RegisterInterface_Std<int>(L, "int");
+		RegisterInterface_Std<CubePoint>(L, "CubePoint");
 	}
 	
 	void RegisterInterface_New(LuaStatus &L) {

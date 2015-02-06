@@ -28,6 +28,10 @@ using namespace std;
 #include "GLFoundation.h"
 #include "WonderlandFoundation.h"
 
+#include "GritFoundation.h"
+
+Grit grit_global;
+
 sf::RenderWindow *window_global = nullptr;
 
 void safe_session_close() {
@@ -118,6 +122,8 @@ int main() {
 
 		for (auto i : ObjectManger::GetInstance().Objects)
 			i->Update();
+		
+		grit_global.late_update();
 		
 		ObjectManger::GetInstance().FinishRemove();
 

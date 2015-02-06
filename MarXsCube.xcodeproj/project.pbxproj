@@ -68,6 +68,8 @@
 		59F431DC1A839A47008795D9 /* GLM_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F431DA1A839A47008795D9 /* GLM_Interface.cpp */; };
 		59F431E71A83AF0F008795D9 /* GritFoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F431E51A83AF0F008795D9 /* GritFoundation.cpp */; };
 		59FCB50B1A84850C0048D776 /* GritAStar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB5091A84850C0048D776 /* GritAStar.cpp */; };
+		59FCB50F1A84A3C90048D776 /* Grit_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB50D1A84A3C90048D776 /* Grit_Interface.cpp */; };
+		59FCB5111A84A5DB0048D776 /* StdInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB5101A84A5DB0048D776 /* StdInterface.cpp */; };
 		59FCBF2F1A713D8500BEF905 /* Atheverybeginning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF2D1A713D8500BEF905 /* Atheverybeginning.cpp */; };
 		59FCBF361A73673100BEF905 /* FSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF341A73673100BEF905 /* FSM.cpp */; };
 		59FCBF3F1A73B8E200BEF905 /* BulletThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF3D1A73B8E200BEF905 /* BulletThread.cpp */; };
@@ -217,6 +219,9 @@
 		59FCB5091A84850C0048D776 /* GritAStar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GritAStar.cpp; sourceTree = "<group>"; };
 		59FCB50A1A84850C0048D776 /* GritAStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GritAStar.h; sourceTree = "<group>"; };
 		59FCB50C1A8488030048D776 /* GritMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GritMath.h; sourceTree = "<group>"; };
+		59FCB50D1A84A3C90048D776 /* Grit_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Grit_Interface.cpp; sourceTree = "<group>"; };
+		59FCB50E1A84A3C90048D776 /* Grit_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grit_Interface.h; sourceTree = "<group>"; };
+		59FCB5101A84A5DB0048D776 /* StdInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StdInterface.cpp; sourceTree = "<group>"; };
 		59FCBF2D1A713D8500BEF905 /* Atheverybeginning.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Atheverybeginning.cpp; sourceTree = "<group>"; };
 		59FCBF2E1A713D8500BEF905 /* Atheverybeginning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Atheverybeginning.h; sourceTree = "<group>"; };
 		59FCBF301A7273AA00BEF905 /* atheverybeginning.lunc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = atheverybeginning.lunc; sourceTree = "<group>"; };
@@ -283,6 +288,7 @@
 				5926292D198AB66500858A67 /* LuaInterface.cpp */,
 				5926292E198AB66500858A67 /* LuaUtils.cpp */,
 				5928590C1A375F2000D4AE91 /* StdInterface.h */,
+				59FCB5101A84A5DB0048D776 /* StdInterface.cpp */,
 				59F431DB1A839A47008795D9 /* GLM_Interface.h */,
 				59F431DA1A839A47008795D9 /* GLM_Interface.cpp */,
 				5923C8E819D027480055E0D5 /* LWindow.h */,
@@ -539,6 +545,8 @@
 				59F431E51A83AF0F008795D9 /* GritFoundation.cpp */,
 				59FCB50A1A84850C0048D776 /* GritAStar.h */,
 				59FCB5091A84850C0048D776 /* GritAStar.cpp */,
+				59FCB50E1A84A3C90048D776 /* Grit_Interface.h */,
+				59FCB50D1A84A3C90048D776 /* Grit_Interface.cpp */,
 			);
 			name = Grit;
 			sourceTree = "<group>";
@@ -651,6 +659,7 @@
 				593458641A8251F600DE4C28 /* GLShaderExt.cpp in Sources */,
 				5934586A1A832C8800DE4C28 /* Tesla_Interface.cpp in Sources */,
 				59262951198AB66500858A67 /* Transform.cpp in Sources */,
+				59FCB5111A84A5DB0048D776 /* StdInterface.cpp in Sources */,
 				59262952198AB66500858A67 /* Type_Abstract.cpp in Sources */,
 				59FCBF4B1A74840E00BEF905 /* GLFoundation.cpp in Sources */,
 				5926294F198AB66500858A67 /* Test.cpp in Sources */,
@@ -661,6 +670,7 @@
 				599985FD1A80DCC600E6CE68 /* BulletVehicle.cpp in Sources */,
 				59262955198AB66500858A67 /* Type_Techno.cpp in Sources */,
 				5923C8EF19D02A5E0055E0D5 /* PhysicsGeneral.cpp in Sources */,
+				59FCB50F1A84A3C90048D776 /* Grit_Interface.cpp in Sources */,
 				59262947198AB66500858A67 /* Map.cpp in Sources */,
 				59FCBF481A73D2AB00BEF905 /* Obsoleted.cpp in Sources */,
 				5923C8E419D01EE60055E0D5 /* Generic.cpp in Sources */,

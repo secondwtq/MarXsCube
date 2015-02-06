@@ -33,7 +33,7 @@ std::vector<GPointType> Grit::find_path(const GPointType& start, const GPointTyp
 	
 	GPointType start_org = start;
 	if (!pt_is_valid(start)) {
-		
+		printf("find_path: point is not valid!");
 	}
 	
 	GritNode *node_start = new GritNode(start),
@@ -45,7 +45,7 @@ std::vector<GPointType> Grit::find_path(const GPointType& start, const GPointTyp
 	link_node(*node_start, tmp_nodes);
 	link_node(*node_end, tmp_nodes);
 	
-	GritAStar::path(*node_start, *node_end, tmp_nodes, ret);
+	GritAStar::path(node_start, node_end, &tmp_nodes, &ret);
 	return ret;
 }
 
@@ -67,7 +67,9 @@ void Grit::create_polymap() {
 	std::vector<GritPoly *> obs_polys;
 	
 	for (auto obs : this->m_obses) {
-		
+		// magic
+		std::vector<GPointType> pts_inflated = inflate_poly(obs->pts, 4);
+		obs_polys.push_back(new GritPoly(pts_inflated));
 	}
 	
 	std::vector<GritPoly *> master_polys;
