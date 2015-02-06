@@ -37,6 +37,8 @@ public:
 	bool check_los(const GPointType& pa, const GPointType& pb);
 	void link_node(GritNode& node, std::vector<GritNode *>& to_nodes);
 	
+	GPointType get_closer_edge_pt(const GPointType& pt);
+	
 	void generate_map();
 	
 	void create_polymap();
@@ -97,8 +99,11 @@ public:
 	GritNode(const CubePoint& location) :
 		pos(location) { }
 	
-	bool operator==(const GritNode& other) {
-		return this->cost_est == other.cost_est; }
+	bool operator<(const GritNode& other) {
+		return this->cost_est < other.cost_est; }
+	
+	bool operator<=(const GritNode& other) {
+		return this->cost_est <= other.cost_est; }
 	
 	void compare() { }
 	void clone() { }

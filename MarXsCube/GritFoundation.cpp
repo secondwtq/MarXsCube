@@ -45,51 +45,7 @@ void Grit::create_polymap() {
 	this->m_map = new GritPolyMap(master_polys, obs_polys);
 }
 
-bool Grit::check_los(const GPointType& pa, const GPointType& pb) {
-	return true;
-}
-
-void Grit::link_node(GritNode& node, std::vector<GritNode *>& to_nodes) {
-	// original code may need opt. here
-	
-	std::size_t node_idx = -1;
-	for (std::size_t i = 0; i < to_nodes.size(); i++) {
-		if (*to_nodes[i] == node) {
-			node_idx = i;
-			break;
-		}
-	}
-	for (std::size_t i = 0; i < to_nodes.size(); i++) {
-		// compare
-		if (node == *to_nodes[i])
-			continue;
-		
-		if (check_los(node.pos, to_nodes[i]->pos)) {
-			node.links.push_back(i);
-			to_nodes[i]->links.push_back(node_idx);
-		}
-	}
-}
-
-void Grit::link_nodes(const std::vector<GritNode *>& node_list) {
-	for (std::size_t i = 0; i < node_list.size(); i++) {
-		node_list[i]->links.clear();
-		
-		for (std::size_t j = 0; j < node_list.size(); j++) {
-			if (*node_list[i] == *node_list[j])
-				continue;
-			
-			if (j > i)
-				continue;
-			
-			if (check_los(node_list[i]->pos, node_list[j]->pos)) {
-				node_list[i]->links.push_back(j);
-				node_list[j]->links.push_back(i);
-			}
-		}
-	}
-}
-
+// finished. ( all_poly issue
 void Grit::create_nodes() {
 	this->m_nodes.clear();
 	
@@ -107,6 +63,65 @@ void Grit::create_nodes() {
 	}
 }
 
+// finished.
+void Grit::link_nodes(const std::vector<GritNode *>& node_list) {
+	for (std::size_t i = 0; i < node_list.size(); i++) {
+		node_list[i]->links.clear();
+		
+		for (std::size_t j = 0; j < node_list.size(); j++) {
+			if (node_list[i] == node_list[j])
+				continue;
+			
+			if (j > i)
+				continue;
+			
+			if (check_los(node_list[i]->pos, node_list[j]->pos)) {
+				node_list[i]->links.push_back(j);
+				node_list[j]->links.push_back(i);
+			}
+		}
+	}
+}
+
+// finished.
+bool Grit::check_los(const GPointType& pa, const GPointType& pb) {
+	
+	if (gmag2(gsub2(pa, pb)) < 1e-3) //magic again.. maybe the floating point precision issue
+		return true;
+	
+	for (auto poly : this->m_map->all_polys())
+		for (std::size_t i = 0; i < poly->pts.size(); i++)
+			if (segments_cross(pa, pb, poly->pts[i], poly->pts[(i+1) % poly->pts.size()]))
+				return false;
+	
+	return true;
+}
+
+// finished
+// called by FindPath.
+void Grit::link_node(GritNode& node, std::vector<GritNode *>& to_nodes) {
+	// original code may need opt. here
+	
+	std::size_t node_idx = -1;
+	for (std::size_t i = 0; i < to_nodes.size(); i++)
+		if (to_nodes[i] == &node) {
+			node_idx = i;
+			break;
+		}
+		
+	for (std::size_t i = 0; i < to_nodes.size(); i++) {
+		// compare
+		if (&node == to_nodes[i])
+			continue;
+		
+		if (check_los(node.pos, to_nodes[i]->pos)) {
+			node.links.push_back(i);
+			to_nodes[i]->links.push_back(node_idx);
+		}
+	}
+}
+
+// finished. ( all_poly issue
 bool Grit::pt_is_valid(const GPointType& pt) {
 	
 	const std::vector<GritPoly *> vect = this->m_map->all_polys();
@@ -120,6 +135,7 @@ bool Grit::pt_is_valid(const GPointType& pt) {
 	return true;
 }
 
+// finished.
 bool Grit::pt_is_concave(const std::vector<GPointType>& pts, std::size_t pt) {
 	GPointType cur = pts[pt], next = pts[(pt+1) % pts.size()],
 				prev = pts[(!pt) ? pts.size()-1 : pt-1];
@@ -129,6 +145,7 @@ bool Grit::pt_is_concave(const std::vector<GPointType>& pts, std::size_t pt) {
 	return (left.x*right.y - left.y*right.x) > 0;
 }
 
+// finished.
 std::vector<GPointType> Grit::inflate_poly(const std::vector<GPointType>& pts, GUnitT dist) {
 	std::vector<GPointType> ret;
 	
@@ -146,6 +163,7 @@ std::vector<GPointType> Grit::inflate_poly(const std::vector<GPointType>& pts, G
 	return ret;
 }
 
+// finished.
 bool Grit::segments_cross(const GPointType& a, const GPointType& b, const GPointType& c, const GPointType &d) {
 	GUnitT denominator = ((b.x - a.x) * (d.y - c.y)) - ((b.y - a.y) * (d.x - c.x));
 	
@@ -162,6 +180,7 @@ bool Grit::segments_cross(const GPointType& a, const GPointType& b, const GPoint
 	return (r > 0 && r < 1) && (s > 0 && s < 1);
 }
 
+// finished.
 bool Grit::pt_in_poly(const GPointType& pt, const std::vector<GPointType>& polypts) {
 	GUnitT x_min = 0.f;
 	for (auto p : polypts)
@@ -179,4 +198,40 @@ bool Grit::pt_in_poly(const GPointType& pt, const std::vector<GPointType>& polyp
 	}
 	
 	return (intersections & 1) == 1;
+}
+
+GPointType Grit::get_closer_edge_pt(const GPointType& pt) {
+	std::vector<GPointType> possible_pts;
+	GPointType closer { 0, 0 };
+	float closer_vert_dist = 1e+12; // magic magic.
+	
+	for (auto poly : this->m_map->all_polys()) {
+		std::vector<GPointType> infleated_pts = inflate_poly(poly->pts, 2);
+		
+		for (std::size_t i = 0; i < infleated_pts.size(); i++) {
+			GPointType a = infleated_pts[i], b = infleated_pts[(i+1) % infleated_pts.size()];
+			GPointType oa = poly->pts[i], ob = poly->pts[(i+1) % poly->pts.size()];
+			
+			// WIP
+			
+			float dist = gmag2(gsub2(pt, infleated_pts[i]));
+			if (dist < closer_vert_dist && pt_is_valid(infleated_pts[i])) {
+				closer_vert_dist = dist;
+				closer = infleated_pts[i];
+			}
+		}
+	}
+	
+	possible_pts.push_back(closer);
+	
+	float closer_dist = 1e+12;
+	std::size_t idx = 0;
+	for (std::size_t i = 0; i < possible_pts.size(); i++) {
+		float dist = gmag2(gsub2(pt, possible_pts[i]));
+		if (dist < closer_dist) {
+			closer_dist = dist;
+			idx = i;
+		}
+	}
+	return possible_pts[idx];
 }

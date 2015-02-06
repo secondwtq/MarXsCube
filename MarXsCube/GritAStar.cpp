@@ -25,7 +25,7 @@ void GritAStar::path(GritNode& start, GritNode& end, std::vector<GritNode *>& al
 	while (open.size()) {
 		current = open.front();
 		
-		if (*current == end)
+		if (current == &end)
 			break;
 		
 		std::vector<std::size_t> *links = &current->links;
@@ -59,7 +59,7 @@ void GritAStar::path(GritNode& start, GritNode& end, std::vector<GritNode *>& al
 		open.remove(current);
 		
 		n++;
-		if (n > 300) return;
+		if (n > 300) return; // magic again, - -
 	}
 	
 	// WIP
