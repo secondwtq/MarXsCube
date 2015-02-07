@@ -729,6 +729,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1208;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -760,6 +761,7 @@
 				OTHER_CFLAGS = "";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = /Users/secondatke/Documents/Assets/Librarys/Bullet/include/Bullet;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -782,6 +784,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 1208;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -807,6 +810,7 @@
 				OTHER_CFLAGS = "";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = /Users/secondatke/Documents/Assets/Librarys/Bullet/include/Bullet;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};

@@ -28,6 +28,7 @@ public:
 		this->m_buffer_vert = new gl_buffer<VBO, DYNAMIC>;
 		this->m_buffer_idx = new gl_buffer<IBO, DYNAMIC>;
 		this->m_basic_model = new objfile;
+		this->m_bullet_model = new objfile;
 		this->m_mesh_data = new tesla_dataarray;
 		this->m_btri_map = new btTriangleInfoMap();
 		this->m_bmesh = new btTriangleMesh();
@@ -49,7 +50,7 @@ public:
 		this->m_tex_heightfield_s = &(texture->texture);
 		this->m_tex_heightfield = texture->texture.m_texture; }
 	
-	void load_objfile(const std::string& path);
+	void load_objfile(const std::string& path, const std::string& path_bullet);
 	
 	void load_shader();
 	
@@ -75,6 +76,7 @@ private:
 	tesla_shader *m_shader_unique = nullptr;
 	
 	objfile *m_basic_model = nullptr;
+	objfile *m_bullet_model = nullptr;
 	tesla_dataarray *m_mesh_data = nullptr;
 	
 	btTriangleMesh *m_bmesh = nullptr;

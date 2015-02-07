@@ -8,12 +8,14 @@ map.default.chunks[1] = {
 	source = "drawcall.obj",
 	heightfield = "HEIGHTFIELD",
 	tileset = "TILESET",
-	location = { 0, 0, 0 }
+	location = { 0, 0, 0 },
+	bullet_model = "tesla_hull.obj"
 }
 
 map.default.chunks[2] = {
 	source = "drawcall.obj",
 	heightfield = "HEIGHTFIELD_TEST",
 	tileset = "TILESET",
-	location = { 1920, 0, 0 }
+	location = { 1920, 0, 0 },
+	bullet_model = "tesla_hull.obj"
 }

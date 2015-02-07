@@ -17,7 +17,7 @@
 #include "BulletCollision/CollisionDispatch/btInternalEdgeUtility.h"
 
 void TeslaObject::create_bullet() {
-	transfer_bullet_shape(*this->m_bmesh, *this->m_basic_model, this->m_tex_heightfield_s);
+	transfer_bullet_shape(*this->m_bmesh, *this->m_bullet_model, this->m_tex_heightfield_s);
 	
 	this->m_bshape = new btBvhTriangleMeshShape(this->m_bmesh, true);
 	this->m_bshape->setMargin(btScalar(0.1f));
@@ -48,9 +48,12 @@ void TeslaObject::load_shader() {
 	this->m_shader = this->m_shader_unique;
 }
 
-void TeslaObject::load_objfile(const std::string& path) {
+void TeslaObject::load_objfile(const std::string& path, const std::string& path_bullet) {
 	this->m_basic_model->filepath = path;
 	this->m_basic_model->parse();
+	
+	this->m_bullet_model->filepath = path_bullet;
+	this->m_bullet_model->parse();
 	
 	transfer_verts_tesla(*this->m_mesh_data, *this->m_basic_model);
 }

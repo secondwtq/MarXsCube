@@ -20,4 +20,6 @@ Tileset: ~~2048x2048, each tile 256\*256, 8\*8 tiles~~
 
 Tileset index starting from 0
 
-Each cell has 4 quads - one quad 32\*32
+Each cell has 4 quads - one quad 32\*32 (1920*1920 units)
+
+Texcoords must be scaled to ([0.0, 0.0], [1.0, 1.0]) each **cell**.
