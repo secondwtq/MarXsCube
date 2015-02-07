@@ -341,8 +341,8 @@
 			children = (
 				59F431E21A83AC45008795D9 /* lib */,
 				59262900198AB62300858A67 /* MarXsCube */,
-				592628FF198AB62300858A67 /* Products */,
 				59262968198ABCFA00858A67 /* Externals */,
+				592628FF198AB62300858A67 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -815,7 +815,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
@@ -857,6 +857,7 @@
 					"-lprofiler",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "-Wall";
 			};
 			name = Debug;
 		};
@@ -865,7 +866,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
@@ -907,6 +908,7 @@
 					"-lprofiler",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "-Wall";
 			};
 			name = Release;
 		};

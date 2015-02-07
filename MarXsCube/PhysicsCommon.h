@@ -5,7 +5,10 @@
 
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Woverloaded-virtual"
 #include <Bullet/btBulletDynamicsCommon.h>
+#pragma GCC diagnostic pop
 
 class PhysicsObject;
 

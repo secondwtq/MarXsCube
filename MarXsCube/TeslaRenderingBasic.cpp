@@ -72,8 +72,8 @@ void tesla_dataarray::sepreate_cell(std::size_t idx) {
 		cell.seperated = true;
 		
 		// map vertices
-		std::array<std::size_t, CELL_EDGES> verts_to_map { cell.vertices[0], cell.vertices[1], cell.vertices[2], cell.vertices[4] };
-		std::array<std::size_t, CELL_EDGES> verts_mapped { 0 };
+		std::array<std::size_t, CELL_EDGES> verts_to_map {{ cell.vertices[0], cell.vertices[1], cell.vertices[2], cell.vertices[4] }};
+		std::array<std::size_t, CELL_EDGES> verts_mapped {{ 0 }};
 		for (std::size_t i = 0; i < CELL_EDGES; i++)
 			verts_mapped[i] = this->create_and_map(verts_to_map[i]);
 		

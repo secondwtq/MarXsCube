@@ -18,7 +18,13 @@ public:
 	
 	
 private:
+
+	// this class is nearly obsoleted, so do not care it.
+	
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-private-field"
 	sf::RenderWindow *window = nullptr;
+#pragma GCC diagnostic pop
 };
 
 #endif /* defined(__MarXsCube__LWindow__) */
