@@ -125,7 +125,11 @@ function ModEnvironment.Functions.createTechno(scriptType, coord, phy)
 	local tp = initialType:WhatAmI()
 	local obj
 	if tp == Enums.RTTITypeID.TechnoType then
-		obj = Objects.Type_Techno.createTechno(initialType)
+		if scriptType:property 'physics' ['never_enable'] ~= true then
+			obj = Objects.Type_Techno.createTechno(initialType)
+		else
+			obj = Objects.Type_Techno.createTechno_nophy(initialType)
+		end
 	end
 	if obj ~= nil then
 		obj.EnablePhysics = phy;

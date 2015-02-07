@@ -10,10 +10,12 @@ using namespace sf;
 extern sf::Vector2f obsTransform::x;
 
 CoordStruct Abs_Cell::GetCoord() const {//LOGFUNC;
-	return LocCoord;
+	static CoordStruct t(0, 0, 0);
+	return t;
 }
 
-Abs_Cell::Abs_Cell(int x, int y, bool Special) : LocCell(x, y), isSpecial(Special) {LOGFUNC;
+Abs_Cell::Abs_Cell(int x, int y, bool Special) :
+	Abs_Abstract(nullptr), LocCell(x, y), isSpecial(Special) {
 	renderTexture = &TestManger::GetInstance().testTerrainTexture;
 	renderSprite.setTexture(*renderTexture);
 	size.x = renderTexture->getSize().x;
@@ -39,6 +41,7 @@ Abs_Cell::Abs_Cell(int x, int y, bool Special) : LocCell(x, y), isSpecial(Specia
 }
 
 void Abs_Cell::Render() {
+/*
 	// renderSprite.setOrigin(30, 15);
 	obsTransform::GetViewPos_Opted(_coordObj);
 	renderSprite.setPosition(obsTransform::x);
@@ -65,8 +68,8 @@ void Abs_Cell::Render() {
 		shape.setPosition(obsTransform::x);
 		TestManger::GetInstance().window->draw(shape);
 	}
+*/
 }
-
 
 bool Abs_Cell::initialPerformOccTest(int xoff, int yoff, Abs_Object *Obj, int hei) {
 	btVector3 start = btVector3(btScalar(xoff), btScalar(yoff), btScalar(hei));

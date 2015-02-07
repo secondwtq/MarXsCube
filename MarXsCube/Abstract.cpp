@@ -6,10 +6,13 @@
 #include "Config.h"
 #include "Generic.h"
 
-Abs_Abstract::Abs_Abstract() : 
+Abs_Abstract::Abs_Abstract() : Abs_Abstract(new PhysicsObject(this))
+	{LOGFUNC; }
+
+Abs_Abstract::Abs_Abstract(PhysicsObject *phy_object) :
 	RTTIID(Generic::Session()->addObject(*this)),
-	Physics(new PhysicsObject(this)),
-	ExtTable(EventManger::GetInstance().CreateObjectTable(*this)) 
+	Physics(phy_object),
+	ExtTable(EventManger::GetInstance().CreateObjectTable(*this))
 	{LOGFUNC; }
 
 Abs_Abstract::~Abs_Abstract() {LOGFUNC;

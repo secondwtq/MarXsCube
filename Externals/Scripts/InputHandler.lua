@@ -39,7 +39,7 @@ function InputHandler.MousePress_OnCell(mouse_status)
 		end
 	end
 
-	ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(coord.x, coord.y, 128), true)
+	-- ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(coord.x, coord.y, 128), true)
 end
 
 return InputHandler

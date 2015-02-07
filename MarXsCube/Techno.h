@@ -26,6 +26,7 @@ class Abs_Techno : public Abs_Object {
 		Type_Techno *getTechnoType() {LOGFUNC; return TechnoType; }
 
 		Abs_Techno(Type_Techno *Type);
+		Abs_Techno(Type_Techno *Type, PhysicsObject *phy_object);
 
 		void Update();
 		void Render();

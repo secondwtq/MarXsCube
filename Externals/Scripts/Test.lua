@@ -71,7 +71,7 @@ function Functions.TestManger_onTestInit()
 	-- background.temp_ZOffset = true
 	local cycle = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(256, 0, 64), true)
 	local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(256, 256, 128), true)
-	-- local rail2 = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(1024, 0, 128), true)
+	local rail2 = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(1024, 0, 128), true)
 	ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
 
 	-- create GameObjects for nodes, and fill OBJ_DOTS
@@ -91,12 +91,6 @@ function Functions.TestManger_onTestInit()
 		GRAPH_GLOBAL:connect(unpack(edge))
 	end
 
-	cycle.ExtTable.components.a['GraphVehicle']:update_currentnode()
-	-- rail.ExtTable.components.a['GraphVehicle']:update_currentnode()
-	-- rail2.ExtTable.components.a['GraphVehicle']:update_currentnode()
-	
-	-- move_techno_graph(cycle.ExtTable, OBJ_DOTS[9+1])
-	-- move_techno_graph(rail.ExtTable, OBJ_DOTS[19+1])
 end
 
 function transform_dots(src)

@@ -115,7 +115,8 @@ void PhysicsObject::SpawnAt(const CoordStruct &loc) {LOGFUNC;
 
 void cubeTickCallback(btDynamicsWorld *world, btScalar timeStep) {
 	for (auto i : PhysicsObject::Array.Array)
-		i->collCache.clear();
+		if (!i->collCache.isempty())
+			i->collCache.clear();
 
 	int numManifolds = world->getDispatcher()->getNumManifolds();
 	for (int i = 0; i<numManifolds; i++) {

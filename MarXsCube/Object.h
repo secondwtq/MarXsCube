@@ -32,6 +32,7 @@ class Abs_Object : public Abs_Abstract {
 		int getMainRotation() { return Direction.degree; }
 
 		Abs_Object(Type_Object *Type);
+		Abs_Object(Type_Object *Type, PhysicsObject *phy_object);
 
 		bool onGround() { return abs(GetHeight()) <= 5; }
 

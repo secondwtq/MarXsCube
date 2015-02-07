@@ -317,6 +317,7 @@ namespace LuaInterface {
 				endClass().
 				deriveClass<Type_Techno, Type_Object>("Type_Techno").
 					addStaticFunction("createTechno", &Type_Techno::createTechno).
+					addStaticFunction("createTechno_nophy", &Type_Techno::createTechno_nophy).
 				endClass().
 			endNamespace();
 	}

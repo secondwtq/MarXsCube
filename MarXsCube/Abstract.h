@@ -37,6 +37,7 @@ class Abs_Abstract {
 		unsigned int RTTIID = 0;
 
 		Abs_Abstract();
+		Abs_Abstract(PhysicsObject *phy_object);
 		virtual ~Abs_Abstract();
 
 	public:

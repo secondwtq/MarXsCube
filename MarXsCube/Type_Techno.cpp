@@ -14,6 +14,8 @@ bool Type_Techno::LoadFromConfig(ConfigManger &manger) {LOGFUNC;
 	return (ret | true);
 }
 
-Abs_Techno &Type_Techno::createTechno(Type_Techno *Type) {LOGFUNC;
-	return *(new Abs_Techno(Type));
-}
+Abs_Techno *Type_Techno::createTechno(Type_Techno *Type) {
+	return new Abs_Techno(Type); }
+
+Abs_Techno *Type_Techno::createTechno_nophy(Type_Techno *Type) {
+	return new Abs_Techno(Type, nullptr); }

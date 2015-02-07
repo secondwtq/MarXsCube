@@ -14,7 +14,7 @@ using namespace luabridge;
 
 extern unordered_map<btRigidBody *, Abs_Object *> phyMap;
 
-Abs_Anim::Abs_Anim(Type_Anim *Type) : Abs_Object(Type), AnimType(Type) {LOGFUNC;
+Abs_Anim::Abs_Anim(Type_Anim *Type) : Abs_Object(Type, nullptr), AnimType(Type) {LOGFUNC;
 	cout << "CubeCore: Abs_Anim::Abs_Anim - Constructing ..." << endl;
 	EventManger::GetInstance().GetEvent(EventManger::Events::ANIM_CREATE)(this, ExtTable);
 	renderSprite.scale(Type->_scale);
@@ -50,7 +50,6 @@ void Abs_Anim::SpawnAtMapCoord(const CoordStruct &location) {LOGFUNC;
 	cout << "CubeCore: Abs_Anim::SpawnAtMapCoord - Starting ..." << endl;
 	StartPlay();
 	EventManger::GetInstance().GetEvent(EventManger::Events::ANIM_SPAWN)(this, ExtTable);
-	Physics->SpawnAt(location);
 }
 
 unsigned int Abs_Anim::GetCurrentFrame() {LOGFUNC;

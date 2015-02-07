@@ -15,7 +15,8 @@ class Type_Techno : public Type_Object {
 		Type_Techno(const char *ID) : Type_Object(ID) {LOGFUNC; }
 		bool LoadFromConfig(ConfigManger &manger);
 
-		static Abs_Techno &createTechno(Type_Techno *Type);
+		static Abs_Techno *createTechno(Type_Techno *Type);
+		static Abs_Techno *createTechno_nophy(Type_Techno *Type);
 };
 
 #include "Techno.h"

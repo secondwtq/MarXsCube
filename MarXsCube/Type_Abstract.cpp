@@ -3,7 +3,8 @@ using namespace std;
 
 ObjectTypeArray<Type_Abstract> Type_Abstract::Array = ObjectTypeArray<Type_Abstract>();
 
-Type_Abstract::Type_Abstract(const char *ID) : RegName(ID), typeRef(((EventManger::GetInstance())._state->State)) {LOGFUNC;
+Type_Abstract::Type_Abstract(const char *ID) :
+	Abs_Abstract(nullptr), RegName(ID), typeRef(((EventManger::GetInstance())._state->State)) {LOGFUNC;
 
 }
 

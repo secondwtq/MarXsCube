@@ -221,6 +221,7 @@ OBJECTS.GRAPH_LINE = BASES.BaseTechno:newObject({
 
 	physics = {
 		enabled = false,
+		never_enable = true,
 	}
 
 })
@@ -256,6 +257,7 @@ OBJECTS.GRAPH_NODE = BASES.BaseTechno:newObject({
 
 	physics = {
 		enabled = false,
+		never_enable = true,
 	}
 
 })
