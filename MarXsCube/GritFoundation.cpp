@@ -38,7 +38,7 @@ std::vector<GPointType> Grit::find_path(const GPointType& start, const GPointTyp
 	for (auto node : this->m_nodes)
 		tmp_nodes.push_back(node->clone());
 	
-	GPointType start_org = start;
+//	GPointType start_org = start;
 	if (!pt_is_valid(start)) {
 		printf("find_path: point is not valid!");
 	}
@@ -66,7 +66,7 @@ void Grit::late_update() {
 }
 
 void Grit::generate_map() {
-	printf("Regererating map ...\n");
+	Generic::corelog() << "regererating map" << rn;
 	this->create_polymap();
 	this->create_nodes();
 	
@@ -278,8 +278,12 @@ GPointType Grit::get_closer_edge_pt(const GPointType& pt) {
 		std::vector<GPointType> infleated_pts = inflate_poly(poly->pts, 2);
 		
 		for (std::size_t i = 0; i < infleated_pts.size(); i++) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-variable"
+			// TODO: a helper function, but still WIP here
 			GPointType a = infleated_pts[i], b = infleated_pts[(i+1) % infleated_pts.size()];
 			GPointType oa = poly->pts[i], ob = poly->pts[(i+1) % poly->pts.size()];
+#pragma GCC diagnostic pop
 			
 			// WIP
 			

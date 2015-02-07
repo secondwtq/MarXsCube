@@ -30,6 +30,8 @@ using namespace std;
 
 #include "GritFoundation.h"
 
+#include "Timer.h"
+
 Grit grit_global;
 
 Grit *get_grit() {
@@ -77,6 +79,7 @@ int main() {
 	Acheron::Bullet.start(Acheron::SYNCSTATE::SYNCED);
 	Acheron::Silcon.start(Acheron::SYNCSTATE::SYNCED_NONAUTO);
 	Acheron::Silcon.invoke();
+	timer_init();
 	
 	sf::Event event;
 	

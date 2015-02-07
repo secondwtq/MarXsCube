@@ -48,7 +48,13 @@ void GLFoundation::clear_depth() {
 void GLFoundation::view(float lkax, float lkay) {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+	
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 	gluLookAt(384, 384, 320, 0, 0, 0, 0, 0, 1);
+	// 'gluLookAt' is deprecated: first deprecated in OS X 10.9 - "Use GLKMatrix4MakeLookAt" - WTF.
+#pragma GCC diagnostic pop
+	
 	glTranslatef(lkay * SCALE_FACTOR, lkax * SCALE_FACTOR, 0);
 	glScalef(SCALE_FACTOR, SCALE_FACTOR, SCALE_FACTOR);
 }

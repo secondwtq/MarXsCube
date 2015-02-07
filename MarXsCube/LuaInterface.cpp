@@ -34,6 +34,8 @@
 
 #include "Gmap_Interface.h"
 
+#include "Timer.h"
+
 using namespace luabridge;
 
 namespace LuaInterface {
@@ -67,7 +69,7 @@ namespace LuaInterface {
 				addFunction("toTechno", &LuaUtils::toTechno).
 			endNamespace();
 	}
-
+	
 	void RegisterInterface_Util(LuaStatus &L) {
 		getGlobalNamespace(L).
 			addFunction("YouFuckingNULLPOINTER", &LuaUtils::CreateObjectTable_Default).
@@ -77,6 +79,8 @@ namespace LuaInterface {
 				addFunction("Pathfinding_Find", &Pathfinding::Find).
 				addFunction("GetTime", &LuaUtils::GetTime).
 				addFunction("GetTime_Clock", &LuaUtils::GetTime_Clock).
+				addFunction("time_in_ms", &time_in_millisec).
+				addFunction("time_in_millisec", &time_in_millisec).
 				addFunction("toTechno", &LuaUtils::toTechno).
 				addFunction("torad", &torad).
 				beginNamespace("Pathfinding").

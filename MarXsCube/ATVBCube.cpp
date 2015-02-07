@@ -9,7 +9,7 @@
 #include "Atheverybeginning.h"
 #include "Generic.h"
 #include "FSM.h"
-
+#include "Version.h"
 #include "ATVBCube.h"
 
 namespace ATVBCube {
@@ -26,7 +26,7 @@ void ATVBSetting<WindowSetting>::load() {
 	ret_context.depthBits = 24;
 	context = ret_context;
 	
-	window_title = value<std::string>("window_title") + " | MarXsCube Prototype";
+	window_title = value<std::string>("window_title") + " | " CUBE_FULL_NAME;
 	width = value<unsigned int>("window_width");
 	height = value<unsigned int>("window_height");
 	
@@ -36,15 +36,12 @@ void ATVBSetting<WindowSetting>::load() {
 	
 void ATVBSetting<BulletDebugSetting>::load() {
 	enabled = value<bool>("bullet_debugdraw");
-	scale = value<float>("bullet_debugdraw_scale");
-}
+	scale = value<float>("bullet_debugdraw_scale"); }
 	
 void ATVBSetting<BulletGeneralSetting>::load() {
-	gravity = value<Float3D>("bullet_gravity");
-}
+	gravity = value<Float3D>("bullet_gravity"); }
 	
 void ATVBSetting<TeslaGeneralSetting>::load() {
-	maxheight_phy = value<float>("tiler_max_height_bullet");
-}
+	maxheight_phy = value<float>("tiler_max_height_bullet"); }
 	
 }

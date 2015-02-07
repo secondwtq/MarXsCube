@@ -83,9 +83,9 @@ public:
 	static inline luabridge::LuaRef CreateObjectTable(unsigned int id) {
 		return (*Generic::foo_object_table_create)(id);
 	}
-#if defined(__GNUC__) && !defined(__clang__)
+//#if defined(__GNUC__) && !defined(__clang__)
 #pragma GCC diagnostic pop
-#endif
+//#endif
 	
 public:
 	static class Session *session;

@@ -70,6 +70,8 @@
 		59FCB50B1A84850C0048D776 /* GritAStar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB5091A84850C0048D776 /* GritAStar.cpp */; };
 		59FCB50F1A84A3C90048D776 /* Grit_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB50D1A84A3C90048D776 /* Grit_Interface.cpp */; };
 		59FCB5111A84A5DB0048D776 /* StdInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB5101A84A5DB0048D776 /* StdInterface.cpp */; };
+		59FCB5141A85B1030048D776 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB5121A85B1030048D776 /* Platform.cpp */; };
+		59FCB5171A85B2120048D776 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB5151A85B2120048D776 /* Timer.cpp */; };
 		59FCBF2F1A713D8500BEF905 /* Atheverybeginning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF2D1A713D8500BEF905 /* Atheverybeginning.cpp */; };
 		59FCBF361A73673100BEF905 /* FSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF341A73673100BEF905 /* FSM.cpp */; };
 		59FCBF3F1A73B8E200BEF905 /* BulletThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCBF3D1A73B8E200BEF905 /* BulletThread.cpp */; };
@@ -222,6 +224,11 @@
 		59FCB50D1A84A3C90048D776 /* Grit_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Grit_Interface.cpp; sourceTree = "<group>"; };
 		59FCB50E1A84A3C90048D776 /* Grit_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grit_Interface.h; sourceTree = "<group>"; };
 		59FCB5101A84A5DB0048D776 /* StdInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StdInterface.cpp; sourceTree = "<group>"; };
+		59FCB5121A85B1030048D776 /* Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Platform.cpp; sourceTree = "<group>"; };
+		59FCB5131A85B1030048D776 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
+		59FCB5151A85B2120048D776 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
+		59FCB5161A85B2120048D776 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
+		59FCB5181A85BBD80048D776 /* Version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Version.h; sourceTree = "<group>"; };
 		59FCBF2D1A713D8500BEF905 /* Atheverybeginning.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Atheverybeginning.cpp; sourceTree = "<group>"; };
 		59FCBF2E1A713D8500BEF905 /* Atheverybeginning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Atheverybeginning.h; sourceTree = "<group>"; };
 		59FCBF301A7273AA00BEF905 /* atheverybeginning.lunc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = atheverybeginning.lunc; sourceTree = "<group>"; };
@@ -474,6 +481,11 @@
 		59F431DF1A83AB85008795D9 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				59FCB5131A85B1030048D776 /* Platform.h */,
+				59FCB5121A85B1030048D776 /* Platform.cpp */,
+				59FCB5181A85BBD80048D776 /* Version.h */,
+				59FCB5161A85B2120048D776 /* Timer.h */,
+				59FCB5151A85B2120048D776 /* Timer.cpp */,
 				59B9C16D1A7A275E0073E694 /* GProfiler.h */,
 				59262919198AB66500858A67 /* Pathfinder.h */,
 				59FCBF421A73CA5700BEF905 /* Acheron.h */,
@@ -635,6 +647,7 @@
 				599986001A80DDD700E6CE68 /* BulletVehicle_Interface.cpp in Sources */,
 				5926294D198AB66500858A67 /* Session.cpp in Sources */,
 				5926294B198AB66500858A67 /* Pathfinder.cpp in Sources */,
+				59FCB5141A85B1030048D776 /* Platform.cpp in Sources */,
 				593458671A8316E000DE4C28 /* TeslaObject.cpp in Sources */,
 				5926293F198AB66500858A67 /* Anim.cpp in Sources */,
 				59FCBF2F1A713D8500BEF905 /* Atheverybeginning.cpp in Sources */,
@@ -686,6 +699,7 @@
 				599985F21A7F540200E6CE68 /* RaycastVehicle.cpp in Sources */,
 				591692601A3E11D2001D4D35 /* SFLineShape.cpp in Sources */,
 				599985EF1A7F4BED00E6CE68 /* Startup.cpp in Sources */,
+				59FCB5171A85B2120048D776 /* Timer.cpp in Sources */,
 				59F431DC1A839A47008795D9 /* GLM_Interface.cpp in Sources */,
 				599985E91A7F3F9900E6CE68 /* ATVBCube.cpp in Sources */,
 				5926293E198AB66500858A67 /* Abstract.cpp in Sources */,

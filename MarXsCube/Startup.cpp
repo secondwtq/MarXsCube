@@ -10,7 +10,7 @@
 #include "Atheverybeginning.h"
 #include "ATVBCube.h"
 #include "Generic.h"
-
+#include "Version.h"
 #include "Startup.h"
 
 #include <stdio.h>
@@ -29,7 +29,7 @@ namespace {
 void cube_init_workingdir();
 
 void cube_init_first() {
-	printf("MarXsCube by seCOnDatkE, 2014-2015.\n\n");
+	printf(CUBE_FULL_NAME " by secondwtq, 2014-2015. \n\n");
 	printf("Initing FSM ...\n");
 	
 	Generic::Init_Logger();
