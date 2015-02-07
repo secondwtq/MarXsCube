@@ -61,14 +61,8 @@ class TestManger {
 		static inline TestManger &GetInstance() { return *instance; }
 
 		TextureAtlas testTerrainTexture;
-	TextureAtlas testTerrainTextureBlend;
-	TextureAtlas testTerrainTexture1;
-	TextureAtlas testTerrainTexture2;
-	TextureAtlas testTerrainTexture3;
-	TextureAtlas testTerrainTexture4;
 		RenderWindow *window = nullptr;
 		sf::Shader extShader;
-	sf::Shader extTerrainShader;
 
 		void initTest();
 
