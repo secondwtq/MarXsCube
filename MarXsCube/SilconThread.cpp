@@ -15,14 +15,18 @@
 #include "TeslaRendering.h"
 #include "BulletDebugDraw.h"
 #include "ATVBCube.h"
-
+#include "Timer.h"
 #include "SilconThread.h"
 
 using namespace ATVBCube::Helper;
 
 extern sf::RenderWindow *window_global;
 
+fps_counter fps_silcon;
+
 void silcon_acheron_function() {
+	fps_silcon.update();
+	if (fps_silcon.updated) printf("Logic FPS: %lf\n", fps_silcon.fps);
 	window_global->clear(sf::Color::Black);
 
 	Generic::TeslaRenderingManger()->Render();

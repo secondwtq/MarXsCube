@@ -81,16 +81,6 @@ function Functions.TestManger_onTestInit()
 		OBJ_DOTS[i] = dot_techno
 	end
 
-	-- create GameObjects for edges, and fill OBJ_EDGES
-	for i, edge in ipairs(DATA_EDGES) do
-		-- we really need some functions to fetch the corners of map
-		local edge_techno = ModEnvironment.Functions.createTechno(OBJECTS.GRAPH_LINE, Utility.CoordStruct(0, -25*64, 0)).ExtTable
-		edge_techno.components.a['GraphLineStore']:init(unpack(edge))
-		OBJ_EDGES[i] = edge_techno
-
-		GRAPH_GLOBAL:connect(unpack(edge))
-	end
-
 end
 
 function transform_dots(src)

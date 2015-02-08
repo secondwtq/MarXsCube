@@ -9,8 +9,14 @@
 #ifndef __MarXsCube__GLShaderExt__
 #define __MarXsCube__GLShaderExt__
 
+#include "Platform.h"
 #include "GLShader.h"
+
+#ifdef CUBE_PLATFORM_DARWIN
 #include <OpenGL/gltypes.h>
+#else
+typedef unsigned int GLuint;
+#endif
 
 #define NAME_ATTRIBUTE(name) attr_##name
 #define NAME_UNIFORM(name) uni_##name

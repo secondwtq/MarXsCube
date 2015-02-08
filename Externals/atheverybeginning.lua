@@ -9,8 +9,8 @@ AtTheVeryBeginning.together({
 	window_title = "Demo Window",
 	window_width = 1920, window_height = 1080,
 
-	window_fps_limit = 60,
-	window_vsync = true,
+	window_fps_limit = 90,
+	window_vsync = false,
 
 	bullet_debugdraw = false,
 	bullet_debugdraw_scale = 1.0,

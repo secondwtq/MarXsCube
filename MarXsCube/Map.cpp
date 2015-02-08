@@ -9,7 +9,7 @@ Map *Map::instance = new Map();
 void Map::AllocateCells() {
 	for (auto cell : Cells) {
 		ObjectManger::GetInstance().addObject(*cell);
-		Generic::RenderLayerManger()->Layers[RenderLayerType::Type::LAYER_CELL].addObject(*cell);
+//		Generic::RenderLayerManger()->Layers[RenderLayerType::Type::LAYER_CELL].addObject(*cell);
 	}
 }
 

@@ -35,7 +35,7 @@ class Abs_Cell : public Abs_Abstract {
 
 		Abs_Cell() : Abs_Cell(0, 0) { }
 
-		static RenderLayerType::Type GetDefaultLayer() {LOGFUNC; return RenderLayerType::LAYER_CELL; }
+		static RenderLayerType::Type GetDefaultLayer() {LOGFUNC; return RenderLayerType::LAYER_NONE; }
 
 		Abs_Cell(int x, int y, bool Special = false);
 

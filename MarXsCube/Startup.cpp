@@ -58,7 +58,7 @@ void cube_init_window() {
 	sf::ContextSettings settings_got = window_global->getSettings();
 	Generic::corelog()[L::Debug] << "Running with OpenGL " << settings_got.majorVersion << "." << settings_got.minorVersion << rn;
 	
-	window_global->setFramerateLimit(ATVBCube::setting<S::WindowSetting>().fps_limit);
-	window_global->setVerticalSyncEnabled(ATVBCube::setting<S::WindowSetting>().enable_vsync);
+//	window_global->setFramerateLimit(ATVBCube::setting<S::WindowSetting>().fps_limit);
+//	window_global->setVerticalSyncEnabled(ATVBCube::setting<S::WindowSetting>().enable_vsync);
 	
 }
