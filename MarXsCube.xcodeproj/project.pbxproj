@@ -14,6 +14,7 @@
 		591064041A88FD7A00C6A901 /* ttter.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591063FF1A88FD7A00C6A901 /* ttter.o */; };
 		591064061A88FE9A00C6A901 /* composer.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591064051A88FE9A00C6A901 /* composer.o */; };
 		591064081A88FEEA00C6A901 /* Helpers.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591064071A88FEEA00C6A901 /* Helpers.o */; };
+		5910640F1A890EC400C6A901 /* AcheronGCD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5910640D1A890EC400C6A901 /* AcheronGCD.cpp */; };
 		591201C11A6D078900ECB42A /* libsfml-window.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 591201BE1A6D078900ECB42A /* libsfml-window.2.2.0.dylib */; };
 		591201C21A6D078900ECB42A /* libsfml-system.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 591201BF1A6D078900ECB42A /* libsfml-system.2.2.0.dylib */; };
 		591201C51A6D1D9F00ECB42A /* libsfml-graphics.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 591201BD1A6D078900ECB42A /* libsfml-graphics.2.2.0.dylib */; };
@@ -107,6 +108,8 @@
 		591063FF1A88FD7A00C6A901 /* ttter.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = ttter.o; path = tmp/ttter.o; sourceTree = "<group>"; };
 		591064051A88FE9A00C6A901 /* composer.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = composer.o; path = tmp/composer.o; sourceTree = "<group>"; };
 		591064071A88FEEA00C6A901 /* Helpers.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = Helpers.o; path = tmp/Helpers.o; sourceTree = "<group>"; };
+		5910640D1A890EC400C6A901 /* AcheronGCD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AcheronGCD.cpp; sourceTree = "<group>"; };
+		5910640E1A890EC400C6A901 /* AcheronGCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcheronGCD.h; sourceTree = "<group>"; };
 		591201BD1A6D078900ECB42A /* libsfml-graphics.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-graphics.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-graphics.2.2.0.dylib"; sourceTree = "<group>"; };
 		591201BE1A6D078900ECB42A /* libsfml-window.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-window.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-window.2.2.0.dylib"; sourceTree = "<group>"; };
 		591201BF1A6D078900ECB42A /* libsfml-system.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-system.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-system.2.2.0.dylib"; sourceTree = "<group>"; };
@@ -525,11 +528,13 @@
 				59FCB5151A85B2120048D776 /* Timer.cpp */,
 				59B9C16D1A7A275E0073E694 /* GProfiler.h */,
 				59262919198AB66500858A67 /* Pathfinder.h */,
-				59FCBF421A73CA5700BEF905 /* Acheron.h */,
 				5923C8E319D01EE60055E0D5 /* Generic.h */,
-				59FCBF411A73CA5700BEF905 /* Acheron.cpp */,
 				5923C8E219D01EE60055E0D5 /* Generic.cpp */,
 				59262933198AB66500858A67 /* Pathfinder.cpp */,
+				59FCBF421A73CA5700BEF905 /* Acheron.h */,
+				59FCBF411A73CA5700BEF905 /* Acheron.cpp */,
+				5910640E1A890EC400C6A901 /* AcheronGCD.h */,
+				5910640D1A890EC400C6A901 /* AcheronGCD.cpp */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -690,6 +695,7 @@
 				59FCBF2F1A713D8500BEF905 /* Atheverybeginning.cpp in Sources */,
 				592859091A37594700D4AE91 /* Gmap_Interface.cpp in Sources */,
 				59262941198AB66500858A67 /* Cell.cpp in Sources */,
+				5910640F1A890EC400C6A901 /* AcheronGCD.cpp in Sources */,
 				5923C8DA19D00EB90055E0D5 /* RenderElement.cpp in Sources */,
 				59F431E71A83AF0F008795D9 /* GritFoundation.cpp in Sources */,
 				5926294E198AB66500858A67 /* Techno.cpp in Sources */,

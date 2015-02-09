@@ -1,5 +1,4 @@
 ##TODOs for Project MarXsCube##
----
 
 * **[MODULE]** Resource manager and synchronous resource loading.
 

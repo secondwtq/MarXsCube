@@ -23,6 +23,7 @@ using namespace std;
 #include "Atheverybeginning.h"
 #include "Startup.h"
 
+#include "Acheron.h"
 #include "BulletThread.h"
 #include "SilconThread.h"
 #include "GLFoundation.h"
@@ -38,6 +39,7 @@ Grit *get_grit() {
 	return &grit_global; }
 
 fps_counter fps_logic;
+Acheron::ThreadWorkerQueue queue_callback;
 
 sf::RenderWindow *window_global = nullptr;
 
@@ -136,6 +138,7 @@ int main() {
 			i->Update();
 		
 		grit_global.late_update();
+		queue_callback.update();
 		
 		ObjectManger::GetInstance().FinishRemove();
 
