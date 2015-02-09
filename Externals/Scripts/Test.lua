@@ -30,12 +30,16 @@ function grit_test()
 
 end
 
+function acheroncube_test_callback()
+	print('path got', Utility.GetTime_Clock())
+end
+
 function acheroncube_test()
 
 	local start = Utility.CubePoint(0, 0)
 	local eend = Utility.CubePoint(1024, 0)
 	print(Utility.GetTime_Clock())
-	local vec = Acheron.find_path_async(start, eend, function () print 'path got' end)
+	local vec = Acheron.find_path_async(start, eend, acheroncube_test_callback)
 	print(Utility.GetTime_Clock())
 
 end

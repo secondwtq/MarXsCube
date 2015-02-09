@@ -116,6 +116,7 @@
 		591064111A8912E100C6A901 /* AcheronCube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcheronCube.h; sourceTree = "<group>"; };
 		591064131A89151000C6A901 /* Acheron_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Acheron_Interface.cpp; sourceTree = "<group>"; };
 		591064141A89151000C6A901 /* Acheron_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Acheron_Interface.h; sourceTree = "<group>"; };
+		591064161A89228700C6A901 /* CallbackRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallbackRef.h; sourceTree = "<group>"; };
 		591201BD1A6D078900ECB42A /* libsfml-graphics.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-graphics.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-graphics.2.2.0.dylib"; sourceTree = "<group>"; };
 		591201BE1A6D078900ECB42A /* libsfml-window.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-window.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-window.2.2.0.dylib"; sourceTree = "<group>"; };
 		591201BF1A6D078900ECB42A /* libsfml-system.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-system.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-system.2.2.0.dylib"; sourceTree = "<group>"; };
@@ -545,6 +546,7 @@
 				591064101A8912E100C6A901 /* AcheronCube.cpp */,
 				591064141A89151000C6A901 /* Acheron_Interface.h */,
 				591064131A89151000C6A901 /* Acheron_Interface.cpp */,
+				591064161A89228700C6A901 /* CallbackRef.h */,
 			);
 			name = Misc;
 			sourceTree = "<group>";

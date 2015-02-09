@@ -12,11 +12,12 @@
 #include "Common.h"
 #include "Config.h"
 #include "GritFoundation.h"
+#include "CallbackRef.h"
 
 namespace Acheron {
 	namespace Cube {
 		
-		void find_path_async(GPointType start, GPointType end, luabridge::LuaRef callback);
+		void find_path_async(GPointType start, GPointType end, lua_State* L);
 		
 	}
 }
