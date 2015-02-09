@@ -339,7 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				59F431E21A83AC45008795D9 /* lib */,
-				59262900198AB62300858A67 /* MarXsCube */,
+				59262900198AB62300858A67 /* src */,
 				59262968198ABCFA00858A67 /* Externals */,
 				592628FF198AB62300858A67 /* Products */,
 			);
@@ -353,7 +353,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		59262900198AB62300858A67 /* MarXsCube */ = {
+		59262900198AB62300858A67 /* src */ = {
 			isa = PBXGroup;
 			children = (
 				59FCBF311A72818100BEF905 /* AtTheVeryBeginning */,
@@ -386,7 +386,8 @@
 				599985ED1A7F4BED00E6CE68 /* Startup.cpp */,
 				59262937198AB66500858A67 /* Test.cpp */,
 			);
-			path = MarXsCube;
+			name = src;
+			path = src;
 			sourceTree = "<group>";
 		};
 		592859051A37590A00D4AE91 /* Gmap */ = {
