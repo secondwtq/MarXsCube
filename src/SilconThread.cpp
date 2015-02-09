@@ -26,7 +26,7 @@ fps_counter fps_silcon;
 
 void silcon_acheron_function() {
 	fps_silcon.update();
-	if (fps_silcon.updated) printf("Logic FPS: %lf\n", fps_silcon.fps);
+	if (fps_silcon.updated) printf("Rendering FPS: %lf\n", fps_silcon.fps);
 	window_global->clear(sf::Color::Black);
 
 	Generic::TeslaManger()->Render();

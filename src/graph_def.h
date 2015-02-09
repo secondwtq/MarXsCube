@@ -99,7 +99,7 @@ class gGraph {
 		// functions about mark
 		bool marked(std::size_t op) const { return this->_mark.at(op); }
 		void mark(std::size_t op, bool mk) { this->_mark[op] = mk; }
-		void clear_mark(bool mk = false) CUBEMUTEW_NOT_USED {
+		void clear_mark(bool mk = false) {
 			// gcc gives weird warning -Wunused-but-set-variable
 			//		on mark_item var.
 			for (std::pair<std::size_t, bool> CUBEMUTEW_NOT_USED mark_item : this->_mark)

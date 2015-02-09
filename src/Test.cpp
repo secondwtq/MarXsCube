@@ -37,6 +37,8 @@ Grit grit_global;
 Grit *get_grit() {
 	return &grit_global; }
 
+fps_counter fps_logic;
+
 sf::RenderWindow *window_global = nullptr;
 
 void safe_session_close() {
@@ -86,6 +88,9 @@ int main() {
 	while (window_global->isOpen()) {
 
 		Acheron::Bullet.pause();
+		
+		fps_logic.update();
+		if (fps_logic.updated) printf("Logic FPS: %lf\n", fps_logic.fps);
 		
 		EventManger::GetInstance().GetEvent(EventManger::Events::GAME_UPDATE_BEGIN)();
 

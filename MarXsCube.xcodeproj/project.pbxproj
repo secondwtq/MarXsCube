@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		591064001A88FD7A00C6A901 /* binded_attr.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591063FB1A88FD7A00C6A901 /* binded_attr.o */; };
+		591064011A88FD7A00C6A901 /* components.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591063FC1A88FD7A00C6A901 /* components.o */; };
+		591064021A88FD7A00C6A901 /* object.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591063FD1A88FD7A00C6A901 /* object.o */; };
+		591064031A88FD7A00C6A901 /* Placeholders.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591063FE1A88FD7A00C6A901 /* Placeholders.o */; };
+		591064041A88FD7A00C6A901 /* ttter.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591063FF1A88FD7A00C6A901 /* ttter.o */; };
+		591064061A88FE9A00C6A901 /* composer.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591064051A88FE9A00C6A901 /* composer.o */; };
+		591064081A88FEEA00C6A901 /* Helpers.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591064071A88FEEA00C6A901 /* Helpers.o */; };
 		591201C11A6D078900ECB42A /* libsfml-window.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 591201BE1A6D078900ECB42A /* libsfml-window.2.2.0.dylib */; };
 		591201C21A6D078900ECB42A /* libsfml-system.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 591201BF1A6D078900ECB42A /* libsfml-system.2.2.0.dylib */; };
 		591201C51A6D1D9F00ECB42A /* libsfml-graphics.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 591201BD1A6D078900ECB42A /* libsfml-graphics.2.2.0.dylib */; };
@@ -93,6 +100,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		591063FB1A88FD7A00C6A901 /* binded_attr.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = binded_attr.o; path = tmp/binded_attr.o; sourceTree = "<group>"; };
+		591063FC1A88FD7A00C6A901 /* components.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = components.o; path = tmp/components.o; sourceTree = "<group>"; };
+		591063FD1A88FD7A00C6A901 /* object.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = object.o; path = tmp/object.o; sourceTree = "<group>"; };
+		591063FE1A88FD7A00C6A901 /* Placeholders.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = Placeholders.o; path = tmp/Placeholders.o; sourceTree = "<group>"; };
+		591063FF1A88FD7A00C6A901 /* ttter.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = ttter.o; path = tmp/ttter.o; sourceTree = "<group>"; };
+		591064051A88FE9A00C6A901 /* composer.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = composer.o; path = tmp/composer.o; sourceTree = "<group>"; };
+		591064071A88FEEA00C6A901 /* Helpers.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = Helpers.o; path = tmp/Helpers.o; sourceTree = "<group>"; };
 		591201BD1A6D078900ECB42A /* libsfml-graphics.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-graphics.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-graphics.2.2.0.dylib"; sourceTree = "<group>"; };
 		591201BE1A6D078900ECB42A /* libsfml-window.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-window.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-window.2.2.0.dylib"; sourceTree = "<group>"; };
 		591201BF1A6D078900ECB42A /* libsfml-system.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-system.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-system.2.2.0.dylib"; sourceTree = "<group>"; };
@@ -255,6 +269,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				591064081A88FEEA00C6A901 /* Helpers.o in Frameworks */,
+				591064061A88FE9A00C6A901 /* composer.o in Frameworks */,
+				591064001A88FD7A00C6A901 /* binded_attr.o in Frameworks */,
+				591064011A88FD7A00C6A901 /* components.o in Frameworks */,
+				591064021A88FD7A00C6A901 /* object.o in Frameworks */,
+				591064031A88FD7A00C6A901 /* Placeholders.o in Frameworks */,
+				591064041A88FD7A00C6A901 /* ttter.o in Frameworks */,
 				591201C71A6D1DA500ECB42A /* OpenGL.framework in Frameworks */,
 				591201C11A6D078900ECB42A /* libsfml-window.2.2.0.dylib in Frameworks */,
 				591201C51A6D1D9F00ECB42A /* libsfml-graphics.2.2.0.dylib in Frameworks */,
@@ -269,6 +290,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		591064091A88FEF400C6A901 /* jit */ = {
+			isa = PBXGroup;
+			children = (
+				591064071A88FEEA00C6A901 /* Helpers.o */,
+				591064051A88FE9A00C6A901 /* composer.o */,
+				591063FB1A88FD7A00C6A901 /* binded_attr.o */,
+				591063FC1A88FD7A00C6A901 /* components.o */,
+				591063FD1A88FD7A00C6A901 /* object.o */,
+				591063FE1A88FD7A00C6A901 /* Placeholders.o */,
+				591063FF1A88FD7A00C6A901 /* ttter.o */,
+			);
+			name = jit;
+			sourceTree = "<group>";
+		};
 		5923C8D819D00E8B0055E0D5 /* Silcon */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +373,7 @@
 		592628F5198AB62300858A67 = {
 			isa = PBXGroup;
 			children = (
+				591064091A88FEF400C6A901 /* jit */,
 				59F431E21A83AC45008795D9 /* lib */,
 				59262900198AB62300858A67 /* src */,
 				59262968198ABCFA00858A67 /* Externals */,
@@ -386,7 +422,6 @@
 				599985ED1A7F4BED00E6CE68 /* Startup.cpp */,
 				59262937198AB66500858A67 /* Test.cpp */,
 			);
-			name = src;
 			path = src;
 			sourceTree = "<group>";
 		};
