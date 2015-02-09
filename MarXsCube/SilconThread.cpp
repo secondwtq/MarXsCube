@@ -29,7 +29,7 @@ void silcon_acheron_function() {
 	if (fps_silcon.updated) printf("Logic FPS: %lf\n", fps_silcon.fps);
 	window_global->clear(sf::Color::Black);
 
-	Generic::TeslaRenderingManger()->Render();
+	Generic::TeslaManger()->Render();
 	
 	window_global->pushGLStates();
 	for (size_t i = 0; i < RenderLayerType::Count; i++)

@@ -28,7 +28,7 @@ static bool CustomMaterialCombinerCallback(btManifoldPoint& cp,	const btCollisio
 
 extern ContactAddedCallback gContactAddedCallback;
 
-void PhysicsGeneral::init_debugdrawer() {
+void CPhysicsGeneral::init_debugdrawer() {
 	BulletDebugDrawer *debug_drawer = new BulletDebugDrawer();
 	this->dynaWorld->setDebugDrawer(debug_drawer);
 	
@@ -41,7 +41,7 @@ void PhysicsGeneral::init_debugdrawer() {
 	debug_drawer->set_draw_scale(ATVBCube::setting<S::BulletDebugSetting>().scale);
 }
 
-void PhysicsGeneral::init() {
+void CPhysicsGeneral::init() {
 	ATVBCube::load<S::BulletGeneralSetting>();
 	GlobalGravity = ATVBCube::setting<S::BulletGeneralSetting>().gravity;
 	
@@ -75,7 +75,7 @@ void PhysicsGeneral::init() {
 //	dynaWorld->addRigidBody(grBody);
 }
 
-void PhysicsGeneral::dispose() {
+void CPhysicsGeneral::dispose() {
 	delete dynaWorld;
 	delete solver;
 	delete overlapPairCache;

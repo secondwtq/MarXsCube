@@ -17,9 +17,9 @@
 
 #include "Generic.h"
 
-class Session *Generic::session = nullptr;
-class RenderLayerManger *Generic::render_layer_manger = nullptr;
-class PhysicsGeneral *Generic::physics_general = nullptr;
+class CSession *Generic::session = nullptr;
+class CRenderLayerManger *Generic::render_layer_manger = nullptr;
+class CPhysicsGeneral *Generic::physics_general = nullptr;
 class TeslaRenderingManger *Generic::m_teslamanger = nullptr;
 class luabridge::LuaRef *Generic::foo_object_table_create;
 
@@ -27,7 +27,7 @@ class FSM::FSMLoggerProxy Generic::core_logger = FSM::create_handle();
 class LuaStatus *Generic::state = nullptr;
 
 void Generic::Init_PhysicsGeneral() {
-	Generic::physics_general = new class PhysicsGeneral(); }
+	Generic::physics_general = new class CPhysicsGeneral(); }
 
 void Generic::Dispose_PhysicsGeneral() {
 	Generic::physics_general->dispose();

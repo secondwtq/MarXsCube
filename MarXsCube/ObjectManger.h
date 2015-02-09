@@ -36,7 +36,7 @@ class RenderLayer {
 		void RemoveObject(Abs_Abstract *src) {LOGFUNC; delObject_all(src, Objects); }
 };
 
-class RenderLayerManger {
+class CRenderLayerManger {
 	public:
 		RenderLayer Layers[RenderLayerType::Count];
 

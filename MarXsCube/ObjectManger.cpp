@@ -25,7 +25,7 @@ void RenderLayer::Update() {LOGFUNC;
 		Objects[i]->Render();
 }
 
-void RenderLayerManger::RemoveObject(Abs_Abstract *src) {LOGFUNC;
+void CRenderLayerManger::RemoveObject(Abs_Abstract *src) {LOGFUNC;
 	// for(auto l : Layers) {
 	// 	printf("removing ...\n");
 	// 	l.RemoveObject(src);

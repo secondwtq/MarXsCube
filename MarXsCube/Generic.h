@@ -16,24 +16,22 @@
 #include "FSM.h"
 #include "TeslaRendering.h"
 
-class PhysicsGeneral;
+class CPhysicsGeneral;
 
 class Generic {
 public:
 
-#if defined(__GNUC__) && !defined(__clang__)
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-fpermissive"
-#endif
-	static inline Session *Session() {
-		return Generic::session;
-	}
+	static inline CSession *Session() {
+		return Generic::session; }
 	
-	static inline RenderLayerManger *RenderLayerManger() {
+	static inline CRenderLayerManger *RenderLayerManger() {
 		return Generic::render_layer_manger; }
 	
-	static inline TeslaRenderingManger *TeslaRenderingManger() {
+	static inline TeslaRenderingManger *TeslaManger() {
 		return Generic::m_teslamanger; }
+	
+	static inline CPhysicsGeneral* PhysicsGeneral() {
+		return Generic::physics_general; }
 	
 	static inline void Init_Logger() {
 		FSM::init();
@@ -56,11 +54,11 @@ public:
 	static inline LuaStatus *lua_state() { return state; }
 	
 	static inline void Init_Session() {
-		Generic::session = new class Session();
+		Generic::session = new class CSession();
 	}
 	
 	static inline void Init_RenderLayerManger() {
-		Generic::render_layer_manger = new class RenderLayerManger(); }
+		Generic::render_layer_manger = new class CRenderLayerManger(); }
 	
 	static inline void init_TeslaRenderingManger() {
 		Generic::m_teslamanger = new class TeslaRenderingManger(); }
@@ -68,9 +66,6 @@ public:
 	static inline void RemoveObject(Abs_Abstract *src) {
 		Generic::Session()->removeObject(src);
 	}
-	
-	static inline PhysicsGeneral* PhysicsGeneral() {
-		return Generic::physics_general; }
 	
 	static void Init_PhysicsGeneral();
 	
@@ -83,15 +78,12 @@ public:
 	static inline luabridge::LuaRef CreateObjectTable(unsigned int id) {
 		return (*Generic::foo_object_table_create)(id);
 	}
-#if defined(__GNUC__) && !defined(__clang__)
-#pragma GCC diagnostic pop
-#endif
 	
 public:
-	static class Session *session;
-	static class RenderLayerManger *render_layer_manger;
+	static class CSession *session;
+	static class CRenderLayerManger *render_layer_manger;
 	
-	static class PhysicsGeneral *physics_general;
+	static class CPhysicsGeneral *physics_general;
 	
 	static class luabridge::LuaRef *foo_object_table_create;
 	

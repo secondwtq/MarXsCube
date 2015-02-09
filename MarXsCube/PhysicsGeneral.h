@@ -11,7 +11,7 @@
 
 #include <Bullet/btBulletDynamicsCommon.h>
 
-class PhysicsGeneral {
+class CPhysicsGeneral {
 	public:
 		btDefaultCollisionConfiguration *collConf;
 		btCollisionDispatcher *dispatcher;

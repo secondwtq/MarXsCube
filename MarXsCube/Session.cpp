@@ -5,19 +5,19 @@
 
 #include "Session.h"
 
-const CoordStruct Session::CameraLocationDefault = CoordStruct(384, 384, 320);
+const CoordStruct CSession::CameraLocationDefault = CoordStruct(384, 384, 320);
 
-unsigned int Session::addObject(Abs_Abstract &src) {LOGFUNC;
+unsigned int CSession::addObject(Abs_Abstract &src) {LOGFUNC;
 	src.RTTIID = ++MaxID;
 	return MaxID;
 }
 
-void Session::removeObject(Abs_Abstract *src) {LOGFUNC;
+void CSession::removeObject(Abs_Abstract *src) {LOGFUNC;
 	Generic::RenderLayerManger()->RemoveObject(src);
 	ObjectManger::GetInstance().RemoveObject(src);
 }
 
-void Session::CameraMove(DirectionType::Type Direction, float offest) {LOGFUNC;
+void CSession::CameraMove(DirectionType::Type Direction, float offest) {LOGFUNC;
 	switch (Direction) {
 		case DirectionType::Type::SouthWest:
 		    this->CameraOffestX -= offest;
@@ -51,31 +51,31 @@ void Session::CameraMove(DirectionType::Type Direction, float offest) {LOGFUNC;
 	UpdateCameraOffest();
 }
 
-void Session::setKeyEvent(sf::Event::KeyEvent s) {LOGFUNC;
+void CSession::setKeyEvent(sf::Event::KeyEvent s) {LOGFUNC;
 	KeyData.code = s.code;
 	KeyData.alt = s.alt, KeyData.control = s.control, KeyData.shift = s.shift, KeyData.system = s.system;
 }
 
-void Session::setMousePos_Ab() {LOGFUNC;
+void CSession::setMousePos_Ab() {LOGFUNC;
 	auto p = sf::Mouse::getPosition();
 	MousePosData.x_absolute = p.x, MousePosData.y_absolute = p.y;
 }
 
-void Session::updateMouseButtonStatus() {LOGFUNC;
+void CSession::updateMouseButtonStatus() {LOGFUNC;
 	MousePosData.left = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
 	MousePosData.right = sf::Mouse::isButtonPressed(sf::Mouse::Button::Right);
 	MousePosData.middle = sf::Mouse::isButtonPressed(sf::Mouse::Button::Middle);
 }
 
-void Session::setMousePos_Rl(sf::Event::MouseButtonEvent &e) {LOGFUNC;
+void CSession::setMousePos_Rl(sf::Event::MouseButtonEvent &e) {LOGFUNC;
 	MousePosData.pos.x = e.x, MousePosData.pos.y = e.y;
 }
 
-void Session::setMousePos_Rl(sf::Event::MouseMoveEvent &e) {LOGFUNC;
+void CSession::setMousePos_Rl(sf::Event::MouseMoveEvent &e) {LOGFUNC;
 	MousePosData.pos.x = e.x, MousePosData.pos.y = e.y;
 }
 
-void Session::setMousePos_Release(sf::Event::MouseButtonEvent &e) {LOGFUNC;
+void CSession::setMousePos_Release(sf::Event::MouseButtonEvent &e) {LOGFUNC;
 	setMousePos_Rl(e);
 	switch (e.button) {
 		case sf::Mouse::Button::Left: MousePosData.left = true; break;
@@ -85,8 +85,8 @@ void Session::setMousePos_Release(sf::Event::MouseButtonEvent &e) {LOGFUNC;
 	}
 }
 
-void Session::setMousePos_Press(sf::Event::MouseButtonEvent &e) {LOGFUNC;
+void CSession::setMousePos_Press(sf::Event::MouseButtonEvent &e) {LOGFUNC;
 	setMousePos_Rl(e);
 }
 
-void Session::LUA_CameraMove(unsigned short Direction, float offest) {LOGFUNC; CameraMove((DirectionType::Type)Direction, offest); }
+void CSession::LUA_CameraMove(unsigned short Direction, float offest) {LOGFUNC; CameraMove((DirectionType::Type)Direction, offest); }

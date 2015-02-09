@@ -19,7 +19,7 @@ struct CubeMousePos {
 	bool left = false, middle = false, right = false;
 };
 
-class Session {
+class CSession {
 	public:
 
 		const static CoordStruct CameraLocationDefault; //	384, 384, 320

@@ -333,13 +333,13 @@ namespace LuaInterface {
 					addFunction("GetCellAt_Pos", &Map::GetCellAt_Pos).
 					addStaticFunction("CellFromCoord", &Map::CellFromCoord).
 				endClass().
-				beginClass<Session>("Session").
+				beginClass<CSession>("Session").
 					addStaticData("instance", &(Generic::session)).
 					addStaticFunction("GetInstance", &Generic::Session).
-					addFunction("CameraMove", &Session::LUA_CameraMove).
-					addData("KeyData", &Session::KeyData).
-					addData("MousePosData", &Session::MousePosData).
-					addFunction("removeObject", &Session::removeObject).
+					addFunction("CameraMove", &CSession::LUA_CameraMove).
+					addData("KeyData", &CSession::KeyData).
+					addData("MousePosData", &CSession::MousePosData).
+					addFunction("removeObject", &CSession::removeObject).
 				endClass().
 				beginClass<TextureManger>("TextureManger").
 					addStaticData("instance", &TextureManger::instance).
