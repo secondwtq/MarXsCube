@@ -39,6 +39,8 @@ function InputHandler.MousePress_OnCell(mouse_status)
 		end
 	end
 
+	acheroncube_test()
+
 	-- ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(coord.x, coord.y, 128), true)
 end
 

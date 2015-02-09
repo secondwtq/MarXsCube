@@ -30,6 +30,16 @@ function grit_test()
 
 end
 
+function acheroncube_test()
+
+	local start = Utility.CubePoint(0, 0)
+	local eend = Utility.CubePoint(1024, 0)
+	print(Utility.GetTime_Clock())
+	local vec = Acheron.find_path_async(start, eend, function () print 'path got' end)
+	print(Utility.GetTime_Clock())
+
+end
+
 -- run when game started
 function Functions.TestManger_onTestInit()
 

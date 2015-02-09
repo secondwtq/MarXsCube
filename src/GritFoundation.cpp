@@ -26,14 +26,14 @@ using namespace FSMHelper;
 std::vector<GPointType> Grit::find_path(const GPointType& start, const GPointType& end) {
 	std::vector<GPointType> ret;
 	
-	Generic::corelog() << "find_path: Checking los" << rn;
+//	Generic::corelog() << "find_path: Checking los " << start.x << " " << start.y << " " << end.x << " " << end.y << rn;
 	if (check_los(start, end)) {
 		ret.push_back(start);
 		ret.push_back(end);
 		printf("Find path: returning (direct) ... \n");
 		return ret;
 	}
-	Generic::corelog() << "find_path: los failed, needs more work..." << rn;
+//	Generic::corelog() << "find_path: los failed, needs more work..." << rn;
 	
 	std::vector<GritNode *> tmp_nodes;
 	for (auto node : this->m_nodes)
@@ -53,9 +53,9 @@ std::vector<GPointType> Grit::find_path(const GPointType& start, const GPointTyp
 	link_node(*node_start, tmp_nodes);
 	link_node(*node_end, tmp_nodes);
 	
-	Generic::corelog() << "find_path: finding path... totally " << tmp_nodes.size() << " nodes" << rn;
+//	Generic::corelog() << "find_path: finding path... totally " << tmp_nodes.size() << " nodes" << rn;
 	GritAStar::path(node_start, node_end, &tmp_nodes, &ret);
-	Generic::corelog() << "find_path: finished, " << ret.size() << " nodes" << rn;
+//	Generic::corelog() << "find_path: finished, " << ret.size() << " nodes" << rn;
 	return ret;
 }
 
@@ -194,7 +194,7 @@ bool Grit::pt_is_valid(const GPointType& pt) {
 	const std::vector<GritPoly *> vect = this->m_map->all_polys();
 	for (std::size_t i = 0; i < vect.size(); i++) {
 		bool is_master = i < this->m_map->master_polys.size();
-		Generic::corelog() << "pt_is_valid: handling point, " << (is_master ? "master" : "not master") << rn;
+//		Generic::corelog() << "pt_is_valid: handling point, " << (is_master ? "master" : "not master") << rn;
 		if (is_master ? (!pt_in_poly(pt, vect[i]->pts)) :
 						pt_in_poly(pt, vect[i]->pts))
 			return false;

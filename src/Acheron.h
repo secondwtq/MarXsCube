@@ -90,17 +90,23 @@ namespace Acheron {
 	public:
 		
 		void update() {
+			this->m_queue_mutex.lock();
 			while (!this->m_queue.empty()) {
 				this->m_queue.front().dispatch();
 				this->m_queue.pop();
 			}
+			this->m_queue_mutex.unlock();
 		}
 		
 		void add_worker(const ThreadWorker& worker) {
-			this->m_queue.push(worker); }
+			this->m_queue_mutex.lock();
+			this->m_queue.push(worker);
+			this->m_queue_mutex.unlock();
+		}
 		
 	private:
 		std::queue<ThreadWorker> m_queue;
+		std::mutex m_queue_mutex;
 	};
 	
 }

@@ -6,9 +6,12 @@
 //  Copyright (c) 2015 MarXsCube Staff. All rights reserved.
 //
 
+#include "buildconf.h"
 #include "AcheronGCD.h"
 
+#ifdef CUBE_CONFIG_USE_DARWIN_LIBDISPATCH
 #include <dispatch/dispatch.h>
+#endif
 
 namespace Acheron {
 
