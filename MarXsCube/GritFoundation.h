@@ -10,6 +10,7 @@
 #define __MarXsCube__GritFoundation__
 
 #include "Common.h"
+#include "Platform.h"
 #include "GritMath.h"
 
 #include <algorithm>
@@ -43,6 +44,8 @@ public:
 	bool check_los(const GPointType& pa, const GPointType& pb);
 	void link_node(GritNode& node, std::vector<GritNode *>& to_nodes);
 	
+	// still WIP,
+	// and gcc gives warnings
 	GPointType get_closer_edge_pt(const GPointType& pt);
 	
 	void generate_map();

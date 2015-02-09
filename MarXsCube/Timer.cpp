@@ -14,7 +14,7 @@
 namespace {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-variable"
-	uint64_t rate = -1; // not guaranteed to be available
+	uint64_t CUBEMUTEW_NOT_USED rate = -1; // not guaranteed to be available
 	double rate_d = -1.;
 #pragma GCC diagnostic pop
 }

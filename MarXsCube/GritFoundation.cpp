@@ -7,6 +7,7 @@
 //
 
 #include "Common.h"
+#include "Platform.h"
 #include "FSM.h"
 #include "GritFoundation.h"
 #include "GritAStar.h"
@@ -251,7 +252,7 @@ bool Grit::segments_cross(const GPointType& a, const GPointType& b, const GPoint
 
 // finished.
 bool Grit::pt_in_poly(const GPointType& pt, const std::vector<GPointType>& polypts) {
-	GUnitT x_min = 1e+12; //magic
+	GUnitT x_min = 1e+8; //magic
 	for (auto p : polypts)
 		x_min = std::min(x_min, p.x);
 	
@@ -278,14 +279,16 @@ GPointType Grit::get_closer_edge_pt(const GPointType& pt) {
 		std::vector<GPointType> infleated_pts = inflate_poly(poly->pts, 2);
 		
 		for (std::size_t i = 0; i < infleated_pts.size(); i++) {
+			
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-variable"
+#ifdef CUBE_COMPILER_GCC
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#endif
 			// TODO: a helper function, but still WIP here
-			GPointType a = infleated_pts[i], b = infleated_pts[(i+1) % infleated_pts.size()];
-			GPointType oa = poly->pts[i], ob = poly->pts[(i+1) % poly->pts.size()];
+			GPointType CUBEMUTEW_NOT_USED a = infleated_pts[i], b = infleated_pts[(i+1) % infleated_pts.size()];
+			GPointType CUBEMUTEW_NOT_USED oa = poly->pts[i], ob = poly->pts[(i+1) % poly->pts.size()];
 #pragma GCC diagnostic pop
-			
-			// WIP
 			
 			float dist = gmag2(gsub2(pt, infleated_pts[i]));
 			if (dist < closer_vert_dist && pt_is_valid(infleated_pts[i])) {

@@ -27,9 +27,9 @@ void transfer_verts_tesla(tesla_dataarray& dest, const objfile& src) {
 		if (texcoord_cache.find(i) != texcoord_cache.end()) {
 			vert.texcoord = src.raw_uvcoords[texcoord_cache.at(i)];
 		} else {
-			for (int j = 0; j < src.raw_faces.size(); j++) {
+			for (std::size_t j = 0; j < src.raw_faces.size(); j++) {
 				for (int k = 0; k < 3; k++) {
-					auto vert_idx = src.raw_faces[j][k];
+					std::size_t vert_idx = static_cast<std::size_t>(src.raw_faces[j][k]);
 					texcoord_cache[vert_idx] = src.raw_face_uvcoords[j][k];
 					if (vert_idx == i) {
 						vert.texcoord = src.raw_uvcoords[src.raw_face_uvcoords[j][k]];

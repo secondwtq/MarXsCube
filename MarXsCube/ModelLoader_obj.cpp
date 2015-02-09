@@ -55,7 +55,7 @@ void transfer_verts(gl_vertarray& dest, const objfile &src) {
 		glm::vec3 normal { (v1.y*v2.z)-(v1.z*v2.y), -((v2.z*v1.x)-(v2.x*v1.z)), (v1.x*v2.y)-(v1.y*v2.x) };
 		
 		for (GLIDX j = 0; j < 3; j++) {
-			const int vert_idx = face[j];
+			const unsigned int vert_idx = face[j];
 			
 			// vertex position
 			for (GLIDX k = 0; k < 3; k++)
@@ -105,7 +105,7 @@ void transfer_verts_idx(gl_vertarray_indexed& dest, const objfile &src) {
 		if (texcoord_cache.find(i) != texcoord_cache.end()) {
 			dest_verts[i].texcoord = src.raw_uvcoords[texcoord_cache.at(i)];
 		} else {
-			for (int j = 0; j < src.raw_faces.size(); j++) {
+			for (std::size_t j = 0; j < src.raw_faces.size(); j++) {
 				for (int k = 0; k < 3; k++) {
 					auto vert_idx = src.raw_faces[j][k];
 					texcoord_cache[vert_idx] = src.raw_face_uvcoords[j][k];

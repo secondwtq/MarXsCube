@@ -34,4 +34,33 @@
 #pragma GCC error "What platform are you targeting?"
 #endif
 
+#if defined(__GNUC__)
+	#undef CUBE_COMPILER_UNKNOWN
+	#define CUBE_COMPILER_GCC_BASED
+
+		#if defined(__clang__)
+			#define CUBE_COMPILER_CLANG
+
+		#else
+			#define CUBE_COMPILER_GCC
+
+			#if defined(__MINGW32__)
+				#define CUBE_COMPILER_MINGW
+				#define CUBE_COMPILER_MINGW32
+			#endif
+
+	#endif
+#endif
+
+// well gcc ignored my ignore diagnostic -Wunused-variable
+// clang is a good child, at least in this term
+// so ...
+// http://stackoverflow.com/questions/9832687/strange-diagnostic-pragma-behavior-in-gcc-4-6
+// http://stackoverflow.com/questions/8071579/hide-gcc-warning-set-but-not-used
+#ifdef CUBE_COMPILER_GCC
+#define CUBEMUTEW_NOT_USED __attribute__ ((unused))
+#else
+#define CUBEMUTEW_NOT_USED
+#endif
+
 #endif /* defined(__MarXsCube__Platform__) */

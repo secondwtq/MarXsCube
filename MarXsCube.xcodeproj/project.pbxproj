@@ -15,7 +15,6 @@
 		5923C8DA19D00EB90055E0D5 /* RenderElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5923C8D919D00EB90055E0D5 /* RenderElement.cpp */; };
 		5923C8DD19D00F730055E0D5 /* RenderElementsContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5923C8DB19D00F730055E0D5 /* RenderElementsContainer.cpp */; };
 		5923C8E419D01EE60055E0D5 /* Generic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5923C8E219D01EE60055E0D5 /* Generic.cpp */; };
-		5923C8E919D027480055E0D5 /* LWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5923C8E719D027480055E0D5 /* LWindow.cpp */; };
 		5923C8EC19D0286F0055E0D5 /* InternalDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5923C8EA19D0286F0055E0D5 /* InternalDraw.cpp */; };
 		5923C8EF19D02A5E0055E0D5 /* PhysicsGeneral.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5923C8EE19D02A5E0055E0D5 /* PhysicsGeneral.cpp */; };
 		5926293E198AB66500858A67 /* Abstract.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59262926198AB66500858A67 /* Abstract.cpp */; };
@@ -106,7 +105,6 @@
 		5923C8DC19D00F730055E0D5 /* RenderElementsContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderElementsContainer.h; sourceTree = "<group>"; };
 		5923C8E219D01EE60055E0D5 /* Generic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Generic.cpp; sourceTree = "<group>"; };
 		5923C8E319D01EE60055E0D5 /* Generic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Generic.h; sourceTree = "<group>"; };
-		5923C8E719D027480055E0D5 /* LWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LWindow.cpp; sourceTree = "<group>"; };
 		5923C8E819D027480055E0D5 /* LWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWindow.h; sourceTree = "<group>"; };
 		5923C8EA19D0286F0055E0D5 /* InternalDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InternalDraw.cpp; sourceTree = "<group>"; };
 		5923C8EB19D0286F0055E0D5 /* InternalDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternalDraw.h; sourceTree = "<group>"; };
@@ -301,7 +299,6 @@
 				59F431DB1A839A47008795D9 /* GLM_Interface.h */,
 				59F431DA1A839A47008795D9 /* GLM_Interface.cpp */,
 				5923C8E819D027480055E0D5 /* LWindow.h */,
-				5923C8E719D027480055E0D5 /* LWindow.cpp */,
 			);
 			name = Hafnium;
 			sourceTree = "<group>";
@@ -707,7 +704,6 @@
 				59F431DC1A839A47008795D9 /* GLM_Interface.cpp in Sources */,
 				599985E91A7F3F9900E6CE68 /* ATVBCube.cpp in Sources */,
 				5926293E198AB66500858A67 /* Abstract.cpp in Sources */,
-				5923C8E919D027480055E0D5 /* LWindow.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,6 +32,6 @@ void LuaInterface::RegisterInterface_Tesla(LuaStatus &L) {
 			endClass().
 		endNamespace().
 		beginNamespace("Generic").
-			addFunction("TeslaRenderingManger", &Generic::TeslaRenderingManger).
+			addFunction("TeslaManger", &Generic::TeslaManger).
 		endNamespace();
 }

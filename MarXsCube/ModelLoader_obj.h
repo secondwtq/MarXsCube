@@ -95,7 +95,7 @@ public:
 	std::string filepath { "" }	;
 	
 	std::vector<glm::vec3> raw_verts, raw_uvcoords, raw_normals;
-	std::vector<glm::i32vec3> raw_faces, raw_face_uvcoords;
+	std::vector<glm::u32vec3> raw_faces, raw_face_uvcoords;
 	
 	void parse();
 	
