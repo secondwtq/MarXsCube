@@ -22,18 +22,18 @@ namespace Acheron {
 	
 	template <typename ReturnT>
 	void async_dispatch(ThreadWorkerQueue& target_queue, std::function<ReturnT ()> dispatch_function, std::function<void (const ReturnT&)> callback) {
-		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^() {
-			ReturnT t = dispatch_function();
-			target_queue.add_worker({ [t, callback] () { callback(t); } });
-		});
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+			^() {
+				ReturnT t = dispatch_function();
+				target_queue.add_worker({ [t, callback] () { callback(t); } });
+			});
 	}
 	
 #else
 	
-	void async_dispatch(ThreadWorkerQueue& target_queue, ThreadWorker::stdfunction_type dispatch_function, ThreadWorker::stdfunction_type callback) {
-		dispatch_function();
-		callback();
-	}
+	template <typename ReturnT>
+	void async_dispatch(ThreadWorkerQueue& target_queue, std::function<ReturnT ()> dispatch_function, std::function<void (const ReturnT&)> callback) {
+		callback(dispatch_function()); }
 	
 #endif
 	

@@ -25,7 +25,7 @@ namespace Acheron {
 			async_dispatch<std::vector<GPointType> >(queue_callback,
 				[start, end] () {
 					std::vector<GPointType> t;
-					for(std::size_t i = 0; i < 10000; i++)
+					for(std::size_t i = 0; i < 20000; i++)
 						t = get_grit()->find_path(start, end);
 					return t;
 				},

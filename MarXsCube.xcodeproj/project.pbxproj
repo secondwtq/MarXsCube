@@ -314,6 +314,21 @@
 			name = jit;
 			sourceTree = "<group>";
 		};
+		591064171A89302100C6A901 /* Acheron */ = {
+			isa = PBXGroup;
+			children = (
+				59FCBF421A73CA5700BEF905 /* Acheron.h */,
+				59FCBF411A73CA5700BEF905 /* Acheron.cpp */,
+				5910640E1A890EC400C6A901 /* AcheronGCD.h */,
+				591064111A8912E100C6A901 /* AcheronCube.h */,
+				591064141A89151000C6A901 /* Acheron_Interface.h */,
+				5910640D1A890EC400C6A901 /* AcheronGCD.cpp */,
+				591064101A8912E100C6A901 /* AcheronCube.cpp */,
+				591064131A89151000C6A901 /* Acheron_Interface.cpp */,
+			);
+			name = Acheron;
+			sourceTree = "<group>";
+		};
 		5923C8D819D00E8B0055E0D5 /* Silcon */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				597D223E1A3D95EC006B296B /* LuaJit_Bridge.h */,
+				591064161A89228700C6A901 /* CallbackRef.h */,
 				59262911198AB66500858A67 /* LuaInterface.h */,
 				59262912198AB66500858A67 /* LuaUtils.h */,
 				5926292D198AB66500858A67 /* LuaInterface.cpp */,
@@ -402,6 +418,7 @@
 		59262900198AB62300858A67 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				591064171A89302100C6A901 /* Acheron */,
 				59FCBF311A72818100BEF905 /* AtTheVeryBeginning */,
 				5923C8E619D026CE0055E0D5 /* Bullet */,
 				5932C84619D00C6800135717 /* Common */,
@@ -538,15 +555,6 @@
 				5923C8E319D01EE60055E0D5 /* Generic.h */,
 				5923C8E219D01EE60055E0D5 /* Generic.cpp */,
 				59262933198AB66500858A67 /* Pathfinder.cpp */,
-				59FCBF421A73CA5700BEF905 /* Acheron.h */,
-				59FCBF411A73CA5700BEF905 /* Acheron.cpp */,
-				5910640E1A890EC400C6A901 /* AcheronGCD.h */,
-				5910640D1A890EC400C6A901 /* AcheronGCD.cpp */,
-				591064111A8912E100C6A901 /* AcheronCube.h */,
-				591064101A8912E100C6A901 /* AcheronCube.cpp */,
-				591064141A89151000C6A901 /* Acheron_Interface.h */,
-				591064131A89151000C6A901 /* Acheron_Interface.cpp */,
-				591064161A89228700C6A901 /* CallbackRef.h */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
