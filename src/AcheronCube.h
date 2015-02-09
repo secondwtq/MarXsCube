@@ -17,7 +17,7 @@
 namespace Acheron {
 	namespace Cube {
 		
-		void find_path_async(GPointType start, GPointType end, lua_State* L);
+		void find_path_async(GPointType start, GPointType end, luabridge::CallbackRef callback);
 		
 	}
 }

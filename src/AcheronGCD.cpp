@@ -13,14 +13,18 @@
 #include <dispatch/dispatch.h>
 #endif
 
+#include "GritFoundation.h"
+#include <vector>
+
 namespace Acheron {
 
 #ifdef CUBE_CONFIG_USE_DARWIN_LIBDISPATCH
 	
-	void async_dispatch(ThreadWorkerQueue& target_queue, ThreadWorker::stdfunction_type dispatch_function, ThreadWorker::stdfunction_type callback) {
+	template <typename ReturnT>
+	void async_dispatch(ThreadWorkerQueue& target_queue, std::function<ReturnT ()> dispatch_function, std::function<void (const ReturnT&)> callback) {
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^() {
-			dispatch_function();
-			target_queue.add_worker({ callback });
+			ReturnT t = dispatch_function();
+			target_queue.add_worker({ [t, callback] () { callback(t); } });
 		});
 	}
 	
@@ -32,5 +36,7 @@ namespace Acheron {
 	}
 	
 #endif
+	
+template void async_dispatch(ThreadWorkerQueue& target_queue, std::function<std::vector<GPointType> ()> dispatch_function, std::function<void (const std::vector<GPointType>&)> callback);
 	
 }

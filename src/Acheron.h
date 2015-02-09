@@ -13,7 +13,6 @@
 #include <mutex>
 #include <condition_variable>
 #include <functional>
-#include <queue>
 
 namespace Acheron {
 	
@@ -71,42 +70,6 @@ namespace Acheron {
 		bool m_cycle = false;
 		
 		bool m_auto_lock = true;
-	};
-	
-	class ThreadWorker {
-	public:
-		
-		typedef std::function<void ()> stdfunction_type;
-		
-		ThreadWorker(const stdfunction_type& function)
-			: m_worker(function) { }
-		void dispatch() { this->m_worker(); }
-		
-	private:
-		stdfunction_type m_worker;
-	};
-	
-	class ThreadWorkerQueue {
-	public:
-		
-		void update() {
-			this->m_queue_mutex.lock();
-			while (!this->m_queue.empty()) {
-				this->m_queue.front().dispatch();
-				this->m_queue.pop();
-			}
-			this->m_queue_mutex.unlock();
-		}
-		
-		void add_worker(const ThreadWorker& worker) {
-			this->m_queue_mutex.lock();
-			this->m_queue.push(worker);
-			this->m_queue_mutex.unlock();
-		}
-		
-	private:
-		std::queue<ThreadWorker> m_queue;
-		std::mutex m_queue_mutex;
 	};
 	
 }

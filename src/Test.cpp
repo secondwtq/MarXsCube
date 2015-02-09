@@ -24,6 +24,7 @@ using namespace std;
 #include "Startup.h"
 
 #include "Acheron.h"
+#include "AcheronGCD.h"
 #include "BulletThread.h"
 #include "SilconThread.h"
 #include "GLFoundation.h"

@@ -30,8 +30,15 @@ function grit_test()
 
 end
 
-function acheroncube_test_callback()
+function acheroncube_test_callback(vec)
 	print('path got', Utility.GetTime_Clock())
+
+	print(vec:size())
+	print(vec:at(0).x, vec:at(0).y)
+	print(vec:at(1).x, vec:at(1).y)
+	print(vec:at(2).x, vec:at(2).y)
+	print(vec:at(3).x, vec:at(3).y)
+	print(vec:at(4).x, vec:at(4).y)
 end
 
 function acheroncube_test()

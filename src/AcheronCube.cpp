@@ -11,6 +11,8 @@
 #include "GritFoundation.h"
 #include "AcheronCube.h"
 
+#include <vector>
+
 extern Acheron::ThreadWorkerQueue queue_callback;
 
 Grit *get_grit();
@@ -18,9 +20,19 @@ Grit *get_grit();
 namespace Acheron {
 	namespace Cube {
 		
-		void find_path_async(GPointType start, GPointType end, lua_State *L) {
-			unsigned int ref = lua_ref(L, LUA_REGISTRYINDEX);
-			async_dispatch(queue_callback, [start, end] () { for(std::size_t i = 0; i < 1000; i++) get_grit()->find_path(start, end); }, [ref, L] () { lua_rawgeti(L, LUA_REGISTRYINDEX, ref); luabridge::LuaException::pcall(L, 0, 1); });
+		void find_path_async(GPointType start, GPointType end, luabridge::CallbackRef callback) {
+			
+			async_dispatch<std::vector<GPointType> >(queue_callback,
+				[start, end] () {
+					std::vector<GPointType> t;
+					for(std::size_t i = 0; i < 10000; i++)
+						t = get_grit()->find_path(start, end);
+					return t;
+				},
+				[callback] (const std::vector<GPointType>& vec) {
+					callback(vec);
+					callback.de_ref();
+				});
 			
 		}
 		
