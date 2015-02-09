@@ -9,6 +9,10 @@
 #ifndef MarXsCube_GProfiler_h
 #define MarXsCube_GProfiler_h
 
+#include "buildconf.h"
+
+#ifdef CUBE_CONFIG_USE_GPROFILER
 #include <gperftools/profiler.h>
+#endif
 
 #endif

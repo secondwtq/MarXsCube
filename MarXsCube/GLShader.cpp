@@ -8,7 +8,7 @@
 
 #include "GLShader.h"
 
-#include <SFML/OpenGL.hpp>
+#include "cubegl.h"
 
 #include <cstdlib>
 #include <string>
@@ -43,6 +43,7 @@ void gl_shader::load_file(SHADERTYPE type, const std::string &path) {
 	std::size_t len = fread(_shader_readbuffer, 1, LENGTH_SHADER_READBUFFER-1, fp);
 	_shader_readbuffer[len] = '\0';
 	this->load_str(type, _shader_readbuffer);
+	fclose(fp);
 }
 
 void gl_shader::load_str(SHADERTYPE type, const char *src) {

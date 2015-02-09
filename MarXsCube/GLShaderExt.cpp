@@ -9,7 +9,7 @@
 #include "GLShader.h"
 #include "GLShaderExt.h"
 
-#include <SFML/OpenGL.hpp>
+#include "cubegl.h"
 #include <type_traits>
 
 #undef DEF_ATTRIBUTE

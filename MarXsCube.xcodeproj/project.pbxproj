@@ -203,6 +203,8 @@
 		599985FC1A80DCC600E6CE68 /* BulletVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletVehicle.h; sourceTree = "<group>"; };
 		599985FE1A80DDD700E6CE68 /* BulletVehicle_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletVehicle_Interface.cpp; sourceTree = "<group>"; };
 		599985FF1A80DDD700E6CE68 /* BulletVehicle_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletVehicle_Interface.h; sourceTree = "<group>"; };
+		59B20C441A88AB3300F83F34 /* buildconf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = buildconf.h; sourceTree = "<group>"; };
+		59B20C451A88B2C900F83F34 /* cubegl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cubegl.h; sourceTree = "<group>"; };
 		59B9C16D1A7A275E0073E694 /* GProfiler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GProfiler.h; sourceTree = "<group>"; };
 		59BF15F11A837301000DA821 /* TeslaRendering.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TeslaRendering.cpp; sourceTree = "<group>"; };
 		59BF15F21A837301000DA821 /* TeslaRendering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeslaRendering.h; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 		59F431DD1A83A92D008795D9 /* Verdandi */ = {
 			isa = PBXGroup;
 			children = (
+				59B20C451A88B2C900F83F34 /* cubegl.h */,
 				598E6EEE1A6F649E000C68BE /* ModelLoader_obj.h */,
 				598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */,
 				59C97B091A7913C800AB3F02 /* GLShader.h */,
@@ -481,6 +484,7 @@
 		59F431DF1A83AB85008795D9 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				59B20C441A88AB3300F83F34 /* buildconf.h */,
 				59FCB5131A85B1030048D776 /* Platform.h */,
 				59FCB5121A85B1030048D776 /* Platform.cpp */,
 				59FCB5181A85BBD80048D776 /* Version.h */,

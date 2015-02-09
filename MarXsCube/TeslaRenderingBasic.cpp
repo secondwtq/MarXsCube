@@ -11,6 +11,7 @@
 
 #include <array>
 #include <unordered_map>
+#include <cstring>
 
 void transfer_verts_tesla(tesla_dataarray& dest, const objfile& src) {
 	std::unordered_map<std::size_t, std::size_t> texcoord_cache;

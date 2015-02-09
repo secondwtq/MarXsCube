@@ -10,7 +10,7 @@
 
 #include "ModelLoader_obj.h"
 
-#include <SFML/OpenGL.hpp>
+#include "cubegl.h"
 #include <glm/glm.hpp>
 
 #include <fstream>

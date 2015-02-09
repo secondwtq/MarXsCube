@@ -13,7 +13,7 @@
 #include "TeslaBullet.h"
 #include "TeslaObject.h"
 
-#include <SFML/OpenGL.hpp>
+#include "cubegl.h"
 #include "BulletCollision/CollisionDispatch/btInternalEdgeUtility.h"
 
 void TeslaObject::create_bullet() {

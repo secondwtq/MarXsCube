@@ -10,7 +10,7 @@
 #define __MarXsCube__GLFoundation__
 
 #include "Common.h"
-#include <SFML/OpenGL.hpp>
+#include "cubegl.h"
 #include <vector>
 
 void init_opengl();

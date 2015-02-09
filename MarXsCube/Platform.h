@@ -27,6 +27,9 @@
 #undef CUBE_COMPILER_UNKNOWN
 #define CUBE_COMPILER_MSVC
 #pragma message "MSVC is not supported by MarKsCube yet."
+#elif defined(__linux)
+#define CUBE_PLATFORM_LINUX
+#define CUBE_PLATFORM_POSIX
 #else
 #pragma GCC error "What platform are you targeting?"
 #endif

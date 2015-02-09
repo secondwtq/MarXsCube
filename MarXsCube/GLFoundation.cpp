@@ -12,7 +12,7 @@
 #include "GLFoundation.h"
 #include "ATVBCube.h"
 
-#include <SFML/OpenGL.hpp>
+#include "cubegl.h"
 #include <iostream>
 
 extern sf::RenderWindow *window_global;

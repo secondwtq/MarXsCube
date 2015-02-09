@@ -12,7 +12,7 @@
 #include "Generic.h"
 #include "BulletDebugDraw.h"
 
-#include <SFML/OpenGL.hpp>
+#include "cubegl.h"
 
 // reference: from Bullet official demos
 // TODO: scaling and coord unfinished

@@ -15,7 +15,7 @@
 #ifdef CUBE_PLATFORM_DARWIN
 #include <OpenGL/gltypes.h>
 #else
-typedef unsigned int GLuint;
+typedef unsigned int GLuint; // hack, it seems other OS have no gltypes.h
 #endif
 
 #define NAME_ATTRIBUTE(name) attr_##name

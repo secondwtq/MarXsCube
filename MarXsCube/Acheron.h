@@ -10,6 +10,8 @@
 #define __MarXsCube__Acheron__
 
 #include <thread>
+#include <mutex>
+#include <condition_variable>
 #include <functional>
 
 namespace Acheron {

@@ -29,7 +29,7 @@ namespace {
 }
 	
 void init_atvb(LuaStatus &L) {
-	atvb_sig = new AtTheVeryBeginning::AtTheVeryBeginning();
+	atvb_sig = new AtTheVeryBeginning();
 	atvb_sig->init(L);
 	
 	atvb_proxy = new luabridge::LuaRef(L.State);
