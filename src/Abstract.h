@@ -2,9 +2,9 @@
 #define CUBE_E_ABSTRACT_H
 
 #include "Common.h"
-#include "ObjectArray.h"
-#include "LuaJit_Bridge.h"
+#include "HafniumCommon.h"
 #include "PhysicsCommon.h"
+#include "ObjectArray.h"
 
 class PhysicsObject;
 

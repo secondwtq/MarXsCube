@@ -204,7 +204,7 @@
 		595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletCollision_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletDynamics_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libLinearMath_xcode4_x64_release.a; sourceTree = "<group>"; };
-		597D223E1A3D95EC006B296B /* LuaJit_Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaJit_Bridge.h; sourceTree = "<group>"; };
+		597D223E1A3D95EC006B296B /* HafniumCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HafniumCommon.h; sourceTree = "<group>"; };
 		598D1DDC1A3966A70049653B /* RayTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RayTest.cpp; sourceTree = "<group>"; };
 		598D1DDD1A3966A70049653B /* RayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest.h; sourceTree = "<group>"; };
 		598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RayTest_Interface.cpp; sourceTree = "<group>"; };
@@ -352,7 +352,7 @@
 		5923C8DE19D0164B0055E0D5 /* Hafnium */ = {
 			isa = PBXGroup;
 			children = (
-				597D223E1A3D95EC006B296B /* LuaJit_Bridge.h */,
+				597D223E1A3D95EC006B296B /* HafniumCommon.h */,
 				591064161A89228700C6A901 /* CallbackRef.h */,
 				59262911198AB66500858A67 /* LuaInterface.h */,
 				59262912198AB66500858A67 /* LuaUtils.h */,

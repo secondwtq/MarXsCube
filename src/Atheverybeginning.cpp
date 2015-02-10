@@ -7,7 +7,7 @@
 //
 
 #include "Common.h"
-#include "LuaJit_Bridge.h"
+#include "HafniumCommon.h"
 #include "Atheverybeginning.h"
 
 #include <unordered_map>
@@ -66,7 +66,7 @@ void atvb_setdefault(const std::string& key, const T& value) {
 }
 
 void load_config(const std::string& filename) {
-	luaL_dofile(atvb_sig->_l->State, filename.c_str()); }
+	hafnium_dofile(atvb_sig->_l->State, filename.c_str()); }
 
 luabridge::LuaRef _atvb_get(LuaRef table, LuaRef key) {
 	//		LuaRef p = (*atvb_proxy)[key];

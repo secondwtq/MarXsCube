@@ -1,3 +1,4 @@
+#include "HafniumCommon.h"
 #include "ObjectManger.h"
 #include "Type_Anim.h"
 #include "Type_Techno.h"
@@ -30,8 +31,8 @@ namespace {
 	void LUA_ImportFile(const char *filename, lua_State *L) {
 		LOGFUNC;
 		cout << "CubeCore: Config:: ::LUA_ImportFile - (Initial Import) Including script " << filename << " ..." << endl;
-		if (luaL_dofile(L, filename)) {
-			cout << "CubeCore: Config:: ::LUA_ImportFile - luaL_dofile: Error in script " << filename << "!" << endl;
+		if (hafnium_dofile(L, filename)) {
+			cout << "CubeCore: Config::LUA_ImportFile - hafnium_dofile: Error in script " << filename << "!" << endl;
 			printf("%s\n", lua_tostring(L, -1));
 		}
 	}
@@ -43,7 +44,9 @@ void LuaStatus::init() {LOGFUNC;
 		State = luaL_newstate();
 		luaL_openlibs(State);
 		getGlobalNamespace(State).beginNamespace("Utility").addFunction("DoImport", &LUA_ImportFile).endNamespace();
+#ifdef CUBE_CONFIG_ENABLE_TERRA
 		terra_init(State);
+#endif
 		_loaded = true;
 	}
 }
@@ -60,8 +63,8 @@ void LuaStatus::load(const char *filename, LuaLoadCallback callback) {LOGFUNC;
 		std::string s_name(filename);
 		std::transform(s_name.begin(), s_name.end(), s_name.begin(), ::tolower);
 		if (find(files.begin(), files.end(), s_name) == files.end()) {
-			if (luaL_dofile(State, filename))
-				cout << "CubeCore: LuaStatus::load - luaL_dofile: Error in script " << filename << "!" << endl;
+			if (hafnium_dofile(State, filename))
+				cout << "CubeCore: LuaStatus::load - hafnium_dofile: Error in script " << filename << "!" << endl;
 			files.push_back(s_name);
 		}
 		else std::cout << "Config file " << filename << " is duplicated." << std::endl;

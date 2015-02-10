@@ -1,10 +1,11 @@
 #include "Common.h"
-#include "Physics.h"
 #include "MotionStateTest.h"
 #include "Config.h"
 #include "LuaUtils.h"
 #include "PhysicsCheck.h"
 #include "PhysicsGeneral.h"
+
+#include "Physics.h"
 
 using namespace std;
 using namespace luabridge;

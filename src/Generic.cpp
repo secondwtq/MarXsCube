@@ -7,12 +7,12 @@
 //
 
 #include "Common.h"
+#include "HafniumCommon.h"
 
+#include "Config.h"
 #include "Session.h"
 #include "ObjectManger.h"
 #include "PhysicsGeneral.h"
-#include "Config.h"
-#include "LuaJit_Bridge.h"
 #include "TeslaRendering.h"
 
 #include "Generic.h"

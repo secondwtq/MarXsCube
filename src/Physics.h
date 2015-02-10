@@ -2,13 +2,15 @@
 #define CUBE_E_PHYSICS_H
 
 #include "Common.h"
-#include <vector>
-#include <string.h>
-#include "LuaJit_Bridge.h"
-#include "Config.h"
+#include "HafniumCommon.h"
 #include "PhysicsCommon.h"
-#include "ObjectArray.h"
+
 #include "Generic.h"
+#include "Config.h"
+#include "ObjectArray.h"
+
+#include <vector>
+#include <cstring>
 
 class ConfigManger;
 class Abs_Abstract;
