@@ -1,7 +1,9 @@
 config.bases.BaseBase = { }
 
+function base_def_baseobject()
+
 function config.bases.BaseBase:newObject(x)
-	ret = x or { }
+	local ret = x or { }
 	setmetatable(ret, self)
 	self.__index = self
 	return ret
@@ -23,3 +25,7 @@ BASES.BaseObject = BASES.BaseBase:newObject({
 		}
 	}
 })
+
+end
+
+base_def_baseobject()

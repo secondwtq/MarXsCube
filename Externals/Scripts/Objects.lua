@@ -5,6 +5,8 @@ local gmap_comps = require('gmap_comps')
 local locomotor = require 'locomotor'
 local blocomotor = require 'loco_bvehicle'
 
+local function base_def_technos()
+
 OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 	type = "TECHNO",
 	clickselectable = true,
@@ -292,3 +294,7 @@ OBJECTS.SATELITE_BG = BASES.BaseTechno:newObject({
 
 	physics={enabled=false}
 })
+
+end
+
+base_def_technos()

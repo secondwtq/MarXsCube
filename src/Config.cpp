@@ -30,8 +30,10 @@ namespace {
 	void LUA_ImportFile(const char *filename, lua_State *L) {
 		LOGFUNC;
 		cout << "CubeCore: Config:: ::LUA_ImportFile - (Initial Import) Including script " << filename << " ..." << endl;
-		if (luaL_dofile(L, filename))
+		if (luaL_dofile(L, filename)) {
 			cout << "CubeCore: Config:: ::LUA_ImportFile - luaL_dofile: Error in script " << filename << "!" << endl;
+			printf("%s\n", lua_tostring(L, -1));
+		}
 	}
 }
 
@@ -41,6 +43,7 @@ void LuaStatus::init() {LOGFUNC;
 		State = luaL_newstate();
 		luaL_openlibs(State);
 		getGlobalNamespace(State).beginNamespace("Utility").addFunction("DoImport", &LUA_ImportFile).endNamespace();
+		terra_init(State);
 		_loaded = true;
 	}
 }

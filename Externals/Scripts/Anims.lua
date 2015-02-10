@@ -1,3 +1,5 @@
+local function base_def_anims()
+
 OBJECTS.TESTANIM = BASES.BaseAnim:newObject({
 	image = "TESTANIM_TEX",
 	loop_count = 1,
@@ -14,3 +16,7 @@ OBJECTS.TESTANIMNEXT = BASES.BaseAnim:newObject({
 	image = "TESTANIM_TEX_FULL",
 	loop_count = 1,
 })
+
+end
+
+base_def_anims()

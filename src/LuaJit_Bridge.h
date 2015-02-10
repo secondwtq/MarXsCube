@@ -9,7 +9,8 @@
 #ifndef LuaJit_Bridge_h
 #define LuaJit_Bridge_h
 
-#include <luajit-2.0/lua.hpp>
+#include <terra.h>
+//#include <luajit-2.0/lua.hpp>
 
 #include <LuaBridge/LuaBridge.h>
 

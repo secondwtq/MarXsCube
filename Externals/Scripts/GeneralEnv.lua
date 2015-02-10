@@ -62,7 +62,7 @@ end
 util.tblinsert = table.insert
 util.tblunpack = table.unpack
 
-ModEnvironment.CurGenState = Idle
+ModEnvironment.CurGenState = nil
 ModEnvironment.SelectedUnit_Single = nil
 
 ModEnvironment.CurMouseOn = nil

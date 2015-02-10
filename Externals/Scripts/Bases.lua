@@ -4,6 +4,8 @@ local Placeholders = require 'Placeholders'
 
 Import("_Base.lua")
 
+local function base_def_bases()
+
 BASES.BaseTexture = BASES.BaseBase:newObject({
 	filename = "./Textures/dummy.png",
 	frame_count = 1,
@@ -87,6 +89,10 @@ BASES.BaseTechno = BASES.BaseObject:newObject({
 	property = Placeholders.ComponentMethod,
 
 })
+
+end
+
+base_def_bases()
 
 function BASES.BaseTechno:property(key)
 	return self[key]

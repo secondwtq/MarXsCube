@@ -10,7 +10,7 @@ DATA_EDGES = gmap_edges.data
 OBJ_DOTS = { }
 OBJ_EDGES = { }
 
-GRAPH_GLOBAL = None
+GRAPH_GLOBAL = nil
 
 TECHNO_SELECTED = nil
 
@@ -53,6 +53,7 @@ end
 
 -- run when game started
 function Functions.TestManger_onTestInit()
+	print('running test function')
 
 	local vec0 = Utility.CubePoint(256, 256)
 	local vec1 = Utility.CubePoint(512, 512)
