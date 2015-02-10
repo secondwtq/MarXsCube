@@ -34,6 +34,8 @@ using namespace std;
 
 #include "Timer.h"
 
+#include "ZephyrCheck.h"
+
 Grit grit_global;
 
 Grit *get_grit() {
@@ -51,13 +53,15 @@ void safe_session_close() {
 }
 
 int main() {
-
+	
 	cube_init_first();
 	Generic::Init_LuaStatus();
 	Generic::Init_Session();
 	cube_init_atvb();
 	ATVBCube::load<S::TeslaGeneralSetting>();
 
+	zephyr_check_output();
+	
 	cube_init_window();
 	
 	ConfigManger config(*Generic::lua_state());

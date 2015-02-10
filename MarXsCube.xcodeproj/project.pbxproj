@@ -77,6 +77,7 @@
 		59F431E71A83AF0F008795D9 /* GritFoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F431E51A83AF0F008795D9 /* GritFoundation.cpp */; };
 		59F5BCAB1A8A0E86006676EC /* libterra.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F5BCAA1A8A0E86006676EC /* libterra.a */; };
 		59F5BCAD1A8A0F80006676EC /* libluajit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F5BCAC1A8A0F80006676EC /* libluajit.a */; };
+		59F5BCB31A8A39E5006676EC /* ZephyrCheck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BCB11A8A39E5006676EC /* ZephyrCheck.cpp */; };
 		59FCB50B1A84850C0048D776 /* GritAStar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB5091A84850C0048D776 /* GritAStar.cpp */; };
 		59FCB50F1A84A3C90048D776 /* Grit_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB50D1A84A3C90048D776 /* Grit_Interface.cpp */; };
 		59FCB5111A84A5DB0048D776 /* StdInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB5101A84A5DB0048D776 /* StdInterface.cpp */; };
@@ -244,6 +245,10 @@
 		59F431E61A83AF0F008795D9 /* GritFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GritFoundation.h; sourceTree = "<group>"; };
 		59F5BCAA1A8A0E86006676EC /* libterra.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libterra.a; path = /usr/local/lib/libterra.a; sourceTree = "<absolute>"; };
 		59F5BCAC1A8A0F80006676EC /* libluajit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libluajit.a; path = /usr/local/lib/libluajit.a; sourceTree = "<absolute>"; };
+		59F5BCAF1A8A37D7006676EC /* ZephyrCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZephyrCommon.h; sourceTree = "<group>"; };
+		59F5BCB01A8A38A8006676EC /* ZephyrCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZephyrCore.h; sourceTree = "<group>"; };
+		59F5BCB11A8A39E5006676EC /* ZephyrCheck.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZephyrCheck.cpp; sourceTree = "<group>"; };
+		59F5BCB21A8A39E5006676EC /* ZephyrCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZephyrCheck.h; sourceTree = "<group>"; };
 		59FCB5091A84850C0048D776 /* GritAStar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GritAStar.cpp; sourceTree = "<group>"; };
 		59FCB50A1A84850C0048D776 /* GritAStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GritAStar.h; sourceTree = "<group>"; };
 		59FCB50C1A8488030048D776 /* GritMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GritMath.h; sourceTree = "<group>"; };
@@ -437,6 +442,7 @@
 				59F431DD1A83A92D008795D9 /* Verdandi */,
 				59F431DE1A83A944008795D9 /* Wonderland */,
 				5923C8E519D0225A0055E0D5 /* Obsoleted */,
+				59F5BCAE1A8A37C4006676EC /* Zephyr */,
 				5926290F198AB66500858A67 /* Config.h */,
 				59262913198AB66500858A67 /* Map.h */,
 				59262916198AB66500858A67 /* ObjectArray.h */,
@@ -629,6 +635,17 @@
 			name = Grit;
 			sourceTree = "<group>";
 		};
+		59F5BCAE1A8A37C4006676EC /* Zephyr */ = {
+			isa = PBXGroup;
+			children = (
+				59F5BCAF1A8A37D7006676EC /* ZephyrCommon.h */,
+				59F5BCB01A8A38A8006676EC /* ZephyrCore.h */,
+				59F5BCB21A8A39E5006676EC /* ZephyrCheck.h */,
+				59F5BCB11A8A39E5006676EC /* ZephyrCheck.cpp */,
+			);
+			name = Zephyr;
+			sourceTree = "<group>";
+		};
 		59FCBF311A72818100BEF905 /* AtTheVeryBeginning */ = {
 			isa = PBXGroup;
 			children = (
@@ -752,6 +769,7 @@
 				599985FD1A80DCC600E6CE68 /* BulletVehicle.cpp in Sources */,
 				59262955198AB66500858A67 /* Type_Techno.cpp in Sources */,
 				5923C8EF19D02A5E0055E0D5 /* PhysicsGeneral.cpp in Sources */,
+				59F5BCB31A8A39E5006676EC /* ZephyrCheck.cpp in Sources */,
 				59FCB50F1A84A3C90048D776 /* Grit_Interface.cpp in Sources */,
 				59262947198AB66500858A67 /* Map.cpp in Sources */,
 				59FCBF481A73D2AB00BEF905 /* Obsoleted.cpp in Sources */,
