@@ -241,6 +241,7 @@ namespace LuaInterface {
 					addFunction("setLocation", &Abs_Abstract::setLocation).
 					addFunction("getMainRotation", &Abs_Abstract::getMainRotation).
 					addFunction("onGround", &Abs_Abstract::onGround).
+					addFunction("print_this", &Abs_Abstract::print_this).
 					addData("useCollSphere", &Abs_Abstract::useCollSphere).
 					addData("rCollSphere", &Abs_Abstract::rCollSphere).
 					addData("temp_ZOffset", &Abs_Abstract::temp_ZOffset).

@@ -26,6 +26,7 @@ void zephyr_check_output() {
 	printf("vector: %lu %lu\n", sizeof(std::vector<int>), sizeof(vec_t));
 	printf("CoordStruct: %lu %lu\n", sizeof(CoordStruct), sizeof(ZCoordStruct));
 	printf("LuaRef: %lu %lu\n", sizeof(luabridge::LuaRef), sizeof(ZephyrScriptRef));
+	printf("Userdata: %lu %lu\n", sizeof(luabridge::Userdata), sizeof(ZephyrObjectRef_));
 	printf("Abs_Abstract: %lu %lu\n", sizeof(Abs_Abstract), sizeof(ZephyrObject));
 	printf("Abs_Anim: %lu %lu\n", sizeof(Abs_Anim), sizeof(ZephyrAnim));
 	printf("Abs_Object: %lu %lu\n", sizeof(Abs_Object), sizeof(ZephyrObject_));

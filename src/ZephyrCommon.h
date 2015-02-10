@@ -56,6 +56,14 @@ typedef struct {
 } ZephyrScriptRef;
 
 typedef struct {
+	ZEPHYR_VTABLE;
+	
+	UNDEFINED_PTR ref;
+} ZephyrObjectRef_;
+
+typedef ZephyrObjectRef_ *ZephyrObjectRef;
+
+typedef struct {
 	unsigned short degree;
 } ZDirection;
 
