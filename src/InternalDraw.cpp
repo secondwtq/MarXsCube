@@ -10,6 +10,7 @@
 #include "SFML.h"
 #include "ObjectManger.h"
 #include "InternalDraw.h"
+#include "SilconSprite.h"
 
 void InternalDraw::Draw(Drawable &obj) {
 	LOGFUNC;

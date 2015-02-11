@@ -27,6 +27,7 @@ using namespace std;
 #include "AcheronGCD.h"
 #include "BulletThread.h"
 #include "SilconThread.h"
+#include "SilconSprite.h"
 #include "GLFoundation.h"
 #include "WonderlandFoundation.h"
 
@@ -75,6 +76,7 @@ int main() {
 	
 	init_opengl();
 	
+	SilconSpriteGeneral::init();
 	Generic::Init_FunObjectTableCreate(config);
 
 	TestManger::GetInstance().window = window_global;

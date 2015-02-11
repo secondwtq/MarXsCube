@@ -78,6 +78,8 @@
 		59F5BCAB1A8A0E86006676EC /* libterra.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F5BCAA1A8A0E86006676EC /* libterra.a */; };
 		59F5BCAD1A8A0F80006676EC /* libluajit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F5BCAC1A8A0F80006676EC /* libluajit.a */; };
 		59F5BCB31A8A39E5006676EC /* ZephyrCheck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BCB11A8A39E5006676EC /* ZephyrCheck.cpp */; };
+		59F5BCB61A8B9657006676EC /* SilconSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BCB41A8B9657006676EC /* SilconSprite.cpp */; };
+		59F5BCB91A8B9E4F006676EC /* SilconShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BCB71A8B9E4F006676EC /* SilconShader.cpp */; };
 		59FCB50B1A84850C0048D776 /* GritAStar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB5091A84850C0048D776 /* GritAStar.cpp */; };
 		59FCB50F1A84A3C90048D776 /* Grit_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB50D1A84A3C90048D776 /* Grit_Interface.cpp */; };
 		59FCB5111A84A5DB0048D776 /* StdInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB5101A84A5DB0048D776 /* StdInterface.cpp */; };
@@ -249,6 +251,12 @@
 		59F5BCB01A8A38A8006676EC /* ZephyrCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZephyrCore.h; sourceTree = "<group>"; };
 		59F5BCB11A8A39E5006676EC /* ZephyrCheck.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZephyrCheck.cpp; sourceTree = "<group>"; };
 		59F5BCB21A8A39E5006676EC /* ZephyrCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZephyrCheck.h; sourceTree = "<group>"; };
+		59F5BCB41A8B9657006676EC /* SilconSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SilconSprite.cpp; sourceTree = "<group>"; };
+		59F5BCB51A8B9657006676EC /* SilconSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilconSprite.h; sourceTree = "<group>"; };
+		59F5BCB71A8B9E4F006676EC /* SilconShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SilconShader.cpp; sourceTree = "<group>"; };
+		59F5BCB81A8B9E4F006676EC /* SilconShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilconShader.h; sourceTree = "<group>"; };
+		59F5BCBA1A8B9F72006676EC /* GLShaderExtDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLShaderExtDef.h; sourceTree = "<group>"; };
+		59F5BCBB1A8BA1F5006676EC /* SilconCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SilconCommon.h; sourceTree = "<group>"; };
 		59FCB5091A84850C0048D776 /* GritAStar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GritAStar.cpp; sourceTree = "<group>"; };
 		59FCB50A1A84850C0048D776 /* GritAStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GritAStar.h; sourceTree = "<group>"; };
 		59FCB50C1A8488030048D776 /* GritMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GritMath.h; sourceTree = "<group>"; };
@@ -340,6 +348,9 @@
 		5923C8D819D00E8B0055E0D5 /* Silcon */ = {
 			isa = PBXGroup;
 			children = (
+				59F5BCBB1A8BA1F5006676EC /* SilconCommon.h */,
+				59F5BCB51A8B9657006676EC /* SilconSprite.h */,
+				59F5BCB41A8B9657006676EC /* SilconSprite.cpp */,
 				5926291D198AB66500858A67 /* RenderElement.h */,
 				5923C8DC19D00F730055E0D5 /* RenderElementsContainer.h */,
 				5923C8EB19D0286F0055E0D5 /* InternalDraw.h */,
@@ -348,6 +359,8 @@
 				5923C8DB19D00F730055E0D5 /* RenderElementsContainer.cpp */,
 				5916925F1A3E11D2001D4D35 /* SFLineShape.h */,
 				5916925E1A3E11D2001D4D35 /* SFLineShape.cpp */,
+				59F5BCB81A8B9E4F006676EC /* SilconShader.h */,
+				59F5BCB71A8B9E4F006676EC /* SilconShader.cpp */,
 				59FCBF451A73CBEC00BEF905 /* SilconThread.h */,
 				59FCBF441A73CBEC00BEF905 /* SilconThread.cpp */,
 			);
@@ -534,6 +547,7 @@
 				59C97B091A7913C800AB3F02 /* GLShader.h */,
 				59C97B081A7913C800AB3F02 /* GLShader.cpp */,
 				593458631A8251F600DE4C28 /* GLShaderExt.h */,
+				59F5BCBA1A8B9F72006676EC /* GLShaderExtDef.h */,
 				593458621A8251F600DE4C28 /* GLShaderExt.cpp */,
 				59FCBF4A1A74840E00BEF905 /* GLFoundation.h */,
 				59FCBF491A74840E00BEF905 /* GLFoundation.cpp */,
@@ -779,6 +793,7 @@
 				5926294C198AB66500858A67 /* Physics.cpp in Sources */,
 				59FCB50B1A84850C0048D776 /* GritAStar.cpp in Sources */,
 				599985F81A80DC0F00E6CE68 /* ConstraintVehicle.cpp in Sources */,
+				59F5BCB61A8B9657006676EC /* SilconSprite.cpp in Sources */,
 				59C97B0D1A7942CA00AB3F02 /* TeslaRenderingBasic.cpp in Sources */,
 				59262942198AB66500858A67 /* Common.cpp in Sources */,
 				59BF15F31A837301000DA821 /* TeslaRendering.cpp in Sources */,
@@ -788,6 +803,7 @@
 				599985EF1A7F4BED00E6CE68 /* Startup.cpp in Sources */,
 				59FCB5171A85B2120048D776 /* Timer.cpp in Sources */,
 				59F431DC1A839A47008795D9 /* GLM_Interface.cpp in Sources */,
+				59F5BCB91A8B9E4F006676EC /* SilconShader.cpp in Sources */,
 				599985E91A7F3F9900E6CE68 /* ATVBCube.cpp in Sources */,
 				5926293E198AB66500858A67 /* Abstract.cpp in Sources */,
 			);

@@ -5,6 +5,7 @@
 #include "SFML.h"
 #include "Abstract.h"
 #include "SFLineShape.h"
+#include "SilconSprite.h"
 
 #include "CubeTransform.h"
 
@@ -48,7 +49,7 @@ class RenderElement_DirectionedStatic : public RenderElement {
 	
 		int getCurrentFrame();
 
-		RenderElement_DirectionedStatic(TextureAtlas *_texture, int countFrame = 32) : RenderElement(), texture(_texture), frameCount(countFrame) {LOGFUNC; }
+	RenderElement_DirectionedStatic(TextureAtlas *_texture, int countFrame = 32) : RenderElement(), texture(_texture), frameCount(countFrame) { assert(false); }
 
 		static RenderElement_DirectionedStatic *createElement(TextureAtlas *texture, int countFrame = 32) {LOGFUNC;
 			return new RenderElement_DirectionedStatic(texture, countFrame);
@@ -58,14 +59,17 @@ protected:
 	void _Render_Overload(CoordStruct &loc);
 };
 
+// In Silcon NT you can only specific texture for RenderElements at creation
+//	if you want to set it manually, you should update the Sprite manually too.
+//		I won't do this for you.
 class RenderElement_FramedStatic : public RenderElement {
 	public:
 		TextureAtlas *texture = nullptr;
-		sf::Sprite renderSprite;
+		SilconSprite sprite;
 		void Render(CoordStruct &&loc);
 		int currentFrame = 0;
 
-		RenderElement_FramedStatic(TextureAtlas *_texture) : RenderElement(), texture(_texture) {LOGFUNC; }
+	RenderElement_FramedStatic(TextureAtlas *_texture) : RenderElement(), texture(_texture) { this->sprite.reg_sprite(); this->sprite.set_texture(*this->texture); }
 	
 		~RenderElement_FramedStatic() {
 			delete this->texture;
@@ -91,7 +95,7 @@ public:
 	sf::Sprite renderSprite;
 	
 	RenderElement_FramedDynamic(TextureAtlas *_texture, USIZE _frame_count)
-		: RenderElement(), texture(_texture), frame_count(_frame_count) {LOGFUNC; }
+		: RenderElement(), texture(_texture), frame_count(_frame_count) { assert(false); }
 	
 	~RenderElement_FramedDynamic() {
 		delete this->texture;
@@ -120,7 +124,7 @@ public:
 			this->shape.setThickness(10);
 	}
 	
-	~RenderElement_InternalLine() { }
+	~RenderElement_InternalLine() { assert(false); }
 	
 	static RenderElement_InternalLine *create(const CoordStruct *pt1, const CoordStruct *pt2, const Vector4DT<float> *color) {
 		return new RenderElement_InternalLine(*pt1, *pt2, *color);

@@ -27,12 +27,27 @@ void RenderElement_DirectionedStatic::_Render_Overload(CoordStruct &loc) {LOGFUN
 	InternalDraw::DrawExt(*this, renderSprite);
 }
 
+template <class T>
+inline void SetProjectionLocation_NT(T *element, CoordStruct& loc) {
+	if (!element->UseShadowProjection)
+		element->sprite.set_position(CubeTransform::view_pos(loc+element->offset));
+	else {
+		auto _loc = loc + element->offset;
+		_loc = CoordStruct(element->ProjectionVector.z*_loc.x+element->ProjectionVector.x*_loc.z, element->ProjectionVector.z*_loc.y+element->ProjectionVector.y*_loc.z, 0);
+		element->sprite.set_position(CubeTransform::view_pos(_loc));
+	}
+}
+
 void RenderElement_FramedStatic::_Render_Overload(CoordStruct &loc) {LOGFUNC;
-	texture->CenterPivot(renderSprite);
-	SetProjectionLocation_General(this, loc);
-	renderSprite.setTexture(*texture);
-	texture->setArea(renderSprite, currentFrame);
-	InternalDraw::DrawExt(*this, renderSprite);
+	
+	SetProjectionLocation_NT(this, loc);
+	this->sprite.render();
+	
+//	texture->CenterPivot(renderSprite);
+//	SetProjectionLocation_General(this, loc);
+//	renderSprite.setTexture(*texture);
+//	texture->setArea(renderSprite, currentFrame);
+//	InternalDraw::DrawExt(*this, renderSprite);
 }
 
 void RenderElement_FramedDynamic::_Render_Overload(CoordStruct &loc) {LOGFUNC;
