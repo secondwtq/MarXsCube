@@ -1,16 +1,16 @@
 #version 330 core
 
-// attribute vec4 gl_Color;
+in vec2 frag_texcoord;
 
-varying vec2 frag_texcoord;
+out vec3 color;
 
 uniform sampler2D texture_main;
 uniform vec4 color_multiply;
 
 void main() {
 
-	vec4 t = texture2D(texture_main, frag_texcoord);
+	vec4 t = texture(texture_main, frag_texcoord);
 
-	gl_FragColor = t * color_multiply;
+	color = t.rgb * color_multiply.rgb;
 
 }

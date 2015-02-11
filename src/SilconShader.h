@@ -24,6 +24,7 @@ public:
 	DEF_ATTRIBUTE(position);
 	DEF_ATTRIBUTE(texcoord);
 	
+	DEF_UNIFORM(model_view_and_projection);
 	DEF_UNIFORM(sprite_position);
 	DEF_UNIFORM(color_multiply);
 	
