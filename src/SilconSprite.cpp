@@ -13,6 +13,8 @@
 
 #include <vector>
 #include <iostream>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 using namespace ATVBCube::Helper;
 
@@ -20,9 +22,16 @@ namespace SilconSpriteGeneral {
 	std::vector<SilconSpriteVertex> m_global_verts;
 	gl_buffer<VBO, DYNAMIC> m_global_buffer;
 	SilconShader m_shader;
+	glm::mat4 m_mat_mvp;
 }
 
 void SilconSpriteGeneral::init() {
+	
+	GLsizei width = ATVBCube::setting<S::WindowSetting>().width,
+	height = ATVBCube::setting<S::WindowSetting>().height;
+	
+	glm::mat4 projection = glm::ortho(0.f, (float)width, (float)height, 0.f, -16384.f, 16384.f);
+	m_mat_mvp = projection;
 	
 	m_global_buffer.init_with(m_global_verts.data(), 1000*6*sizeof(SilconSpriteVertex));
 	push_empty_sprite();
@@ -38,15 +47,14 @@ void SilconSpriteGeneral::init() {
 }
 
 void SilconSpriteGeneral::pre_render() {
-	GLsizei width = ATVBCube::setting<S::WindowSetting>().width,
-	height = ATVBCube::setting<S::WindowSetting>().height;
-	glViewport(0, 0, width, height);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(0, width, height, 0, -16384.f, 16384.f);
 	
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+//	glViewport(0, 0, width, height);
+//	glMatrixMode(GL_PROJECTION);
+//	glLoadIdentity();
+//	glOrtho(0, width, height, 0, -16384.f, 16384.f);
+	
+//	glMatrixMode(GL_MODELVIEW);
+//	glLoadIdentity();
 	
 	GLFoundation::clear_depth();
 	glEnable(GL_BLEND);
@@ -58,6 +66,8 @@ void SilconSpriteGeneral::pre_render() {
 	
 	m_global_buffer.use();
 	m_shader.use_n_load();
+	
+	SET_UNIFORMAT4(m_shader, model_view_and_projection, m_mat_mvp);
 }
 
 void SilconSpriteGeneral::post_render() {

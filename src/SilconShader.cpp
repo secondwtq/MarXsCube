@@ -12,8 +12,8 @@
 #include "GLShaderExtDef.h"
 
 void SilconShader::init_shader() {
-	DEF_ATTRIBUTE(position);
-	DEF_ATTRIBUTE(texcoord);
+	DEF_ATTRIBUTE_NT(position);
+	DEF_ATTRIBUTE_NT(texcoord);
 	
 	DEF_UNIFORM(model_view_and_projection);
 	DEF_UNIFORM(sprite_position);
@@ -23,14 +23,14 @@ void SilconShader::init_shader() {
 
 void SilconShader::attribute_attr() {
 	
-	SET_ATTRIBUTE3(position, 0);
-	SET_ATTRIBUTE3(texcoord, 3);
+	SET_ATTRIBUTE3_NT(position, 0, 0);
+	SET_ATTRIBUTE3_NT(texcoord, 1, 3);
 	
 }
 
 void SilconShader::disable_attributes() {
 	
-	DISABLE_ATTRIBUTE(position);
-	DISABLE_ATTRIBUTE(texcoord);
+	DISABLE_ATTRIBUTE_NT(position, 0);
+	DISABLE_ATTRIBUTE_NT(texcoord, 1);
 	
 }

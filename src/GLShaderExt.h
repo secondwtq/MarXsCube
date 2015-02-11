@@ -76,6 +76,8 @@ public:
 
 #define SET_UNIFORM4(shader, name, glmv) (glUniform4f(shader.NAME_UNIFORM(name), (glmv).x, (glmv).y, (glmv).z, (glmv).w))
 
+#define SET_UNIFORMAT4(shader, name, glmm) (glUniformMatrix4fv((shader).NAME_UNIFORM(name), 1, GL_FALSE, &(glmm)[0][0]))
+
 #define BIND_TEXTURE(shader, name, texid, texunitid) (glActiveTexture(GL_TEXTURE##texunitid), glBindTexture(GL_TEXTURE_2D, (texid)), glUniform1i(shader.NAME_UNIFORM(name), (texunitid)))
 
 #define BIND_TEXTUREP(shaderp, name, texid, texunitid) (glActiveTexture(GL_TEXTURE##texunitid), glBindTexture(GL_TEXTURE_2D, (texid)), glUniform1i(shaderp->NAME_UNIFORM(name), (texunitid)))

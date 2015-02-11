@@ -11,6 +11,7 @@ void main() {
 
 	vec4 t = texture(texture_main, frag_texcoord);
 
-	color = t.rgb * color_multiply.rgb;
+	// color = t.rgb * color_multiply.rgb;
+	color = vec3(1, 1, 1);
 
 }

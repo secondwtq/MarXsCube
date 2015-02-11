@@ -24,6 +24,7 @@ namespace SilconSpriteGeneral {
 	extern std::vector<SilconSpriteVertex> m_global_verts;
 	extern gl_buffer<VBO, DYNAMIC> m_global_buffer;
 	extern SilconShader m_shader;
+	extern glm::mat4 m_mat_mvp;
 	
 	inline void push_empty_sprite() {
 		for (std::size_t i = 0; i < 6; i++) {
