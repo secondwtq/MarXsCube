@@ -49,6 +49,7 @@ void SilconSpriteGeneral::pre_render() {
 	glLoadIdentity();
 	
 	GLFoundation::clear_depth();
+	glEnable(GL_BLEND);
 	glDisable(GL_DEPTH_TEST);
 	
 	m_global_buffer.use();
@@ -66,6 +67,8 @@ void SilconSpriteGeneral::post_render() {
 
 void SilconSprite::render() {
 	
+	SET_UNIFORM2(SilconSpriteGeneral::m_shader, sprite_position, this->position);
+	SET_UNIFORM4(SilconSpriteGeneral::m_shader, color_multiply, this->color_multiply);
 	BIND_TEXTURE(SilconSpriteGeneral::m_shader, texture_main, this->m_texture_id, 0);
 	glDrawArrays(GL_TRIANGLES, static_cast<GLint>(6*this->m_sprite_id), 6);
 	

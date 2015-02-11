@@ -15,6 +15,8 @@ void SilconShader::init_shader() {
 	DEF_ATTRIBUTE(position);
 	DEF_ATTRIBUTE(texcoord);
 	
+	DEF_UNIFORM(sprite_position);
+	DEF_UNIFORM(color_multiply);
 	DEF_SAMPLER(texture_main);
 }
 

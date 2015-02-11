@@ -22,14 +22,12 @@ namespace SilconSpriteGeneral {
 	void init();
 	
 	extern std::vector<SilconSpriteVertex> m_global_verts;
-	extern std::vector<SilconSpriteVertex_Specific> m_global_poses;
 	extern gl_buffer<VBO, DYNAMIC> m_global_buffer;
 	extern SilconShader m_shader;
 	
 	inline void push_empty_sprite() {
 		for (std::size_t i = 0; i < 6; i++) {
 			m_global_verts.push_back({ });
-			m_global_poses.push_back({ });
 		}
 	}
 	
@@ -64,23 +62,26 @@ public:
 		
 		using namespace SilconSpriteGeneral;
 		
-		vert_ref(0)->position = { 0, 0, 0 };
-		vert_ref(0)->texcoord = { 0, 0, 0 };
-		vert_ref(5)->position = { 0, 0, 0 };
-		vert_ref(5)->texcoord = { 0, 0, 0 };
+		float half_width = this->width/2.0f, half_height = this->height/2.0f;
 		
-		vert_ref(1)->position = { this->width, 0, 0 };
+		vert_ref(0)->position = vert_ref(5)->position = { -half_width, -half_height, 0 };
+		vert_ref(0)->texcoord = vert_ref(5)->texcoord = { 0, 0, 0 };
+		
+		vert_ref(1)->position = { half_width, -half_height, 0 };
 		vert_ref(1)->texcoord = { 1.f, 0, 0 };
 		
-		vert_ref(2)->position = { this->width, this->height, 0 };
+		vert_ref(2)->position = vert_ref(3)->position = { half_width, half_height, 0 };
 		vert_ref(2)->texcoord = vert_ref(3)->texcoord = { 1.f, 1.f, 0 };
-		vert_ref(3)->position = { this->width, this->height, 0 };
 		
-		vert_ref(4)->position = { 0, this->height, 0 };
+		vert_ref(4)->position = { -half_width, half_height, 0 };
 		vert_ref(4)->texcoord = { 0, 1.f, 0 };
 		
 	}
+	
 	void render();
+	
+	glm::vec2 position;
+	glm::vec4 color_multiply { 1.0, 1.0, 1.0, 1.0 };
 	
 private:
 	

@@ -70,6 +70,12 @@ public:
 	
 };
 
+#define SET_UNIFORM2(shader, name, glmv) (glUniform2f(shader.NAME_UNIFORM(name), (glmv).x, (glmv).y))
+
+#define SET_UNIFORM3(shader, name, glmv) (glUniform3f(shader.NAME_UNIFORM(name), (glmv).x, (glmv).y, (glmv).z))
+
+#define SET_UNIFORM4(shader, name, glmv) (glUniform4f(shader.NAME_UNIFORM(name), (glmv).x, (glmv).y, (glmv).z, (glmv).w))
+
 #define BIND_TEXTURE(shader, name, texid, texunitid) (glActiveTexture(GL_TEXTURE##texunitid), glBindTexture(GL_TEXTURE_2D, (texid)), glUniform1i(shader.NAME_UNIFORM(name), (texunitid)))
 
 #define BIND_TEXTUREP(shaderp, name, texid, texunitid) (glActiveTexture(GL_TEXTURE##texunitid), glBindTexture(GL_TEXTURE_2D, (texid)), glUniform1i(shaderp->NAME_UNIFORM(name), (texunitid)))

@@ -14,7 +14,4 @@ struct SilconSpriteVertex {
 	glm::vec3 texcoord;
 };
 
-struct SilconSpriteVertex_Specific {
-	glm::vec2 position; };
-
 #endif

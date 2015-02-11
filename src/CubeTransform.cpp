@@ -42,4 +42,9 @@ namespace CubeTransform {
 		ret = ct_view_mat * ret * float(TransformScaleFactor);
 		return sf::Vector2f(ret[0], ret[1]); }
 	
+	glm::vec2 view_pos_nt(const CoordStruct &coord) {
+		vec4 ret { (-coord.x), (-coord.y), (-coord.z), 1 };
+		ret = ct_view_mat * ret * float(TransformScaleFactor);
+		return glm::vec2(ret.x, ret.y); }
+	
 }

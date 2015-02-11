@@ -30,17 +30,18 @@ void RenderElement_DirectionedStatic::_Render_Overload(CoordStruct &loc) {LOGFUN
 template <class T>
 inline void SetProjectionLocation_NT(T *element, CoordStruct& loc) {
 	if (!element->UseShadowProjection)
-		element->sprite.set_position(CubeTransform::view_pos(loc+element->offset));
+		element->sprite.position = CubeTransform::view_pos_nt(loc+element->offset);
 	else {
 		auto _loc = loc + element->offset;
 		_loc = CoordStruct(element->ProjectionVector.z*_loc.x+element->ProjectionVector.x*_loc.z, element->ProjectionVector.z*_loc.y+element->ProjectionVector.y*_loc.z, 0);
-		element->sprite.set_position(CubeTransform::view_pos(_loc));
+		element->sprite.position = CubeTransform::view_pos_nt(_loc);
 	}
 }
 
 void RenderElement_FramedStatic::_Render_Overload(CoordStruct &loc) {LOGFUNC;
 	
 	SetProjectionLocation_NT(this, loc);
+	this->sprite.color_multiply = { this->colorMultiply.x, this->colorMultiply.y, this->colorMultiply.z, this->colorMultiply.w };
 	this->sprite.render();
 	
 //	texture->CenterPivot(renderSprite);

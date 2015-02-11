@@ -8,13 +8,15 @@ varying vec2 frag_texcoord;
 attribute vec3 position;
 attribute vec3 texcoord;
 
+uniform vec2 sprite_position;
 uniform sampler2D texture_main;
 
 void main() {
 
 	frag_texcoord = texcoord.xy;
 
-	vec4 position_4 = vec4(position.xyz, 1);
+	vec2 position_t = position.xy + sprite_position;
+	vec4 position_4 = vec4(position_t, position.z, 1);
 
 	gl_Position = gl_ModelViewProjectionMatrix * position_4; // ftransform();
 }

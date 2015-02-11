@@ -20,6 +20,8 @@ namespace CubeTransform {
 	
 	sf::Vector2f view_pos(const CoordStruct &coord);
 	
+	glm::vec2 view_pos_nt(const CoordStruct &coord);
+	
 	glm::vec3 look_at_vector();
 	
 }
