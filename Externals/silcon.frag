@@ -5,7 +5,7 @@ in vec2 frag_texcoord;
 out vec3 color;
 
 uniform sampler2D texture_main;
-uniform vec4 color_multiply;
+// uniform vec4 color_multiply;
 
 void main() {
 

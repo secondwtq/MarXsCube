@@ -28,19 +28,19 @@ fps_counter fps_silcon;
 void silcon_acheron_function() {
 	fps_silcon.update();
 	if (fps_silcon.updated) printf("Rendering FPS: %lf\n", fps_silcon.fps);
-	window_global->clear(sf::Color::Black);
+	window_global->clear(sf::Color::Blue);
 
-	Generic::TeslaManger()->Render();
+//	Generic::TeslaManger()->Render();
 	
-	window_global->pushGLStates();
+//	window_global->pushGLStates();
 	SilconSpriteGeneral::pre_render();
 	for (size_t i = 0; i < RenderLayerType::Count; i++)
 		Generic::RenderLayerManger()->Layers[i].Update();
 	SilconSpriteGeneral::post_render();
-	window_global->popGLStates();
+//	window_global->popGLStates();
 	
-	if (ATVBCube::setting<S::BulletDebugSetting>().enabled)
-		BulletDebugDrawer::render();
+//	if (ATVBCube::setting<S::BulletDebugSetting>().enabled)
+//		BulletDebugDrawer::render();
 	
 	window_global->display();
 }

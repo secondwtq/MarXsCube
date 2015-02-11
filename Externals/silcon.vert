@@ -10,6 +10,7 @@ out vec2 frag_texcoord;
 layout(location = 0) in vec3 position;
 layout(location = 1) in vec3 texcoord;
 
+uniform vec4 color_multiply;
 uniform vec2 sprite_position;
 uniform sampler2D texture_main;
 uniform mat4 model_view_and_projection;

@@ -59,20 +59,30 @@ void GLFoundation::view(float lkax, float lkay) {
 	glScalef(SCALE_FACTOR, SCALE_FACTOR, SCALE_FACTOR);
 }
 
+GLuint vertex_arrays[5];
+
 void init_opengl() {
 	window_global->setActive();
 	
-	glEnable(GL_DEPTH_TEST);
-	glDepthMask(GL_TRUE);
-	glClearDepth(1.f);
-	glDisable(GL_LIGHTING);
+	GLenum error = 0;
+	error = glGetError();
+	glGenVertexArrays(5, &vertex_arrays[0]);
+	error = glGetError();
+	glBindVertexArray(vertex_arrays[0]);
+	error = glGetError();
+	
+//	glEnable(GL_DEPTH_TEST);
+//	glDepthMask(GL_TRUE);
+//	glClearDepth(1.f);
+//	glDisable(GL_LIGHTING);
 	
 	GLsizei width = ATVBCube::setting<S::WindowSetting>().width,
 		height = ATVBCube::setting<S::WindowSetting>().height;
 	
 	glViewport(0, 0, width, height);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(0, width, height, 0, -16384.f, 16384.f);
-	glScalef(1, -1, 1);
+//	glMatrixMode(GL_PROJECTION);
+//	glLoadIdentity();
+//	glOrtho(0, width, height, 0, -16384.f, 16384.f);
+//	glScalef(1, -1, 1);
+	
 }

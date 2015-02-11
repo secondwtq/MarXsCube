@@ -17,7 +17,7 @@ void SilconShader::init_shader() {
 	
 	DEF_UNIFORM(model_view_and_projection);
 	DEF_UNIFORM(sprite_position);
-	DEF_UNIFORM(color_multiply);
+//	DEF_UNIFORM(color_multiply);
 	DEF_SAMPLER(texture_main);
 }
 
@@ -30,7 +30,7 @@ void SilconShader::attribute_attr() {
 
 void SilconShader::disable_attributes() {
 	
-	DISABLE_ATTRIBUTE_NT(position, 0);
-	DISABLE_ATTRIBUTE_NT(texcoord, 1);
+//	DISABLE_ATTRIBUTE_NT(position, 0);
+//	DISABLE_ATTRIBUTE_NT(texcoord, 1);
 	
 }

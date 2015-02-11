@@ -61,6 +61,10 @@ void gl_shader::load_str(SHADERTYPE type, const std::string& src) {
 
 void gl_shader::create() {
 	this->obj_id = glCreateProgram();
+	
+	glBindAttribLocation(this->obj_id, 0, "position");
+	glBindAttribLocation(this->obj_id, 1, "texcoord");
+	
 	glAttachShader(this->obj_id, this->vert_id);
 	glAttachShader(this->obj_id, this->frag_id);
 	glLinkProgram(this->obj_id);

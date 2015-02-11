@@ -64,6 +64,7 @@ int main() {
 	zephyr_check_output();
 	
 	cube_init_window();
+	init_opengl();
 	
 	ConfigManger config(*Generic::lua_state());
 	LuaInterface::RegisterInterface(*Generic::lua_state());
@@ -74,7 +75,6 @@ int main() {
 	Generic::init_TeslaRenderingManger();
 	config.loadConfigFrom("Config.lua");
 	
-	init_opengl();
 	
 	SilconSpriteGeneral::init();
 	Generic::Init_FunObjectTableCreate(config);

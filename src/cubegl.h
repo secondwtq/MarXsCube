@@ -17,7 +17,7 @@
 
 #if defined(CUBE_PLATFORM_DARWIN)
 
-#include <OpenGL/gl.h>
+#include <OpenGL/gl3.h>
 #include <OpenGL/glu.h>
 
 #elif defined(CUBE_PLATFORM_WINDOWS)
