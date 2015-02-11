@@ -1,3 +1,5 @@
+#version 330 core
+
 // attribute vec4 gl_Color;
 
 varying vec2 frag_texcoord;

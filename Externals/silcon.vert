@@ -1,3 +1,5 @@
+#version 330 core
+
 // uniform mat4 gl_ModelViewMatrix;
 // uniform mat4 gl_ProjectionMatrix;
 // uniform mat4 gl_ModelViewProjectionMatrix;

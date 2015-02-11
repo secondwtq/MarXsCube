@@ -3,8 +3,8 @@ AtTheVeryBeginning.WeWereCreated()
 
 AtTheVeryBeginning.together({
 
-	context_version_major = 2,
-	context_version_minor = 1,
+	context_version_major = 3,
+	context_version_minor = 2,
 	context_antialias = 4,
 	window_title = "Demo Window",
 	window_width = 1920, window_height = 1080,
