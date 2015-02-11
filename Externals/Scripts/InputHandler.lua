@@ -10,8 +10,6 @@ local InputHandler = { }
 
 local Helpers = require 'Helpers'
 
-Import("Zephyr.lua")
-
 -- called when mouse press on an object
 -- args: mouse_status: same as Functions.Session_MousePress
 --		ray: the RayTestSingle object used to test ray collision
@@ -19,9 +17,7 @@ function InputHandler.MousePress_OnObject(mouse_status, ray)
 	local hit_point = ray:hit_point()
 	-- print("hit on object", hit_point.x, hit_point.y, hit_point.z)
 
-	local techno_userdata = Helpers.toTechno(ray:getFirstObject().attachedToObject)
 	local techno_pressedon = Helpers.toTechno(ray:getFirstObject().attachedToObject).ExtTable
-	get_location_ex(techno_userdata)
 	TECHNO_SELECTED = techno_pressedon
 end
 

@@ -22,7 +22,7 @@ Abs_Techno::Abs_Techno(Type_Techno *Type, PhysicsObject *phy_object) :
 }
 
 void Abs_Techno::Update() {LOGFUNC;
-	EventManger::GetInstance().GetEvent(EventManger::Events::TECHNO_UPDATE)(this, ExtTable);
+	EventManger::GetInstance().GetEvent(EventManger::Events::TECHNO_UPDATE)(this);
 }
 
 void Abs_Techno::Render() {LOGFUNC;

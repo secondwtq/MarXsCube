@@ -129,7 +129,7 @@ void ConfigManger::loadConfigFrom(const char *filename) {LOGFUNC;
 }
 
 // delete log because of performance issue
-luabridge::LuaRef &EventManger::GetEvent(Events type) {LOGFUNC; return _Events[type]; }
+luabridge::LuaRef &EventManger::GetEvent(Events type) { return _Events[type]; }
 
 #define ADD_EVENT(init, func) case init: addEvent(func); break
 

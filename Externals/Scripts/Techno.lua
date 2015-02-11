@@ -6,11 +6,12 @@ Helpers = require 'Helpers'
 
 function Functions.TechnoType_onLoad(self, table) end
 
-function Functions.Abs_Techno_onUpdate(self, table)
+function Functions.Abs_Techno_onUpdate(self)
+	local tb = self.ExtTable
 
 	self.elements.direction = self.Direction.degree
 
-	table.components:update()
+	tb.components:update()
 
 end
 

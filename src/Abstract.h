@@ -27,7 +27,7 @@ class Abs_Abstract {
 		RenderLayerType::Type Layer = GetDefaultLayer();
 
 		void setLayer(int Layer);
-		void print_this() { printf("Type: %d, ID: %u, address: 0x%x.\n", this->WhatAmI(), this->RTTIID, (unsigned long)(this)); }
+		void print_this() { printf("Type: %d, ID: %u.\n", this->WhatAmI(), this->RTTIID); }
 
 		virtual int getMainRotation() { return 0; }
 		virtual void setLocation(const CoordStruct &location) { }
