@@ -26,6 +26,7 @@ using namespace std;
 #include "Acheron.h"
 #include "AcheronGCD.h"
 #include "BulletThread.h"
+#include "Silcon.h"
 #include "SilconThread.h"
 #include "SilconSprite.h"
 #include "GLFoundation.h"
@@ -75,7 +76,7 @@ int main() {
 	Generic::init_TeslaRenderingManger();
 	config.loadConfigFrom("Config.lua");
 	
-	
+	Silcon::Manger = new Silcon::SilconRenderingManger;
 	SilconSpriteGeneral::init();
 	Generic::Init_FunObjectTableCreate(config);
 

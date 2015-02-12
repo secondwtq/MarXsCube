@@ -28,7 +28,6 @@ class ObjectManger {
 class RenderLayer {
 	public:
 		vector<Abs_Abstract *> Objects;
-		void sort_Objects();
 		void Update();
 
 		bool addObject(Abs_Abstract &src) {LOGFUNC; return addObject_noDup(&src, Objects); }

@@ -25,12 +25,7 @@ class RenderElement {
 		bool UseShadowProjection = false;
 		Vector3DT<double> ProjectionVector = ShadowProjectionVector; //	Vector3DT<double>(0.1239851454748, -0.7748446592171, 0.61987572737); //	Vector3DT<double>(4, -25, 20);
 
-		inline void Render(CoordStruct &&loc) {
-			if (this->Enabled)
-				this->_Render_Overload(loc);
-		}
-	
-		inline void pre_update(CoordStruct &&loc) {
+		inline void Update(CoordStruct &&loc) {
 			if (this->Enabled)
 				this->_update_overload(loc);
 		}
@@ -38,31 +33,33 @@ class RenderElement {
 		virtual ~RenderElement() { }
 	
 protected:
-	virtual void _Render_Overload(CoordStruct &loc) = 0;
 	virtual void _update_overload(CoordStruct &loc) = 0;
 };
 
 class RenderElement_DirectionedStatic : public RenderElement {
 	public:
 		TextureAtlas *texture = nullptr;
-		sf::Sprite renderSprite;
+		SilconSprite sprite;
 		int frameCount = 32;
 	
 		~RenderElement_DirectionedStatic() {
-			delete this->texture;
-		}
+			delete this->texture; }
 	
 		int getCurrentFrame();
 
-	RenderElement_DirectionedStatic(TextureAtlas *_texture, int countFrame = 32) : RenderElement(), texture(_texture), frameCount(countFrame) { assert(false); }
+		RenderElement_DirectionedStatic(TextureAtlas *_texture, int countFrame = 32)
+			: RenderElement(), texture(_texture), frameCount(countFrame) {
+			Silcon::Manger->register_sprite(&this->sprite);
+			this->sprite.set_texture(*this->texture);
+		}
 
 		static RenderElement_DirectionedStatic *createElement(TextureAtlas *texture, int countFrame = 32) {LOGFUNC;
 			return new RenderElement_DirectionedStatic(texture, countFrame);
 		}
 	
-protected:
-	void _Render_Overload(CoordStruct &loc);
-	void _update_overload(CoordStruct &loc) { }
+	protected:
+	
+		void _update_overload(CoordStruct &loc);
 };
 
 // In Silcon NT you can only specific texture for RenderElements at creation
@@ -75,7 +72,9 @@ class RenderElement_FramedStatic : public RenderElement {
 		void Render(CoordStruct &&loc);
 		int currentFrame = 0;
 
-	RenderElement_FramedStatic(TextureAtlas *_texture) : RenderElement(), texture(_texture) { this->sprite.reg_sprite(); this->sprite.set_texture(*this->texture); }
+		RenderElement_FramedStatic(TextureAtlas *_texture) : RenderElement(), texture(_texture) {
+			Silcon::Manger->register_sprite(&this->sprite); this->sprite.set_texture(*this->texture);
+		}
 	
 		~RenderElement_FramedStatic() {
 			delete this->texture;
@@ -88,7 +87,6 @@ class RenderElement_FramedStatic : public RenderElement {
 		}
 	
 protected:
-	void _Render_Overload(CoordStruct &loc);
 	void _update_overload(CoordStruct &loc);
 };
 
@@ -113,8 +111,7 @@ public:
 	}
 
 protected:
-	void _Render_Overload(CoordStruct &loc);
-	void _update_overload(CoordStruct &loc) { }
+	void _update_overload(CoordStruct &loc);
 };
 
 class RenderElement_InternalLine : public RenderElement {
@@ -140,7 +137,6 @@ public:
 	
 protected:
 	
-	void _Render_Overload(CoordStruct &loc);
 	void _update_overload(CoordStruct &loc) { }
 	
 };

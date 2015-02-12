@@ -20,7 +20,6 @@ TextureManger *TextureManger::instance = new TextureManger();
 TextureAtlas *TextureManger::getTexture(const string &name) {LOGFUNC; return TextureHashs[name]; }
 
 void RenderLayer::Update() {LOGFUNC;
-	sort_Objects();
 	for (size_t i = 0; i < Objects.size(); i++)
 		Objects[i]->Render();
 }
@@ -78,10 +77,4 @@ int disToCamera(const Abs_Abstract *src) {
 	static auto d = Generic::Session()->CameraLocation;
 	int f = d.x*10-c.x, g = d.y*10-c.y, h = d.z*10-c.z;
 	return (f*f+g*g+h*h);
-}
-
-void RenderLayer::sort_Objects() {
-	sort(Objects.begin(), Objects.end(),
-			[](const Abs_Abstract *a, const Abs_Abstract *b) -> bool {
-				return disToCamera(a) > disToCamera(b); });
 }

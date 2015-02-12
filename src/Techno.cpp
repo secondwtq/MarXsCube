@@ -26,7 +26,6 @@ void Abs_Techno::Update() {LOGFUNC;
 }
 
 void Abs_Techno::Render() {LOGFUNC;
-	elements->pre_update();
 	elements->Update();
 }
 

@@ -9,6 +9,8 @@
 #ifndef MarXsCube_SilconCommon_h
 #define MarXsCube_SilconCommon_h
 
+#include <glm/glm.hpp>
+
 struct SilconSpriteVertex {
 	glm::vec3 position;
 	glm::vec3 texcoord;

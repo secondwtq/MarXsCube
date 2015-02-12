@@ -75,13 +75,3 @@ void SilconSpriteGeneral::post_render() {
 	GLFoundation::unbind(m_global_buffer);
 	m_shader.disable_attributes();
 }
-
-void SilconSprite::render() {
-	
-	glm::vec3 t { this->position.x, this->position.y, this->m_zoffset };
-	SET_UNIFORM3(SilconSpriteGeneral::m_shader, sprite_position, t);
-	SET_UNIFORM4(SilconSpriteGeneral::m_shader, color_multiply, this->color_multiply);
-	BIND_TEXTURE(SilconSpriteGeneral::m_shader, texture_main, this->m_texture_id, 0);
-	glDrawArrays(GL_TRIANGLES, static_cast<GLint>(6*this->m_sprite_id), 6);
-	
-}

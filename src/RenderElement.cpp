@@ -17,16 +17,6 @@
 
 using namespace sf;
 
-int RenderElement_DirectionedStatic::getCurrentFrame() { return getDirFrameNum(this->parent->direction, frameCount); }
-
-void RenderElement_DirectionedStatic::_Render_Overload(CoordStruct &loc) {LOGFUNC;
-	texture->CenterPivot(renderSprite);
-	SetProjectionLocation_General(this, loc);
-	renderSprite.setTexture(*texture);
-	texture->setArea(renderSprite, getCurrentFrame());
-	InternalDraw::DrawExt(*this, renderSprite);
-}
-
 template <class T>
 inline void SetProjectionLocation_NT(T *element, CoordStruct& loc) {
 	if (!element->UseShadowProjection)
@@ -44,17 +34,27 @@ inline float silcon_dis_camera(const CoordStruct& loc) {
 	return (f*f+g*g+h*h);
 }
 
+int RenderElement_DirectionedStatic::getCurrentFrame() { return getDirFrameNum(this->parent->direction, frameCount); }
+
+void RenderElement_DirectionedStatic::_update_overload(CoordStruct &loc) {LOGFUNC;
+	SetProjectionLocation_NT(this, loc);
+	this->sprite.color_multiply = { this->colorMultiply.x, this->colorMultiply.y, this->colorMultiply.z, this->colorMultiply.w };
+	this->sprite.set_Zvalue(-1.f*silcon_dis_camera(loc)/16384.f);
+	
+	sf::IntRect tex_area = this->texture->getArea(this->getCurrentFrame());
+	this->sprite.set_texture_area(tex_area.left, tex_area.top, tex_area.width, tex_area.height);
+}
+
 void RenderElement_FramedStatic::_update_overload(CoordStruct &loc) {
 	SetProjectionLocation_NT(this, loc);
 	this->sprite.color_multiply = { this->colorMultiply.x, this->colorMultiply.y, this->colorMultiply.z, this->colorMultiply.w };
 	this->sprite.set_Zvalue(-1.f*silcon_dis_camera(loc)/16384.f);
+	
+	sf::IntRect tex_area = this->texture->getArea(this->currentFrame);
+	this->sprite.set_texture_area(tex_area.left, tex_area.top, tex_area.width, tex_area.height);
 }
 
-void RenderElement_FramedStatic::_Render_Overload(CoordStruct &loc) {
-	this->sprite.render();
-}
-
-void RenderElement_FramedDynamic::_Render_Overload(CoordStruct &loc) {LOGFUNC;
+void RenderElement_FramedDynamic::_update_overload(CoordStruct &loc) {LOGFUNC;
 	if (this->current_frame > this->frame_count) this-> current_frame = 1;
 
 	texture->CenterPivot(renderSprite);
@@ -65,11 +65,4 @@ void RenderElement_FramedDynamic::_Render_Overload(CoordStruct &loc) {LOGFUNC;
 	this->current_frame++;
 
 	InternalDraw::DrawExt(*this, renderSprite);
-}
-
-void RenderElement_InternalLine::_Render_Overload(CoordStruct &loc) {LOGFUNC;
-	this->shape.m_thickness = this->thickness;
-	this->shape.setPoints(CubeTransform::view_pos(this->point1), CubeTransform::view_pos(this->point2));
-	this->shape.setFillColor(sf::Color(this->color.x*255.0, this->color.y*255.0, this->color.z*255.0, this->color.w*255.0));
-	InternalDraw::Draw(this->shape);
 }

@@ -10,7 +10,7 @@ uniform vec4 color_multiply;
 void main() {
 
 	vec4 t = texture(texture_main, frag_texcoord);
-	if (t.a < 0.9f) discard;
+	// if (t.a < 0.9f) discard;
 
 	color = t * color_multiply;
 

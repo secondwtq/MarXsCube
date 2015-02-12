@@ -20,7 +20,6 @@ class RenderElementsContainer {
 public:
 	std::unordered_multimap<int, RenderElement *> elements;
 	Abs_Abstract *parent;
-	void pre_update();
 	void Update();
 	RenderElementsContainer(Abs_Abstract *_parent) : parent(_parent) {LOGFUNC; }
 	void insert(int Zidx, RenderElement *element) {LOGFUNC;

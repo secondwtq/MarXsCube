@@ -16,6 +16,7 @@
 #include "BulletDebugDraw.h"
 #include "ATVBCube.h"
 #include "Timer.h"
+#include "Silcon.h"
 #include "SilconSprite.h"
 #include "SilconThread.h"
 
@@ -33,12 +34,9 @@ void silcon_acheron_function() {
 	Generic::TeslaManger()->pre_render();
 	Generic::TeslaManger()->Render();
 	
-//	window_global->pushGLStates();
-	SilconSpriteGeneral::pre_render();
 	for (size_t i = 0; i < RenderLayerType::Count; i++)
 		Generic::RenderLayerManger()->Layers[i].Update();
-	SilconSpriteGeneral::post_render();
-//	window_global->popGLStates();
+	Silcon::Manger->render_dispatch();
 	
 //	if (ATVBCube::setting<S::BulletDebugSetting>().enabled)
 //		BulletDebugDrawer::render();
