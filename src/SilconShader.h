@@ -26,7 +26,7 @@ public:
 	
 	DEF_UNIFORM(model_view_and_projection);
 	DEF_UNIFORM(sprite_position);
-//	DEF_UNIFORM(color_multiply);
+	DEF_UNIFORM(color_multiply);
 	
 	DEF_SAMPLER(texture_main);
 };

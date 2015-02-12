@@ -1,16 +1,18 @@
-// attribute vec4 gl_Color;
+#version 330 core
 
 #define LIGHTING_ONLY 0
 #define USE_LIGHTING 1
 
 #define TEXATLAS_COUNT (8.0)
 
-varying vec3 frag_normal;
-varying vec3 frag_light_dir;
-varying vec2 frag_texcoord;
-varying vec3 frag_blendweights;
-varying vec2 frag_height_texcoord;
-varying vec3 frag_texture_indexes;
+in vec3 frag_normal;
+in vec3 frag_light_dir;
+in vec2 frag_texcoord;
+in vec3 frag_blendweights;
+in vec2 frag_height_texcoord;
+in vec3 frag_texture_indexes;
+
+out vec4 color;
 
 uniform sampler2D texture_main;
 uniform sampler2D texture_second;
@@ -31,7 +33,7 @@ vec4 sample_scale_and_offset(in vec2 texcoord, in sampler2D tileset, in vec2 off
 
 	vec2 texcoord_scaled = fract(texcoord_org);
 	vec2 texcoord_atlas = fract(texcoord_scaled) / count + offset;
-	return texture2D(tileset, texcoord_atlas);
+	return texture(tileset, texcoord_atlas);
 }
 
 void main() {
@@ -55,8 +57,8 @@ void main() {
 	gl_FragColor = vec4(1, 1, 1, 0) * intensity;
 #else
 	
-	vec4 color_original = mix(texture2D(texture_tileset, texcoord_atlas_primary), 
-						texture2D(texture_tileset, texcoord_atlas_secondary), frag_blendweights.x);
+	vec4 color_original = mix(texture(texture_tileset, texcoord_atlas_primary), 
+						texture(texture_tileset, texcoord_atlas_secondary), frag_blendweights.x);
 	vec4 color_scaled_1 = mix(sample_scale_and_offset(frag_texcoord, texture_tileset, offset, 1.0/6.0, TEXATLAS_COUNT), 
 						sample_scale_and_offset(frag_texcoord, texture_tileset, offset_secondary, 1.0/6.0, TEXATLAS_COUNT), frag_blendweights.x);
 	vec4 color_scaled_2 = mix(sample_scale_and_offset(frag_texcoord, texture_tileset, offset, 1.0/12.0, TEXATLAS_COUNT), 
@@ -65,7 +67,7 @@ void main() {
 	vec4 colort1 = mix(color_original, color_scaled_1, 0.3);
 	vec4 colort2 = mix(colort1, color_scaled_2, 0.3);
 
-	gl_FragColor = 3.0 * vec4(1, 1, 1, 0) * intensity *
+	color = 3.0 * vec4(1, 1, 1, 0) * intensity *
 					 colort2;
 
 #endif

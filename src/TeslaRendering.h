@@ -12,6 +12,7 @@
 #include "TeslaObject.h"
 
 #include <vector>
+#include <glm/glm.hpp>
 
 class TeslaRenderingManger {
 public:
@@ -20,7 +21,10 @@ public:
 	void add_chunk(TeslaObject *src) {
 		this->chunks.push_back(src); }
 	
+	void pre_render();
 	void Render();
+	
+	glm::mat4 m_mat_mvp;
 };
 
 #endif /* defined(__MarXsCube__TeslaRendering__) */

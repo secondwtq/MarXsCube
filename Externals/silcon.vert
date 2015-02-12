@@ -1,10 +1,5 @@
 #version 330 core
 
-// uniform mat4 gl_ModelViewMatrix;
-// uniform mat4 gl_ProjectionMatrix;
-// uniform mat4 gl_ModelViewProjectionMatrix;
-// attribute vec4 gl_Vertex;
-
 out vec2 frag_texcoord;
 
 layout(location = 0) in vec3 position;

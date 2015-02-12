@@ -11,12 +11,14 @@
 #include "GLShaderExtDef.h"
 
 void tesla_shader::init_shader() {
-	DEF_ATTRIBUTE(position);
-	DEF_ATTRIBUTE(normal);
-	DEF_ATTRIBUTE(texcoord);
-	DEF_ATTRIBUTE(blendweights);
-	DEF_ATTRIBUTE(texindexes);
+	DEF_ATTRIBUTE_NT(position);
+	DEF_ATTRIBUTE_NT(normal);
+	DEF_ATTRIBUTE_NT(texcoord);
+	DEF_ATTRIBUTE_NT(blendweights);
+	DEF_ATTRIBUTE_NT(texindexes);
 	
+	DEF_UNIFORM(model_view_and_projection);
+	DEF_UNIFORM(chunk_position);
 	DEF_SAMPLER(texture_main);
 	DEF_SAMPLER(texture_second);
 	DEF_SAMPLER(texture_heightfield);
@@ -25,11 +27,11 @@ void tesla_shader::init_shader() {
 
 void tesla_shader::attribute_attr() {
 	
-	SET_ATTRIBUTE3(position, 0);
-	SET_ATTRIBUTE3(normal, 3);
-	SET_ATTRIBUTE3(texcoord, 6);
-	SET_ATTRIBUTE3(blendweights, 9);
-	SET_ATTRIBUTE3(texindexes, 12);
+	SET_ATTRIBUTE3_NT(position, 0, 0);
+	SET_ATTRIBUTE3_NT(normal, 1, 3);
+	SET_ATTRIBUTE3_NT(texcoord, 2, 6);
+	SET_ATTRIBUTE3_NT(blendweights, 3, 9);
+	SET_ATTRIBUTE3_NT(texindexes, 4, 12);
 
 }
 

@@ -16,6 +16,11 @@
 #include "cubegl.h"
 #include "BulletCollision/CollisionDispatch/btInternalEdgeUtility.h"
 
+TeslaObject *TeslaObject::create() {
+	// only used in Lua, so just pass the singleton
+	return new TeslaObject(Generic::TeslaManger());
+}
+
 void TeslaObject::create_bullet() {
 	transfer_bullet_shape(*this->m_bmesh, *this->m_bullet_model, this->m_tex_heightfield_s);
 	
@@ -46,6 +51,9 @@ void TeslaObject::load_shader() {
 	this->m_shader_unique->init_shader();
 	
 	this->m_shader = this->m_shader_unique;
+	
+	std::cout << m_shader->log(VERTEX);
+	std::cout << m_shader->log(FRAG);
 }
 
 void TeslaObject::load_objfile(const std::string& path, const std::string& path_bullet) {
@@ -71,6 +79,8 @@ void TeslaObject::Render() {
 	
 	this->m_shader->use_n_load();
 	
+	SET_UNIFORMAT4P(this->m_shader_unique, model_view_and_projection, this->m_parent->m_mat_mvp);
+	SET_UNIFORM3P(this->m_shader_unique, chunk_position, this->m_location);
 	BIND_TEXTUREP(this->m_shader_unique, texture_heightfield, this->m_tex_heightfield, 2);
 	BIND_TEXTUREP(this->m_shader_unique, texture_tileset, this->m_tex_tileset, 3);
 	

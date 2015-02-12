@@ -20,11 +20,12 @@
 #include <string>
 
 class PhysicsObject;
+class TeslaRenderingManger;
 
 class TeslaObject {
 public:
 	
-	TeslaObject () {
+	TeslaObject (TeslaRenderingManger *parent) : m_parent(parent) {
 		this->m_buffer_vert = new gl_buffer<VBO, DYNAMIC>;
 		this->m_buffer_idx = new gl_buffer<IBO, DYNAMIC>;
 		this->m_basic_model = new objfile;
@@ -58,7 +59,7 @@ public:
 	
 	void load_buffer();
 	
-	static TeslaObject *create() { return new TeslaObject(); }
+	static TeslaObject *create();
 	
 private:
 	
@@ -85,7 +86,11 @@ private:
 	btRigidBody *m_bbody = nullptr;
 	btDefaultMotionState *m_bmotion_state = nullptr;
 	PhysicsObject *m_bphyobj = nullptr;
+	
+	TeslaRenderingManger *m_parent = nullptr; // not to be freed
 };
+
+#include "TeslaRendering.h"
 
 #include "Physics.h"
 

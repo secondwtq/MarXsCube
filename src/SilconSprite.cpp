@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 MarXsCube Staff. All rights reserved.
 //
 
+#include "FSM.h"
+#include "Generic.h"
 #include "GLFoundation.h"
 #include "ATVBCube.h"
 #include "SilconShader.h"
@@ -16,6 +18,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+using namespace FSMHelper;
 using namespace ATVBCube::Helper;
 
 namespace SilconSpriteGeneral {
@@ -24,12 +27,6 @@ namespace SilconSpriteGeneral {
 	SilconShader m_shader;
 	glm::mat4 m_mat_mvp;
 }
-
-GLfloat vertices[] = {	   0.0f,  0.5f,  0.0f, 0.0f, 0.0f, 0.0f,
-	0.5f, -0.5f,  0.0f, 0.0f, 0.0f, 0.0f,
-	-0.5f, -0.5f,  0.0f, 0.0f, 0.0f, 0.0f, };
-
-GLuint testvert_buf = 0;
 
 extern GLuint vertex_arrays[5];
 
@@ -49,42 +46,25 @@ void SilconSpriteGeneral::init() {
 	m_shader.create();
 	m_shader.init_shader();
 	
-	printf("Error log:\n");
+	Generic::corelog() << "Silcon NT Shader Error Log: " << rn;
 	std::cout << m_shader.log(VERTEX);
 	std::cout << m_shader.log(FRAG);
 	
-	glGenBuffers(1, &testvert_buf);
-	glBindBuffer(GL_ARRAY_BUFFER, testvert_buf);
-	glBufferData(GL_ARRAY_BUFFER, 3*6*sizeof(GLfloat), vertices, GL_STATIC_DRAW);
 }
 
 void SilconSpriteGeneral::pre_render() {
-	
-//	glViewport(0, 0, width, height);
-//	glMatrixMode(GL_PROJECTION);
-//	glLoadIdentity();
-//	glOrtho(0, width, height, 0, -16384.f, 16384.f);
-	
-//	glMatrixMode(GL_MODELVIEW);
-//	glLoadIdentity();
-	
+
 	GLFoundation::clear_depth();
-//	glEnable(GL_BLEND);
+	glEnable(GL_BLEND);
 	glDisable(GL_DEPTH_TEST);
 	
 	m_global_buffer.use();
 	glBufferSubData(GL_ARRAY_BUFFER, 0, m_global_verts.size() * sizeof(SilconSpriteVertex), m_global_verts.data());
 	GLFoundation::unbind(m_global_buffer);
 	
-	glBindBuffer(GL_ARRAY_BUFFER, testvert_buf);
-	m_shader.use_n_load();
-	glBindVertexArrayAPPLE(vertex_arrays[0]);
-	SET_UNIFORMAT4(m_shader, model_view_and_projection, m_mat_mvp);
-	SET_UNIFORM2(SilconSpriteGeneral::m_shader, sprite_position, glm::vec2(0, 0));
-	glDrawArrays(GL_TRIANGLES, 0, 3);
-	
 	m_global_buffer.use();
 	m_shader.use_n_load();
+	SET_UNIFORMAT4(SilconSpriteGeneral::m_shader, model_view_and_projection, SilconSpriteGeneral::m_mat_mvp);
 }
 
 void SilconSpriteGeneral::post_render() {
@@ -94,13 +74,8 @@ void SilconSpriteGeneral::post_render() {
 
 void SilconSprite::render() {
 	
-	SilconSpriteGeneral::m_shader.use_n_load();
-	SilconSpriteGeneral::m_global_buffer.use();
-	SilconSpriteGeneral::m_shader.attribute_attr();
-	
-	SET_UNIFORMAT4(SilconSpriteGeneral::m_shader, model_view_and_projection, SilconSpriteGeneral::m_mat_mvp);
 	SET_UNIFORM2(SilconSpriteGeneral::m_shader, sprite_position, this->position);
-//	SET_UNIFORM4(SilconSpriteGeneral::m_shader, color_multiply, this->color_multiply);
+	SET_UNIFORM4(SilconSpriteGeneral::m_shader, color_multiply, this->color_multiply);
 	BIND_TEXTURE(SilconSpriteGeneral::m_shader, texture_main, this->m_texture_id, 0);
 	glDrawArrays(GL_TRIANGLES, static_cast<GLint>(6*this->m_sprite_id), 6);
 	

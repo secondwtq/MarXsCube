@@ -17,7 +17,6 @@ void LuaInterface::RegisterInterface_Tesla(LuaStatus &L) {
 	luabridge::getGlobalNamespace(L).
 		beginNamespace("Tesla").
 			beginClass<TeslaObject>("TeslaChunkObject").
-				addConstructor<void (*)()>().
 				addFunction("location", &TeslaObject::location).
 				addFunction("set_heightfield", &TeslaObject::set_heightfield).
 				addFunction("set_tileset", &TeslaObject::set_tileset).
