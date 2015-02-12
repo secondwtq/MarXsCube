@@ -38,17 +38,20 @@ inline void SetProjectionLocation_NT(T *element, CoordStruct& loc) {
 	}
 }
 
-void RenderElement_FramedStatic::_Render_Overload(CoordStruct &loc) {LOGFUNC;
-	
+inline float silcon_dis_camera(const CoordStruct& loc) {
+	static auto d = Generic::Session()->CameraLocation;
+	int f = d.x*10-loc.x, g = d.y*10-loc.y, h = d.z*10-loc.z;
+	return (f*f+g*g+h*h);
+}
+
+void RenderElement_FramedStatic::_update_overload(CoordStruct &loc) {
 	SetProjectionLocation_NT(this, loc);
 	this->sprite.color_multiply = { this->colorMultiply.x, this->colorMultiply.y, this->colorMultiply.z, this->colorMultiply.w };
+	this->sprite.set_Zvalue(-1.f*silcon_dis_camera(loc)/16384.f);
+}
+
+void RenderElement_FramedStatic::_Render_Overload(CoordStruct &loc) {
 	this->sprite.render();
-	
-//	texture->CenterPivot(renderSprite);
-//	SetProjectionLocation_General(this, loc);
-//	renderSprite.setTexture(*texture);
-//	texture->setArea(renderSprite, currentFrame);
-//	InternalDraw::DrawExt(*this, renderSprite);
 }
 
 void RenderElement_FramedDynamic::_Render_Overload(CoordStruct &loc) {LOGFUNC;

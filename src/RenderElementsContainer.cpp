@@ -13,3 +13,7 @@
 void RenderElementsContainer::Update() {LOGFUNC;
 	for (auto e : elements) e.second->Render(parent->GetCoord());
 }
+
+void RenderElementsContainer::pre_update() {LOGFUNC;
+	for (auto e : elements) e.second->pre_update(parent->GetCoord());
+}

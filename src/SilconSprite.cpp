@@ -54,9 +54,13 @@ void SilconSpriteGeneral::init() {
 
 void SilconSpriteGeneral::pre_render() {
 
-	GLFoundation::clear_depth();
+//	glEnable(GL_DEPTH_TEST);
+//	glDepthFunc(GL_LEQUAL);
+//	glDepthMask(GL_TRUE);
+//	GLFoundation::clear_depth();
+//	glClearDepth(1.0f);
 	glEnable(GL_BLEND);
-	glDisable(GL_DEPTH_TEST);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
 	m_global_buffer.use();
 	glBufferSubData(GL_ARRAY_BUFFER, 0, m_global_verts.size() * sizeof(SilconSpriteVertex), m_global_verts.data());
@@ -74,7 +78,8 @@ void SilconSpriteGeneral::post_render() {
 
 void SilconSprite::render() {
 	
-	SET_UNIFORM2(SilconSpriteGeneral::m_shader, sprite_position, this->position);
+	glm::vec3 t { this->position.x, this->position.y, this->m_zoffset };
+	SET_UNIFORM3(SilconSpriteGeneral::m_shader, sprite_position, t);
 	SET_UNIFORM4(SilconSpriteGeneral::m_shader, color_multiply, this->color_multiply);
 	BIND_TEXTURE(SilconSpriteGeneral::m_shader, texture_main, this->m_texture_id, 0);
 	glDrawArrays(GL_TRIANGLES, static_cast<GLint>(6*this->m_sprite_id), 6);

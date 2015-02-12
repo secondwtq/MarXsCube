@@ -69,6 +69,7 @@ void main() {
 
 	color = 3.0 * vec4(1, 1, 1, 0) * intensity *
 					 colort2;
+	color.a = 1.0;
 
 #endif
 }

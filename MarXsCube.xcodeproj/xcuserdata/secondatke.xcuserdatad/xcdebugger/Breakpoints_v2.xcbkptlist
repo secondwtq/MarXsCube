@@ -226,11 +226,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/SilconSprite.cpp"
-            timestampString = "445402925.43832"
+            timestampString = "445414601.292255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "SilconSprite::render()"
             landmarkType = "5">
          </BreakpointContent>

@@ -81,6 +81,9 @@ public:
 	
 	void render();
 	
+	void set_Zvalue(float offset) {
+		this->m_zoffset = offset; }
+	
 	glm::vec2 position;
 	glm::vec4 color_multiply { 1.0, 1.0, 1.0, 1.0 };
 	
@@ -88,6 +91,7 @@ private:
 	
 	std::size_t width, height;
 	std::size_t m_sprite_id = 0;
+	float m_zoffset = 0;
 	GLIDX m_texture_id = 0;
 	
 	inline SilconSpriteVertex *vert_ref(std::size_t offset) {

@@ -29,12 +29,17 @@ class RenderElement {
 			if (this->Enabled)
 				this->_Render_Overload(loc);
 		}
+	
+		inline void pre_update(CoordStruct &&loc) {
+			if (this->Enabled)
+				this->_update_overload(loc);
+		}
 
 		virtual ~RenderElement() { }
 	
 protected:
 	virtual void _Render_Overload(CoordStruct &loc) = 0;
-	
+	virtual void _update_overload(CoordStruct &loc) = 0;
 };
 
 class RenderElement_DirectionedStatic : public RenderElement {
@@ -57,6 +62,7 @@ class RenderElement_DirectionedStatic : public RenderElement {
 	
 protected:
 	void _Render_Overload(CoordStruct &loc);
+	void _update_overload(CoordStruct &loc) { }
 };
 
 // In Silcon NT you can only specific texture for RenderElements at creation
@@ -83,6 +89,7 @@ class RenderElement_FramedStatic : public RenderElement {
 	
 protected:
 	void _Render_Overload(CoordStruct &loc);
+	void _update_overload(CoordStruct &loc);
 };
 
 class RenderElement_FramedDynamic : public RenderElement {
@@ -107,6 +114,7 @@ public:
 
 protected:
 	void _Render_Overload(CoordStruct &loc);
+	void _update_overload(CoordStruct &loc) { }
 };
 
 class RenderElement_InternalLine : public RenderElement {
@@ -133,6 +141,7 @@ public:
 protected:
 	
 	void _Render_Overload(CoordStruct &loc);
+	void _update_overload(CoordStruct &loc) { }
 	
 };
 
