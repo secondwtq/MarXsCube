@@ -42,33 +42,13 @@ void ObjectManger::FinishRemove() { LOGFUNC;
 }
 
 void TestManger::initTest() {LOGFUNC;
-	testTerrainTexture = TextureAtlas("green01.png");
-	
 	Generic::PhysicsGeneral()->init();
-	initShader();
 	EventManger::GetInstance().GetEvent(EventManger::Events::TEST_BEGIN)();
 }
 
 void _readall(ifstream &str, string &dest) {LOGFUNC;
 	istreambuf_iterator<char> beg(str), end;
  	dest = string(beg, end);
-}
-
-void TestManger::initShader() {LOGFUNC;
-	if (Shader::isAvailable()) {
-		ifstream is;
-		string vert, frag;
-		is.open("./Shaders/vert.vert");
-		_readall(is, vert);
-		is.close();
-
-		is.open("./Shaders/frag.frag");
-		_readall(is, frag);
-		is.close();
-
-		extShader.loadFromMemory(vert, sf::Shader::Vertex);
-		extShader.loadFromMemory(frag, sf::Shader::Fragment);
-	}
 }
 
 int disToCamera(const Abs_Abstract *src) {

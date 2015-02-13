@@ -41,8 +41,8 @@ void SilconSpriteGeneral::init() {
 	m_global_buffer.init_with(m_global_verts.data(), 1000*6*sizeof(SilconSpriteVertex));
 	push_empty_sprite();
 	
-	m_shader.load_file(SHADERTYPE::VERTEX, "silcon.vert");
-	m_shader.load_file(SHADERTYPE::FRAG, "silcon.frag");
+	m_shader.load_file(SHADERTYPE::VERTEX, "shaders/silcon.vert");
+	m_shader.load_file(SHADERTYPE::FRAG, "shaders/silcon.frag");
 	m_shader.create();
 	m_shader.init_shader();
 	

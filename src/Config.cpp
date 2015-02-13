@@ -43,7 +43,7 @@ void init_err(lua_State *State, int err) {
 		if (!lua_isnil(State, -1)) {
 			const char *msg = lua_tostring(State, -1);
 			if (msg == NULL) msg = "(error object is not a string)";
-			printf(msg);
+			printf("%s", msg);
 			lua_pop(State, 1);
 		}
 	}
@@ -52,7 +52,7 @@ void init_err(lua_State *State, int err) {
 void LuaStatus::init() {LOGFUNC;
 	if (!_loaded) {
 		Generic::corelog()[L::Debug] << "Initing LuaState ..." << rn;
-		State = lua_open();
+		State = luaL_newstate();
 		luaL_openlibs(State);
 #ifdef CUBE_CONFIG_ENABLE_LUNAR
 		int err = language_init(State);

@@ -59,15 +59,9 @@ class TestManger {
 		static TestManger *instance;
 		static inline TestManger &GetInstance() { return *instance; }
 
-		TextureAtlas testTerrainTexture;
 		RenderWindow *window = nullptr;
-		sf::Shader extShader;
 
 		void initTest();
-
-		void initShader();
-
-		TestManger() {LOGFUNC; }
 };
 
 #include "Abstract.h"

@@ -1,4 +1,4 @@
-Utility.DoImport("mapdef.lua")
+Import("mapdef.lua")
 
 gmap_dots = require 'gmap_dots'
 gmap_edges = require 'gmap_edges'
@@ -30,23 +30,12 @@ function grit_test()
 
 end
 
-function acheroncube_test_callback(vec)
-	print('path got', Utility.GetTime_Clock())
-
-	print(vec:size())
-	print(vec:at(0).x, vec:at(0).y)
-	print(vec:at(1).x, vec:at(1).y)
-	print(vec:at(2).x, vec:at(2).y)
-	print(vec:at(3).x, vec:at(3).y)
-	print(vec:at(4).x, vec:at(4).y)
-end
-
 function acheroncube_test()
 
 	local start = Utility.CubePoint(0, 0)
 	local eend = Utility.CubePoint(1024, 0)
 	print(Utility.GetTime_Clock())
-	local vec = Acheron.find_path_async(start, eend, acheroncube_test_callback)
+	local vec = Acheron.find_path_async(start, eend, function (vec) print('path got', Utility.GetTime_Clock()) print(vec:size()) end)
 	print(Utility.GetTime_Clock())
 
 end

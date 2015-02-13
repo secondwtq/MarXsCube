@@ -16,11 +16,6 @@ CoordStruct Abs_Cell::GetCoord() const {//LOGFUNC;
 
 Abs_Cell::Abs_Cell(int x, int y, bool Special) :
 	Abs_Abstract(nullptr), LocCell(x, y), isSpecial(Special) {
-	renderTexture = &TestManger::GetInstance().testTerrainTexture;
-	renderSprite.setTexture(*renderTexture);
-	size.x = renderTexture->getSize().x;
-	size.y = renderTexture->getSize().y;
-	renderSprite.setOrigin(size.x / 2.0, size.y / 2.0);
 	LocCoord = CoordStruct(LocCell.x * DIVS, LocCell.y * DIVS, height);
 
 	_coordObj[0] = -LocCell.x * DIVS;

@@ -45,8 +45,8 @@ void TeslaObject::create_bullet() {
 
 void TeslaObject::load_shader() {
 	this->m_shader_unique = new tesla_shader;
-	this->m_shader_unique->load_file(SHADERTYPE::VERTEX, "tesla.vert");
-	this->m_shader_unique->load_file(SHADERTYPE::FRAG, "tesla.frag");
+	this->m_shader_unique->load_file(SHADERTYPE::VERTEX, "shaders/tesla.vert");
+	this->m_shader_unique->load_file(SHADERTYPE::FRAG, "shaders/tesla.frag");
 	this->m_shader_unique->create();
 	this->m_shader_unique->init_shader();
 	
