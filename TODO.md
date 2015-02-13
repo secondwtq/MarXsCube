@@ -4,9 +4,21 @@
 
 * **[MAINTENANCE]** More work about memory management.
 
-* **[FEATURE]** Restrict the FPS of logic, physics and rendering.
+* **[FEATURE]** Restrict the FPS of logic, physics and rendering. ***fixed***
 
 * **[MODULE]** C/S architecture for replay, save/load, network.
+
+* **[BUG]** Allow getting unit height relative to terrain (for shadow rendering, locomotor, etc.).
+
+* **[BUG]** Locomotor in Gmap is now broken.
+
+* **[FEATURE]** Basic Locomotor.
+
+* **[MODULE]** Complete locomotor support for ground vehicles.
+
+* **[MODULE]** Enable binary extension of CubeCore.
+
+* **[BUG]** Performance bottleneck of SFML Window module on OS X.
 
 ---
 
@@ -21,7 +33,7 @@
 
 * **[FEATURE]** This seems good: [http://terralang.org/index.html](). ***won't fix***
 
-* **[FEATURE]** MarXsCube DSL (maybe related to components) with luajit-lang-toolkit.
+* **[FEATURE]** MarXsCube DSL (maybe related to components) with luajit-lang-toolkit. ***in progress***
 
 
 ---
@@ -30,7 +42,7 @@
 
 * **[MISC]** Fix compiling & running on Windows & Linux.
 
-* **[FEATURE]** Worker queue with libdispatch.
+* **[FEATURE]** Worker queue with libdispatch. ***in progress***
 
 ---
 
@@ -40,10 +52,12 @@
 
 * **[FEATURE]** Texture atlas and batch rendering support. ***suspended***
 
-* **[MAINTENANCE]** Replace SFML.
+* **[MAINTENANCE]** Replace SFML. ***in progress***
 
 * **[FEATURE]** Re-enable Verdandi model rendering engine.
 
-* **[MODULE]** Silcon UI Engine.
+* **[MODULE]** Silcon UI Engine. ***suspended***
 
 * **[FEATURE]** Shadow mapping for Tesla.
+
+* **[MAINTENANCE]** Bullet Debug Draw, which is pretty important for tweaking around vehicles, is now broken.
