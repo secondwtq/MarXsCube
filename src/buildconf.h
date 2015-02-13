@@ -15,4 +15,6 @@
 
 // #define CUBE_CONFIG_ENABLE_TERRA
 
+#define CUBE_CONFIG_ENABLE_LUNAR
+
 #endif

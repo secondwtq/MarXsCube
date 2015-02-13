@@ -15,10 +15,6 @@ function Functions.Abs_Techno_onUpdate(self)
 
 end
 
-function Functions.Abs_Techno_onPhysicsTransformed(self, table)
-
-end
-
 function Functions.Abs_Techno_onSpawn(self, table)
 	local scriptType = self:getTechnoType().ScriptType
 

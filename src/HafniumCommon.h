@@ -16,6 +16,11 @@
 #include <terra.h>
 #define hafnium_dofile(L,filename) (terra_dofile((L), (filename)))
 
+#elif defined(CUBE_CONFIG_ENABLE_LUNAR)
+
+#include <liblang/language.hpp>
+#define hafnium_dofile(L,filename) ((language_loadfile((L), (filename))) || lua_pcall(L, 0, LUA_MULTRET, 0))
+
 #else
 
 #include <luajit-2.0/lua.hpp>

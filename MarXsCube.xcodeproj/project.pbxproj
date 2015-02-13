@@ -51,6 +51,7 @@
 		595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */; };
 		595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */; };
 		595DDC13198ADD990046919B /* libLinearMath_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */; };
+		59725E831A8E015B0010B4F8 /* liblang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59725E821A8E015B0010B4F8 /* liblang.a */; };
 		598D1DDE1A3966A70049653B /* RayTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDC1A3966A70049653B /* RayTest.cpp */; };
 		598D1DE11A3967FF0049653B /* RayTest_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */; };
 		598E6EEF1A6F649E000C68BE /* ModelLoader_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */; };
@@ -205,6 +206,7 @@
 		595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletCollision_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletDynamics_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libLinearMath_xcode4_x64_release.a; sourceTree = "<group>"; };
+		59725E821A8E015B0010B4F8 /* liblang.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblang.a; path = /usr/local/lib/liblang.a; sourceTree = "<absolute>"; };
 		597D223E1A3D95EC006B296B /* HafniumCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HafniumCommon.h; sourceTree = "<group>"; };
 		598D1DDC1A3966A70049653B /* RayTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RayTest.cpp; sourceTree = "<group>"; };
 		598D1DDD1A3966A70049653B /* RayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest.h; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59725E831A8E015B0010B4F8 /* liblang.a in Frameworks */,
 				59F5BCC61A8DFFE4006676EC /* binded_attr.o in Frameworks */,
 				59F5BCC71A8DFFE4006676EC /* ttter.o in Frameworks */,
 				59F5BCC81A8DFFE4006676EC /* composer.o in Frameworks */,
@@ -627,6 +630,7 @@
 			isa = PBXGroup;
 			children = (
 				59F5BCAC1A8A0F80006676EC /* libluajit.a */,
+				59725E821A8E015B0010B4F8 /* liblang.a */,
 				59F5BCAA1A8A0E86006676EC /* libterra.a */,
 				591201C61A6D1DA500ECB42A /* OpenGL.framework */,
 				591201C31A6D1D9400ECB42A /* libGLEW.a */,

@@ -38,15 +38,30 @@ namespace {
 	}
 }
 
+void init_err(lua_State *State, int err) {
+	if (err != 0) {
+		if (!lua_isnil(State, -1)) {
+			const char *msg = lua_tostring(State, -1);
+			if (msg == NULL) msg = "(error object is not a string)";
+			printf(msg);
+			lua_pop(State, 1);
+		}
+	}
+}
+
 void LuaStatus::init() {LOGFUNC;
 	if (!_loaded) {
 		Generic::corelog()[L::Debug] << "Initing LuaState ..." << rn;
-		State = luaL_newstate();
+		State = lua_open();
 		luaL_openlibs(State);
-		getGlobalNamespace(State).beginNamespace("Utility").addFunction("DoImport", &LUA_ImportFile).endNamespace();
-#ifdef CUBE_CONFIG_ENABLE_TERRA
+#ifdef CUBE_CONFIG_ENABLE_LUNAR
+		int err = language_init(State);
+		init_err(State, err);
+		luaopen_langloaders(State);
+#elif defined(CUBE_CONFIG_ENABLE_TERRA)
 		terra_init(State);
 #endif
+		getGlobalNamespace(State).beginNamespace("Utility").addFunction("DoImport", &LUA_ImportFile).endNamespace();
 		_loaded = true;
 	}
 }
