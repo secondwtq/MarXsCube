@@ -43,11 +43,20 @@ local Placeholders = require 'Placeholders'
 
 local __composer = { }
 
-local subcomp_TechnoColorMultiply = components.subcomponent:new({
+-- * CUSTOM EVENTS *
 
-	name = "TechnoColorMultiply_Initial",
+-- * HOW TO DEFINE COMPONENTS *
+-- ObjectTable(or something) -> Components Container -> Components -> Sub Components
+-- Sub Components should be declared as below
+-- you need to specific a name for both Components and Sub Components
+-- you are also responsible to set an alias, so other code can access it through comp_cont.a[<alias>]
 
-	-- use set_datafield and get_datafield for general Techno data operation
+-- now the table name of Components use a prefix 'comp_', and Sub Components 'subcomp_'
+local comp_TechnoColorMultiply = components.component:new({
+	name = "TechnoColorMultiply",
+	alias = "TechnoColorMultiply",
+
+		-- use set_datafield and get_datafield for general Techno data operation
 	--   of the component itself
 	-- the two functions can be used after both Components and Sub Components
 
@@ -66,7 +75,7 @@ local subcomp_TechnoColorMultiply = components.subcomponent:new({
 
 
 	-- coroutines and bound attributes is encouraged to be used with Components.
-	on_create = function (self, parent)
+	on_create = function (self)
 
 		-- * BOUND ATTRIBUTE *
 		-- bound attribute, introduced in bindedattr module of ScriptX?
@@ -91,6 +100,7 @@ local subcomp_TechnoColorMultiply = components.subcomponent:new({
 
 		local datatable = self:get_datatable()
 
+		print(bindedattr)
 		local attr_ColorMultiply = bindedattr.add_bound_attr(datatable, 'ColorMultiplyAttr')
 
 		datatable.ColorMultiplyAttr = { 1.0, 1.0, 1.0, 1.0 }
@@ -125,25 +135,6 @@ local subcomp_TechnoColorMultiply = components.subcomponent:new({
 			end
 		end
 	end,
-
-})
-
--- * CUSTOM EVENTS *
-
--- * HOW TO DEFINE COMPONENTS *
--- ObjectTable(or something) -> Components Container -> Components -> Sub Components
--- Sub Components should be declared as below
--- you need to specific a name for both Components and Sub Components
--- you are also responsible to set an alias, so other code can access it through comp_cont.a[<alias>]
-
--- now the table name of Components use a prefix 'comp_', and Sub Components 'subcomp_'
-local comp_TechnoColorMultiply = components.component:new({
-	name = "TechnoColorMultiply",
-	alias = "TechnoColorMultiply",
-
-	subcomponents = {
-		subcomp_TechnoColorMultiply
-	}
 })
 
 __composer.comp_TechnoColorMultiply = comp_TechnoColorMultiply

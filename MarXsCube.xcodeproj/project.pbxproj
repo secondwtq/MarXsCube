@@ -7,13 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		591064001A88FD7A00C6A901 /* binded_attr.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591063FB1A88FD7A00C6A901 /* binded_attr.o */; };
-		591064011A88FD7A00C6A901 /* components.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591063FC1A88FD7A00C6A901 /* components.o */; };
-		591064021A88FD7A00C6A901 /* object.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591063FD1A88FD7A00C6A901 /* object.o */; };
-		591064031A88FD7A00C6A901 /* Placeholders.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591063FE1A88FD7A00C6A901 /* Placeholders.o */; };
-		591064041A88FD7A00C6A901 /* ttter.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591063FF1A88FD7A00C6A901 /* ttter.o */; };
-		591064061A88FE9A00C6A901 /* composer.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591064051A88FE9A00C6A901 /* composer.o */; };
-		591064081A88FEEA00C6A901 /* Helpers.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591064071A88FEEA00C6A901 /* Helpers.o */; };
 		5910640F1A890EC400C6A901 /* AcheronGCD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5910640D1A890EC400C6A901 /* AcheronGCD.cpp */; };
 		591064121A8912E100C6A901 /* AcheronCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 591064101A8912E100C6A901 /* AcheronCube.cpp */; };
 		591064151A89151000C6A901 /* Acheron_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 591064131A89151000C6A901 /* Acheron_Interface.cpp */; };
@@ -81,6 +74,13 @@
 		59F5BCB61A8B9657006676EC /* SilconSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BCB41A8B9657006676EC /* SilconSprite.cpp */; };
 		59F5BCB91A8B9E4F006676EC /* SilconShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BCB71A8B9E4F006676EC /* SilconShader.cpp */; };
 		59F5BCBE1A8C91F1006676EC /* Silcon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BCBC1A8C91F1006676EC /* Silcon.cpp */; };
+		59F5BCBF1A8DFFE3006676EC /* components.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591063FC1A88FD7A00C6A901 /* components.o */; };
+		59F5BCC01A8DFFE3006676EC /* Placeholders.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591063FE1A88FD7A00C6A901 /* Placeholders.o */; };
+		59F5BCC11A8DFFE3006676EC /* object.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591063FD1A88FD7A00C6A901 /* object.o */; };
+		59F5BCC21A8DFFE3006676EC /* Helpers.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 591064071A88FEEA00C6A901 /* Helpers.o */; };
+		59F5BCC61A8DFFE4006676EC /* binded_attr.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F5BCC31A8DFFE4006676EC /* binded_attr.o */; };
+		59F5BCC71A8DFFE4006676EC /* ttter.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F5BCC41A8DFFE4006676EC /* ttter.o */; };
+		59F5BCC81A8DFFE4006676EC /* composer.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F5BCC51A8DFFE4006676EC /* composer.o */; };
 		59FCB50B1A84850C0048D776 /* GritAStar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB5091A84850C0048D776 /* GritAStar.cpp */; };
 		59FCB50F1A84A3C90048D776 /* Grit_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB50D1A84A3C90048D776 /* Grit_Interface.cpp */; };
 		59FCB5111A84A5DB0048D776 /* StdInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB5101A84A5DB0048D776 /* StdInterface.cpp */; };
@@ -108,12 +108,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		591063FB1A88FD7A00C6A901 /* binded_attr.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = binded_attr.o; path = tmp/binded_attr.o; sourceTree = "<group>"; };
 		591063FC1A88FD7A00C6A901 /* components.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = components.o; path = tmp/components.o; sourceTree = "<group>"; };
 		591063FD1A88FD7A00C6A901 /* object.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = object.o; path = tmp/object.o; sourceTree = "<group>"; };
 		591063FE1A88FD7A00C6A901 /* Placeholders.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = Placeholders.o; path = tmp/Placeholders.o; sourceTree = "<group>"; };
-		591063FF1A88FD7A00C6A901 /* ttter.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = ttter.o; path = tmp/ttter.o; sourceTree = "<group>"; };
-		591064051A88FE9A00C6A901 /* composer.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = composer.o; path = tmp/composer.o; sourceTree = "<group>"; };
 		591064071A88FEEA00C6A901 /* Helpers.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = Helpers.o; path = tmp/Helpers.o; sourceTree = "<group>"; };
 		5910640D1A890EC400C6A901 /* AcheronGCD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AcheronGCD.cpp; sourceTree = "<group>"; };
 		5910640E1A890EC400C6A901 /* AcheronGCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcheronGCD.h; sourceTree = "<group>"; };
@@ -260,6 +257,9 @@
 		59F5BCBB1A8BA1F5006676EC /* SilconCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SilconCommon.h; sourceTree = "<group>"; };
 		59F5BCBC1A8C91F1006676EC /* Silcon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Silcon.cpp; sourceTree = "<group>"; };
 		59F5BCBD1A8C91F1006676EC /* Silcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Silcon.h; sourceTree = "<group>"; };
+		59F5BCC31A8DFFE4006676EC /* binded_attr.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = binded_attr.o; path = tmp/binded_attr.o; sourceTree = "<group>"; };
+		59F5BCC41A8DFFE4006676EC /* ttter.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = ttter.o; path = tmp/ttter.o; sourceTree = "<group>"; };
+		59F5BCC51A8DFFE4006676EC /* composer.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = composer.o; path = tmp/composer.o; sourceTree = "<group>"; };
 		59FCB5091A84850C0048D776 /* GritAStar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GritAStar.cpp; sourceTree = "<group>"; };
 		59FCB50A1A84850C0048D776 /* GritAStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GritAStar.h; sourceTree = "<group>"; };
 		59FCB50C1A8488030048D776 /* GritMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GritMath.h; sourceTree = "<group>"; };
@@ -297,15 +297,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59F5BCC61A8DFFE4006676EC /* binded_attr.o in Frameworks */,
+				59F5BCC71A8DFFE4006676EC /* ttter.o in Frameworks */,
+				59F5BCC81A8DFFE4006676EC /* composer.o in Frameworks */,
+				59F5BCBF1A8DFFE3006676EC /* components.o in Frameworks */,
+				59F5BCC01A8DFFE3006676EC /* Placeholders.o in Frameworks */,
+				59F5BCC11A8DFFE3006676EC /* object.o in Frameworks */,
+				59F5BCC21A8DFFE3006676EC /* Helpers.o in Frameworks */,
 				59F5BCAD1A8A0F80006676EC /* libluajit.a in Frameworks */,
 				59F5BCAB1A8A0E86006676EC /* libterra.a in Frameworks */,
-				591064081A88FEEA00C6A901 /* Helpers.o in Frameworks */,
-				591064061A88FE9A00C6A901 /* composer.o in Frameworks */,
-				591064001A88FD7A00C6A901 /* binded_attr.o in Frameworks */,
-				591064011A88FD7A00C6A901 /* components.o in Frameworks */,
-				591064021A88FD7A00C6A901 /* object.o in Frameworks */,
-				591064031A88FD7A00C6A901 /* Placeholders.o in Frameworks */,
-				591064041A88FD7A00C6A901 /* ttter.o in Frameworks */,
 				591201C71A6D1DA500ECB42A /* OpenGL.framework in Frameworks */,
 				591201C11A6D078900ECB42A /* libsfml-window.2.2.0.dylib in Frameworks */,
 				591201C51A6D1D9F00ECB42A /* libsfml-graphics.2.2.0.dylib in Frameworks */,
@@ -322,13 +322,13 @@
 		591064091A88FEF400C6A901 /* jit */ = {
 			isa = PBXGroup;
 			children = (
+				59F5BCC31A8DFFE4006676EC /* binded_attr.o */,
+				59F5BCC41A8DFFE4006676EC /* ttter.o */,
+				59F5BCC51A8DFFE4006676EC /* composer.o */,
 				591064071A88FEEA00C6A901 /* Helpers.o */,
-				591064051A88FE9A00C6A901 /* composer.o */,
-				591063FB1A88FD7A00C6A901 /* binded_attr.o */,
 				591063FC1A88FD7A00C6A901 /* components.o */,
 				591063FD1A88FD7A00C6A901 /* object.o */,
 				591063FE1A88FD7A00C6A901 /* Placeholders.o */,
-				591063FF1A88FD7A00C6A901 /* ttter.o */,
 			);
 			name = jit;
 			sourceTree = "<group>";
