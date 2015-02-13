@@ -10,13 +10,17 @@ AtTheVeryBeginning.together({
 	window_width = 1920, window_height = 1080,
 
 	window_fps_limit = 90,
-	window_vsync = false,
+	window_vsync = true,
 
 	bullet_debugdraw = false,
 	bullet_debugdraw_scale = 1.0,
 
 	bullet_gravity = { 0, 0, -9.8 },
+	bullet_boost = 2.0,
 
 	tiler_max_height_bullet = 128.0,
+
+	fps_limit_silcon = 60,
+	fps_limit_main = 60,
 
 })

@@ -39,9 +39,16 @@ void ATVBSetting<BulletDebugSetting>::load() {
 	scale = value<float>("bullet_debugdraw_scale"); }
 	
 void ATVBSetting<BulletGeneralSetting>::load() {
-	gravity = value<Float3D>("bullet_gravity"); }
+	gravity = value<Float3D>("bullet_gravity");
+	boost = value<float>("bullet_boost");
+}
 	
 void ATVBSetting<TeslaGeneralSetting>::load() {
 	maxheight_phy = value<float>("tiler_max_height_bullet"); }
+
+void ATVBSetting<FPSLimitSetting>::load() {
+	limit_silcon = value<std::size_t>("fps_limit_silcon");
+	limit_main = value<std::size_t>("fps_limit_main");
+}
 	
 }

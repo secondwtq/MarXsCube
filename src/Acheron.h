@@ -20,6 +20,8 @@ namespace Acheron {
 	
 	enum SYNCSTATE { UNSYNCED = 0, SYNCED = 1, SYNCED_NONAUTO = 2 };
 	
+	void thread_sleep_for(double ms);
+	
 	class AcheronBase {
 	public:
 		

@@ -21,7 +21,8 @@ namespace ATVBCube {
 		WindowSetting,
 		BulletDebugSetting,
 		BulletGeneralSetting,
-		TeslaGeneralSetting
+		TeslaGeneralSetting,
+		FPSLimitSetting,
 	};
 	
 	namespace Helper {
@@ -75,7 +76,8 @@ namespace ATVBCube {
 		public:
 			
 			Float3D gravity { 0, 0, -9.8 };
-			
+			float boost = 1.f;
+		
 			void load();
 		
 	};
@@ -97,6 +99,16 @@ namespace ATVBCube {
 		
 			float maxheight_phy = 64.f;
 			
+			void load();
+	};
+	
+	template <>
+	class ATVBSetting<FPSLimitSetting> : public ATVBSettingP<FPSLimitSetting> {
+		public:
+		
+			std::size_t limit_silcon = 60.f;
+			std::size_t limit_main = 60.f;
+		
 			void load();
 	};
 	

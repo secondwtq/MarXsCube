@@ -13,9 +13,17 @@
 #include "GProfiler.h"
 
 #include <thread>
+#include <chrono>
 #include <functional>
+#include <unistd.h>
 
 using namespace std;
+
+void Acheron::thread_sleep_for(double ms) {
+//	// microseconds failed ?
+//	std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<long long>(ms)));
+	usleep((ms-1) * 1000);
+}
 
 void Acheron::AcheronBase::start() {
 	this->m_running = true;

@@ -99,5 +99,6 @@ template std::string getatvb<std::string>(const std::string& key);
 template unsigned int getatvb<unsigned int>(const std::string& key);
 template float getatvb<float>(const std::string& key);
 template Float3D getatvb<Float3D>(const std::string& key);
+template std::size_t getatvb<std::size_t>(const std::string& key);
 
 }

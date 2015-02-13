@@ -27,8 +27,12 @@ extern sf::RenderWindow *window_global;
 fps_counter fps_silcon;
 
 void silcon_acheron_function() {
+	static double interval = (1000.0 / ATVBCube::setting<S::FPSLimitSetting>().limit_silcon);
+
 	fps_silcon.update();
+	Acheron::thread_sleep_for(interval - fps_silcon.last_time_ms);
 	if (fps_silcon.updated) printf("Rendering FPS: %lf\n", fps_silcon.fps);
+	
 	window_global->clear(sf::Color::Black);
 
 	Generic::TeslaManger()->pre_render();
@@ -42,6 +46,7 @@ void silcon_acheron_function() {
 //		BulletDebugDrawer::render();
 	
 	window_global->display();
+	
 }
 
 Acheron::AcheronBase Acheron::Silcon(silcon_acheron_function);

@@ -8,13 +8,17 @@
 
 #include "Common.h"
 
+#include "ATVBCube.h"
 #include "Generic.h"
 #include "Acheron.h"
 
 #include "BulletThread.h"
 
+using namespace ATVBCube::Helper;
+
 void bullet_acheron_function() {
-	Generic::PhysicsGeneral()->dynaWorld->stepSimulation(1.f/(float)30, 24,
+	static float interval = (1.f / ATVBCube::setting<S::FPSLimitSetting>().limit_main) * ATVBCube::setting<S::BulletGeneralSetting>().boost;
+	Generic::PhysicsGeneral()->dynaWorld->stepSimulation(interval, 24,
 														 btScalar(1.)/120.0);
 }
 

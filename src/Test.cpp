@@ -61,6 +61,8 @@ int main() {
 	Generic::Init_Session();
 	cube_init_atvb();
 	ATVBCube::load<S::TeslaGeneralSetting>();
+	ATVBCube::load<S::BulletGeneralSetting>();
+	ATVBCube::load<S::FPSLimitSetting>();
 
 	zephyr_check_output();
 	
@@ -95,11 +97,12 @@ int main() {
 	
 	sf::Event event;
 	
+	static double interval = (1000.0 / ATVBCube::setting<S::FPSLimitSetting>().limit_main);
 	while (window_global->isOpen()) {
-
+		fps_logic.update();
+		
 		Acheron::Bullet.pause();
 		
-		fps_logic.update();
 		if (fps_logic.updated) printf("Logic FPS: %lf\n", fps_logic.fps);
 		
 		EventManger::GetInstance().GetEvent(EventManger::Events::GAME_UPDATE_BEGIN)();
@@ -149,7 +152,8 @@ int main() {
 		queue_callback.update();
 		
 		ObjectManger::GetInstance().FinishRemove();
-
+		
+		Acheron::thread_sleep_for(interval - fps_logic.last_time_ms);
 		Acheron::Bullet.invoke();
 	}
 	

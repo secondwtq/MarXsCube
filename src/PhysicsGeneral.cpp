@@ -42,7 +42,6 @@ void CPhysicsGeneral::init_debugdrawer() {
 }
 
 void CPhysicsGeneral::init() {
-	ATVBCube::load<S::BulletGeneralSetting>();
 	GlobalGravity = ATVBCube::setting<S::BulletGeneralSetting>().gravity;
 	
 	collConf = new btDefaultCollisionConfiguration();
