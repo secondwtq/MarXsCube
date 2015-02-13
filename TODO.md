@@ -4,6 +4,10 @@
 
 * **[MAINTENANCE]** More work about memory management.
 
+* **[FEATURE]** Restrict the FPS of logic, physics and rendering.
+
+* **[MODULE]** C/S architecture for replay, save/load, network.
+
 ---
 
 
@@ -11,11 +15,14 @@
 
 * **[BUG]** Lua module loading priority issue.
 
-* **[MAINTENANCE]** Decoupling of Doge scripts.
-
 * **[MISC]** LuaJIT object file dynamic linking.
 
-* **[FEATURE]** This seems good: [http://terralang.org/index.html]().
+* **[MAINTENANCE]** Decoupling of Doge scripts.
+
+* **[FEATURE]** This seems good: [http://terralang.org/index.html](). ***won't fix***
+
+* **[FEATURE]** MarXsCube DSL (maybe related to components) with luajit-lang-toolkit.
+
 
 ---
 
@@ -29,8 +36,14 @@
 
 * **[MAINTENANCE]** More work about Tesla & Wonderland.
 
-* **[BUG]** Performance issue of the coexistence of Silcon & Tesla.
+* **[BUG]** Performance issue of the coexistence of Silcon & Tesla. ***fixed***
+
+* **[FEATURE]** Texture atlas and batch rendering support. ***suspended***
+
+* **[MAINTENANCE]** Replace SFML.
 
 * **[FEATURE]** Re-enable Verdandi model rendering engine.
 
 * **[MODULE]** Silcon UI Engine.
+
+* **[FEATURE]** Shadow mapping for Tesla.
