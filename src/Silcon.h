@@ -59,8 +59,7 @@ namespace SilconSpriteGeneral {
 	}
 	
 	inline SilconSpriteVertex *vert_ref(std::size_t id, std::size_t offset) {
-		return &m_global_verts[id*6+offset];
-	}
+		return &m_global_verts[id*6+offset]; }
 	
 	void pre_render();
 	void post_render();

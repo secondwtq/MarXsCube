@@ -203,6 +203,7 @@
 		593458691A832C8800DE4C28 /* Tesla_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tesla_Interface.h; sourceTree = "<group>"; };
 		5944452D1A75389000941CEB /* CubeTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CubeTransform.cpp; sourceTree = "<group>"; };
 		5944452E1A75389000941CEB /* CubeTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubeTransform.h; sourceTree = "<group>"; };
+		594F23A01A8F6F8100756010 /* BulletDebugShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BulletDebugShader.h; sourceTree = "<group>"; };
 		595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletCollision_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletDynamics_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libLinearMath_xcode4_x64_release.a; sourceTree = "<group>"; };
@@ -418,6 +419,7 @@
 				59FCBF3E1A73B8E200BEF905 /* BulletThread.h */,
 				59FCBF3D1A73B8E200BEF905 /* BulletThread.cpp */,
 				599985F41A80A7E400E6CE68 /* BulletDebugDraw.h */,
+				594F23A01A8F6F8100756010 /* BulletDebugShader.h */,
 				599985F31A80A7E400E6CE68 /* BulletDebugDraw.cpp */,
 				599985FA1A80DC7100E6CE68 /* RayTest */,
 				599985F91A80DC5F00E6CE68 /* Vehicle */,

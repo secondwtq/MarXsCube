@@ -10,13 +10,17 @@
 #define __MarXsCube__BulletDebugDraw__
 
 #include "LinearMath/btIDebugDraw.h"
+#include "GLFoundation.h"
+#include "BulletDebugShader.h"
+
+#include <vector>
 
 // reference: from Bullet official demos
 class BulletDebugDrawer : public btIDebugDraw {
 
 public:
 	
-	BulletDebugDrawer() { }
+	BulletDebugDrawer();
 	virtual ~BulletDebugDrawer() { }
 	
 	virtual void	drawLine(const btVector3& from,const btVector3& to,const btVector3& fromColor, const btVector3& toColor);
@@ -44,8 +48,12 @@ public:
 	private:
 
 		int m_debugMode;
-	
 		float m_draw_scale = 3.0f;
+	
+		static std::vector<BulletDebugVertex> m_buffer_vec;
+		static gl_buffer<VBO, DYNAMIC> m_buffer;
+	
+		static BulletDebugShader m_shader;
 	
 };
 
