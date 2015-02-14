@@ -30,8 +30,8 @@ void silcon_acheron_function() {
 	static double interval = (1000.0 / ATVBCube::setting<S::FPSLimitSetting>().limit_silcon);
 
 	fps_silcon.update();
-	Acheron::thread_sleep_for(interval - fps_silcon.last_time_ms);
 	if (fps_silcon.updated) printf("Rendering FPS: %lf\n", fps_silcon.fps);
+	Acheron::thread_sleep_for(interval - fps_silcon.last_time_ms);
 	
 	window_global->clear(sf::Color::Black);
 
@@ -42,8 +42,8 @@ void silcon_acheron_function() {
 		Generic::RenderLayerManger()->Layers[i].Update();
 	Silcon::Manger->render_dispatch();
 	
-//	if (ATVBCube::setting<S::BulletDebugSetting>().enabled)
-//		BulletDebugDrawer::render();
+	if (ATVBCube::setting<S::BulletDebugSetting>().enabled)
+		BulletDebugDrawer::render();
 	
 	window_global->display();
 	

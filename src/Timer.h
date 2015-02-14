@@ -31,7 +31,7 @@ class fps_counter {
 			if (this->m_first) {
 				this->m_time_start = this->m_time_current;
 				this->m_first = false;
-			}
+			} else this->last_time_ms = this->m_time_current - last_time;
 			if (updated) this->updated = false;
 			this->m_cframe++;
 			if (this->m_time_current - this->m_time_start > 1000) {
