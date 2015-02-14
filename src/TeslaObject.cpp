@@ -72,11 +72,7 @@ void TeslaObject::load_buffer() {
 }
 
 void TeslaObject::Render() {
-	glm::vec3 look_at_vec = CubeTransform::look_at_vector();
-	GLFoundation::view(look_at_vec.x+this->m_location.x, look_at_vec.y+this->m_location.y);
-	
 	this->m_buffer_vert->use();
-	
 	this->m_shader->use_n_load();
 	
 	SET_UNIFORMAT4P(this->m_shader_unique, model_view_and_projection, this->m_parent->m_mat_mvp);

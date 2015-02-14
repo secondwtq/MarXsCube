@@ -17,4 +17,6 @@
 
 #define CUBE_CONFIG_ENABLE_LUNAR
 
+#define CUBE_CONFIG_USE_GL3
+
 #endif

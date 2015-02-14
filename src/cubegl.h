@@ -13,12 +13,21 @@
 // SFML wrapper has no glext.h with Linux
 // so we need this
 
+#include "buildconf.h"
 #include "Platform.h"
 
 #if defined(CUBE_PLATFORM_DARWIN)
 
+#if defined(CUBE_CONFIG_USE_GL3)
+
 #include <OpenGL/gl3.h>
+
+#else
+
+#include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
+
+#endif
 
 #elif defined(CUBE_PLATFORM_WINDOWS)
 

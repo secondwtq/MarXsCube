@@ -60,4 +60,4 @@
 
 * **[FEATURE]** Shadow mapping for Tesla.
 
-* **[MAINTENANCE]** Bullet Debug Draw, which is pretty important for tweaking around vehicles, is now broken.
+* **[MAINTENANCE]** Bullet Debug Draw, which is pretty important for tweaking around vehicles, is now broken. ***fixed***
