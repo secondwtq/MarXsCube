@@ -34,6 +34,8 @@ public:
 	
 	virtual void brake_atonce_force(float brake_force) { }
 	
+	virtual void brake_tyre_atonce(std::size_t wheel_id, float brake_force);
+	
 	virtual void set_steer(std::size_t wheel_id, float value) { }
 	
 	virtual void set_maxspeed(std::size_t wheel_id, float value) { }

@@ -26,7 +26,8 @@ function apply_key_command_to(self, keycode)
 		if self.Techno:WhatAmI() == Enums.RTTITypeID.Techno then
 			local _self = Utility.toTechno(self.Techno)
 			print 'braking'
-			_self.Physics.vehicle:brake_atonce()
+			_self.Physics.vehicle:brake_tyre_atonce(2, 1000)
+			_self.Physics.vehicle:brake_tyre_atonce(3, 1000)
 		end
 	end
 	if keycode == Enums.Key.D then
@@ -58,9 +59,9 @@ function InputHandler.MousePress_OnCell(mouse_status)
 		if TECHNO_SELECTED then
 			local Techno = Helpers.Techno_TechnoRTTIIDTable(TECHNO_SELECTED)
 			
-			for i = 0, 2 do
+			for i = 2, 3 do
 				Techno.Physics.vehicle:set_maxspeed(i, 100)
-				Techno.Physics.vehicle:launch_tyre(i, 500)
+				Techno.Physics.vehicle:launch_tyre(i, 2000)
 			end
 			-- for i = 0, Techno.Physics.vehicle.tyre_count-1 do
 			-- 	Techno.Physics.vehicle:set_maxspeed(i, 100)

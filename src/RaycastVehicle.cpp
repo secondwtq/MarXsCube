@@ -24,11 +24,11 @@ void RaycastVehicle::spawn() {
 }
 
 namespace {
-	float wheelFriction = 1.0f;
+	float wheelFriction = 10.0f;
 	float suspensionStiffness = 10.f;
 	float suspensionDamping = .2 * 2 * std::sqrt(10);
 	float suspensionCompression = .35 * 2 * std::sqrt(10);
-	float rollInfluence = 1.0f;
+	float rollInfluence = 0.8f;
 	btScalar suspensionRestLength(1.0);
 }
 
@@ -48,7 +48,7 @@ void RaycastVehicle::setup_wheels() {
 		//The wheels sink through the ground when the suspension cannot support the weight of the vehicle.
 		// You need to increase the suspension stiffness, max travel or suspension length.
 		// *Increasing the suspension too much will make the simulation unstable.*
-		wheel.m_maxSuspensionForce = 10000.0f;
+		wheel.m_maxSuspensionForce = 20000.f;
 	}
 }
 
@@ -61,6 +61,7 @@ void RaycastVehicle::launch() {
 }
 
 void RaycastVehicle::launch_tyre(std::size_t wheel_id, float engine_force) {
+	m_vehicle->setBrake(0., static_cast<int>(wheel_id));
 	m_vehicle->applyEngineForce(engine_force, static_cast<int>(wheel_id));
 }
 
@@ -70,7 +71,15 @@ void RaycastVehicle::clear_steer() {
 
 void RaycastVehicle::brake_atonce() {
 	for (int i = 0; i < this->m_vehicle->getNumWheels(); i++) {
+		m_vehicle->applyEngineForce(0, i);
 		m_vehicle->setBrake(5000, i);
 		m_vehicle->setSteeringValue(0, i);
 	}
+}
+
+void RaycastVehicle::brake_tyre_atonce(std::size_t wheel_id, float brake_force) {
+	int i = static_cast<int>(wheel_id);
+	m_vehicle->applyEngineForce(0, i);
+	m_vehicle->setBrake(brake_force, i);
+	m_vehicle->setSteeringValue(0, i);
 }

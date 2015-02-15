@@ -50,6 +50,13 @@ void ConstraintVehicle::brake_atonce_force(float brake_force) {
 	}
 }
 
+void ConstraintVehicle::brake_tyre_atonce(std::size_t wheel_id, float brake_force) {
+	btRotationalLimitMotor *motor = this->m_constraints[wheel_id]->getRotationalLimitMotor(0);
+	motor->m_enableMotor = false;
+	motor->m_loLimit = -0.01f;
+	motor->m_hiLimit = 0.01f;
+}
+
 void ConstraintVehicle::clear_steer() {
 	for (std::size_t i = 0; i < this->tyre_count; i++) {
 		btRotationalLimitMotor *motor = this->m_constraints[i]->getRotationalLimitMotor(2);
