@@ -28,7 +28,7 @@ namespace {
 	float suspensionStiffness = 10.f;
 	float suspensionDamping = .2 * 2 * std::sqrt(10);
 	float suspensionCompression = .35 * 2 * std::sqrt(10);
-	float rollInfluence = 0.8f;
+	float rollInfluence = 1.0f;
 	btScalar suspensionRestLength(1.0);
 }
 
@@ -82,4 +82,8 @@ void RaycastVehicle::brake_tyre_atonce(std::size_t wheel_id, float brake_force) 
 	m_vehicle->applyEngineForce(0, i);
 	m_vehicle->setBrake(brake_force, i);
 	m_vehicle->setSteeringValue(0, i);
+}
+
+void RaycastVehicle::set_steer(std::size_t wheel_id, float value) {
+	m_vehicle->setSteeringValue(value, static_cast<int>(wheel_id));
 }
