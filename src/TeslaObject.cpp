@@ -71,8 +71,8 @@ void TeslaObject::load_buffer() {
 	this->m_mesh_data->vec_verts().reserve(this->m_mesh_data->vec_verts().size()*2.f);
 	this->m_mesh_data->vec_indexes().reserve(this->m_mesh_data->vec_indexes().size()*2.f);
 	
-	this->m_buffer_vert->init_with(this->m_mesh_data->vec_verts(), 1.5f);
-	this->m_buffer_idx->init_with(this->m_mesh_data->vec_indexes(), 1.5f);
+	this->m_buffer_vert->init_with(this->m_mesh_data->vec_verts(), 2.0f);
+	this->m_buffer_idx->init_with(this->m_mesh_data->vec_indexes(), 2.0f);
 }
 
 void TeslaObject::Render() {

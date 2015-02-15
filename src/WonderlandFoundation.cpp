@@ -15,6 +15,7 @@
 
 #include <cmath>
 #include <array>
+#include <functional>
 
 namespace Wonderland {
 
@@ -24,7 +25,6 @@ void set_texture_and_blend(TeslaObject *chunk, std::size_t index, const CoordStr
 	tesla_dataarray *data = chunk->get_data();
 	
 	std::size_t nearest_cellidx = data->find_nearest_cell({ position.y, position.x, 0 });
-	glm::vec3 nearest_cellcenter = data->vec_centers()[nearest_cellidx];
 	
 	data->sepreate_cell(nearest_cellidx);
 	
@@ -35,7 +35,6 @@ void set_texture_and_blend(TeslaObject *chunk, std::size_t index, const CoordStr
 		data->update_vertorigin(data->cell(nearest_cellidx).vertices[i]);
 		data->update_map_of(data->vert(data->cell(nearest_cellidx).vertices[i]).get_origin());
 	}
-	//	verts_data.vert(verts_data.cell(nearest_cellidx).vertices[0]).blendweights.x = 1.0;
 	
 	tesla_drawcell &leftcell = data->cell(data->cell_left(nearest_cellidx));
 	tesla_drawcell &rightcell = data->cell(data->cell_right(nearest_cellidx));
@@ -51,28 +50,38 @@ void set_texture_and_blend(TeslaObject *chunk, std::size_t index, const CoordStr
 	
 	for (auto cell : edge_cells) {
 		data->sepreate_cell(cell->this_idx);
-		for (std::size_t i : vert_idx_to_iter)
-			data->vert(cell->vertices[i]).tile_indexes.y = index;
+		for (std::size_t i : vert_idx_to_iter) {
+			tesla_dataarray::VertObjectType& vert = data->vert(cell->vertices[i]);
+			vert.tile_indexes.y = index;
+		}
 	}
-	
-	data->vert(leftcell.vertices[1]).blendweights.x = 1.0;
-	data->vert(leftcell.vertices[2]).blendweights.x = 1.0;
-	
-	data->vert(rightcell.vertices[0]).blendweights.x = 1.0;
-	data->vert(rightcell.vertices[4]).blendweights.x = 1.0;
-	
-	data->vert(topcell.vertices[2]).blendweights.x = 1.0;
-	data->vert(topcell.vertices[4]).blendweights.x = 1.0;
-	
-	data->vert(bottomcell.vertices[0]).blendweights.x = 1.0;
-	data->vert(bottomcell.vertices[1]).blendweights.x = 1.0;
-	
-	data->vert(lefttopcell.vertices[2]).blendweights.x = 1.0;
-	data->vert(rightbottomcell.vertices[0]).blendweights.x = 1.0;
-	data->vert(leftbottomcell.vertices[1]).blendweights.x = 1.0;
-	data->vert(righttopcell.vertices[4]).blendweights.x = 1.0;
-	
 	data->update_idx();
+	
+	std::array<float, 6> left_blendweights = {{ 0.0, 1.0, 1.0, 1.0, 0.0, 0.0 }};
+	std::array<float, 6> right_blendweights = {{ 1.0, 0.0, 0.0, 0.0, 1.0, 1.0 }};
+	std::array<float, 6> top_blendweights = {{ 0.0, 0.0, 1.0, 1.0, 1.0, 0.0 }};
+	std::array<float, 6> bottom_blendweights = {{ 1.0, 1.0, 0.0, 0.0, 0.0, 1.0 }};
+
+	std::array<float, 6> lefttop_blendweights = {{ 0.0, 0.0, 1.0, 1.0, 0.0, 0.0 }};
+	std::array<float, 6> rightbottom_blendweights = {{ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 }};
+	std::array<float, 6> leftbottom_blendweights = {{ 0.0, 1.0, 0.0, 0.0, 0.0, 0.0 }};
+	std::array<float, 6> righttop_blendweights = {{ 0.0, 0.0, 0.0, 0.0, 1.0, 0.0 }};
+	
+	std::function<void (tesla_drawcell& cell, const std::array<float, 6>& weights)> set_blendweights = [data, nearest_cellidx] (tesla_drawcell& cell, const std::array<float, 6>& weights) {
+		for (std::size_t i = 0; i < 6; i++) {
+			if (data->vert(cell.vertices[i]).tile_indexes.x != data->vert(data->cell(nearest_cellidx).vertices[i]).tile_indexes.x)
+				data->vert(cell.vertices[i]).blendweights.x = weights[i];
+		}
+	};
+	
+	set_blendweights(leftcell, left_blendweights);
+	set_blendweights(rightcell, right_blendweights);
+	set_blendweights(topcell, top_blendweights);
+	set_blendweights(bottomcell, bottom_blendweights);
+	set_blendweights(lefttopcell, lefttop_blendweights);
+	set_blendweights(rightbottomcell, rightbottom_blendweights);
+	set_blendweights(leftbottomcell, leftbottom_blendweights);
+	set_blendweights(righttopcell, righttop_blendweights);
 	
 	Acheron::Silcon.pause();
 	chunk->buffer_vert()->use();
