@@ -8,10 +8,10 @@ function Functions.Main_GameUpdateBegin()
 	local step = Enums.General.CameraMouseSlideStep
 	local dir = Enums.Direction
 
-	-- if (pos.x <= 12) then sesInst:CameraMove(dir.SouthWest, step) end
-	-- if (1024 - pos.x <= 12) then sesInst:CameraMove(dir.NorthEast, step) end
-	-- if (pos.y <= 12) then sesInst:CameraMove(dir.NorthWest, step) end
-	-- if (768 - pos.y <= 12) then sesInst:CameraMove(dir.SouthEast, step) end
+	if (pos.x <= 24) then sesInst:CameraMove(dir.SouthWest, step) end
+	if (1920 - pos.x <= 24) then sesInst:CameraMove(dir.NorthEast, step) end
+	if (pos.y <= 24) then sesInst:CameraMove(dir.NorthWest, step) end
+	if (1080 - pos.y <= 24) then sesInst:CameraMove(dir.SouthEast, step) end
 end
 
 function Functions.Session_KeyPress(keyevent)
@@ -30,7 +30,7 @@ function Functions.Session_KeyPress(keyevent)
 	if (keyevent.code == Enums.Key.Up) then sesInst:CameraMove(dir.NorthWest, step) end
 	if (keyevent.code == Enums.Key.Down) then sesInst:CameraMove(dir.SouthEast, step) end
 
-	ModEnvironment.Functions.applyKeyboardCommandTo(TECHNO_SELECTED, keyevent.code)
+	InputHandler.KeyPress(keyevent.code)
 end
 
 function Functions.Session_MousePress(mouseStatus)

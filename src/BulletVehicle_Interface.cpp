@@ -19,12 +19,16 @@ void LuaInterface::RegisterInterface_Physics_Vehicle(LuaStatus &L) {
 	beginNamespace("Physics").
 		beginClass<BulletVehicle>("BulletVehicle").
 			addData("parent", &BulletVehicle::parent).
+			addData("tyre_count", &BulletVehicle::tyre_count).
 			addFunction("spawn", &BulletVehicle::spawn).
 			addFunction("setup_wheels", &BulletVehicle::setup_wheels).
 			addFunction("add_wheel", &BulletVehicle::add_wheel).
+			addFunction("set_maxspeed", &BulletVehicle::set_maxspeed).
+			addFunction("launch_tyre", &BulletVehicle::launch_tyre).
 			addFunction("launch", &BulletVehicle::launch).
 			addFunction("clear_steer", &BulletVehicle::clear_steer).
 			addFunction("brake_atonce", &BulletVehicle::brake_atonce).
+			addFunction("set_steer", &BulletVehicle::set_steer).
 		endClass().
 		deriveClass<RaycastVehicle, BulletVehicle>("RaycastVehicle").
 			addStaticFunction("create", &RaycastVehicle::create).

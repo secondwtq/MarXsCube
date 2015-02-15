@@ -21,6 +21,27 @@ function InputHandler.MousePress_OnObject(mouse_status, ray)
 	TECHNO_SELECTED = techno_pressedon
 end
 
+function apply_key_command_to(self, keycode)
+	if keycode == Enums.Key.S then
+		if self.Techno:WhatAmI() == Enums.RTTITypeID.Techno then
+			local _self = Utility.toTechno(self.Techno)
+			print 'braking'
+			_self.Physics.vehicle:brake_atonce()
+		end
+	end
+	if keycode == Enums.Key.D then
+		if self:WhatAmI() == Enums.RTTITypeID.Techno then
+			local _self = Utility.toTechno(self)
+			-- _self.Physics:applyCentralImpulse_Directional(-1000)
+			util.getObjectTable(_self).MovingState_Reverse = true
+		end
+	end
+end
+
+function InputHandler.KeyPress(keycode)
+	apply_key_command_to(TECHNO_SELECTED, keycode)
+end
+
 -- called when mouse pressed on an empty cell
 -- args: mouse_status: same as Functions.Session_MousePress
 function InputHandler.MousePress_OnCell(mouse_status)
@@ -35,7 +56,16 @@ function InputHandler.MousePress_OnCell(mouse_status)
 		-- print("hit on cell", hit_point.x, hit_point.y, hit_point.z)
 
 		if TECHNO_SELECTED then
-			Helpers.Techno_TechnoRTTIIDTable(TECHNO_SELECTED).Physics.vehicle:launch()
+			local Techno = Helpers.Techno_TechnoRTTIIDTable(TECHNO_SELECTED)
+			
+			for i = 0, 2 do
+				Techno.Physics.vehicle:set_maxspeed(i, 100)
+				Techno.Physics.vehicle:launch_tyre(i, 500)
+			end
+			-- for i = 0, Techno.Physics.vehicle.tyre_count-1 do
+			-- 	Techno.Physics.vehicle:set_maxspeed(i, 100)
+			-- 	Techno.Physics.vehicle:launch_tyre(i, 100)
+			-- end
 		end
 	end
 

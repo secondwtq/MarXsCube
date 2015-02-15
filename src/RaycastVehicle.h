@@ -32,6 +32,14 @@ public:
 	
 	void brake_atonce();
 	
+	virtual void brake_atonce_force(float brake_force) { }
+	
+	virtual void set_steer(std::size_t wheel_id, float value) { }
+	
+	virtual void set_maxspeed(std::size_t wheel_id, float value) { }
+	
+	virtual void launch_tyre(std::size_t wheel_id, float engine_force);
+	
 	virtual ~RaycastVehicle() { }
 	
 private:

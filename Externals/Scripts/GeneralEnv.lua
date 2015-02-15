@@ -69,25 +69,6 @@ ModEnvironment.CurMouseOn = nil
 
 ModEnvironment.Functions = { }
 
-function ModEnvironment.Functions.applyKeyboardCommandTo(self, keycode)
-	if keycode == Enums.Key.S then
-		if self.Techno:WhatAmI() == Enums.RTTITypeID.Techno then
-			local _self = Utility.toTechno(self.Techno)
-			-- if _self:onGround() then _self.Physics:setVelocity(0) end
-			-- util.getObjectTable(_self).Mission = Enums.ModEnv.Mission.Idle
-			print 'braking'
-			_self.Physics.vehicle:brake_atonce()
-		end
-	end
-	if keycode == Enums.Key.D then
-		if self:WhatAmI() == Enums.RTTITypeID.Techno then
-			local _self = Utility.toTechno(self)
-			-- _self.Physics:applyCentralImpulse_Directional(-1000)
-			util.getObjectTable(_self).MovingState_Reverse = true
-		end
-	end
-end
-
 function ModEnvironment.Functions.moveTechno(self, target_coord)
 	local src_cell = Objects.Map.GetInstance():GetCellAt(Objects.Map.CellFromCoord(self:GetCoord()))
 	local cell = Objects.Map.GetInstance():GetCellAt(Objects.Map.CellFromCoord(target_coord))

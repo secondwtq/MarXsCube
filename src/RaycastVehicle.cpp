@@ -60,13 +60,17 @@ void RaycastVehicle::launch() {
 	}
 }
 
+void RaycastVehicle::launch_tyre(std::size_t wheel_id, float engine_force) {
+	m_vehicle->applyEngineForce(engine_force, static_cast<int>(wheel_id));
+}
+
 void RaycastVehicle::clear_steer() {
 	for (int i = 0; i < this->m_vehicle->getNumWheels(); i++)
 		m_vehicle->setSteeringValue(0, i); }
 
 void RaycastVehicle::brake_atonce() {
 	for (int i = 0; i < this->m_vehicle->getNumWheels(); i++) {
-		m_vehicle->setBrake(2000, i);
+		m_vehicle->setBrake(5000, i);
 		m_vehicle->setSteeringValue(0, i);
 	}
 }

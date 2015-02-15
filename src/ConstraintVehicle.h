@@ -32,12 +32,19 @@ class ConstraintVehicle : public BulletVehicle {
 		virtual void clear_steer();
 		
 		virtual void brake_atonce();
-		
+	
+		virtual void launch_tyre(std::size_t wheel_id, float engine_force);
+	
+		virtual void set_steer(std::size_t wheel_id, float value);
+	
+		virtual void set_maxspeed(std::size_t wheel_id, float value);
+	
+		virtual void brake_atonce_force(float brake_force);
+	
 		virtual ~ConstraintVehicle() { }
 	
 	private:
 	
-		std::size_t m_count_tyres;
 		std::vector<btRigidBody *> m_tyres;
 		std::vector<btHinge2Constraint *> m_constraints;
 	

@@ -49,6 +49,7 @@ void init_err(lua_State *State, int err) {
 	}
 }
 
+// from luajit-lang-toolkit - luajit-x
 void override_loaders(lua_State *L) {
 	lua_getfield(L, LUA_GLOBALSINDEX, "package");
 	lua_getfield(L, -1, "loaders");

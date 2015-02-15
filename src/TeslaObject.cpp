@@ -32,6 +32,7 @@ void TeslaObject::create_bullet() {
 	this->m_bbody = new btRigidBody(grInfo);
 	this->m_bbody->setRestitution(btScalar(0.5));
 	this->m_bbody->setFriction(btScalar(0.8));
+	this->m_bbody->setRollingFriction(1);
 	this->m_bbody->setCollisionFlags(this->m_bbody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
 	
 	this->m_bbody->setCollisionFlags(this->m_bbody->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);

@@ -10,11 +10,14 @@
 #define __MarXsCube__BulletVehicle__
 
 #include "Common.h"
+#include <cstddef>
 
 class PhysicsObject;
 
 class BulletVehicle {
 public:
+	
+	std::size_t tyre_count = 0;
 	
 	virtual void spawn() = 0;
 	
@@ -27,6 +30,14 @@ public:
 	virtual void clear_steer() = 0;
 	
 	virtual void brake_atonce() = 0;
+	
+	virtual void brake_atonce_force(float brake_force) = 0;
+	
+	virtual void launch_tyre(std::size_t wheel_id, float engine_force) = 0;
+	
+	virtual void set_steer(std::size_t wheel_id, float value) = 0;
+	
+	virtual void set_maxspeed(std::size_t wheel_id, float value) = 0;
 	
 	virtual ~BulletVehicle() { }
 	
