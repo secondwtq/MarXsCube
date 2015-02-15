@@ -22,7 +22,7 @@ using namespace std;
 void Acheron::thread_sleep_for(double ms) {
 //	// microseconds failed ?
 //	std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<long long>(ms)));
-	if (ms > -1) usleep((ms+1) * 1000);
+	if (ms > 0) usleep(ms * 1000);
 }
 
 void Acheron::AcheronBase::start() {

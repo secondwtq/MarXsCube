@@ -99,12 +99,12 @@ int main() {
 	
 	static double interval = (1000.0 / ATVBCube::setting<S::FPSLimitSetting>().limit_main);
 	while (window_global->isOpen()) {
-		fps_logic.update();
+		double time_start = time_in_millisec();
 		
 		Acheron::Bullet.pause();
 		
+		fps_logic.update();
 		if (fps_logic.updated) printf("Logic FPS: %lf\n", fps_logic.fps);
-		Acheron::thread_sleep_for(interval - fps_logic.last_time_ms);
 		
 		EventManger::GetInstance().GetEvent(EventManger::Events::GAME_UPDATE_BEGIN)();
 
@@ -153,6 +153,7 @@ int main() {
 		
 		ObjectManger::GetInstance().FinishRemove();
 		
+		Acheron::thread_sleep_for(interval - (time_in_millisec() - time_start) - 1);
 		Acheron::Bullet.invoke();
 	}
 	

@@ -4,7 +4,7 @@
 
 * **[MAINTENANCE]** More work about memory management.
 
-* **[FEATURE]** Restrict the FPS of logic, physics and rendering. ***fixed***
+* ~~**[FEATURE]** Restrict the FPS of logic, physics and rendering. ***fixed***~~
 
 * **[MODULE]** C/S architecture for replay, save/load, network.
 
