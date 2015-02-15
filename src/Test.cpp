@@ -127,8 +127,6 @@ int main() {
 				case Event::MouseButtonPressed:
 					Generic::Session()->setMousePos_Press(event.mouseButton);
 					EventManger::GetInstance().GetEvent(EventManger::Events::UI_MOUSEPRESS)(Generic::Session()->getMousePos());
-//					raise_verts();
-					tiler_array_test();
 					break;
 
 				case Event::MouseButtonReleased:

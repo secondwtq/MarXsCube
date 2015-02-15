@@ -48,6 +48,20 @@ function InputHandler.KeyPress(keycode)
 	apply_key_command_to(TECHNO_SELECTED, keycode)
 end
 
+function InputHandler.MouseMove(mouse_status)
+	if mouse_status.left then
+		local coord = Utility.GetCoordFromPoint(mouse_status.pos)
+		local rt_start = Utility.CoordStruct(coord.x-600, coord.y-600, coord.z-500)
+		local rt_end = Utility.CoordStruct(coord.x+6000, coord.y+6000, coord.z+5000)
+		local ray_cell = Physics.RayTestSingleForCell.createRayTestForCell(rt_end, rt_start)
+		ray_cell:perform()
+		if ray_cell:hit() then
+			local hit_point = ray_cell:hit_point()
+			Wonderland.set_texture_and_blend(TERRAIN_CHUNKS[1], CURRENT_TERRAIN_TILE, hit_point)
+		end
+	end
+end
+
 -- called when mouse pressed on an empty cell
 -- args: mouse_status: same as Functions.Session_MousePress
 function InputHandler.MousePress_OnCell(mouse_status)

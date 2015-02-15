@@ -73,6 +73,8 @@ function Functions.Session_MouseMove(mouseStatus)
 			ModEnvironment.CurMouseOn = Utility.toTechno(selected)
 		end
 	else ModEnvironment.CurMouseOn = nil end
+
+	InputHandler.MouseMove(mouseStatus)
 end
 
 function Functions.Abs_Anim_onCreate(creating, table) end
