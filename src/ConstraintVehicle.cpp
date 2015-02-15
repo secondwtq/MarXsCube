@@ -47,7 +47,12 @@ void ConstraintVehicle::brake_atonce() {
 
 void ConstraintVehicle::clear_steer() {
 	for (std::size_t i = 0; i < this->m_count_tyres; i++) {
+		btRotationalLimitMotor *motor = this->m_constraints[i]->getRotationalLimitMotor(2);
 		
+		motor->m_enableMotor = true;
+		motor->m_loLimit = -0.01f;
+		motor->m_hiLimit = 0.01f;
+		motor->m_maxLimitForce = 100.0f;
 	}
 }
 

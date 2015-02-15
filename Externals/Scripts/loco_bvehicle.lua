@@ -48,6 +48,7 @@ function comp_BVehicle:on_spawn()
 		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-45, -25, wheel_height), wheel_radius, 12)
 
 		obj.Physics.vehicle:setup_wheels()
+		obj.Physics.vehicle:clear_steer()
 		-- obj.Physics.vehicle:launch()
 	end
 end

@@ -30,7 +30,7 @@ void ConfigLoadCallback(LuaStatus &L) {
 namespace {
 	void LUA_ImportFile(const char *filename, lua_State *L) {
 		LOGFUNC;
-		cout << "CubeCore: Config:: ::LUA_ImportFile - (Initial Import) Including script " << filename << " ..." << endl;
+		cout << "CubeCore: Config::LUA_ImportFile - (Initial Import) Including script " << filename << " ..." << endl;
 		if (hafnium_dofile(L, filename)) {
 			cout << "CubeCore: Config::LUA_ImportFile - hafnium_dofile: Error in script " << filename << "!" << endl;
 			printf("%s\n", lua_tostring(L, -1));
@@ -49,6 +49,26 @@ void init_err(lua_State *State, int err) {
 	}
 }
 
+void override_loaders(lua_State *L) {
+	lua_getfield(L, LUA_GLOBALSINDEX, "package");
+	lua_getfield(L, -1, "loaders");
+	lua_remove(L, -2);
+		
+	luaopen_langloaders(L);
+	lua_getfield(L, -1, "loadstring");
+	lua_setfield(L, LUA_GLOBALSINDEX, "loadstring");
+		
+	lua_getfield(L, -1, "loadfile");
+	lua_setfield(L, LUA_GLOBALSINDEX, "loadfile");
+		
+	lua_getfield(L, -1, "dofile");
+	lua_setfield(L, LUA_GLOBALSINDEX, "dofile");
+		
+	lua_getfield(L, -1, "loader");
+	lua_rawseti(L, -3, 2);
+	lua_pop(L, 2);
+}
+
 void LuaStatus::init() {LOGFUNC;
 	if (!_loaded) {
 		Generic::corelog()[L::Debug] << "Initing LuaState ..." << rn;
@@ -57,7 +77,7 @@ void LuaStatus::init() {LOGFUNC;
 #ifdef CUBE_CONFIG_ENABLE_LUNAR
 		int err = language_init(State);
 		init_err(State, err);
-		luaopen_langloaders(State);
+		override_loaders(State);
 #elif defined(CUBE_CONFIG_ENABLE_TERRA)
 		terra_init(State);
 #endif
