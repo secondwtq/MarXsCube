@@ -21,7 +21,7 @@ namespace Wonderland {
 
 	namespace Foundation {
 		
-		void check_cell_1(TeslaObject *chunk, std::size_t index) {
+		void check_cell(TeslaObject *chunk, std::size_t index) {
 			tesla_dataarray *data = chunk->get_data();
 			
 			tesla_drawcell &cell = data->cell(index);
@@ -32,16 +32,7 @@ namespace Wonderland {
 				if (data->vert(cell.vertices[i]).blendweights.x != initial)
 					return;
 			
-			std::array<std::size_t, 4> vert_idx_to_iter {{ 0, 1, 2, 4 }};
-			for (std::size_t i : vert_idx_to_iter) {
-				data->vert(cell.vertices[i]).blendweights.x = 0.f;
-				data->vert(cell.vertices[i]).tile_indexes.x = data->vert(cell.vertices[i]).tile_indexes.y;
-			}
-		}
-		
-		void check_cell(TeslaObject *chunk, std::size_t index) {
-			check_cell_1(chunk, index);
-//			check_cell_2(chunk, index);
+			cell.override_tileid(cell.vert(0)->tile_indexes.y);
 		}
 
 void set_texture_and_blend(TeslaObject *chunk, std::size_t index, const CoordStruct& position) {
@@ -54,9 +45,7 @@ void set_texture_and_blend(TeslaObject *chunk, std::size_t index, const CoordStr
 	if (data->vert(data->cell(nearest_cellidx).vertices[0]).tile_indexes.x == index) return;
 	std::array<std::size_t, 4> vert_idx_to_iter {{ 0, 1, 2, 4 }};
 	for (std::size_t i : vert_idx_to_iter) {
-		data->vert(data->cell(nearest_cellidx).vertices[i]).tile_indexes.x = index;
-		data->vert(data->cell(nearest_cellidx).vertices[i]).tile_indexes.y = index;
-		data->vert(data->cell(nearest_cellidx).vertices[i]).blendweights.x = 0;
+		data->cell(nearest_cellidx).override_tileid(index);
 		data->update_vertorigin(data->cell(nearest_cellidx).vertices[i]);
 		data->update_map_of(data->vert(data->cell(nearest_cellidx).vertices[i]).get_origin());
 	}
@@ -75,10 +64,7 @@ void set_texture_and_blend(TeslaObject *chunk, std::size_t index, const CoordStr
 	
 	for (auto cell : edge_cells) {
 		data->sepreate_cell(cell->this_idx);
-		for (std::size_t i : vert_idx_to_iter) {
-			tesla_dataarray::VertObjectType& vert = data->vert(cell->vertices[i]);
-			vert.tile_indexes.y = index;
-		}
+		cell->set_secondid(index);
 	}
 	data->update_idx();
 	
@@ -86,7 +72,6 @@ void set_texture_and_blend(TeslaObject *chunk, std::size_t index, const CoordStr
 	std::array<float, 6> right_blendweights = {{ 1.0, 0.0, 0.0, 0.0, 1.0, 1.0 }};
 	std::array<float, 6> top_blendweights = {{ 0.0, 0.0, 1.0, 1.0, 1.0, 0.0 }};
 	std::array<float, 6> bottom_blendweights = {{ 1.0, 1.0, 0.0, 0.0, 0.0, 1.0 }};
-
 	std::array<float, 6> lefttop_blendweights = {{ 0.0, 0.0, 1.0, 1.0, 0.0, 0.0 }};
 	std::array<float, 6> rightbottom_blendweights = {{ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 }};
 	std::array<float, 6> leftbottom_blendweights = {{ 0.0, 1.0, 0.0, 0.0, 0.0, 0.0 }};
@@ -122,16 +107,19 @@ void set_texture_and_blend(TeslaObject *chunk, std::size_t index, const CoordStr
 	check_cell(chunk, leftbottomcell.this_idx);
 	check_cell(chunk, righttopcell.this_idx);
 	
+}
+		
+void buffer_update(TeslaObject *chunk) {
+	tesla_dataarray *data = chunk->get_data();
 	Acheron::Silcon.pause();
+	
 	chunk->buffer_vert()->use();
 	glBufferSubData(GL_ARRAY_BUFFER, 0, data->count_vert() * sizeof(tesla_dataarray::VertObjectType), data->verts());
 	GLFoundation::unbind(*chunk->buffer_vert());
-	Acheron::Silcon.invoke();
-	
-	Acheron::Silcon.pause();
 	chunk->buffer_idx()->use();
 	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, data->count_idx() * sizeof(GLIDX), data->indexes());
 	GLFoundation::unbind(*chunk->buffer_idx());
+	
 	Acheron::Silcon.invoke();
 }
 

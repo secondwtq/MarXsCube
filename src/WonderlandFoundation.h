@@ -20,6 +20,8 @@ namespace Wonderland {
 	
 		void set_texture_and_blend(TeslaObject *chunk, std::size_t index, const CoordStruct& position);
 		
+		void buffer_update(TeslaObject *chunk);
+		
 	}
 	
 }

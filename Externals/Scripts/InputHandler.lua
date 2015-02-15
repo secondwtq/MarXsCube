@@ -58,6 +58,7 @@ function InputHandler.MouseMove(mouse_status)
 		if ray_cell:hit() then
 			local hit_point = ray_cell:hit_point()
 			Wonderland.set_texture_and_blend(TERRAIN_CHUNKS[1], CURRENT_TERRAIN_TILE, hit_point)
+			Wonderland.buffer_update(TERRAIN_CHUNKS[1])
 		end
 	end
 end

@@ -13,6 +13,32 @@
 #include <unordered_map>
 #include <cstring>
 
+void tesla_drawcell::set_tileid(std::size_t idx) {
+	std::array<std::size_t, 4> vert_idx_to_iter {{ 0, 1, 2, 4 }};
+	for (std::size_t i : vert_idx_to_iter)
+		this->parent->vert(this->vertices[i]).tile_indexes.x = idx;
+	this->tileidx = idx;
+}
+
+void tesla_drawcell::override_tileid(std::size_t idx) {
+	std::array<std::size_t, 4> vert_idx_to_iter {{ 0, 1, 2, 4 }};
+	for (std::size_t i : vert_idx_to_iter) {
+		this->parent->vert(this->vertices[i]).blendweights.x = 0.f;
+		this->parent->vert(this->vertices[i]).tile_indexes.x = this->parent->vert(this->vertices[i]).tile_indexes.y = idx;
+	}
+	this->tileidx = this->secondary_idx = idx;
+}
+
+void tesla_drawcell::set_secondid(std::size_t idx) {
+	std::array<std::size_t, 4> vert_idx_to_iter {{ 0, 1, 2, 4 }};
+	for (std::size_t i : vert_idx_to_iter)
+		this->parent->vert(this->vertices[i]).tile_indexes.y = idx;
+	this->secondary_idx = idx;
+}
+
+tesla_vert *tesla_drawcell::vert(std::size_t id) {
+	return &(this->parent->vert(this->vertices[id])); }
+
 void transfer_verts_tesla(tesla_dataarray& dest, const objfile& src) {
 	std::unordered_map<std::size_t, std::size_t> texcoord_cache;
 	
@@ -53,7 +79,7 @@ void transfer_verts_tesla(tesla_dataarray& dest, const objfile& src) {
 			for (int j = 0; j < 3; j++)
 				cellvert_buffer[j+3] = current_face[j];
 			
-			dest.vec_cells().push_back({ cellvert_buffer, static_cast<int>(dest.vec_cells().size()) });
+			dest.vec_cells().push_back({ &dest, cellvert_buffer, static_cast<int>(dest.vec_cells().size()) });
 			
 			glm::vec3 center { 0 };
 			center = dest.vec_verts()[cellvert_buffer[0]].position + dest.vec_verts()[cellvert_buffer[1]].position +

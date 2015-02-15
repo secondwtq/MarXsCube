@@ -41,12 +41,22 @@ void transfer_verts_tesla(tesla_dataarray& dest, const objfile& src);
 
 struct tesla_drawcell {
 	
+	tesla_dataarray *parent = nullptr;
 	std::array<std::size_t, CELL_VERTS_TOTAL> vertices;
 	bool seperated = false;
 	int this_idx = -1;
+	std::size_t tileidx = 0;
+	std::size_t secondary_idx = 0;
 	
-	tesla_drawcell(std::array<std::size_t, CELL_VERTS_TOTAL> pvertices, int idx)
-											: vertices(pvertices), this_idx(idx) { }
+	void set_tileid(std::size_t idx);
+	void set_secondid(std::size_t idx);
+	void override_tileid(std::size_t idx);
+	std::size_t get_tileid() { return this->tileidx; }
+	std::size_t get_secondid() { return this->secondary_idx; }
+	tesla_vert *vert(std::size_t id);
+	
+	tesla_drawcell(tesla_dataarray *p, std::array<std::size_t, CELL_VERTS_TOTAL> pvertices, int idx)
+											: parent(p), vertices(pvertices), this_idx(idx) { }
 	
 };
 
