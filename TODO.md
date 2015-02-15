@@ -31,7 +31,7 @@
 
 * **[MAINTENANCE]** Decoupling of Doge scripts.
 
-* **[FEATURE]** This seems good: [http://terralang.org/index.html](). ***won't fix***
+* ~~**[FEATURE]** This seems good: [http://terralang.org/index.html](). ***won't fix***~~
 
 * **[FEATURE]** MarXsCube DSL (maybe related to components) with luajit-lang-toolkit. ***in progress***
 
@@ -48,16 +48,16 @@
 
 * **[MAINTENANCE]** More work about Tesla & Wonderland.
 
-* **[BUG]** Performance issue of the coexistence of Silcon & Tesla. ***fixed***
+* ~~**[BUG]** Performance issue of the coexistence of Silcon & Tesla. ***fixed***~~
 
-* **[FEATURE]** Texture atlas and batch rendering support. ***suspended***
+* ~~**[FEATURE]** Texture atlas and batch rendering support. ***suspended***~~
 
 * **[MAINTENANCE]** Replace SFML. ***in progress***
 
-* **[FEATURE]** Re-enable Verdandi model rendering engine.
+* ~~**[FEATURE]** Re-enable Verdandi model rendering engine. ***suspended***~~
 
-* **[MODULE]** Silcon UI Engine. ***suspended***
+* ~~**[MODULE]** Silcon UI Engine. ***suspended***~~
 
 * **[FEATURE]** Shadow mapping for Tesla.
 
-* **[MAINTENANCE]** Bullet Debug Draw, which is pretty important for tweaking around vehicles, is now broken. ***fixed***
+* ~~**[MAINTENANCE]** Bullet Debug Draw, which is pretty important for tweaking around vehicles, is now broken. ***fixed***~~

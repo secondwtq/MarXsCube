@@ -108,7 +108,6 @@ int main() {
 		
 		EventManger::GetInstance().GetEvent(EventManger::Events::GAME_UPDATE_BEGIN)();
 
-		Generic::Session()->setMousePos_Ab();
 		Generic::Session()->updateMouseButtonStatus();
 		
 		while (window_global->pollEvent(event)) {
