@@ -9,10 +9,19 @@
 #ifndef __MarXsCube__WonderlandFoundation__
 #define __MarXsCube__WonderlandFoundation__
 
-#include <stdio.h>
+#include "Common.h"
+#include "TeslaObject.h"
 
-void raise_verts();
+#include <cstddef>
 
-void tiler_array_test();
+namespace Wonderland {
+	
+	namespace Foundation {
+	
+		void set_texture_and_blend(TeslaObject *chunk, std::size_t index, const CoordStruct& position);
+		
+	}
+	
+}
 
 #endif /* defined(__MarXsCube__WonderlandFoundation__) */

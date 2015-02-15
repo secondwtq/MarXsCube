@@ -48,6 +48,7 @@
 		593458671A8316E000DE4C28 /* TeslaObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 593458651A8316E000DE4C28 /* TeslaObject.cpp */; };
 		5934586A1A832C8800DE4C28 /* Tesla_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 593458681A832C8800DE4C28 /* Tesla_Interface.cpp */; };
 		5944452F1A75389000941CEB /* CubeTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5944452D1A75389000941CEB /* CubeTransform.cpp */; };
+		5953D4191A90A84F009AD969 /* Wonderland_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5953D4171A90A84F009AD969 /* Wonderland_Interface.cpp */; };
 		595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */; };
 		595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */; };
 		595DDC13198ADD990046919B /* libLinearMath_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */; };
@@ -202,6 +203,8 @@
 		5944452D1A75389000941CEB /* CubeTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CubeTransform.cpp; sourceTree = "<group>"; };
 		5944452E1A75389000941CEB /* CubeTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubeTransform.h; sourceTree = "<group>"; };
 		594F23A01A8F6F8100756010 /* BulletDebugShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BulletDebugShader.h; sourceTree = "<group>"; };
+		5953D4171A90A84F009AD969 /* Wonderland_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wonderland_Interface.cpp; sourceTree = "<group>"; };
+		5953D4181A90A84F009AD969 /* Wonderland_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wonderland_Interface.h; sourceTree = "<group>"; };
 		595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletCollision_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletDynamics_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libLinearMath_xcode4_x64_release.a; sourceTree = "<group>"; };
@@ -564,6 +567,8 @@
 			children = (
 				59BF15F51A837A9E000DA821 /* WonderlandFoundation.h */,
 				59BF15F41A837A9E000DA821 /* WonderlandFoundation.cpp */,
+				5953D4181A90A84F009AD969 /* Wonderland_Interface.h */,
+				5953D4171A90A84F009AD969 /* Wonderland_Interface.cpp */,
 			);
 			name = Wonderland;
 			sourceTree = "<group>";
@@ -802,6 +807,7 @@
 				59262942198AB66500858A67 /* Common.cpp in Sources */,
 				59BF15F31A837301000DA821 /* TeslaRendering.cpp in Sources */,
 				59BF15F61A837A9E000DA821 /* WonderlandFoundation.cpp in Sources */,
+				5953D4191A90A84F009AD969 /* Wonderland_Interface.cpp in Sources */,
 				599985F21A7F540200E6CE68 /* RaycastVehicle.cpp in Sources */,
 				591692601A3E11D2001D4D35 /* SFLineShape.cpp in Sources */,
 				599985EF1A7F4BED00E6CE68 /* Startup.cpp in Sources */,

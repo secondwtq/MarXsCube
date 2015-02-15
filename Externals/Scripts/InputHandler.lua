@@ -22,6 +22,11 @@ function InputHandler.MousePress_OnObject(mouse_status, ray)
 end
 
 function apply_key_command_to(self, keycode)
+	local code = tonumber(Enums.KeyString[keycode])
+	if code ~= nil then
+		CURRENT_TERRAIN_TILE = code
+	end
+
 	if keycode == Enums.Key.S then
 		if self.Techno:WhatAmI() == Enums.RTTITypeID.Techno then
 			local _self = Utility.toTechno(self.Techno)
@@ -56,6 +61,8 @@ function InputHandler.MousePress_OnCell(mouse_status)
 		local hit_point = ray_cell:hit_point()
 		-- print("hit on cell", hit_point.x, hit_point.y, hit_point.z)
 
+
+		Wonderland.set_texture_and_blend(TERRAIN_CHUNKS[1], CURRENT_TERRAIN_TILE, hit_point)
 		if TECHNO_SELECTED then
 			local Techno = Helpers.Techno_TechnoRTTIIDTable(TECHNO_SELECTED)
 			

@@ -14,6 +14,9 @@ GRAPH_GLOBAL = nil
 
 TECHNO_SELECTED = nil
 
+TERRAIN_CHUNKS = { }
+CURRENT_TERRAIN_TILE = 1
+
 function grit_test()
 
 	local start = Utility.CubePoint(0, 0)
@@ -71,6 +74,7 @@ function Functions.TestManger_onTestInit()
 		terrain:create_bullet()
 		terrain:load_buffer()
 		Generic.TeslaManger():add_chunk(terrain)
+		table.insert(TERRAIN_CHUNKS, terrain)
 	end
 
 	-- transform the coord of original data for display in map

@@ -59,6 +59,10 @@ public:
 	
 	void load_buffer();
 	
+	tesla_dataarray *get_data() { return this->m_mesh_data; }
+	gl_buffer<VBO, DYNAMIC> *buffer_vert() { return this->m_buffer_vert; }
+	gl_buffer<IBO, DYNAMIC> *buffer_idx() { return this->m_buffer_idx; }
+	
 	static TeslaObject *create();
 	
 private:

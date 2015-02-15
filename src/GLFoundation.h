@@ -47,6 +47,10 @@ public:
 	void init_with(const std::vector<T> &data) {
 		this->init_with(reinterpret_cast<void *>(const_cast<T *>(data.data())), data.size() * sizeof(T)); }
 	
+	template <typename T>
+	void init_with(const std::vector<T> &data, float scale) {
+		this->init_with(reinterpret_cast<void *>(const_cast<T *>(data.data())), data.size() * sizeof(T) * scale); }
+	
 	void use();
 	
 	inline GLIDX id() { return this->m_buffer_id; }
