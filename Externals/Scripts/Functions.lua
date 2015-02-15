@@ -55,7 +55,8 @@ function Functions.Session_MousePress(mouseStatus)
 			-- delegate to InputHandler - MousePress OnCell
 			InputHandler.MousePress_OnCell(mouseStatus)
 		end
-	else 
+	else
+		InputHandler.MousePress_Right(mouseStatus)
 		print("Current cell location: ", cell.LocCell.x, cell.LocCell.y)
 	end
 end

@@ -57,7 +57,7 @@ function InputHandler.MouseMove(mouse_status)
 		ray_cell:perform()
 		if ray_cell:hit() then
 			local hit_point = ray_cell:hit_point()
-			Wonderland.set_texture_and_blend(TERRAIN_CHUNKS[1], CURRENT_TERRAIN_TILE, hit_point)
+			Wonderland.set_texture(TERRAIN_CHUNKS[1], CURRENT_TERRAIN_TILE, hit_point)
 			Wonderland.buffer_update(TERRAIN_CHUNKS[1])
 		end
 	end
@@ -74,10 +74,9 @@ function InputHandler.MousePress_OnCell(mouse_status)
 
 	if ray_cell:hit() then
 		local hit_point = ray_cell:hit_point()
-		-- print("hit on cell", hit_point.x, hit_point.y, hit_point.z)
+		Wonderland.set_texture(TERRAIN_CHUNKS[1], CURRENT_TERRAIN_TILE, hit_point)
+		Wonderland.buffer_update(TERRAIN_CHUNKS[1])
 
-
-		Wonderland.set_texture_and_blend(TERRAIN_CHUNKS[1], CURRENT_TERRAIN_TILE, hit_point)
 		if TECHNO_SELECTED then
 			local Techno = Helpers.Techno_TechnoRTTIIDTable(TECHNO_SELECTED)
 			
@@ -93,6 +92,22 @@ function InputHandler.MousePress_OnCell(mouse_status)
 	end
 
 	-- ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(coord.x, coord.y, 128), true)
+end
+
+function InputHandler.MousePress_Right(mouse_status)
+	local coord = Utility.GetCoordFromPoint(mouse_status.pos)
+	local rt_start = Utility.CoordStruct(coord.x-600, coord.y-600, coord.z-500)
+	local rt_end = Utility.CoordStruct(coord.x+6000, coord.y+6000, coord.z+5000)
+	local ray_cell = Physics.RayTestSingleForCell.createRayTestForCell(rt_end, rt_start)
+	ray_cell:perform()
+
+	if ray_cell:hit() then
+		local hit_point = ray_cell:hit_point()
+		Wonderland.blend_cells_batch(TERRAIN_CHUNKS[1], hit_point)
+		Wonderland.buffer_update(TERRAIN_CHUNKS[1])
+		print 'blending cells'
+	end
+
 end
 
 return InputHandler

@@ -14,8 +14,10 @@ void LuaInterface::RegisterInterface_Wonderland(LuaStatus &L) {
 	
 	luabridge::getGlobalNamespace(L).
 		beginNamespace("Wonderland").
+			addFunction("set_texture", Wonderland::Foundation::set_texture).
 			addFunction("set_texture_and_blend", Wonderland::Foundation::set_texture_and_blend).
 			addFunction("buffer_update", Wonderland::Foundation::buffer_update).
+			addFunction("blend_cells_batch", Wonderland::Foundation::blend_cells_batch).
 		endNamespace();
 
 }

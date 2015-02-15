@@ -55,6 +55,16 @@ struct tesla_drawcell {
 	std::size_t get_secondid() { return this->secondary_idx; }
 	tesla_vert *vert(std::size_t id);
 	
+	tesla_drawcell *left();
+	tesla_drawcell *top();
+	tesla_drawcell *right();
+	tesla_drawcell *bottom();
+	
+	tesla_drawcell *lefttop();
+	tesla_drawcell *leftbottom();
+	tesla_drawcell *righttop();
+	tesla_drawcell *rightbottom();
+	
 	tesla_drawcell(tesla_dataarray *p, std::array<std::size_t, CELL_VERTS_TOTAL> pvertices, int idx)
 											: parent(p), vertices(pvertices), this_idx(idx) { }
 	

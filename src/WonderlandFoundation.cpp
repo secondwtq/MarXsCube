@@ -34,6 +34,158 @@ namespace Wonderland {
 			
 			cell.override_tileid(cell.vert(0)->tile_indexes.y);
 		}
+		
+		void set_texture(TeslaObject *chunk, std::size_t index, const CoordStruct& position) {
+			tesla_dataarray *data = chunk->get_data();
+			std::size_t nearest_cellidx = data->find_nearest_cell({ position.y, position.x, 0 });
+			data->sepreate_cell(nearest_cellidx);
+			
+			data->cell(nearest_cellidx).override_tileid(index);
+			std::array<std::size_t, 4> vert_idx_to_iter {{ 0, 1, 2, 4 }};
+			
+			for (std::size_t i : vert_idx_to_iter) {
+				data->update_vertorigin(data->cell(nearest_cellidx).vertices[i]);
+				data->update_map_of(data->vert(data->cell(nearest_cellidx).vertices[i]).get_origin());
+			}
+			
+			data->update_idx();
+		}
+		
+		void blend_cells_batch(TeslaObject *chunk, const CoordStruct& position) {
+			tesla_dataarray *data = chunk->get_data();
+			
+			std::size_t nearest_cellidx = data->find_nearest_cell({ position.y, position.x, 0 });
+			
+			cell_fix_blend(chunk, nearest_cellidx);
+		}
+		
+		void cell_fix_blend(TeslaObject *chunk, std::size_t cell_idx) {
+			tesla_dataarray *data = chunk->get_data();
+			tesla_drawcell& cell = data->cell(cell_idx);
+			std::size_t masterid = cell.get_tileid();
+			
+			std::function<bool (tesla_drawcell *)> match = [&cell, masterid] (tesla_drawcell *cell) {
+				return masterid == cell->get_tileid(); };
+			
+			if (!match(cell.bottom())) {
+				cell.bottom()->set_secondid(masterid);
+				apply_blend(chunk, cell.bottom()->this_idx, BOTTOM);
+				
+				if ((!match(cell.rightbottom())) && (!match(cell.leftbottom()))) { }
+				else if (match(cell.rightbottom())) {
+					apply_blend(chunk, cell.bottom()->this_idx, LEFT, true);
+				} else {
+					apply_blend(chunk, cell.bottom()->this_idx, RIGHT, true); }
+			}
+			
+			if (!match(cell.top())) {
+				cell.top()->set_secondid(masterid);
+				apply_blend(chunk, cell.top()->this_idx, TOP);
+				
+				if ((!match(cell.lefttop())) && (!match(cell.righttop()))) { }
+				else if (match(cell.righttop())) {
+					apply_blend(chunk, cell.top()->this_idx, LEFT, true);
+				} else {
+					apply_blend(chunk, cell.top()->this_idx, RIGHT, true); }
+			}
+			
+			if (!match(cell.left())) {
+				cell.left()->set_secondid(masterid);
+				apply_blend(chunk, cell.left()->this_idx, LEFT);
+				
+				if ((!match(cell.lefttop())) && (!match(cell.leftbottom()))) { }
+				else if (match(cell.lefttop())) {
+					apply_blend(chunk, cell.left()->this_idx, BOTTOM, true);
+				} else {
+					apply_blend(chunk, cell.left()->this_idx, TOP, true); }
+			}
+			
+			if (!match(cell.right())) {
+				cell.right()->set_secondid(masterid);
+				apply_blend(chunk, cell.right()->this_idx, RIGHT);
+				
+				if ((!match(cell.righttop())) && (!match(cell.rightbottom()))) { }
+				else if (match(cell.righttop())) {
+					apply_blend(chunk, cell.right()->this_idx, BOTTOM, true);
+				} else {
+					apply_blend(chunk, cell.right()->this_idx, TOP, true); }
+			}
+			
+			if (!match(cell.leftbottom())) {
+				cell.leftbottom()->set_secondid(masterid);
+				if (!match(cell.left()) && (!match(cell.bottom()))) {
+					apply_blend(chunk, cell.leftbottom()->this_idx, LEFTBOTTOM);
+				} else if ((match(cell.left())) && (match(cell.bottom()))) {
+					apply_blend(chunk, cell.leftbottom()->this_idx, LEFT);
+					apply_blend(chunk, cell.leftbottom()->this_idx, BOTTOM, true);
+				}
+			}
+			
+			if (!match(cell.rightbottom())) {
+				cell.rightbottom()->set_secondid(masterid);
+				if (!match(cell.right()) && (!match(cell.bottom()))) {
+					apply_blend(chunk, cell.rightbottom()->this_idx, RIGHTBOTTOM);
+				} else if ((match(cell.right())) && (match(cell.bottom()))) {
+					apply_blend(chunk, cell.rightbottom()->this_idx, RIGHT);
+					apply_blend(chunk, cell.rightbottom()->this_idx, BOTTOM, true);
+				}
+			}
+			
+			if (!match(cell.lefttop())) {
+				cell.lefttop()->set_secondid(masterid);
+				if (!match(cell.top()) && (!match(cell.left()))) {
+					apply_blend(chunk, cell.lefttop()->this_idx, LEFTTOP);
+				} else if ((match(cell.top())) && (match(cell.left()))) {
+					apply_blend(chunk, cell.lefttop()->this_idx, TOP);
+					apply_blend(chunk, cell.lefttop()->this_idx, LEFT, true);
+				}
+			}
+			
+			if (!match(cell.righttop())) {
+				cell.righttop()->set_secondid(masterid);
+				if (!match(cell.right()) && (!match(cell.top()))) {
+					apply_blend(chunk, cell.righttop()->this_idx, RIGHTTOP);
+				} else if ((match(cell.right())) && (match(cell.top()))) {
+					apply_blend(chunk, cell.righttop()->this_idx, TOP);
+					apply_blend(chunk, cell.righttop()->this_idx, RIGHT, true);
+				}
+			}
+			
+		}
+		
+		void apply_blend(TeslaObject *chunk, std::size_t cell_idx, BlendDirection dir, bool overlay) {
+			std::array<float, 6> blend_array {{ 0 }};
+			switch (dir) {
+				case LEFT:
+					blend_array = {{ 0.0, 1.0, 1.0, 1.0, 0.0, 0.0 }}; break;
+				case RIGHT:
+					blend_array = {{ 1.0, 0.0, 0.0, 0.0, 1.0, 1.0 }}; break;
+				case TOP:
+					blend_array = {{ 0.0, 0.0, 1.0, 1.0, 1.0, 0.0 }}; break;
+				case BOTTOM:
+					blend_array = {{ 1.0, 1.0, 0.0, 0.0, 0.0, 1.0 }}; break;
+				case LEFTTOP:
+					blend_array = {{ 0.0, 0.0, 1.0, 1.0, 0.0, 0.0 }}; break;
+				case LEFTBOTTOM:
+					blend_array = {{ 0.0, 1.0, 0.0, 0.0, 0.0, 0.0 }}; break;
+				case RIGHTTOP:
+					blend_array = {{ 0.0, 0.0, 0.0, 0.0, 1.0, 0.0 }}; break;
+				case RIGHTBOTTOM:
+					blend_array = {{ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 }}; break;
+			}
+			
+			tesla_dataarray *data = chunk->get_data();
+			std::function<void (tesla_drawcell& cell, const std::array<float, 6>& weights)> set_blendweights =
+			[data, overlay] (tesla_drawcell& cell, const std::array<float, 6>& weights) {
+				for (std::size_t i = 0; i < 6; i++)
+					if (!overlay)
+						data->vert(cell.vertices[i]).blendweights.x = weights[i];
+					else
+						data->vert(cell.vertices[i]).blendweights.x = std::min(cell.vert(i)->blendweights.x+weights[i], 1.0f);
+			};
+			
+			set_blendweights(data->cell(cell_idx), blend_array);
+		}
 
 void set_texture_and_blend(TeslaObject *chunk, std::size_t index, const CoordStruct& position) {
 	tesla_dataarray *data = chunk->get_data();
