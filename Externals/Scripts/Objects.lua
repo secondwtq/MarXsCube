@@ -4,6 +4,7 @@ local composer = require('composer')
 local gmap_comps = require('gmap_comps')
 local locomotor = require 'locomotor'
 local blocomotor = require 'loco_bvehicle'
+local locomotor_raycast = require 'locomotor_raycast'
 
 local function base_def_technos()
 
@@ -42,23 +43,24 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		composer.comp_TechnoColorMultiply,
 		composer.comp_RenderElementsManger,
 		composer.comp_RenderBasicBody,
-		locomotor.comp_LocomotorDefault,
-		blocomotor.comp_BVehicle
+		blocomotor.comp_BVehicle,
+		locomotor_raycast.comp_locoraycast
 	},
 
 	physics = {
 		enabled = true,
 		initialstatic = false,
-		mass = 1000,
+		mass = 800,
 		offset = { x = 0, y = 0, z = 0 },
 		angle_factor = { x = 1,0, y = 1.0, z = 1.0 },
 		ntype_locomotor = 'bvehicle',
-		use_vehicle = true,
-		nlocomotor_args = {
-			rot = 300,
-			stablespeed = 650,
-			engineforce = 450,
-			brakingforce = 600,
+		vehicle_type = 'raycast',
+		raycast_locomotor_args = {
+			engineforce = 5000,
+			stablespeed = 40,
+			brakingforce = 50000,
+			max_rot_radius = 256,
+			brake_threshold = 20,
 			rotate_negativeforce = 300,
 		},
 		shape = {

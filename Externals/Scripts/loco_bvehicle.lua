@@ -19,7 +19,7 @@ function comp_BVehicle:on_init()
 
 	self:set_datafield('enabled', false)
 
-	if phyargs['ntype_locomotor'] == 'bvehicle' then
+	if phyargs['ntype_locomotor'] == 'bvehicle' and phyargs['vehicle_type'] == 'raycast' then
 		self:set_datafield('enabled', true)
 	end
 end
@@ -29,13 +29,13 @@ function comp_BVehicle:on_spawn()
 	local phyargs = script_type:property 'physics'
 	local obj = Helpers.Techno_TechnoRTTIIDTable(self:container_parent())
 
-	if phyargs['use_vehicle'] then
+	if self.data['enabled'] then
 		obj.Physics.vehicle = Physics.RaycastVehicle.create()
 		obj.Physics.vehicle.parent = obj.Physics
 		obj.Physics.vehicle:spawn()
 
-		local wheel_radius = 15
-		local wheel_height = 0
+		local wheel_radius = 20
+		local wheel_height = 10
 		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(38, 25, wheel_height), wheel_radius, 12)
 		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(38, -25, wheel_height), wheel_radius, 12)
 		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-38, 25, wheel_height), wheel_radius, 24)

@@ -91,6 +91,10 @@ function __Helpers.vector2_dot(op1, op2)
 	return op1[1]*op2[1]+op1[2]*op2[2]
 end
 
+function __Helpers.vector2_cross(op1, op2)
+	return op1[1]*op2[2]-op1[2]*op2[1]
+end
+
 function __Helpers.local_vector2(local_pos, local_dir, target)
 	local offset = __Helpers.vector2_offset(target, local_pos)
 	local local_dir_nom = __Helpers.vector2_nom(local_dir)

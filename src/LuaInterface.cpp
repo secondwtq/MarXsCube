@@ -366,6 +366,7 @@ namespace LuaInterface {
 				beginClass<PhysicsObject>("PhysicsObject").
 					addData("attachedToObject", &PhysicsObject::attachedToObject).
 					addData("vehicle", &PhysicsObject::vehicle).
+					addData("forward_vec", &PhysicsObject::forward_vec).
 					addFunction("setDirection", &PhysicsObject::setDirection).
 					addFunction("setDirectionTo", &PhysicsObject::setDirectionTo).
 					addFunction("setLocation", &PhysicsObject::setLocation).

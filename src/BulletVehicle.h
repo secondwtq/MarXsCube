@@ -41,6 +41,8 @@ public:
 	
 	virtual void set_maxspeed(std::size_t wheel_id, float value) = 0;
 	
+	virtual float get_current_speed() = 0;
+	
 	virtual ~BulletVehicle() { }
 	
 	PhysicsObject *parent = nullptr;

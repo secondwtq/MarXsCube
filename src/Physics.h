@@ -95,6 +95,7 @@ class PhysicsObject {
 		Abs_Abstract *attachedToObject = nullptr;
 		btVector3 offset = btVector3(btScalar(0), btScalar(0), btScalar(0));
 		BulletVehicle *vehicle = nullptr;
+		Float3D forward_vec { 0, 0, 0 };
 	
 		double main_rotation = 0.0;
 	

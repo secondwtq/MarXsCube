@@ -15,6 +15,8 @@
 #include "Physics.h"
 #include "BulletDynamics/Vehicle/btRaycastVehicle.h"
 
+#define KMHTOMS (0.277777778f)
+
 class RaycastVehicle : public BulletVehicle {
 public:
 	
@@ -41,6 +43,9 @@ public:
 	virtual void set_maxspeed(std::size_t wheel_id, float value) { }
 	
 	virtual void launch_tyre(std::size_t wheel_id, float engine_force);
+	
+	virtual float get_current_speed() {
+		return this->m_vehicle->getCurrentSpeedKmHour() * KMHTOMS; }
 	
 	virtual ~RaycastVehicle() { }
 	

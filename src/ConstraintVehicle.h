@@ -43,6 +43,8 @@ class ConstraintVehicle : public BulletVehicle {
 	
 		virtual void brake_atonce_force(float brake_force);
 	
+		virtual float get_current_speed() { return 0.f; }
+	
 		virtual ~ConstraintVehicle() { }
 	
 	private:

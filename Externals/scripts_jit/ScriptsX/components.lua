@@ -164,6 +164,8 @@ _module_components.component = lobject.object:new({
 		self.parent = parent
 
 		parent.a[self.alias] = self
+		
+		self.data = self:get_datatable()
 
 		self:on_create(parent)
 	end,

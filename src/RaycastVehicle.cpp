@@ -24,12 +24,12 @@ void RaycastVehicle::spawn() {
 }
 
 namespace {
-	float wheelFriction = 10.0f;
+	float wheelFriction = 2.0f;
 	float suspensionStiffness = 10.f;
 	float suspensionDamping = .2 * 2 * std::sqrt(10);
 	float suspensionCompression = .35 * 2 * std::sqrt(10);
-	float rollInfluence = 1.0f;
-	btScalar suspensionRestLength(1.0);
+	float rollInfluence = 0.8f;
+	btScalar suspensionRestLength(0.6);
 }
 
 void RaycastVehicle::add_wheel(const CoordStruct& location, float radius, float width) {

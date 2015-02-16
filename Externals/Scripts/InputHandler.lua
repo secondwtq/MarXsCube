@@ -79,15 +79,7 @@ function InputHandler.MousePress_OnCell(mouse_status)
 
 		if TECHNO_SELECTED then
 			local Techno = Helpers.Techno_TechnoRTTIIDTable(TECHNO_SELECTED)
-			
-			for i = 2, 3 do
-				Techno.Physics.vehicle:set_maxspeed(i, 100)
-				Techno.Physics.vehicle:launch_tyre(i, 2000)
-			end
-			-- for i = 0, Techno.Physics.vehicle.tyre_count-1 do
-			-- 	Techno.Physics.vehicle:set_maxspeed(i, 100)
-			-- 	Techno.Physics.vehicle:launch_tyre(i, 100)
-			-- end
+			TECHNO_SELECTED.components.a['RaycastLocomotor']:move_to_coord_direct({hit_point.x, hit_point.y, hit_point.z})
 		end
 	end
 

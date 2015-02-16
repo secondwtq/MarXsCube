@@ -282,6 +282,8 @@ void PhysicsObject::setTransformCallback(const btTransform &centerOfMassWorldTra
 		rot.getEulerZYX(z, y, x);
 		attachedToObject->setMainRotation(-z * (180.0 / PI));
 		this->main_rotation = z;
+
+		this->forward_vec = { rot[1][1], -rot[0][1], rot[2][1] };
 	}
 }
 

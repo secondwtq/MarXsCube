@@ -28,6 +28,22 @@ map.default.chunks[3] = {
 	bullet_model = "tesla_hull.obj"
 }
 
+map.default.chunks[4] = {
+	source = "drawcall.obj",
+	heightfield = "DUMMY",
+	tileset = "TILESET",
+	location = { 0, 1920, 0 },
+	bullet_model = "tesla_hull.obj"
+}
+
+map.default.chunks[5] = {
+	source = "drawcall.obj",
+	heightfield = "DUMMY",
+	tileset = "TILESET",
+	location = { 1920, 1920, 0 },
+	bullet_model = "tesla_hull.obj"
+}
+
 -- map.default.chunks[3] = {
 -- 	source = "drawcall.obj",
 -- 	heightfield = "HEIGHTFIELD",
