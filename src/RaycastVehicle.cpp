@@ -17,7 +17,7 @@ const btVector3 wheel_axis { 0, -1, 0 };
 
 void RaycastVehicle::spawn() {
 	this->m_vehicle_raycaster = new btDefaultVehicleRaycaster(Generic::PhysicsGeneral()->dynaWorld);
-	this->m_vehicle = new btRaycastVehicle(this->m_tuning, this->parent->body, this->m_vehicle_raycaster);
+	this->m_vehicle = new btRaycastVehicle(btRaycastVehicle::btVehicleTuning(), this->parent->body, this->m_vehicle_raycaster);
 	Generic::PhysicsGeneral()->dynaWorld->addVehicle(this->m_vehicle);
 	this->parent->body->setActivationState(DISABLE_DEACTIVATION);
 	m_vehicle->setCoordinateSystem(0, 2, 1);
@@ -32,7 +32,7 @@ namespace {
 }
 
 void RaycastVehicle::add_wheel(const CoordStruct& location, float radius, float width) {
-	this->m_vehicle->addWheel(coord2bt(location), wheel_direction, wheel_axis, suspensionRestLength, btScalar(radius*PHY_SCALE), this->m_tuning, true);
+	this->m_vehicle->addWheel(coord2bt(location), wheel_direction, wheel_axis, suspensionRestLength, btScalar(radius*PHY_SCALE), btRaycastVehicle::btVehicleTuning(), true);
 }
 
 void RaycastVehicle::setup_wheels() {
@@ -53,11 +53,7 @@ void RaycastVehicle::setup_wheels() {
 
 void RaycastVehicle::launch() {
 	for (int i = 0; i < this->m_vehicle->getNumWheels(); i++) {
-		m_vehicle->applyEngineForce(10000, i);
-//		m_vehicle->setBrake(2000, i);
-//		m_vehicle->setSteeringValue(1, i);
-	}
-}
+		m_vehicle->applyEngineForce(10000, i); } }
 
 void RaycastVehicle::launch_tyre(std::size_t wheel_id, float engine_force) {
 	m_vehicle->setBrake(0., static_cast<int>(wheel_id));
@@ -84,5 +80,4 @@ void RaycastVehicle::brake_tyre_atonce(std::size_t wheel_id, float brake_force) 
 }
 
 void RaycastVehicle::set_steer(std::size_t wheel_id, float value) {
-	m_vehicle->setSteeringValue(value, static_cast<int>(wheel_id));
-}
+	m_vehicle->setSteeringValue(value, static_cast<int>(wheel_id)); }

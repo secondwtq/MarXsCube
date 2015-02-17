@@ -19,8 +19,11 @@
 class ConstraintVehicle : public BulletVehicle {
 	
 	public:
-		static ConstraintVehicle *create() { return new ConstraintVehicle(); }
-		
+		static ConstraintVehicle *create(PhysicsObject *parent) {
+			return new ConstraintVehicle(parent); }
+	
+		ConstraintVehicle(PhysicsObject *parent) : BulletVehicle(parent) { }
+	
 		virtual void spawn();
 		
 		virtual void launch();

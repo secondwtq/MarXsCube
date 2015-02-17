@@ -11,10 +11,19 @@ local comp_locoraycast = components.component:new {
 	move = Placeholders.ComponentMethod,
 }
 
+function comp_locoraycast:move_to_coord_direct(vec3)
+	self.data['dest_t'] = vec3
+	self:state 'MOVING'
+end
+
 function comp_locoraycast:on_create()
 	self.data['state'] = 'IDLE'
 	self.data['dest_t'] = { 0, 0, 0 }
 	self.data['core'] = Helpers.Techno_TechnoRTTIIDTable(self:container_parent())
+end
+
+function comp_locoraycast:on_init()
+	self.data.com_vehicle = self:get_container().a['BVehicle']
 end
 
 function comp_locoraycast:on_update()
@@ -23,7 +32,6 @@ function comp_locoraycast:on_update()
 	local phyargs = H.scriptType_TechnoRTTITable(self:container_parent()):property 'physics'
 	local locoargs = phyargs['raycast_locomotor_args']
 
-	-- print(string.format('%.2f', core.Physics.vehicle:get_current_speed()))
 	if self:state() == 'MOVING' then
 		local curpos = H.unpack_coord3(core:GetCoord())
 
@@ -79,7 +87,7 @@ function comp_locoraycast:brake_to_stop()
 	local scriptType = H.scriptType_TechnoRTTITable(self:container_parent())
 	local locoargs = scriptType:property 'physics' ['raycast_locomotor_args']
 	self:state 'BREAKING_TO_STOP'
-	for i = 2, 3 do
+	for t, i in ipairs(self.data.com_vehicle.data.wheels_brake) do
 		self.data['core'].Physics.vehicle:brake_tyre_atonce(i, locoargs['brakingforce'])
 	end
 	self:clear_steer()
@@ -90,13 +98,13 @@ function comp_locoraycast:clear_steer()
 end
 
 function comp_locoraycast:steer_safe(steer)
-	for i = 0, 1 do
+	for t, i in ipairs(self.data.com_vehicle.data.wheels_steer) do
 		self.data['core'].Physics.vehicle:set_steer(i, steer)
 	end
 end
 
 function comp_locoraycast:apply_engineforce(force)
-	for i = 2, 3 do
+	for t, i in ipairs(self.data.com_vehicle.data.wheels_engine) do
 		self.data['core'].Physics.vehicle:set_maxspeed(i, 100)
 		self.data['core'].Physics.vehicle:launch_tyre(i, force)
 	end
@@ -106,12 +114,6 @@ function comp_locoraycast:state(state)
 	if state == nil then return self.data['state'] end
 	self.data['state'] = state
 end
-
-function comp_locoraycast:move_to_coord_direct(vec3)
-	self.data['dest_t'] = vec3
-	self:state 'MOVING'
-end
-
 
 locomotor_raycast.comp_locoraycast = comp_locoraycast
 

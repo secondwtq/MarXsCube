@@ -20,7 +20,10 @@
 class RaycastVehicle : public BulletVehicle {
 public:
 	
-	static RaycastVehicle *create() { return new RaycastVehicle(); }
+	static RaycastVehicle *create(PhysicsObject *parent) {
+		return new RaycastVehicle(parent); }
+	
+	RaycastVehicle(PhysicsObject *parent) : BulletVehicle(parent) { }
 	
 	void spawn();
 	
@@ -53,11 +56,12 @@ public:
 	virtual ~RaycastVehicle() { }
 	
 private:
+	
 	float wheel_friction = 2.0f;
 	
 	btVehicleRaycaster *m_vehicle_raycaster = nullptr;
 	btRaycastVehicle *m_vehicle = nullptr;
-	btRaycastVehicle::btVehicleTuning m_tuning;
+
 };
 
 #endif /* defined(__MarXsCube__RaycastVehicle__) */

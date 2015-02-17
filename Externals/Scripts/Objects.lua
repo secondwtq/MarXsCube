@@ -58,17 +58,35 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		raycast_vehicle_args = {
 			wheel_friction = 2.0,
 			wheel_radius = 20,
-			wheel_height = 10
+			wheel_height = 10,
+			wheels = {
+				{
+					position = { 38, 25, 0 },
+					engine = false, brake = false, steer = true
+				},
+				{
+					position = { 38, -25, 0 },
+					engine = false, brake = false, steer = true
+				},
+				{
+					position = { -38, 25, 0 },
+					engine = true, brake = true, steer = false
+				},
+				{
+					position = { -38, -25, 0 },
+					engine = true, brake = true, steer = false
+				}
+			},
 		},
 		raycast_locomotor_args = {
 			engineforce = 5000,
 			stablespeed = 50,
+			brake_threshold = 20,
+			brake_extrathreshold = 60,
 			brakingforce = 50000,
 			max_rot_radius = 128,
-			brake_threshold = 20,
 			rotate_negativeforce = 800,
 			extra_rotforce = 10000,
-			brake_extrathreshold = 60,
 			extra_brakeforce = 16000,
 		},
 		shape = {
@@ -120,7 +138,7 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 	physics = {
 		enabled = true,
 		initialstatic = false,
-		mass = 500,
+		mass = 1600,
 		offset = { x = 0, y = 0, z = 48 },
 		angle_factor = { x = 1.0, y = 1.0, z = 1.0 },
 		ntype_locomotor = 'default',

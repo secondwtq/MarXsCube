@@ -19,6 +19,8 @@ public:
 	
 	std::size_t tyre_count = 0;
 	
+	BulletVehicle(PhysicsObject *p) : parent(p) { }
+	
 	virtual void spawn() = 0;
 	
 	virtual void launch() = 0;

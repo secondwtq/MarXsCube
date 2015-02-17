@@ -22,6 +22,10 @@ function comp_BVehicle:on_init()
 	if phyargs['ntype_locomotor'] == 'bvehicle' and phyargs['vehicle_type'] == 'raycast' then
 		self:set_datafield('enabled', true)
 	end
+
+	self.data['wheels_steer'] = { }
+	self.data['wheels_engine'] = { }
+	self.data['wheels_brake'] = { }
 end
 
 function comp_BVehicle:on_spawn()
@@ -30,14 +34,17 @@ function comp_BVehicle:on_spawn()
 	local obj = Helpers.Techno_TechnoRTTIIDTable(self:container_parent())
 
 	if self.data['enabled'] then
-		obj.Physics.vehicle = Physics.RaycastVehicle.create()
-		obj.Physics.vehicle.parent = obj.Physics
+		obj.Physics.vehicle = Physics.RaycastVehicle.create(obj.Physics)
 		obj.Physics.vehicle:spawn()
 
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(38, 25, vehargs['wheel_height']), vehargs['wheel_radius'], 12)
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(38, -25, vehargs['wheel_height']), vehargs['wheel_radius'], 12)
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-38, 25, vehargs['wheel_height']), vehargs['wheel_radius'], 24)
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-38, -25, vehargs['wheel_height']), vehargs['wheel_radius'], 24)
+		for i, w in ipairs(vehargs.wheels) do
+			obj.Physics.vehicle:add_wheel(Utility.CoordStruct(w.position[1], w.position[2], 
+										w.position[3] + vehargs['wheel_height']), vehargs['wheel_radius'], 12)
+			
+			if w.engine then table.insert(self.data.wheels_engine, i-1) end
+			if w.steer then table.insert(self.data.wheels_steer, i-1) end
+			if w.brake then table.insert(self.data.wheels_brake, i-1) end
+		end
 
 		obj.Physics.vehicle:set_wheelfriction(vehargs['wheel_friction'])
 		obj.Physics.vehicle:setup_wheels()
