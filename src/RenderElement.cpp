@@ -10,7 +10,6 @@
 #include "SFML.h"
 
 #include "CubeTransform.h"
-#include "Transform.h"
 
 #include "RenderElement.h"
 #include "RenderElementsContainer.h"

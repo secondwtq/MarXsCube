@@ -46,7 +46,7 @@
 
 ---
 
-* **[MAINTENANCE]** More work about Tesla & Wonderland.
+* **[MAINTENANCE]** More work about Tesla & Wonderland. ***in progress***
 
 * ~~**[BUG]** Performance issue of the coexistence of Silcon & Tesla. ***fixed***~~
 

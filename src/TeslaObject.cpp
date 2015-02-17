@@ -18,8 +18,7 @@
 
 TeslaObject *TeslaObject::create() {
 	// only used in Lua, so just pass the singleton
-	return new TeslaObject(Generic::TeslaManger());
-}
+	return new TeslaObject(Generic::TeslaManger()); }
 
 void TeslaObject::create_bullet() {
 	transfer_bullet_shape(*this->m_bmesh, *this->m_bullet_model, this->m_tex_heightfield_s);
