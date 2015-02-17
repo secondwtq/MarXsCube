@@ -188,10 +188,11 @@ function comp_RenderBasicBody:on_init()
 			element_shadow.UseShadowProjection = true
 			element_shadow.colorMultiply = Utility.Homogeneous4D(0.1, 0.1, 0.1, 0.6)
 			element_shadow.offset = coord_offset
+			element_shadow.z_index = -100
 			if element.type_directioned then
 				element_shadow.direction_offset = element.direction_offset
 			end
-			elements_manger:add_element(10, element.name .. '_shadow', element_shadow)
+			elements_manger:add_element(element.name .. '_shadow', element_shadow)
 		end
 		
 		if element.type_general then
@@ -209,7 +210,7 @@ function comp_RenderBasicBody:on_init()
 			element_body.thickness = element.thickness
 		end
 
-		elements_manger:add_element(0, element.name, element_body)
+		elements_manger:add_element(element.name, element_body)
 	end
 end
 
@@ -267,9 +268,9 @@ function comp_RenderElementsManger:on_create()
 	self:set_datafield('elements_dict', { })
 end
 
-function comp_RenderElementsManger:add_element(index, name, element)
+function comp_RenderElementsManger:add_element(name, element)
 	local element_container = Helpers.Techno_TechnoRTTIIDTable(self:container_parent()).elements
-	element_container:insert(index, element)
+	element_container:insert(element)
 	element.parent = element_container
 	Helpers.tblinsert(self:get_datafield 'elements' , element)
 	self:get_datafield 'elements_dict' [name] = element

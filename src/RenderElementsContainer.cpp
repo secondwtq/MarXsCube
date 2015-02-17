@@ -10,6 +10,5 @@
 #include "RenderElement.h"
 #include "RenderElementsContainer.h"
 
-void RenderElementsContainer::Update() {LOGFUNC;
-	for (auto e : elements) e.second->Update(parent->GetCoord());
-}
+void RenderElementsContainer::Update() {
+	for (auto e : elements) e->Update(parent->GetCoord()); }

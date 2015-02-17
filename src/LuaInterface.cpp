@@ -192,6 +192,7 @@ namespace LuaInterface {
 					addData("direction_offset", &RenderElement::direction_offset).
 					addData("UseShadowProjection", &RenderElement::UseShadowProjection).
 					addData("ProjectionVector", &RenderElement::ProjectionVector).
+					addData("z_index", &RenderElement::z_index).
 					addData("parent", &RenderElement::parent).
 				endClass().
 				deriveClass<RenderElement_DirectionedStatic, RenderElement>("RenderElement_DirectionedStatic").

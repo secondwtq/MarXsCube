@@ -136,7 +136,6 @@ function comp_locoraycast:path_ended()
 end
 
 function comp_locoraycast:advance_path()
-	print('advancing path')
 	local curidx = self.data.current_node
 	self.data.current_node = curidx+1
 	self.data.dest_t = self.data.path[curidx]

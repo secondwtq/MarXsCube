@@ -18,18 +18,16 @@
 
 class RenderElementsContainer {
 public:
-	std::unordered_multimap<int, RenderElement *> elements;
+	std::vector<RenderElement *> elements;
 	Abs_Abstract *parent;
 	void Update();
-	RenderElementsContainer(Abs_Abstract *_parent) : parent(_parent) {LOGFUNC; }
-	void insert(int Zidx, RenderElement *element) {LOGFUNC;
-		elements.insert({Zidx, element});
-	}
+	RenderElementsContainer(Abs_Abstract *_parent) : parent(_parent) { }
+	void insert(RenderElement *element) {
+		elements.push_back(element); }
 	
 	~RenderElementsContainer() {
 		for (auto i : elements)
-			delete i.second;
-	}
+			delete i; }
 	
 	int direction = 0;
 };

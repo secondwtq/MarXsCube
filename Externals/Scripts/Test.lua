@@ -17,22 +17,6 @@ TECHNO_SELECTED = nil
 TERRAIN_CHUNKS = { }
 CURRENT_TERRAIN_TILE = 1
 
-function grit_test()
-
-	local start = Utility.CubePoint(0, 0)
-	local eend = Utility.CubePoint(1024, 0)
-	print(Utility.GetTime_Clock())
-	local vec = Grit.instance():find_path(start, eend)
-	print(Utility.GetTime_Clock())
-	print(vec:size())
-	print(vec:at(0).x, vec:at(0).y)
-	print(vec:at(1).x, vec:at(1).y)
-	print(vec:at(2).x, vec:at(2).y)
-	print(vec:at(3).x, vec:at(3).y)
-	print(vec:at(4).x, vec:at(4).y)
-
-end
-
 function acheroncube_test()
 
 	local start = Utility.CubePoint(0, 0)
@@ -48,9 +32,8 @@ function grit_find_path(start, eend)
 	local vec = Grit.instance():find_path(a, b)
 	local len, ret = vec:size(), { }
 
-	for i = 1, len do
+	for i = len-1, 1, -1 do
 		local pos = vec:at(i-1)
-		print(pos.x, pos.y)
 		table.insert(ret, { pos.x, pos.y, 0 })
 	end
 

@@ -23,12 +23,12 @@ class RenderElement {
 		int direction = 0;
 		int direction_offset = 0;
 		bool UseShadowProjection = false;
+		int z_index = 0;
 		Vector3DT<double> ProjectionVector = ShadowProjectionVector; //	Vector3DT<double>(0.1239851454748, -0.7748446592171, 0.61987572737); //	Vector3DT<double>(4, -25, 20);
 
 		inline void Update(CoordStruct &&loc) {
 			if (this->Enabled)
-				this->_update_overload(loc);
-		}
+				this->_update_overload(loc); }
 
 		virtual ~RenderElement() { }
 	

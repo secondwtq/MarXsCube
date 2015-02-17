@@ -39,7 +39,8 @@ int RenderElement_DirectionedStatic::getCurrentFrame() { return getDirFrameNum(t
 void RenderElement_DirectionedStatic::_update_overload(CoordStruct &loc) {LOGFUNC;
 	SetProjectionLocation_NT(this, loc);
 	this->sprite.color_multiply = { this->colorMultiply.x, this->colorMultiply.y, this->colorMultiply.z, this->colorMultiply.w };
-	this->sprite.set_Zvalue(-1.f*silcon_dis_camera(loc)/16384.f);
+	float dis = silcon_dis_camera(loc) - this->z_index;
+	this->sprite.set_Zvalue(-dis/16384.f);
 	
 	sf::IntRect tex_area = this->texture->getArea(this->getCurrentFrame());
 	this->sprite.set_texture_area(tex_area.left, tex_area.top, tex_area.width, tex_area.height);
