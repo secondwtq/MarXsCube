@@ -13,13 +13,26 @@ local comp_locoraycast = components.component:new {
 
 function comp_locoraycast:move_to_coord_direct(vec3)
 	self.data['dest_t'] = vec3
+	self.data.is_path = false
+	self:state 'MOVING'
+end
+
+function comp_locoraycast:move_path(vec3_array)
+	self.data['path'] = vec3_array
+	self.data['current_node'] = 1
+	self.data['dest_t'] = vec3_array[1]
+	self.data.is_path = true
 	self:state 'MOVING'
 end
 
 function comp_locoraycast:on_create()
 	self.data['state'] = 'IDLE'
+	self.data['is_path'] = false
 	self.data['dest_t'] = { 0, 0, 0 }
 	self.data['core'] = Helpers.Techno_TechnoRTTIIDTable(self:container_parent())
+
+	self.data['path'] = { }
+	self.data['current_node'] = 1
 end
 
 function comp_locoraycast:on_init()
@@ -38,7 +51,11 @@ function comp_locoraycast:on_update()
 		local curpos = H.unpack_coord3(core:GetCoord())
 
 		if H.vector2_distance(curpos, self:get_datafield 'dest_t') < 128 then
-			self:brake_to_stop()
+			if self.data.is_path and not self:path_ended() then
+				self:advance_path()
+			else
+				self:brake_to_stop()
+			end
 		else
 			local curforward, reqforward = H.vector2_nom({ core.Physics.forward_vec.x, core.Physics.forward_vec.y }),
 										H.vector2_nom(H.vector2_offset(self:get_datafield 'dest_t', curpos))
@@ -111,6 +128,18 @@ function comp_locoraycast:apply_engineforce(force)
 		self.data['core'].Physics.vehicle:set_maxspeed(i, 100)
 		self.data['core'].Physics.vehicle:launch_tyre(i, force)
 	end
+end
+
+function comp_locoraycast:path_ended()
+	local current_idx = self.data.current_node
+	return current_idx > #(self.data.path)
+end
+
+function comp_locoraycast:advance_path()
+	print('advancing path')
+	local curidx = self.data.current_node
+	self.data.current_node = curidx+1
+	self.data.dest_t = self.data.path[curidx]
 end
 
 function comp_locoraycast:state(state)

@@ -28,8 +28,8 @@ std::vector<GPointType> Grit::find_path(const GPointType& start, const GPointTyp
 	
 //	Generic::corelog() << "find_path: Checking los " << start.x << " " << start.y << " " << end.x << " " << end.y << rn;
 	if (check_los(start, end)) {
-		ret.push_back(start);
 		ret.push_back(end);
+		ret.push_back(start);
 		printf("Find path: returning (direct) ... \n");
 		return ret;
 	}

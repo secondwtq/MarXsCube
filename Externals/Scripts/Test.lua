@@ -43,15 +43,29 @@ function acheroncube_test()
 
 end
 
+function grit_find_path(start, eend)
+	local a, b = Utility.CubePoint(start[1], start[2]), Utility.CubePoint(eend[1], eend[2])
+	local vec = Grit.instance():find_path(a, b)
+	local len, ret = vec:size(), { }
+
+	for i = 1, len do
+		local pos = vec:at(i-1)
+		print(pos.x, pos.y)
+		table.insert(ret, { pos.x, pos.y, 0 })
+	end
+
+	return ret
+end
+
 -- run when game started
 function Functions.TestManger_onTestInit()
 
-	local vec0 = Utility.CubePoint(256, 256)
-	local vec1 = Utility.CubePoint(512, 512)
-	local vec2 = Utility.CubePoint(768, 256)
-	local vec3 = Utility.CubePoint(768, -256)
-	local vec4 = Utility.CubePoint(512, -768)
-	local vec5 = Utility.CubePoint(256, -256)
+	local vec0 = Utility.CubePoint(512, 256)
+	local vec1 = Utility.CubePoint(768, 512)
+	local vec2 = Utility.CubePoint(1024, 256)
+	local vec3 = Utility.CubePoint(1024, -256)
+	local vec4 = Utility.CubePoint(768, -768)
+	local vec5 = Utility.CubePoint(512, -256)
 	local obs = Grit.GritObstacle.create()
 	obs:pts():push_back(vec0)
 	obs:pts():push_back(vec1)
