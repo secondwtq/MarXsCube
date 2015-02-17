@@ -36,8 +36,6 @@ class Type_Abstract : public Abs_Abstract {
 		luabridge::LuaRef typeRef;
 };
 
-void setT(Type_Abstract *t);
-
 #include "Config.h"
 
 #endif

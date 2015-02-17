@@ -11,11 +11,14 @@
 
 #include "CubeTransform.h"
 #include "Transform.h"
-#include "InternalDraw.h"
 
 #include "RenderElement.h"
+#include "RenderElementsContainer.h"
 
 using namespace sf;
+
+void RenderElementsContainer::Update() {
+	for (auto e : elements) e->Update(parent->GetCoord()); }
 
 template <class T>
 inline void SetProjectionLocation_NT(T *element, CoordStruct& loc) {
@@ -64,6 +67,4 @@ void RenderElement_FramedDynamic::_update_overload(CoordStruct &loc) {LOGFUNC;
 	texture->setArea(renderSprite, this->current_frame);
 
 	this->current_frame++;
-
-	InternalDraw::DrawExt(*this, renderSprite);
 }

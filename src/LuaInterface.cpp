@@ -163,7 +163,6 @@ namespace LuaInterface {
 					addData("z", &Float3D::z).
 					addConstructor<void (*)(float, float, float)>().
 				endClass().
-				addFunction("setT", &setT).
 				beginClass<sf::Vector2f>("SF_Vector2f").
 					addData("x", &sf::Vector2f::x).
 					addData("y", &sf::Vector2f::y).

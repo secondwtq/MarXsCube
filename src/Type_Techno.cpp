@@ -2,7 +2,15 @@
 #include "Type_Techno.h"
 #include "Techno.h"
 
+ObjectTypeArray<Type_Object> Type_Object::Array = ObjectTypeArray<Type_Object>();
 ObjectTypeArray<Type_Techno> Type_Techno::Array = ObjectTypeArray<Type_Techno>();
+
+bool Type_Object::LoadFromConfig(ConfigManger &manger) {LOGFUNC;
+	bool ret = Type_Abstract::LoadFromConfig(manger);
+	std::cout << "CubeCore: Type_Object::LoadFromConfig - Loading " << RegName << " ..." << std::endl;
+	Type_Object::Array.Push(RegName.c_str(), this);
+	return (ret | true);
+}
 
 bool Type_Techno::LoadFromConfig(ConfigManger &manger) {LOGFUNC;
 	bool ret = Type_Object::LoadFromConfig(manger);

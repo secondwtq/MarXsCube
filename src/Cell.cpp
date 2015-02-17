@@ -7,8 +7,6 @@
 #include "Techno.h"
 using namespace sf;
 
-extern sf::Vector2f obsTransform::x;
-
 CoordStruct Abs_Cell::GetCoord() const {//LOGFUNC;
 	static CoordStruct t(0, 0, 0);
 	return t;
