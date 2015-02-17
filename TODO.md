@@ -12,9 +12,9 @@
 
 * **[BUG]** Locomotor in Gmap is now broken.
 
-* **[FEATURE]** Basic Locomotor.
+* **[FEATURE]** Basic Locomotor. ***in progress***
 
-* **[MODULE]** Complete locomotor support for ground vehicles.
+* **[MODULE]** Complete locomotor support for ground vehicles. ***suspended***
 
 * **[MODULE]** Enable binary extension of CubeCore.
 

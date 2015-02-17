@@ -42,7 +42,7 @@ void RaycastVehicle::setup_wheels() {
 		wheel.m_suspensionStiffness = suspensionStiffness;
 		wheel.m_wheelsDampingRelaxation = suspensionDamping;
 		wheel.m_wheelsDampingCompression = suspensionCompression;
-		wheel.m_frictionSlip = wheelFriction;
+		wheel.m_frictionSlip = this->wheel_friction;
 		wheel.m_rollInfluence = rollInfluence;
 		
 		//The wheels sink through the ground when the suspension cannot support the weight of the vehicle.

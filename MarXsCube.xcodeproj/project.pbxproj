@@ -299,7 +299,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59725E831A8E015B0010B4F8 /* liblang.a in Frameworks */,
 				59F5BCC61A8DFFE4006676EC /* binded_attr.o in Frameworks */,
 				59F5BCC71A8DFFE4006676EC /* ttter.o in Frameworks */,
 				59F5BCC81A8DFFE4006676EC /* composer.o in Frameworks */,
@@ -307,6 +306,7 @@
 				59F5BCC01A8DFFE3006676EC /* Placeholders.o in Frameworks */,
 				59F5BCC11A8DFFE3006676EC /* object.o in Frameworks */,
 				59F5BCC21A8DFFE3006676EC /* Helpers.o in Frameworks */,
+				59725E831A8E015B0010B4F8 /* liblang.a in Frameworks */,
 				59F5BCAD1A8A0F80006676EC /* libluajit.a in Frameworks */,
 				591201C71A6D1DA500ECB42A /* OpenGL.framework in Frameworks */,
 				591201C11A6D078900ECB42A /* libsfml-window.2.2.0.dylib in Frameworks */,

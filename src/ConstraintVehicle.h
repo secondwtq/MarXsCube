@@ -45,6 +45,8 @@ class ConstraintVehicle : public BulletVehicle {
 	
 		virtual float get_current_speed() { return 0.f; }
 	
+		virtual void set_wheelfriction(float friction) { }
+	
 		virtual ~ConstraintVehicle() { }
 	
 	private:

@@ -26,7 +26,7 @@ end
 
 function comp_BVehicle:on_spawn()
 	local script_type = Helpers.scriptType_TechnoRTTITable(self:container_parent())
-	local phyargs = script_type:property 'physics'
+	local vehargs = script_type:property 'physics' ['raycast_vehicle_args']
 	local obj = Helpers.Techno_TechnoRTTIIDTable(self:container_parent())
 
 	if self.data['enabled'] then
@@ -34,13 +34,12 @@ function comp_BVehicle:on_spawn()
 		obj.Physics.vehicle.parent = obj.Physics
 		obj.Physics.vehicle:spawn()
 
-		local wheel_radius = 20
-		local wheel_height = 10
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(38, 25, wheel_height), wheel_radius, 12)
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(38, -25, wheel_height), wheel_radius, 12)
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-38, 25, wheel_height), wheel_radius, 24)
-		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-38, -25, wheel_height), wheel_radius, 24)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(38, 25, vehargs['wheel_height']), vehargs['wheel_radius'], 12)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(38, -25, vehargs['wheel_height']), vehargs['wheel_radius'], 12)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-38, 25, vehargs['wheel_height']), vehargs['wheel_radius'], 24)
+		obj.Physics.vehicle:add_wheel(Utility.CoordStruct(-38, -25, vehargs['wheel_height']), vehargs['wheel_radius'], 24)
 
+		obj.Physics.vehicle:set_wheelfriction(vehargs['wheel_friction'])
 		obj.Physics.vehicle:setup_wheels()
 		obj.Physics.vehicle:clear_steer()
 	end

@@ -47,9 +47,14 @@ public:
 	virtual float get_current_speed() {
 		return this->m_vehicle->getCurrentSpeedKmHour() * KMHTOMS; }
 	
+	virtual void set_wheelfriction(float friction) {
+		this->wheel_friction = friction; }
+	
 	virtual ~RaycastVehicle() { }
 	
 private:
+	float wheel_friction = 2.0f;
+	
 	btVehicleRaycaster *m_vehicle_raycaster = nullptr;
 	btRaycastVehicle *m_vehicle = nullptr;
 	btRaycastVehicle::btVehicleTuning m_tuning;

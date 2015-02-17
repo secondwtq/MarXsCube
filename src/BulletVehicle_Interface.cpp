@@ -31,6 +31,7 @@ void LuaInterface::RegisterInterface_Physics_Vehicle(LuaStatus &L) {
 			addFunction("set_steer", &BulletVehicle::set_steer).
 			addFunction("brake_tyre_atonce", &BulletVehicle::brake_tyre_atonce).
 			addFunction("get_current_speed", &BulletVehicle::get_current_speed).
+			addFunction("set_wheelfriction", &BulletVehicle::set_wheelfriction).
 		endClass().
 		deriveClass<RaycastVehicle, BulletVehicle>("RaycastVehicle").
 			addStaticFunction("create", &RaycastVehicle::create).

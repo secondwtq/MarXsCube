@@ -55,13 +55,19 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		angle_factor = { x = 1,0, y = 1.0, z = 1.0 },
 		ntype_locomotor = 'bvehicle',
 		vehicle_type = 'raycast',
+		raycast_vehicle_args = {
+			wheel_friction = 2.0,
+			wheel_radius = 20,
+			wheel_height = 10
+		},
 		raycast_locomotor_args = {
 			engineforce = 5000,
 			stablespeed = 40,
 			brakingforce = 50000,
-			max_rot_radius = 256,
+			max_rot_radius = 128,
 			brake_threshold = 20,
-			rotate_negativeforce = 300,
+			rotate_negativeforce = 800,
+			extra_rotforce = 10000,
 		},
 		shape = {
 			type = "COMPBOX",
