@@ -33,6 +33,8 @@ function comp_locoraycast:on_update()
 	local locoargs = phyargs['raycast_locomotor_args']
 
 	if self:state() == 'MOVING' then
+		-- print(string.format('%.2f', core.Physics:getVelocity()))
+
 		local curpos = H.unpack_coord3(core:GetCoord())
 
 		if H.vector2_distance(curpos, self:get_datafield 'dest_t') < 128 then
@@ -61,6 +63,7 @@ function comp_locoraycast:on_update()
 			if sim < 0.99 then self:steer_safe(fac) else self:clear_steer() end
 
 			if math.abs(core.Physics.vehicle:get_current_speed()) < locoargs['stablespeed'] and not deacc_to_turn then
+				self.data['core'].Physics.vehicle:clear_brake()
 				self:apply_engineforce(locoargs['engineforce'])
 			else self:apply_engineforce(0) end
 

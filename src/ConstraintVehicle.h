@@ -33,7 +33,9 @@ class ConstraintVehicle : public BulletVehicle {
 		virtual void setup_wheels();
 		
 		virtual void clear_steer();
-		
+	
+		virtual void clear_brake() { }
+	
 		virtual void brake_atonce();
 	
 		virtual void brake_tyre_atonce(std::size_t wheel_id, float brake_force);

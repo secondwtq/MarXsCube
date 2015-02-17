@@ -150,12 +150,20 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 			wheel_height = 10,
 			wheels = {
 				{
-					position = { 38, 42, 0 },
-					engine = false, brake = false, steer = true
+					position = { 62, 42, 0 },
+					engine = false, brake = true, steer = true
 				},
 				{
 					position = { 64, -42, 0 },
-					engine = false, brake = false, steer = true
+					engine = false, brake = true, steer = true
+				},
+				{
+					position = { 0, 42, 0 },
+					engine = true, brake = true, steer = true
+				},
+				{
+					position = { 0, -42, 0 },
+					engine = true, brake = true, steer = true
 				},
 				{
 					position = { -64, 42, 0 },
@@ -168,7 +176,7 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 			},
 		},
 		raycast_locomotor_args = {
-			engineforce = 2500,
+			engineforce = 5400,
 			stablespeed = 20,
 			brake_threshold = 12,
 			brake_extrathreshold = 15,

@@ -35,6 +35,8 @@ public:
 	
 	void clear_steer();
 	
+	virtual void clear_brake();
+	
 	void brake_atonce();
 	
 	virtual void brake_atonce_force(float brake_force) { }
