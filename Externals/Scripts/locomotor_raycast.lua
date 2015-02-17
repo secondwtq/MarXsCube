@@ -23,6 +23,7 @@ function comp_locoraycast:on_update()
 	local phyargs = H.scriptType_TechnoRTTITable(self:container_parent()):property 'physics'
 	local locoargs = phyargs['raycast_locomotor_args']
 
+	-- print(string.format('%.2f', core.Physics.vehicle:get_current_speed()))
 	if self:state() == 'MOVING' then
 		local curpos = H.unpack_coord3(core:GetCoord())
 
@@ -40,39 +41,30 @@ function comp_locoraycast:on_update()
 				local cen_force = phyargs['mass'] * 2.0 / 2.0
 				local rot_radius = H.centri_radius(cen_force, phyargs['mass'], core.Physics:getVelocity())
 				if rot_radius > locoargs['max_rot_radius'] then
-					print(string.format('deaccing %.2f', rot_radius))
 					deacc_to_turn = true
 					self:apply_engineforce(-1 * locoargs['rotate_negativeforce'])
 
 					if sim < 0.86 then
-						print('applying extra rot force')
 						core.Physics:applyCentralForce_Vertical(fac * locoargs['extra_rotforce'])
 					end
 				end
-
-				self:steer_safe(fac)
-			else
-				self:clear_steer()
 			end
 
-			if H.vector2_dot(curforward, reqforward) < 0.99 then
-				self:steer_safe(fac)
-			end
+			if sim < 0.99 then self:steer_safe(fac) else self:clear_steer() end
 
 			if core.Physics.vehicle:get_current_speed() < locoargs['stablespeed'] and not deacc_to_turn then
 				self:apply_engineforce(locoargs['engineforce'])
-			else
-				self:apply_engineforce(0)
-			end
+			else self:apply_engineforce(0) end
 
 		end
 
 	elseif self:state() == 'BREAKING_TO_STOP' then
-		print 'BREAKING'
 		self:brake_to_stop()
-
-		print (core.Physics.vehicle:get_current_speed())
-		if math.abs(core.Physics.vehicle:get_current_speed()) < locoargs['brake_threshold'] then
+		local abspeed = math.abs(core.Physics.vehicle:get_current_speed())
+		if abspeed < locoargs['brake_extrathreshold'] then
+			core.Physics:applyCentralForce_Directional(-locoargs['extra_brakeforce'])
+		end
+		if abspeed < locoargs['brake_threshold'] then
 			core.Physics:setVelocity(0)
 			self:state 'IDLE'
 		end

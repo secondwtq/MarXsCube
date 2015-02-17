@@ -24,7 +24,6 @@ void RaycastVehicle::spawn() {
 }
 
 namespace {
-	float wheelFriction = 2.0f;
 	float suspensionStiffness = 10.f;
 	float suspensionDamping = .2 * 2 * std::sqrt(10);
 	float suspensionCompression = .35 * 2 * std::sqrt(10);

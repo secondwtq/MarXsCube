@@ -62,12 +62,14 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		},
 		raycast_locomotor_args = {
 			engineforce = 5000,
-			stablespeed = 40,
+			stablespeed = 50,
 			brakingforce = 50000,
 			max_rot_radius = 128,
 			brake_threshold = 20,
 			rotate_negativeforce = 800,
 			extra_rotforce = 10000,
+			brake_extrathreshold = 60,
+			extra_brakeforce = 16000,
 		},
 		shape = {
 			type = "COMPBOX",
