@@ -60,7 +60,7 @@ function comp_locoraycast:on_update()
 
 			if sim < 0.99 then self:steer_safe(fac) else self:clear_steer() end
 
-			if core.Physics.vehicle:get_current_speed() < locoargs['stablespeed'] and not deacc_to_turn then
+			if math.abs(core.Physics.vehicle:get_current_speed()) < locoargs['stablespeed'] and not deacc_to_turn then
 				self:apply_engineforce(locoargs['engineforce'])
 			else self:apply_engineforce(0) end
 

@@ -80,7 +80,7 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		},
 		raycast_locomotor_args = {
 			engineforce = 5000,
-			stablespeed = 50,
+			stablespeed = 60,
 			brake_threshold = 20,
 			brake_extrathreshold = 60,
 			brakingforce = 50000,
@@ -132,29 +132,59 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 		composer.comp_TechnoColorMultiply,
 		composer.comp_RenderElementsManger,
 		composer.comp_RenderBasicBody,
-		locomotor.comp_LocomotorDefault,
+		blocomotor.comp_BVehicle,
+		locomotor_raycast.comp_locoraycast
 	},
 
 	physics = {
 		enabled = true,
 		initialstatic = false,
 		mass = 1600,
-		offset = { x = 0, y = 0, z = 48 },
+		offset = { x = 0, y = 0, z = 0 },
 		angle_factor = { x = 1.0, y = 1.0, z = 1.0 },
-		ntype_locomotor = 'default',
-		nlocomotor_args = {
-			rot = 200,
-			stablespeed = 200,
-			engineforce = 400,
-			brakingforce = 500,
-			rotate_negativeforce = 300,
+		ntype_locomotor = 'bvehicle',
+		vehicle_type = 'raycast',
+		raycast_vehicle_args = {
+			wheel_friction = 1.4,
+			wheel_radius = 28,
+			wheel_height = 10,
+			wheels = {
+				{
+					position = { 38, 42, 0 },
+					engine = false, brake = false, steer = true
+				},
+				{
+					position = { 64, -42, 0 },
+					engine = false, brake = false, steer = true
+				},
+				{
+					position = { -64, 42, 0 },
+					engine = true, brake = true, steer = false
+				},
+				{
+					position = { -64, -42, 0 },
+					engine = true, brake = true, steer = false
+				}
+			},
+		},
+		raycast_locomotor_args = {
+			engineforce = 2500,
+			stablespeed = 20,
+			brake_threshold = 12,
+			brake_extrathreshold = 15,
+			brakingforce = 50000,
+			max_rot_radius = 192,
+			rotate_negativeforce = 0,
+			extra_rotforce = 0,
+			extra_brakeforce = 0,
 		},
 		shape = {
-			type = "BOX",
-			mass = 10.0,
+			type = "COMPBOX",
 			restitution = 0.2,
 			friction = 1,
-			size = { x = 72, y = 48, z = 48 }
+			offset_comp = { x = 0, y = 0, z = 30 },
+			offset = { x = 0, y = 0, z = 0 },
+			size = { x = 72, y = 56, z = 30 }
 		}
 	}
 })
