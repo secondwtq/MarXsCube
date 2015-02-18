@@ -75,22 +75,31 @@ function comp_locoraycast:on_update()
 			else hit_point = vhere.coord2vec2(rt2:hit_point()) end
 
 			local avoid = curpos - hit_point
-			local avoid_refl = curforward:reflect(avoid) * 256
+			local avoid_refl = curforward:reflect(avoid) * 384
 			Bullet.DebugDrawer.draw_line(core:GetCoord(), vhere.vec2coord(curpos+avoid_refl))
 			self.data['dest_org'] = self.data.path[self.data.current_node]
 			self.data['dest_t'] = curpos + avoid_refl
 
 			Bullet.DebugDrawer.draw_line(core:GetCoord(), vhere.vec2coord(hit_point))
-			self.data.is_returning = true
 			print('steering')
+
+			if H.vector2_distance(curpos, self.data.dest_org) < 128 then
+				if self:path_ended() then
+					self:brake_to_stop()
+					self.data.is_returning = false
+				else
+					self:advance_path()
+				end
+			end
 
 		else
 			self.data.is_returning = false
+			if not self:path_ended() then self:renter_path() end
 		end
 
 		if H.vector2_distance(curpos, self.data['dest_t']) < 128 then
 			if not need_steering then
-				if self.data.is_path and not self:path_ended() then
+				if not self:path_ended() then
 					self:advance_path()
 					self.data.is_returning = false
 				else
@@ -121,16 +130,17 @@ function comp_locoraycast:on_update()
 					end
 				end
 
-				-- if need_steering then
-				-- 	core.Physics:applyCentralForce_Vertical(fac * locoargs['extra_rotforce'])
-				-- 	self:apply_engineforce(-1 * locoargs['rotate_negativeforce'])
-				-- end
 			end
 
 			if sim < 0.99 then self:steer_safe(fac) else self:clear_steer() end
 
+			if need_steering then
+				core.Physics:applyCentralForce_Vertical(fac * locoargs['extra_rotforce'])
+				self:apply_engineforce(-1 * locoargs['rotate_negativeforce'])
+			end
+
 			if not self.data.is_returning then
-				if math.abs(core.Physics.vehicle:get_current_speed()) < locoargs['stablespeed'] and not deacc_to_turn and not need_steering then
+				if math.abs(core.Physics.vehicle:get_current_speed()) < locoargs['stablespeed'] and not deacc_to_turn then
 					self.data['core'].Physics.vehicle:clear_brake()
 					self:apply_engineforce(locoargs['engineforce'])
 				else self:apply_engineforce(0) end

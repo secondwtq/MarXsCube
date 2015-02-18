@@ -185,7 +185,7 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 			brakingforce = 50000,
 			max_rot_radius = 192,
 			rotate_negativeforce = 0,
-			extra_rotforce = 0,
+			extra_rotforce = 12000,
 			extra_brakeforce = 0,
 			lookahead_offset = 30
 		},
