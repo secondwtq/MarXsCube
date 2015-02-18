@@ -3,6 +3,7 @@ local locomotor_raycast = { }
 local components = require 'components'
 local Placeholders = require 'Placeholders'
 local H = require 'Helpers'
+local vhere = require 'Vhere'
 
 local comp_locoraycast = components.component:new {
 	name = 'RaycastLocomotor',
@@ -48,21 +49,26 @@ function comp_locoraycast:on_update()
 	if self:state() == 'MOVING' then
 		-- print(string.format('%.2f', core.Physics:getVelocity()))
 
-		local curpos = H.unpack_coord3(core:GetCoord())
+		local curpos = vhere.coord2vec2(core:GetCoord())
+		local curforward = vhere.coord2vec2(core.Physics.forward_vec):nom()
 
-		local curforward = H.vector2_nom({ core.Physics.forward_vec.x, core.Physics.forward_vec.y })
-		local look_ahead_pos_1 = H.vector2_plus(curpos, H.vector2_scale(curforward, 256))
-		local look_ahead_pos_2 = H.vector2_plus(curpos, H.vector2_scale(curforward, 64))
-		Bullet.DebugDrawer.draw_line(core:GetCoord(), Utility.CoordStruct(look_ahead_pos_1[1], look_ahead_pos_1[2], 0))
-		local need_steering = false
-		if Grit.instance():pt_is_valid(Utility.CubePoint(unpack(look_ahead_pos_1))) == false then
-			need_steering = true
-		end
-		if Grit.instance():pt_is_valid(Utility.CubePoint(unpack(look_ahead_pos_2))) == false then
-			need_steering = true
-		end
+		local look_ahead_offline = vhere.vector2d(curforward.y, -curforward.x)
+		local look_ahead_pos1, look_ahead_pos2 = curpos + look_ahead_offline * locoargs['lookahead_offset'],
+												curpos - look_ahead_offline * locoargs['lookahead_offset']
+		local look_ahead_end1 = look_ahead_pos1 + curforward * 256
+		local look_ahead_end2 = look_ahead_pos2 + curforward * 256
+		local cla_start1, cla_end1, cla_start2, cla_end2 = 
+				vhere.vec2coord(look_ahead_pos1, 24), vhere.vec2coord(look_ahead_end1, 64), vhere.vec2coord(look_ahead_pos2, 24), vhere.vec2coord(look_ahead_end2, 64)
+		Bullet.DebugDrawer.draw_line(cla_start1, cla_end1)
+		Bullet.DebugDrawer.draw_line(cla_start2, cla_end2)
+		local rt1 = Physics.createRayTestTechnoOnly(cla_start1, cla_end1)
+		local rt2 = Physics.createRayTestTechnoOnly(cla_start2, cla_end2)
+		rt1:set_except(core) rt2:set_except(core)
+		rt1:perform() rt2:perform()
+
+		local need_steering = rt1:hit() or rt2:hit()
 		if need_steering then
-			print 'steering'
+			print('steering')
 		end
 
 		if H.vector2_distance(curpos, self.data['dest_t']) < 128 then

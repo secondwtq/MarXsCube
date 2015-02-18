@@ -89,6 +89,7 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 			rotate_negativeforce = 800,
 			extra_rotforce = 10000,
 			extra_brakeforce = 16000,
+			lookahead_offset = 25
 		},
 		shape = {
 			type = "COMPBOX",
@@ -186,6 +187,7 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 			rotate_negativeforce = 0,
 			extra_rotforce = 0,
 			extra_brakeforce = 0,
+			lookahead_offset = 30
 		},
 		shape = {
 			type = "COMPBOX",

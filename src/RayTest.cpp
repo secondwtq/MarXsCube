@@ -16,6 +16,8 @@ Physics::RayTest::RayTestSingle *Physics::RayTest::createRayTestSingle(CoordStru
 	return new Physics::RayTest::RayTestSingle(start, end); }
 Physics::RayTest::RayTestSingleForCell *Physics::RayTest::createRayTestForCell(CoordStruct &start, CoordStruct &end) {
 	return new Physics::RayTest::RayTestSingleForCell(start, end); }
+Physics::RayTest::RayTestSingleTechnoOnly *Physics::RayTest::createRayTestTechnoOnly(CoordStruct &start, CoordStruct &end) {
+	return new Physics::RayTest::RayTestSingleTechnoOnly(start, end); }
 
 bool Physics::RayTest::_impl::ClosestRayResultCallback_Custom::needsCollision(btBroadphaseProxy* proxy0) const {LOGFUNC;
 	PhysicsObject *ptr = (PhysicsObject *)(((btCollisionObject *)proxy0->m_clientObject)->getUserPointer());
@@ -25,4 +27,15 @@ bool Physics::RayTest::_impl::ClosestRayResultCallback_Custom::needsCollision(bt
 bool Physics::RayTest::_impl::ClosestRayResultCallback_ForCell::needsCollision(btBroadphaseProxy* proxy0) const {LOGFUNC;
 	PhysicsObject *ptr = (PhysicsObject *)(((btCollisionObject *)proxy0->m_clientObject)->getUserPointer());
 	return !(ptr->isEmpty && !ptr->isCell);
+}
+
+bool Physics::RayTest::_impl::ClosestRayResultCallback_TechnoOnly::needsCollision(btBroadphaseProxy* proxy0) const {
+	PhysicsObject *ptr = (PhysicsObject *)(((btCollisionObject *)proxy0->m_clientObject)->getUserPointer());
+	if (ptr) {
+		if (ptr->attachedToObject) {
+			if (ptr->attachedToObject == this->except) return false;
+			return true;
+		}
+	}
+	return false;
 }
