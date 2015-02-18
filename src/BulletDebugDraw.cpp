@@ -46,6 +46,10 @@ void BulletDebugDrawer::render() {
 	
 	GLFoundation::clear_depth();
 	Generic::PhysicsGeneral()->dynaWorld->debugDrawWorld();
+	for (auto f : drawer->m_task_queue) {
+		f(drawer);
+	}
+	drawer->m_task_queue.clear();
 	drawer->m_buffer.use();
 	glBufferSubData(GL_ARRAY_BUFFER, 0, drawer->m_buffer_vec.size() * sizeof(BulletDebugVertex), drawer->m_buffer_vec.data());
 	GLFoundation::unbind(drawer->m_buffer);

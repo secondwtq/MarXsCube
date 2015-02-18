@@ -25,7 +25,6 @@ bool Type_Anim::LoadFromConfig(ConfigManger &manger) {LOGFUNC;
 	luabridge::LuaRef offset = object["offset"];
 	a = offset["x"], b = offset["y"];
 	this->Offset.x = a, this->Offset.y = b;
-	_offset = sf::Vector2f(Offset.x, Offset.y);
 
 	object["PTR"] = this;
 	

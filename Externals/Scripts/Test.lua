@@ -100,7 +100,7 @@ function Functions.TestManger_onTestInit()
 	local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(256, 256, 128), true)
 	local building = ModEnvironment.Functions.createTechno(OBJECTS.TESTBUILDING, Utility.CoordStruct(512, 384, 0), true)
 	-- local rail2 = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(1024, 0, 128), true)
-	-- ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
+	ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
 
 	-- create GameObjects for nodes, and fill OBJ_DOTS
 	for i, dot in ipairs(DATA_DOTS) do

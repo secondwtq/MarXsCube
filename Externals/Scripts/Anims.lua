@@ -2,7 +2,7 @@ local function base_def_anims()
 
 OBJECTS.TESTANIM = BASES.BaseAnim:newObject({
 	image = "TESTANIM_TEX",
-	loop_count = 1,
+	loop_count = 2,
 	offset = { x = 10, y = -38 },
 	scale = { x = 100, y = 100 },
 })

@@ -14,6 +14,7 @@
 #include "BulletDebugShader.h"
 
 #include <vector>
+#include <functional>
 
 // reference: from Bullet official demos
 class BulletDebugDrawer : public btIDebugDraw {
@@ -43,6 +44,9 @@ public:
 	
 	void set_draw_scale(float scale) { this->m_draw_scale = scale; }
 	
+	void push_task(std::function<void (BulletDebugDrawer *)> foo) {
+		this->m_task_queue.push_back(foo); }
+	
 	static void render();
 	
 	private:
@@ -52,6 +56,8 @@ public:
 	
 		std::vector<BulletDebugVertex> m_buffer_vec;
 		gl_buffer<VBO, DYNAMIC> m_buffer;
+	
+		std::vector<std::function<void (BulletDebugDrawer *)> > m_task_queue;
 	
 		static BulletDebugShader m_shader;
 	

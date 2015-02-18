@@ -4,8 +4,7 @@
 #include "Common.h"
 #include "Object.h"
 #include "Type_Anim.h"
-#include "SFML.h"
-using namespace sf;
+#include "SilconSprite.h"
 
 #include "Config.h"
 
@@ -17,7 +16,8 @@ class Abs_Anim : public Abs_Object {
 		unsigned int WhatAmI() { return RTTIType_Anim; }
 		Type_Anim *AnimType = nullptr;
 		CubeTimer AnimTimer = CubeTimer(1, -1);
-		Sprite renderSprite;
+		SilconSprite sprite;
+		float scale = 1.f;
 
 		Abs_Object *getObjectPtr() {LOGFUNC; return (Abs_Object *)this; }
 
@@ -30,9 +30,9 @@ class Abs_Anim : public Abs_Object {
 
 		unsigned int GetCurrentFrame();
 
-		CubeTimer &getAnimTimer() {LOGFUNC; return AnimTimer; }
+		CubeTimer &getAnimTimer() { return AnimTimer; }
 
-		Type_Anim *getAnimType() {LOGFUNC; return AnimType; }
+		Type_Anim *getAnimType() { return AnimType; }
 
 };
 

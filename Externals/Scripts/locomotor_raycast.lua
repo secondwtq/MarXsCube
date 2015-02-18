@@ -53,6 +53,7 @@ function comp_locoraycast:on_update()
 		local curforward = H.vector2_nom({ core.Physics.forward_vec.x, core.Physics.forward_vec.y })
 		local look_ahead_pos_1 = H.vector2_plus(curpos, H.vector2_scale(curforward, 256))
 		local look_ahead_pos_2 = H.vector2_plus(curpos, H.vector2_scale(curforward, 64))
+		Bullet.DebugDrawer.draw_line(core:GetCoord(), Utility.CoordStruct(look_ahead_pos_1[1], look_ahead_pos_1[2], 0))
 		local need_steering = false
 		if Grit.instance():pt_is_valid(Utility.CubePoint(unpack(look_ahead_pos_1))) == false then
 			need_steering = true

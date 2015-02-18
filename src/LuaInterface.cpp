@@ -33,6 +33,7 @@
 #include "Grit_Interface.h"
 #include "Acheron_Interface.h"
 #include "Wonderland_Interface.h"
+#include "BulletInterface.h"
 
 #include "Gmap_Interface.h"
 
@@ -61,6 +62,7 @@ namespace LuaInterface {
 		RegisterInterface_Grit(L);
 		RegisterInterface_Acheron(L);
 		RegisterInterface_Wonderland(L);
+		RegisterInterface_Bullet(L);
 		
 		RegisterInterface_Std<int>(L, "int");
 		RegisterInterface_Std<CubePoint>(L, "CubePoint");

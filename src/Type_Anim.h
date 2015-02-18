@@ -21,9 +21,8 @@ class Type_Anim : public Type_Object {
 		int FrameLast = 1;
 
 		Vector2DT<float> Scale = Vector2DT<float>(1., 1.);
-		Vector2DT<float> Offset = Vector2DT<float>(0, 0);
+		CoordStruct Offset = { 0, 0, 0 };
 		sf::Vector2f _scale = sf::Vector2f(0, 0);
-		sf::Vector2f _offset = sf::Vector2f(0, 0);
 
 		Type_Anim(const char *ID) : Type_Object(ID) {LOGFUNC; };
 

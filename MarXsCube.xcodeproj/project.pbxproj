@@ -62,6 +62,7 @@
 		59C97B071A77784000AB3F02 /* TeslaBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59C97B051A77784000AB3F02 /* TeslaBullet.cpp */; };
 		59C97B0A1A7913C800AB3F02 /* GLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59C97B081A7913C800AB3F02 /* GLShader.cpp */; };
 		59C97B0D1A7942CA00AB3F02 /* TeslaRenderingBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59C97B0B1A7942CA00AB3F02 /* TeslaRenderingBasic.cpp */; };
+		59CF4DB51A94901D00F61962 /* BulletInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59CF4DB31A94901D00F61962 /* BulletInterface.cpp */; };
 		59F431DC1A839A47008795D9 /* GLM_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F431DA1A839A47008795D9 /* GLM_Interface.cpp */; };
 		59F431E71A83AF0F008795D9 /* GritFoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F431E51A83AF0F008795D9 /* GritFoundation.cpp */; };
 		59F5BCAD1A8A0F80006676EC /* libluajit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F5BCAC1A8A0F80006676EC /* libluajit.a */; };
@@ -228,6 +229,8 @@
 		59C97B091A7913C800AB3F02 /* GLShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLShader.h; sourceTree = "<group>"; };
 		59C97B0B1A7942CA00AB3F02 /* TeslaRenderingBasic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TeslaRenderingBasic.cpp; sourceTree = "<group>"; };
 		59C97B0C1A7942CA00AB3F02 /* TeslaRenderingBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeslaRenderingBasic.h; sourceTree = "<group>"; };
+		59CF4DB31A94901D00F61962 /* BulletInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletInterface.cpp; sourceTree = "<group>"; };
+		59CF4DB41A94901D00F61962 /* BulletInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletInterface.h; sourceTree = "<group>"; };
 		59F431DA1A839A47008795D9 /* GLM_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLM_Interface.cpp; sourceTree = "<group>"; };
 		59F431DB1A839A47008795D9 /* GLM_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLM_Interface.h; sourceTree = "<group>"; };
 		59F431E51A83AF0F008795D9 /* GritFoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GritFoundation.cpp; sourceTree = "<group>"; };
@@ -397,6 +400,8 @@
 				599985F41A80A7E400E6CE68 /* BulletDebugDraw.h */,
 				594F23A01A8F6F8100756010 /* BulletDebugShader.h */,
 				599985F31A80A7E400E6CE68 /* BulletDebugDraw.cpp */,
+				59CF4DB41A94901D00F61962 /* BulletInterface.h */,
+				59CF4DB31A94901D00F61962 /* BulletInterface.cpp */,
 				599985FA1A80DC7100E6CE68 /* RayTest */,
 				599985F91A80DC5F00E6CE68 /* Vehicle */,
 			);
@@ -782,6 +787,7 @@
 				59FCB5171A85B2120048D776 /* Timer.cpp in Sources */,
 				59F431DC1A839A47008795D9 /* GLM_Interface.cpp in Sources */,
 				59F5BCB91A8B9E4F006676EC /* SilconShader.cpp in Sources */,
+				59CF4DB51A94901D00F61962 /* BulletInterface.cpp in Sources */,
 				599985E91A7F3F9900E6CE68 /* ATVBCube.cpp in Sources */,
 				5926293E198AB66500858A67 /* Abstract.cpp in Sources */,
 			);
