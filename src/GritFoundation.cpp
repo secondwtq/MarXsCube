@@ -144,8 +144,8 @@ void Grit::link_nodes(const std::vector<GritNode *>& node_list) {
 
 // finished.
 bool Grit::check_los(const GPointType& pa, const GPointType& pb) {
-	Generic::corelog() << "check_los: start " << pa.x << ", " << pa.y << ", "
-												<< pb.x << ", " << pb.y << rn;
+//	Generic::corelog() << "check_los: start " << pa.x << ", " << pa.y << ", "
+//												<< pb.x << ", " << pb.y << rn;
 	
 	if (gmag2(gsub2(pa, pb)) < 1e-3) //magic again.. maybe the floating point precision issue
 	{
@@ -161,7 +161,7 @@ bool Grit::check_los(const GPointType& pa, const GPointType& pb) {
 		}
 	}
 	
-	Generic::corelog() << "check_los: returning true" << rn;
+//	Generic::corelog() << "check_los: returning true" << rn;
 	return true;
 }
 
