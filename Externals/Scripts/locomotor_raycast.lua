@@ -75,35 +75,41 @@ function comp_locoraycast:on_update()
 			else hit_point = vhere.coord2vec2(rt2:hit_point()) end
 
 			local avoid = curpos - hit_point
-			local avoid_refl = curforward:reflect(avoid) * 384
+			local avoid_refl = curforward:reflect(avoid) * 256
 			Bullet.DebugDrawer.draw_line(core:GetCoord(), vhere.vec2coord(curpos+avoid_refl))
-			self.data.dest_t = curpos + avoid_refl
+			self.data['dest_org'] = self.data.path[self.data.current_node]
+			self.data['dest_t'] = curpos + avoid_refl
 
 			Bullet.DebugDrawer.draw_line(core:GetCoord(), vhere.vec2coord(hit_point))
-
+			self.data.is_returning = true
 			print('steering')
+
 		else
-			if not self:path_ended() then self:renter_path() end
+			self.data.is_returning = false
 		end
 
 		if H.vector2_distance(curpos, self.data['dest_t']) < 128 then
 			if not need_steering then
 				if self.data.is_path and not self:path_ended() then
 					self:advance_path()
+					self.data.is_returning = false
 				else
 					self:brake_to_stop()
+					self.data.is_returning = false
 				end
 			else
 				self:renter_path()
+				self.data.is_returning = false
 			end
 		else
 			local reqforward = H.vector2_nom(H.vector2_offset(self:get_datafield 'dest_t', curpos))
 			local fac = 1
 			if H.vector2_cross(curforward, reqforward) < 0 then fac = -1 end
+			if self.data.is_returning then fac = fac * -1 end
 
 			local deacc_to_turn, sim
 			deacc_to_turn, sim = false, H.vector2_dot(curforward, reqforward)
-			if sim < 0.97 or need_steering then
+			if sim < 0.97 then
 				local cen_force = phyargs['mass'] * 2.0 / 2.0
 				local rot_radius = H.centri_radius(cen_force, phyargs['mass'], core.Physics:getVelocity())
 				if rot_radius > locoargs['max_rot_radius'] then
@@ -115,18 +121,22 @@ function comp_locoraycast:on_update()
 					end
 				end
 
-				if need_steering then
-					core.Physics:applyCentralForce_Vertical(fac * locoargs['extra_rotforce'])
-					self:apply_engineforce(-1 * locoargs['rotate_negativeforce'])
-				end
+				-- if need_steering then
+				-- 	core.Physics:applyCentralForce_Vertical(fac * locoargs['extra_rotforce'])
+				-- 	self:apply_engineforce(-1 * locoargs['rotate_negativeforce'])
+				-- end
 			end
 
 			if sim < 0.99 then self:steer_safe(fac) else self:clear_steer() end
 
-			if math.abs(core.Physics.vehicle:get_current_speed()) < locoargs['stablespeed'] and not deacc_to_turn and not need_steering then
-				self.data['core'].Physics.vehicle:clear_brake()
-				self:apply_engineforce(locoargs['engineforce'])
-			else self:apply_engineforce(0) end
+			if not self.data.is_returning then
+				if math.abs(core.Physics.vehicle:get_current_speed()) < locoargs['stablespeed'] and not deacc_to_turn and not need_steering then
+					self.data['core'].Physics.vehicle:clear_brake()
+					self:apply_engineforce(locoargs['engineforce'])
+				else self:apply_engineforce(0) end
+			elseif core.Physics:getVelocity() > -1 * locoargs['stablespeed'] then
+				self:apply_engineforce(-1 * locoargs['engineforce'])
+			end
 
 		end
 
