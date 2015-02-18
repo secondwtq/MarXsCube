@@ -83,7 +83,7 @@ void Grit::create_polymap() {
 	
 	for (auto obs : this->m_obses) {
 		// magic
-		std::vector<GPointType> pts_inflated = inflate_poly(obs->pts, 24);
+		std::vector<GPointType> pts_inflated = inflate_poly(obs->pts, 16);
 		obs_polys.push_back(new GritPoly(pts_inflated));
 	}
 	
@@ -103,7 +103,7 @@ void Grit::create_nodes() {
 	for (std::size_t i = 0; i < vect.size(); i++) {
 		// magic?
 		Generic::corelog() << "handling polygon" << rn;
-		std::vector<GPointType> pts_inflated = this->inflate_poly(vect[i]->pts, 10);
+		std::vector<GPointType> pts_inflated = this->inflate_poly(vect[i]->pts, 8);
 		for (std::size_t i = 0; i < pts_inflated.size(); i++) {
 			Generic::corelog() << "handling point" << rn;
 			if (pt_is_concave(pts_inflated, i)) {
@@ -277,7 +277,7 @@ GPointType Grit::get_closer_edge_pt(const GPointType& pt) {
 	float closer_vert_dist = 1e+12; // magic magic.
 	
 	for (auto poly : this->m_map->all_polys()) {
-		std::vector<GPointType> infleated_pts = inflate_poly(poly->pts, 2);
+		std::vector<GPointType> infleated_pts = inflate_poly(poly->pts, 16);
 		
 		for (std::size_t i = 0; i < infleated_pts.size(); i++) {
 			
