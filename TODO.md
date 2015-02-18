@@ -10,6 +10,12 @@
 
 * **[BUG]** Allow getting unit height relative to terrain (for shadow rendering, locomotor, etc.).
 
+* **[BUG]** Fix shadow height issue.
+
+* **[FEATURE]** Allow buildings have boundary for pathfinding.
+
+* **[FEATURE]** Animations for buildings and units.
+
 * **[BUG]** Locomotor in Gmap is now broken.
 
 * **[FEATURE]** Basic Locomotor. ***in progress***
@@ -47,6 +53,10 @@
 ---
 
 * **[MAINTENANCE]** More work about Tesla & Wonderland. ***in progress***
+
+* **[FEATURE]** Map serialization.
+
+* **[FEATURE]** Heightmap editting for Wonderland.
 
 * ~~**[BUG]** Performance issue of the coexistence of Silcon & Tesla. ***fixed***~~
 

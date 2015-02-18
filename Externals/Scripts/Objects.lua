@@ -92,7 +92,7 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		shape = {
 			type = "COMPBOX",
 			restitution = 0.2,
-			friction = 0.8,
+			friction = 0.0,
 			offset_comp = { x = 0, y = 0, z = 25 },
 			offset = { x = 0, y = 0, z = 0 },
 			size = { x = 52, y = 30, z = 18 }
@@ -189,7 +189,7 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 		shape = {
 			type = "COMPBOX",
 			restitution = 0.2,
-			friction = 1,
+			friction = 0.0,
 			offset_comp = { x = 0, y = 0, z = 30 },
 			offset = { x = 0, y = 0, z = 0 },
 			size = { x = 72, y = 56, z = 30 }
@@ -251,8 +251,8 @@ OBJECTS.TESTBUILDING = BASES.BaseTechno:newObject({
 			type = "BOX",
 			mass = 10.0,
 			restitution = 0.0,
-			friction = 1,
-			size = { x = 128, y = 128, z = 54 }
+			friction = 0.1,
+			size = { x = 128, y = 128, z = 64 }
 		}
 	}
 })

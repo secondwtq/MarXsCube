@@ -57,7 +57,7 @@ function Functions.Session_MousePress(mouseStatus)
 		end
 	else
 		InputHandler.MousePress_Right(mouseStatus)
-		print("Current cell location: ", cell.LocCell.x, cell.LocCell.y)
+		print("Current cell location: ", cell.LocCell.x, cell.LocCell.y, coord.x, coord.y)
 	end
 end
 

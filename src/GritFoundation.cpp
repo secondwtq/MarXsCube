@@ -83,7 +83,7 @@ void Grit::create_polymap() {
 	
 	for (auto obs : this->m_obses) {
 		// magic
-		std::vector<GPointType> pts_inflated = inflate_poly(obs->pts, 10);
+		std::vector<GPointType> pts_inflated = inflate_poly(obs->pts, 24);
 		obs_polys.push_back(new GritPoly(pts_inflated));
 	}
 	
@@ -103,7 +103,7 @@ void Grit::create_nodes() {
 	for (std::size_t i = 0; i < vect.size(); i++) {
 		// magic?
 		Generic::corelog() << "handling polygon" << rn;
-		std::vector<GPointType> pts_inflated = this->inflate_poly(vect[i]->pts, 5);
+		std::vector<GPointType> pts_inflated = this->inflate_poly(vect[i]->pts, 10);
 		for (std::size_t i = 0; i < pts_inflated.size(); i++) {
 			Generic::corelog() << "handling point" << rn;
 			if (pt_is_concave(pts_inflated, i)) {
@@ -144,8 +144,8 @@ void Grit::link_nodes(const std::vector<GritNode *>& node_list) {
 
 // finished.
 bool Grit::check_los(const GPointType& pa, const GPointType& pb) {
-//	Generic::corelog() << "check_los: start " << pa.x << ", " << pa.y << ", "
-//												<< pb.x << ", " << pb.y << rn;
+	Generic::corelog() << "check_los: start " << pa.x << ", " << pa.y << ", "
+												<< pb.x << ", " << pb.y << rn;
 	
 	if (gmag2(gsub2(pa, pb)) < 1e-3) //magic again.. maybe the floating point precision issue
 	{
@@ -161,6 +161,7 @@ bool Grit::check_los(const GPointType& pa, const GPointType& pb) {
 		}
 	}
 	
+	Generic::corelog() << "check_los: returning true" << rn;
 	return true;
 }
 
@@ -252,7 +253,7 @@ bool Grit::segments_cross(const GPointType& a, const GPointType& b, const GPoint
 
 // finished.
 bool Grit::pt_in_poly(const GPointType& pt, const std::vector<GPointType>& polypts) {
-	GUnitT x_min = 1e+8; //magic
+	GUnitT x_min = 1e+6; //magic
 	for (auto p : polypts)
 		x_min = std::min(x_min, p.x);
 	

@@ -31,6 +31,11 @@ function grit_find_path(start, eend)
 	local a, b = Utility.CubePoint(start[1], start[2]), Utility.CubePoint(eend[1], eend[2])
 	local vec = Grit.instance():find_path(a, b)
 	local len, ret = vec:size(), { }
+	print('path length', len)
+	for i = 0, len-1 do
+		local pos = vec:at(i)
+		print(pos.x, pos.y)
+	end
 
 	for i = len-1, 1, -1 do
 		local pos = vec:at(i-1)
@@ -43,19 +48,26 @@ end
 -- run when game started
 function Functions.TestManger_onTestInit()
 
-	local vec0 = Utility.CubePoint(512, 256)
-	local vec1 = Utility.CubePoint(768, 512)
-	local vec2 = Utility.CubePoint(1024, 256)
-	local vec3 = Utility.CubePoint(1024, -256)
-	local vec4 = Utility.CubePoint(768, -768)
-	local vec5 = Utility.CubePoint(512, -256)
+	-- local veci0 = Utility.CubePoint(512, 256)
+	-- local veci1 = Utility.CubePoint(1024, 256)
+	-- local veci2 = Utility.CubePoint(1024, -256)
+	-- local veci3 = Utility.CubePoint(512, -256)
+	-- local obst = Grit.GritObstacle.create()
+	-- obst:pts():push_back(veci0)
+	-- obst:pts():push_back(veci1)
+	-- obst:pts():push_back(veci2)
+	-- obst:pts():push_back(veci3)
+	-- Grit.instance():add_obs(obst)
+
+	local vec0 = Utility.CubePoint(510, 384)
+	local vec1 = Utility.CubePoint(512, 640)
+	local vec2 = Utility.CubePoint(768, 636)
+	local vec3 = Utility.CubePoint(764, 380)
 	local obs = Grit.GritObstacle.create()
+	obs:pts():push_back(vec3)
 	obs:pts():push_back(vec0)
 	obs:pts():push_back(vec1)
 	obs:pts():push_back(vec2)
-	obs:pts():push_back(vec3)
-	obs:pts():push_back(vec4)
-	obs:pts():push_back(vec5)
 	Grit.instance():add_obs(obs)
 
 	Objects.Map.GetInstance():CreateEmptyMap(60, 50) -- create map
@@ -82,6 +94,7 @@ function Functions.TestManger_onTestInit()
 	-- background.temp_ZOffset = true
 	local cycle = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(256, 0, 64), true)
 	local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(256, 256, 128), true)
+	local building = ModEnvironment.Functions.createTechno(OBJECTS.TESTBUILDING, Utility.CoordStruct(512, 384, 0), true)
 	-- local rail2 = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(1024, 0, 128), true)
 	-- ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
 

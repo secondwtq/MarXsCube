@@ -29,7 +29,7 @@ function comp_locoraycast:on_create()
 	self.data['state'] = 'IDLE'
 	self.data['is_path'] = false
 	self.data['dest_t'] = { 0, 0, 0 }
-	self.data['core'] = Helpers.Techno_TechnoRTTIIDTable(self:container_parent())
+	self.data['core'] = H.Techno_TechnoRTTIIDTable(self:container_parent())
 
 	self.data['path'] = { }
 	self.data['current_node'] = 1
@@ -50,7 +50,7 @@ function comp_locoraycast:on_update()
 
 		local curpos = H.unpack_coord3(core:GetCoord())
 
-		if H.vector2_distance(curpos, self:get_datafield 'dest_t') < 128 then
+		if H.vector2_distance(curpos, self.data['dest_t']) < 128 then
 			if self.data.is_path and not self:path_ended() then
 				self:advance_path()
 			else
@@ -97,6 +97,7 @@ function comp_locoraycast:on_update()
 			self:state 'IDLE'
 		end
 	end
+
 end
 
 function comp_locoraycast:stop_final()
