@@ -113,6 +113,11 @@ function vector_2d_table:nom()
 	return (self:copy())/(self:len())
 end
 
+function vector_2d_table:reflect(nom)
+	local n = nom:nom()
+	return self - n * 2 * (self:dot(n))
+end
+
 function vector_2d_table:unpack()
 	return self.x, self.y
 end

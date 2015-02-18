@@ -34,6 +34,8 @@ function comp_locoraycast:on_create()
 
 	self.data['path'] = { }
 	self.data['current_node'] = 1
+
+	self.data['is_returning'] = false
 end
 
 function comp_locoraycast:on_init()
@@ -59,23 +61,40 @@ function comp_locoraycast:on_update()
 		local look_ahead_end2 = look_ahead_pos2 + curforward * 256
 		local cla_start1, cla_end1, cla_start2, cla_end2 = 
 				vhere.vec2coord(look_ahead_pos1, 24), vhere.vec2coord(look_ahead_end1, 64), vhere.vec2coord(look_ahead_pos2, 24), vhere.vec2coord(look_ahead_end2, 64)
+
 		Bullet.DebugDrawer.draw_line(cla_start1, cla_end1)
 		Bullet.DebugDrawer.draw_line(cla_start2, cla_end2)
-		local rt1 = Physics.createRayTestTechnoOnly(cla_start1, cla_end1)
-		local rt2 = Physics.createRayTestTechnoOnly(cla_start2, cla_end2)
+		local rt1, rt2 = Physics.createRayTestTechnoOnly(cla_start1, cla_end1), Physics.createRayTestTechnoOnly(cla_start2, cla_end2)
 		rt1:set_except(core) rt2:set_except(core)
 		rt1:perform() rt2:perform()
 
 		local need_steering = rt1:hit() or rt2:hit()
 		if need_steering then
+			local hit_point
+			if rt1:hit() then hit_point = vhere.coord2vec2(rt1:hit_point())
+			else hit_point = vhere.coord2vec2(rt2:hit_point()) end
+
+			local avoid = curpos - hit_point
+			local avoid_refl = curforward:reflect(avoid) * 384
+			Bullet.DebugDrawer.draw_line(core:GetCoord(), vhere.vec2coord(curpos+avoid_refl))
+			self.data.dest_t = curpos + avoid_refl
+
+			Bullet.DebugDrawer.draw_line(core:GetCoord(), vhere.vec2coord(hit_point))
+
 			print('steering')
+		else
+			if not self:path_ended() then self:renter_path() end
 		end
 
 		if H.vector2_distance(curpos, self.data['dest_t']) < 128 then
-			if self.data.is_path and not self:path_ended() then
-				self:advance_path()
+			if not need_steering then
+				if self.data.is_path and not self:path_ended() then
+					self:advance_path()
+				else
+					self:brake_to_stop()
+				end
 			else
-				self:brake_to_stop()
+				self:renter_path()
 			end
 		else
 			local reqforward = H.vector2_nom(H.vector2_offset(self:get_datafield 'dest_t', curpos))
@@ -165,6 +184,10 @@ function comp_locoraycast:advance_path()
 	local curidx = self.data.current_node
 	self.data.current_node = curidx+1
 	self.data.dest_t = self.data.path[curidx]
+end
+
+function comp_locoraycast:renter_path()
+	self.data.dest_t = self.data.path[self.data.current_node]
 end
 
 function comp_locoraycast:state(state)

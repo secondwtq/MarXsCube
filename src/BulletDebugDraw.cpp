@@ -34,7 +34,8 @@ BulletDebugDrawer::BulletDebugDrawer() {
 	std::cout << m_shader.log(VERTEX);
 	std::cout << m_shader.log(FRAG);
 	
-	m_buffer.init_with(m_buffer_vec.data(), 100000*sizeof(BulletDebugVertex));
+	m_buffer_vec.reserve(200000);
+	m_buffer.init_with(m_buffer_vec.data(), 200000*sizeof(BulletDebugVertex));
 }
 
 void BulletDebugDrawer::render() {
