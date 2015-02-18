@@ -5,6 +5,7 @@ local gmap_comps = require('gmap_comps')
 local locomotor = require 'locomotor'
 local blocomotor = require 'loco_bvehicle'
 local locomotor_raycast = require 'locomotor_raycast'
+local pfobstacle = require 'pfobstacle'
 
 local function base_def_technos()
 
@@ -230,6 +231,22 @@ OBJECTS.TESTBUILDING = BASES.BaseTechno:newObject({
 				affected_by_global_multiply = true,
 			}
 		},
+	},
+
+	components = {
+		composer.comp_TechnoColorMultiply,
+		composer.comp_RenderElementsManger,
+		composer.comp_RenderBasicBody,
+		pfobstacle.comp_PathfindingObstacle
+	},
+
+	pathfinding_obstacle = {
+		enabled = true,
+		static = true,
+		shape = "RECT",
+		width = 256,
+		height = 256,
+		offset = { 128, 128, 0 }
 	},
 
 	physics = {
