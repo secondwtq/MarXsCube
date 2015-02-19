@@ -59,8 +59,6 @@ function comp_locoraycast:on_update()
 		local curpos = vhere.coord2vec2(core:GetCoord())
 		local curforward = vhere.coord2vec2(core.Physics.forward_vec):nom()
 
-		print(self.data.pathway:mapPointToPathDistance(vhere.vec2glm3(curpos)))
-
 		local look_ahead_offline = vhere.vector2d(curforward.y, -curforward.x)
 		local look_ahead_pos1, look_ahead_pos2 = curpos + look_ahead_offline * locoargs['lookahead_offset'],
 												curpos - look_ahead_offline * locoargs['lookahead_offset']

@@ -98,11 +98,8 @@ Pathway::isCyclic() const
 	return path_.isCyclic();
 }
 
-float
-Pathway::length() const
-{
-	return path_.length();
-}
+float Pathway::length() const {
+	return path_.length(); }
 
 std::size_t Pathway::pointCount() const {
 	return path_.pointCount(); }

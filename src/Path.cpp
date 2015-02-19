@@ -31,13 +31,16 @@ namespace {
 		assert( segmentTangents.size() == segmentLengths.size() && "segmentTangents and segmentLengths must have the same size." );
 		
 		vec_type tangent = points[segmentIndex + 1] - points[segmentIndex];
-		float const length = tangent.length();
+		
+		// vec::length is the goddamn dimension instead of length!
+		float const length = glm::length(tangent);
+		
 		assert(!zero(length) && "Segments must have lengths greater than 0.");
 		
 		tangent /= length;
 		
-		segmentTangents[ segmentIndex ] = tangent;
-		segmentLengths[ segmentIndex] = length;
+		segmentTangents[segmentIndex] = tangent;
+		segmentLengths[segmentIndex] = length;
 	}
 	
 
@@ -136,22 +139,16 @@ void Path::setPath(std::size_t numOfPoints, vec_type const newPoints[], bool clo
 		++numberOfPoints;
 	}
 	
-	points_.reserve( numberOfPoints );
-	segmentTangents_.resize( numberOfPoints - 1 );
-	segmentLengths_.resize( numberOfPoints - 1 );
+	points_.reserve(numberOfPoints);
+	segmentTangents_.resize(numberOfPoints - 1);
+	segmentLengths_.resize(numberOfPoints - 1);
 	
-	points_.assign( newPoints, newPoints + numOfPoints );
+	points_.assign(newPoints, newPoints + numOfPoints);
 	
-	if ( closedCycle_ ) {
-		points_.push_back( points_[ 0 ] );
-	}
+	if (closedCycle_)
+		points_.push_back(points_[0]);
 	
-	updateTangentsAndLengths( points_ ,
-							 segmentTangents_,
-							 segmentLengths_,
-							 0,
-							 numOfPoints,
-							 closedCycle_ );
+	updateTangentsAndLengths(points_, segmentTangents_, segmentLengths_, 0, numOfPoints, closedCycle_);
 	
 	shrink_to_fit(points_);
 	shrink_to_fit(segmentTangents_);
