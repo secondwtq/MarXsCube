@@ -32,48 +32,25 @@ Pathway::swap(Pathway& other) {
 	path_.swap(other.path_);
 	std::swap(radius_, other.radius_); }
 
-void
-Pathway::movePoints( std::size_t startIndex,
-															std::size_t numOfPoints,
-															vec_type const newPointValues[] )
-{
-	path_.movePoints( startIndex, numOfPoints, newPointValues );
-}
+void Pathway::movePoints(std::size_t startIndex, std::size_t numOfPoints, vec_type const newPointValues[]) {
+	path_.movePoints(startIndex, numOfPoints, newPointValues); }
 
-void
-Pathway::setPathway( std::size_t numOfPoints,
-															vec_type const points[],
-															float r,
-															bool closedCycle )
-{
-	path_.setPath( numOfPoints, points, closedCycle );
-	setRadius( r );
-}
+void Pathway::setPathway(std::size_t numOfPoints, vec_type const points[], float r, bool closedCycle) {
+	path_.setPath(numOfPoints, points, closedCycle);
+	setRadius(r); }
 
-void
-Pathway::setRadius( float r )
-{
-	radius_ = r;
-}
+void Pathway::setRadius(float r) {
+	radius_ = r; }
 
-float
-Pathway::radius() const
-{
-	return radius_;
-}
+float Pathway::radius() const {
+	return radius_; }
 
-bool
-Pathway::isValid() const
-{
-	return pointCount() > 1;
-}
+bool Pathway::isValid() const {
+	return pointCount() > 1; }
 
-Pathway::vec_type Pathway::mapPointToPath (const vec_type& point,
-																 vec_type& tangent,
-																 float& outside) const
-{
+Pathway::vec_type Pathway::mapPointToPath (const vec_type& point, vec_type& tangent, float& outside) const {
 	PointToPathMapping mapping;
-	mapPointToPathAlike( *this, point, mapping );
+	mapPointToPathAlike(*this, point, mapping);
 	tangent = mapping.tangent;
 	outside = mapping.distancePointToPath;
 	return mapping.pointOnPathCenterLine;
@@ -92,11 +69,8 @@ Pathway::mapPointToPathDistance (const vec_type& point) const {
 	return mapping.distanceOnPath;
 }
 
-bool
-Pathway::isCyclic() const
-{
-	return path_.isCyclic();
-}
+bool Pathway::isCyclic() const {
+	return path_.isCyclic(); }
 
 float Pathway::length() const {
 	return path_.length(); }
@@ -110,11 +84,8 @@ Pathway::vec_type Pathway::point(std::size_t pointIndex) const {
 std::size_t Pathway::segmentCount() const {
 	return path_.segmentCount(); }
 
-float
-Pathway::segmentLength( std::size_t segmentIndex ) const
-{
-	return path_.segmentLength( segmentIndex );
-}
+float Pathway::segmentLength(std::size_t segmentIndex) const {
+	return path_.segmentLength(segmentIndex); }
 
 Pathway::vec_type Pathway::segmentStart(std::size_t segmentIndex) const {
 	return path_.segmentStart(segmentIndex); }
@@ -123,11 +94,8 @@ Pathway::vec_type Pathway::segmentEnd(std::size_t segmentIndex) const {
 	return path_.segmentEnd(segmentIndex); }
 
 float
-Pathway::mapPointToSegmentDistance( std::size_t segmentIndex,
-																		   vec_type const& point ) const
-{
-	return path_.mapPointToSegmentDistance( segmentIndex, point );
-}
+Pathway::mapPointToSegmentDistance(std::size_t segmentIndex, vec_type const& point) const {
+	return path_.mapPointToSegmentDistance(segmentIndex, point); }
 
 Pathway::vec_type Pathway::mapSegmentDistanceToPoint(std::size_t segmentIndex, float segmentDistance) const {
 	return path_.mapSegmentDistanceToPoint(segmentIndex, segmentDistance); }
@@ -142,24 +110,15 @@ Pathway::vec_type Pathway::mapSegmentDistanceToTangent(std::size_t segmentIndex,
 	return path_.mapSegmentDistanceToTangent(segmentIndex, segmentDistance); }
 
 void
-Pathway::mapDistanceToSegmentPointAndTangentAndRadius( std::size_t segmentIndex,
-																							  float distance,
-																							  vec_type& pointOnPath,
-																							  vec_type& tangent,
-																							  float& radius ) const
-{
-	path_.mapDistanceToSegmentPointAndTangent( segmentIndex, distance, pointOnPath, tangent );
+Pathway::mapDistanceToSegmentPointAndTangentAndRadius(std::size_t segmentIndex,
+				float distance, vec_type& pointOnPath, vec_type& tangent, float& radius) const {
+	path_.mapDistanceToSegmentPointAndTangent(segmentIndex, distance, pointOnPath, tangent);
 	radius = radius_;
 }
 
 void
 Pathway::mapPointToSegmentDistanceAndPointAndTangentAndRadius( std::size_t segmentIndex,
-																									  vec_type const& point,
-																									  float& distance,
-																									  vec_type& pointOnPath,
-																									  vec_type& tangent,
-																									  float& radius) const
-{
-	path_.mapPointToSegmentDistanceAndPointAndTangent( segmentIndex, point, distance, pointOnPath, tangent );
+	vec_type const& point, float& distance, vec_type& pointOnPath, vec_type& tangent, float& radius) const {
+	path_.mapPointToSegmentDistanceAndPointAndTangent(segmentIndex, point, distance, pointOnPath, tangent);
 	radius = radius_;
 }

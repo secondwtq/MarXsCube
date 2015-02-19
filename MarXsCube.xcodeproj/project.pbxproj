@@ -478,18 +478,6 @@
 				599985EE1A7F4BED00E6CE68 /* Startup.h */,
 				599985ED1A7F4BED00E6CE68 /* Startup.cpp */,
 				59262937198AB66500858A67 /* Test.cpp */,
-				59CF4DB71A9594AF00F61962 /* Path.h */,
-				59CF4DB61A9594AF00F61962 /* Path.cpp */,
-				59CF4DC71A95A9D000F61962 /* Pathway.h */,
-				59CF4DC61A95A9D000F61962 /* Pathway.cpp */,
-				59CF4DBB1A959F4200F61962 /* PathAux.h */,
-				59CF4DBE1A95A0D600F61962 /* PathAux2.h */,
-				59CF4DBA1A959F4200F61962 /* PathAux.cpp */,
-				59CF4DB91A959C6A00F61962 /* PathUtils.h */,
-				59CF4DC41A95A89C00F61962 /* PathCube.h */,
-				59CF4DC31A95A89C00F61962 /* PathCube.cpp */,
-				59CF4DC11A95A78000F61962 /* Path_Interface.h */,
-				59CF4DC01A95A78000F61962 /* Path_Interface.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -555,6 +543,25 @@
 				593458681A832C8800DE4C28 /* Tesla_Interface.cpp */,
 			);
 			name = Tesla;
+			sourceTree = "<group>";
+		};
+		59CF4DC91A95B35900F61962 /* Path */ = {
+			isa = PBXGroup;
+			children = (
+				59CF4DB71A9594AF00F61962 /* Path.h */,
+				59CF4DB61A9594AF00F61962 /* Path.cpp */,
+				59CF4DC71A95A9D000F61962 /* Pathway.h */,
+				59CF4DC61A95A9D000F61962 /* Pathway.cpp */,
+				59CF4DBB1A959F4200F61962 /* PathAux.h */,
+				59CF4DBE1A95A0D600F61962 /* PathAux2.h */,
+				59CF4DBA1A959F4200F61962 /* PathAux.cpp */,
+				59CF4DB91A959C6A00F61962 /* PathUtils.h */,
+				59CF4DC41A95A89C00F61962 /* PathCube.h */,
+				59CF4DC31A95A89C00F61962 /* PathCube.cpp */,
+				59CF4DC11A95A78000F61962 /* Path_Interface.h */,
+				59CF4DC01A95A78000F61962 /* Path_Interface.cpp */,
+			);
+			name = Path;
 			sourceTree = "<group>";
 		};
 		59F431DD1A83A92D008795D9 /* Verdandi */ = {
@@ -656,6 +663,7 @@
 		59F431E41A83AD12008795D9 /* Grit */ = {
 			isa = PBXGroup;
 			children = (
+				59CF4DC91A95B35900F61962 /* Path */,
 				59FCB50C1A8488030048D776 /* GritMath.h */,
 				59F431E61A83AF0F008795D9 /* GritFoundation.h */,
 				59F431E51A83AF0F008795D9 /* GritFoundation.cpp */,
