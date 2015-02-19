@@ -78,9 +78,9 @@ void RaycastVehicle::brake_atonce() {
 
 void RaycastVehicle::brake_tyre_atonce(std::size_t wheel_id, float brake_force) {
 	int i = static_cast<int>(wheel_id);
-	m_vehicle->applyEngineForce(0, i);
+//	m_vehicle->applyEngineForce(0, i);
 	m_vehicle->setBrake(brake_force, i);
-	m_vehicle->setSteeringValue(0, i);
+//	m_vehicle->setSteeringValue(0, i);
 }
 
 void RaycastVehicle::set_steer(std::size_t wheel_id, float value) {

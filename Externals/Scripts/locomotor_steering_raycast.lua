@@ -83,23 +83,41 @@ function comp_LocomotorSteer_Raycast:adjust_velocity(desired)
 
 	local engineforce = locoargs['engineforce']
 	if math.abs(curforward_speed) > locoargs['stablespeed'] and engineforce > 0 then engineforce = 0 end
-	self:apply_engineforce(engineforce)
 
 	local steer_force = v.dot(desired:nom(), v.vector2d(-curforward.y, curforward.x):nom())
-	local cen_force = phyargs['mass'] / 2.0
+	local sim = v.dot(desired:nom(), curforward)
+	local cen_force = phyargs['mass']
 	local rot_radius = H.centri_radius(cen_force, phyargs['mass'], curforward_speed)
 	local fac = sign(steer_force)
 	if rot_radius > locoargs['max_rot_radius'] then
-		local rot_force = fac * (H.centri_force(phyargs['mass'], curforward_speed, locoargs['max_rot_radius']))
+		local rot_force = fac * (H.centri_force(phyargs['mass'], curforward_speed, locoargs['max_rot_radius']) - cen_force)
 		core.Physics:applyCentralForce_Vertical(rot_force)
 	end
-	if steer_force < 0.97 then
+	core.Physics.vehicle:clear_brake()
+	if sim < 0.96 then
 		self:steer_safe(fac)
+
+		if rot_radius > locoargs['max_rot_radius'] then
+			if engineforce > 0 then
+				-- engineforce = -locoargs['engineforce']
+				-- if sim < 0.90 then self:brake_to_deacc() end
+			end
+		end
 	end
+	self:apply_engineforce(engineforce)
+	print(string.format("%.2f %.2f", sim, rot_radius))
 end
 
 function comp_LocomotorSteer_Raycast:clear_steer()
 	self.data['core'].Physics.vehicle:clear_steer()
+end
+
+function comp_LocomotorSteer_Raycast:brake_to_deacc()
+	local scriptType = H.scriptType_TechnoRTTITable(self:container_parent())
+	local locoargs = scriptType:property 'physics' ['raycast_locomotor_args']
+	for t, i in ipairs(self.data.com_vehicle.data.wheels_brake) do
+		self.data['core'].Physics.vehicle:brake_tyre_atonce(i, locoargs['brakingforce'])
+	end
 end
 
 function comp_LocomotorSteer_Raycast:steer_safe(steer)
