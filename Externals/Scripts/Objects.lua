@@ -28,7 +28,7 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 				type_internal_line = false,
 				has_shadow = true,
 
-				offset = { 0, 0, 0 },
+				offset = { 0, 0, -8 },
 				direction_offset = 0,
 
 				image = "TRIKEIMAGE",
@@ -189,7 +189,7 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 			engineforce = 5400,
 			stablespeed = 20,
 			brake_when_turning = false,
-			use_aux_rot = false,
+			use_aux_rot = true,
 
 			brake_threshold = 12,
 			brake_extrathreshold = 15,
@@ -266,7 +266,7 @@ OBJECTS.TESTBUILDING = BASES.BaseTechno:newObject({
 	steering_obstacle = {
 		enabled = true,
 		static = true,
-		radius = 256,
+		radius = 182,
 		offset = { 128, 128, 0 }
 	},
 

@@ -13,7 +13,7 @@ AtTheVeryBeginning.together({
 	window_vsync = true,
 
 	bullet_debugdraw = false,
-	bullet_debugdraw_scale = 1.5,
+	bullet_debugdraw_scale = 1.0,
 
 	bullet_gravity = { 0, 0, -9.8 },
 	bullet_boost = 2.0,

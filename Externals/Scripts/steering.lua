@@ -3,7 +3,7 @@ local object = require 'object'
 
 local steering = object.object:new {
 	parent = nil,
-	radius = 96,
+	radius = 32,
 
 	vel_desired = v.vector2d(0, 0)
 }
@@ -18,9 +18,9 @@ local intersection = object.object:new {
 --		velocity() position() speed()
 
 local C_min_speed = 50
-local C_pred_time = 6
+local C_pred_time = 2.5
 local C_est_time = 2
-local C_dect_radius = 256
+local C_dect_radius = 128
 
 function steering:future_position_desired(time)
 	return self.parent:position() + self.vel_desired * time
@@ -59,12 +59,13 @@ function steering:steer_to_avoid()
 			avoid_multi = 2 * (C_est_time / time_to_coll);
 		end
 
-		local dir_opposite = self.parent:position() - obs.position
-		avoid = avoid + avoid_multi * dir_opposite
+		local dir_opposite = self.parent:position() - obs.pos
+		avoid = avoid + dir_opposite * avoid_multi
 	end
 
 	avoid = avoid / (#obses)
 	local new_vel = self.vel_desired:reflect(avoid)
+	print(string.format("%d, (%.2f, %.2f), (%.2f, %.2f)", #obses, new_vel.x, new_vel.y, self.vel_desired.x, self.vel_desired.y))
 	return new_vel
 end
 
@@ -76,16 +77,16 @@ function FindNextIntersectionWithSphere(vehicle, pos_future, obstacle)
     local combinedRadius = vehicle.radius + obstacle.radius
     local movement = pos_future - curpos
     local direction = movement:nom()
-    local vehicleToObstacle = obstacle.position - curpos
+    local vehicleToObstacle = obstacle.pos - curpos
 
     local proj_len = v.dot(direction, vehicleToObstacle)
 
-    if proj_len > movement:len() + combinedRadius then
+    if proj_len > (movement:len() + combinedRadius) then
         return intersection
     end
 
     local projectedObstacleCenter = curpos + direction * proj_len;
-    local obstacleDistanceToPath = (obstacle.position - projectedObstacleCenter):len();
+    local obstacleDistanceToPath = (obstacle.pos - projectedObstacleCenter):len();
 
     if obstacleDistanceToPath > combinedRadius then
         return intersection

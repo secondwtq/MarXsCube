@@ -44,18 +44,22 @@ function comp_LocomotorSteer_Raycast:on_update()
 	local core = self.data['core']
 	local phyargs = H.scriptType_TechnoRTTITable(self:container_parent()):property 'physics'
 	local locoargs = phyargs['raycast_locomotor_args']
+	local curpos = v.coord2vec2(core:GetCoord())
 
 	if self:state() == 'MOVING' then
 		local force = v.vector2d(0, 0)
 		local force_path = self.data.steering:steer_for_path(self.data.pathway)
+		local force_avoid = self.data.steering:steer_to_avoid()
+		Bullet.DebugDrawer.draw_line(v.vec2coord(curpos), v.vec2coord(curpos+force_path))
+		Bullet.DebugDrawer.draw_line(v.vec2coord(curpos), v.vec2coord(curpos+force_avoid))
 
 		force = force + force_path
+		force = force + force_avoid
+		self.data.steering.vel_desired = force
 		force = force / 10
 
 		if force:len() > locoargs['stablespeed'] then
 			force = force:nom() * locoargs['stablespeed'] end
-
-		steering.vel_desired = force * 10
 
 		self:adjust_velocity(force)
 	end
@@ -92,7 +96,7 @@ function comp_LocomotorSteer_Raycast:adjust_velocity(desired)
 		local rot_force = fac * phyargs['mass']
 		core.Physics:applyImpulse_Vertical(rot_force/5, Utility.Float3D(48, 0, 0))
 	end
-	
+
 	core.Physics.vehicle:clear_brake()
 
 	if sim < 0.96 then
@@ -110,7 +114,7 @@ function comp_LocomotorSteer_Raycast:adjust_velocity(desired)
 	end
 
 	self:apply_engineforce(engineforce)
-	print(string.format("(%.2f, %.2f) %.2f %.2f", curforward.x, curforward.y, sim, rot_radius))
+	-- print(string.format("(%.2f, %.2f) %.2f %.2f", curforward.x, curforward.y, sim, rot_radius))
 end
 
 function comp_LocomotorSteer_Raycast:clear_steer()
