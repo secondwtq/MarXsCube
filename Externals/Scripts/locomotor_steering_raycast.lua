@@ -53,14 +53,11 @@ function comp_LocomotorSteer_Raycast:on_update()
 		force = force / 10
 
 		if force:len() > locoargs['stablespeed'] then
-			force = force:nom() * locoargs['stablespeed']
-		end
+			force = force:nom() * locoargs['stablespeed'] end
 
 		steering.vel_desired = force * 10
 
-		force = force * phyargs['mass']
-
-		self:apply_force(force)
+		self:adjust_velocity(force)
 	end
 end
 
@@ -75,24 +72,30 @@ function sign(src)
 	return 0
 end
 
-function comp_LocomotorSteer_Raycast:apply_force(force)
+function comp_LocomotorSteer_Raycast:adjust_velocity(desired)
 	local core = self.data['core']
 	local phyargs = H.scriptType_TechnoRTTITable(self:container_parent()):property 'physics'
 	local locoargs = phyargs['raycast_locomotor_args']
 
-	local curforward = v.coord2vec2(core.Physics.forward_vec):nom()
+	local curforward, curforward_speed = v.coord2vec2(core.Physics.forward_vec):nom(), core.Physics:getVelocity()
 
-	-- print(core.Physics:getVelocity())
+	local forward_speed = abs_clamp(v.dot(desired, curforward), locoargs['stablespeed'])
 
-	local engineforce = v.dot(force, curforward)
-	engineforce = abs_clamp(engineforce, locoargs['engineforce'])
-	if math.abs(core.Physics:getVelocity()) > locoargs['stablespeed'] and engineforce > 0 then engineforce = 0 end
+	local engineforce = locoargs['engineforce']
+	if math.abs(curforward_speed) > locoargs['stablespeed'] and engineforce > 0 then engineforce = 0 end
 	self:apply_engineforce(engineforce)
 
-	local steer_force = v.dot(force, v.vector2d(-curforward.y, curforward.x))
-	-- print('steer_force', steer_force)
-	core.Physics:applyCentralForce_Vertical(steer_force)
-	self:steer_safe(sign(steer_force))
+	local steer_force = v.dot(desired:nom(), v.vector2d(-curforward.y, curforward.x):nom())
+	local cen_force = phyargs['mass'] / 2.0
+	local rot_radius = H.centri_radius(cen_force, phyargs['mass'], curforward_speed)
+	local fac = sign(steer_force)
+	if rot_radius > locoargs['max_rot_radius'] then
+		local rot_force = fac * (H.centri_force(phyargs['mass'], curforward_speed, locoargs['max_rot_radius']))
+		core.Physics:applyCentralForce_Vertical(rot_force)
+	end
+	if steer_force < 0.97 then
+		self:steer_safe(fac)
+	end
 end
 
 function comp_LocomotorSteer_Raycast:clear_steer()

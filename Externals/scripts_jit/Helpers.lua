@@ -148,6 +148,10 @@ function __Helpers.centri_velocity(force, mass, radius)
 	return math.sqrt((radius*force)/mass)
 end
 
+function __Helpers.centri_force(mass, velocity, radius)
+	return (mass * (math.pow(velocity, 2))) / radius
+end
+
 __Helpers.tblinsert = table.insert
 
 return __Helpers
