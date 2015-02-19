@@ -1,16 +1,10 @@
 Import("mapdef.lua")
 
-gmap_dots = require 'gmap_dots'
-gmap_edges = require 'gmap_edges'
 Helpers = require 'Helpers'
 
 -- global variables
-DATA_DOTS = gmap_dots.data
-DATA_EDGES = gmap_edges.data
 OBJ_DOTS = { }
 OBJ_EDGES = { }
-
-GRAPH_GLOBAL = nil
 
 TECHNO_SELECTED = nil
 
@@ -48,34 +42,7 @@ end
 -- run when game started
 function Functions.TestManger_onTestInit()
 
-	-- local veci0 = Utility.CubePoint(512, 256)
-	-- local veci1 = Utility.CubePoint(1024, 256)
-	-- local veci2 = Utility.CubePoint(1024, -256)
-	-- local veci3 = Utility.CubePoint(512, -256)
-	-- local obst = Grit.GritObstacle.create()
-	-- obst:pts():push_back(veci0)
-	-- obst:pts():push_back(veci1)
-	-- obst:pts():push_back(veci2)
-	-- obst:pts():push_back(veci3)
-	-- Grit.instance():add_obs(obst)
-
-	-- local vec0 = Utility.CubePoint(512, 384)
-	-- local vec1 = Utility.CubePoint(512, 640)
-	-- local vec2 = Utility.CubePoint(768, 640)
-	-- local vec3 = Utility.CubePoint(768, 384)
-	-- local obs = Grit.GritObstacle.create()
-	-- obs:pts():push_back(vec0)
-	-- obs:pts():push_back(vec1)
-	-- obs:pts():push_back(vec3)
-	-- Grit.instance():add_obs(obs)
-	-- local obs2 = Grit.GritObstacle.create()
-	-- obs2:pts():push_back(vec1)
-	-- obs2:pts():push_back(vec2)
-	-- obs2:pts():push_back(vec3)
-	-- Grit.instance():add_obs(obs2)
-
 	Objects.Map.GetInstance():CreateEmptyMap(60, 50) -- create map
-	GRAPH_GLOBAL = Appins.Gmap.Graph(#DATA_DOTS) -- create graph data structure
 
 	for i, chunk in ipairs(map.default.chunks) do
 		local terrain = Tesla.TeslaChunkObject.create()
@@ -90,10 +57,6 @@ function Functions.TestManger_onTestInit()
 		table.insert(TERRAIN_CHUNKS, terrain)
 	end
 
-	-- transform the coord of original data for display in map
-	--		we just abandon original table
-	DATA_DOTS = transform_dots(DATA_DOTS)
-
 	-- local background = ModEnvironment.Functions.createTechno(OBJECTS.SATELITE_BG, Utility.CoordStruct(64*27+56, -36, 0))
 	-- background.temp_ZOffset = true
 	local cycle = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(256, 0, 64), true)
@@ -101,68 +64,5 @@ function Functions.TestManger_onTestInit()
 	local building = ModEnvironment.Functions.createTechno(OBJECTS.TESTBUILDING, Utility.CoordStruct(512, 384, 0), true)
 	-- local rail2 = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(1024, 0, 128), true)
 	ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
-
-	-- create GameObjects for nodes, and fill OBJ_DOTS
-	for i, dot in ipairs(DATA_DOTS) do
-		local dot_techno = ModEnvironment.Functions.createTechno(OBJECTS.GRAPH_NODE, Utility.CoordStruct(dot[2], dot[1], 0)).ExtTable
-		dot_techno.components.a['GraphNodeStore']:init(i-1, {dot[2], dot[1], 0})
-		OBJ_DOTS[i] = dot_techno
-	end
-
-end
-
-function transform_dots(src)
-	local data_dots_new = { }
-	for i, dot in pairs(src) do
-		-- local t = { -1*(dot[1] * 192 - 64 * 2), dot[2] * 192 + 64 * 28 }
-		local t = { -1*(dot[1] * 176 - 64 * 2), dot[2] * 128 + 64 * 28 }
-
-		table.insert(data_dots_new, #data_dots_new+1, t)
-	end
-	return data_dots_new
-end
-
--- find the nearest node (RTTITable) of a CoordStruct from OBJ_DOTS
--- coord must be a CoordStruct, max_dist can be empty
-function find_nearest_node(coord, max_dist)
-	local current_node = OBJ_DOTS[1]
-	coord.z = 0
-	local current_dis = Helpers.coord_distance(coord, OBJ_DOTS[1].GetCoord())
-
-	for i, nodeobj in ipairs(OBJ_DOTS) do
-		local dis_new = Helpers.coord_distance(coord, nodeobj.GetCoord())
-		if dis_new < current_dis then
-			current_dis = dis_new
-			current_node = nodeobj
-		end
-	end
-
-	-- max_dist as a threshold
-	if max_dist ~= nil and current_dis > max_dist then return nil end
-	return current_node
-end
-
--- calculate nearest path of an object's current position to a specificed node
---- args: technot - a Techno RTTITable, target_node a Node's RTTITable
-function move_techno_graph(technot, target_node)
-	-- init bellman - ford object
-	local bf_shortest = Appins.Gmap.bellman_ford_shortest(GRAPH_GLOBAL, technot.components.a['GraphVehicle']:get_datafield 'current_node')
-	bf_shortest:go() -- execute the algorithm
-	local path_nodes = Appins.Gmap.bellman_ford_shortest.extract_path(bf_shortest, target_node.components.a['GraphNodeStore']:get_datafield 'idx_initial')
-
-	-- convert array of node index to array of vector3
-	local path_nodes_vec3 = { }
-	for i, node in ipairs(path_nodes) do
-		local coord = OBJ_DOTS[node+1].components.a['GraphNodeStore']:get_datafield 'vec3_coord'
-		Helpers.tblinsert(path_nodes_vec3, coord)
-	end
-
-	local script_type = Helpers.scriptType_TechnoRTTITable(technot)
-	if script_type:property 'physics' ['use_vehicle'] == true then
-		Helpers.Techno_TechnoRTTIIDTable(technot).Physics.vehicle:launch()
-	else
-		-- move object
-		technot.components.a['LocomotorDefault']:move_path(path_nodes_vec3)	
-	end
 
 end

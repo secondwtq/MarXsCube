@@ -133,6 +133,8 @@ class PhysicsObject {
 		void applyForce_Directional(float force, const CoordStruct &rel_pos);
 
 		void applyCentralForce_Directional(float force);
+	
+		void applyImpulse_Vertical(float impluse, const Float3D& rel_pos);
 
 		void disableResponse();
 

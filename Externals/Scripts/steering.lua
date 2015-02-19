@@ -18,7 +18,7 @@ local intersection = object.object:new {
 --		velocity() position() speed()
 
 local C_min_speed = 50
-local C_pred_time = 1
+local C_pred_time = 6
 local C_est_time = 2
 local C_dect_radius = 256
 

@@ -232,22 +232,22 @@ void PhysicsObject::clearVerticalVelocity() {
 }
 
 void PhysicsObject::applyCentralForce_Vertical(float force) {
-	double rad = torad(attachedToObject->getMainRotation());
-	auto foc = Float3D(sin(rad) * force, cos(rad) * force, 0);
-	applyForce_Central(foc);
-}
+	auto foc = Float3D(-forward_vec.y * force, forward_vec.x * force, 0);
+	applyForce_Central(foc); }
 
 void PhysicsObject::applyCentralImpulse(const Float3D &impluse) {
 	body->activate();
 	body->applyCentralImpulse(btVector3(btScalar(impluse.x), btScalar(impluse.y), btScalar(impluse.z)));
 }
 
-void PhysicsObject::applyCentralImpulse_Vertical(float impluse) {LOGFUNC;
-	body->activate();
-	double rad = torad(attachedToObject->getMainRotation());
-	auto imp = Float3D(sin(rad) * impluse, cos(rad) * impluse, 0);
-	applyCentralImpulse(imp);
-}
+void PhysicsObject::applyCentralImpulse_Vertical(float impluse) {
+	auto imp = Float3D(-forward_vec.y * impluse, forward_vec.x * impluse, 0);
+	applyCentralImpulse(imp); }
+
+void PhysicsObject::applyImpulse_Vertical(float impluse, const Float3D& rel_pos) {
+	auto imp = Float3D(-forward_vec.y * impluse, forward_vec.x * impluse, 0);
+	this->body->activate();
+	this->body->applyImpulse(btVector3(btScalar(imp.x), btScalar(imp.y), btScalar(imp.z)), btVector3(btScalar(rel_pos.x*PHY_SCALE), btScalar(rel_pos.y*PHY_SCALE), btScalar(rel_pos.z*PHY_SCALE))); }
 
 void PhysicsObject::applyForce_Directional(float force, const CoordStruct &rel_pos) {
 	double rad = torad(attachedToObject->getMainRotation());

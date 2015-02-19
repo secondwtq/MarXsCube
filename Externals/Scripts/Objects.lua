@@ -60,7 +60,7 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		ntype_locomotor = 'bvehicle',
 		vehicle_type = 'raycast',
 		raycast_vehicle_args = {
-			wheel_friction = 2.0,
+			wheel_friction = 10.0,
 			wheel_radius = 20,
 			wheel_height = 10,
 			wheels = {
@@ -83,12 +83,12 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 			},
 		},
 		raycast_locomotor_args = {
-			engineforce = 6400,
+			engineforce = 4800,
 			stablespeed = 60,
 			brake_threshold = 20,
 			brake_extrathreshold = 60,
 			brakingforce = 50000,
-			max_rot_radius = 64,
+			max_rot_radius = 128,
 			rotate_negativeforce = 800,
 			extra_rotforce = 10000,
 			extra_brakeforce = 16000,
@@ -153,7 +153,7 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 		ntype_locomotor = 'bvehicle',
 		vehicle_type = 'raycast',
 		raycast_vehicle_args = {
-			wheel_friction = 2.0,
+			wheel_friction = 2.8,
 			wheel_radius = 28,
 			wheel_height = 10,
 			wheels = {
@@ -167,11 +167,11 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 				},
 				{
 					position = { 0, 42, 0 },
-					engine = true, brake = true, steer = false
+					engine = true, brake = true, steer = true
 				},
 				{
 					position = { 0, -42, 0 },
-					engine = true, brake = true, steer = false
+					engine = true, brake = true, steer = true
 				},
 				{
 					position = { -64, 42, 0 },
@@ -189,7 +189,7 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 			brake_threshold = 12,
 			brake_extrathreshold = 15,
 			brakingforce = 50000,
-			max_rot_radius = 36,
+			max_rot_radius = 48,
 			rotate_negativeforce = 0,
 			extra_rotforce = 12000,
 			extra_brakeforce = 0,
