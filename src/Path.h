@@ -29,11 +29,10 @@ public:
 	void setPath(std::size_t numOfPoints, vec_type const newPoints[], bool closedCycle);
 	void movePoints(std::size_t startIndex, std::size_t numOfPoints, vec_type const newPoints[]);
 
-
 	virtual bool isValid() const;
-	virtual vec_type mapPointToPath (const vec_type& point, vec_type& tangent, float& outside) const;
-	virtual vec_type mapPathDistanceToPoint (float pathDistance) const;
-	virtual float mapPointToPathDistance (const vec_type& point) const;
+	virtual vec_type mapPointToPath(const vec_type& point, vec_type& tangent, float& outside) const;
+	virtual vec_type mapPathDistanceToPoint(float pathDistance) const;
+	virtual float mapPointToPathDistance(const vec_type& point) const;
 	virtual bool isCyclic() const;
 	virtual float length() const;
 

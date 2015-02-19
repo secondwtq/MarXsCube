@@ -34,4 +34,6 @@ template<typename T>
 void shrink_to_fit(std::vector<T>& v) {
 	std::vector<T>(v).swap(v); }
 
+#define UNUSED_PARAMETER(expr) (void)expr
+
 #endif

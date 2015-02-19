@@ -199,13 +199,13 @@ vec_type Path::mapPointToPath(const vec_type& point, vec_type& tangent, float& o
 	return mapping.pointOnPathCenterLine;
 }
 
-vec_type Path::mapPathDistanceToPoint (float pathDistance) const {
+vec_type Path::mapPathDistanceToPoint(float pathDistance) const {
 	PathDistanceToPointMapping mapping;
 	mapDistanceToPathAlike(*this, pathDistance, mapping);
 	return mapping.pointOnPathCenterLine;
 }
 
-float Path::mapPointToPathDistance (const vec_type& point) const {
+float Path::mapPointToPathDistance(const vec_type& point) const {
 	PointToPathDistanceMapping mapping;
 	mapPointToPathAlike(*this, point, mapping);
 	return mapping.distanceOnPath;
