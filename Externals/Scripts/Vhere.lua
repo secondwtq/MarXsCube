@@ -148,6 +148,11 @@ local function vec2coord(vec, z)
 	return Utility.CoordStruct(vec.x, vec.y, z)
 end
 
+local function vec2glm3(vec, z)
+	if z == nil then z = 0 end
+	return Utility.glm.gvec3(vec.x, vec.y, z)
+end
+
 -- local function coord2vec2(tb)
 -- 	return vector2d(tb[1], tb[2]) end
 
@@ -155,6 +160,7 @@ __vhere.vector2d = vector2d
 
 __vhere.coord2vec2 = coord2vec2
 __vhere.vec2coord = vec2coord
+__vhere.vec2glm3 = vec2glm3
 __vhere.get_unitvec_rad = get_unitvec_rad
 __vhere.dot = dot
 __vhere.print_vectable = print_vectable

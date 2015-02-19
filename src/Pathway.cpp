@@ -86,10 +86,9 @@ Pathway::vec_type Pathway::mapPathDistanceToPoint (float pathDistance) const {
 }
 
 float
-Pathway::mapPointToPathDistance (const vec_type& point) const
-{
+Pathway::mapPointToPathDistance (const vec_type& point) const {
 	PointToPathDistanceMapping mapping;
-	mapPointToPathAlike( *this, point, mapping );
+	mapPointToPathAlike(*this, point, mapping);
 	return mapping.distanceOnPath;
 }
 

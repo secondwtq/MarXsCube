@@ -24,7 +24,7 @@ void LuaInterface::RegisterInterface_Path(LuaStatus& L) {
 				addFunction("mapPathDistanceToPoint", &Pathway::mapPathDistanceToPoint).
 				addFunction("mapPointToPathDistance", &Pathway::mapPointToPathDistance).
 			endClass().
-			addFunction("path_from_gritpath", &path_from_gritpath).
+			addFunction("pathway_from_gritpath", &pathway_from_gritpath).
 		endNamespace().
 	endNamespace();
 }

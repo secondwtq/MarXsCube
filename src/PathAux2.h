@@ -54,7 +54,7 @@ public:
 	
 template< class PathAlike, class Mapping >
 void mapPointToPathAlike( PathAlike const& pathAlike, glm::vec3 const& point, Mapping& mapping ) {
-		PointToPathAlikeMapping< PathAlike, Mapping >::map( pathAlike, point, mapping ); }
+		PointToPathAlikeMapping<PathAlike, Mapping>::map(pathAlike, point, mapping); }
 
 	template< class PathAlike, class Mapping, class BaseDataExtractionPolicy = DistanceToPathAlikeBaseDataExtractionPolicy< PathAlike > >
 	class DistanceToPathAlikeMapping {

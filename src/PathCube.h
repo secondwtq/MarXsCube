@@ -14,6 +14,6 @@
 #include "Pathway.h"
 #include <vector>
 
-Pathway path_from_gritpath(const std::vector<CubePoint> *src);
+Pathway pathway_from_gritpath(const std::vector<CubePoint> *src);
 
 #endif /* defined(__MarXsCube__PathCube__) */

@@ -14,10 +14,12 @@
 #include <vector>
 #include <glm/glm.hpp>
 
-Pathway path_from_gritpath(const std::vector<CubePoint> *src) {
+Pathway pathway_from_gritpath(const std::vector<CubePoint> *src) {
 	std::vector<glm::vec3> t;
 	for (auto i = src->rbegin(); i != src->rend(); i++) {
 		t.push_back(glm::vec3(i->x, i->y, 0)); }
 	
-	return Pathway(t.size(), t.data(), 256, false);
+	Pathway ret(t.size(), t.data(), 256, false);
+	printf("pathway_from_gritpath: %lu points, length %f\n.", ret.pointCount(), ret.length());
+	return ret;
 }

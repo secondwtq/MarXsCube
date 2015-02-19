@@ -42,7 +42,7 @@ function grit_find_path(start, eend)
 		table.insert(ret, { pos.x, pos.y, 0 })
 	end
 
-	return ret
+	return ret, Utility.Path.pathway_from_gritpath(vec)
 end
 
 -- run when game started

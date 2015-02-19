@@ -79,8 +79,8 @@ function InputHandler.MousePress_OnCell(mouse_status)
 
 		if TECHNO_SELECTED then
 			local Techno = Helpers.Techno_TechnoRTTIIDTable(TECHNO_SELECTED)
-			local path = grit_find_path({ Techno:GetCoord().x, Techno:GetCoord().y, Techno:GetCoord().z }, { hit_point.x, hit_point.y, hit_point.z })
-			TECHNO_SELECTED.components.a['RaycastLocomotor']:move_path(path)
+			local path, pathway = grit_find_path({ Techno:GetCoord().x, Techno:GetCoord().y, Techno:GetCoord().z }, { hit_point.x, hit_point.y, hit_point.z })
+			TECHNO_SELECTED.components.a['RaycastLocomotor']:move_path(path, pathway)
 		end
 	end
 

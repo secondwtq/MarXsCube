@@ -18,10 +18,13 @@ function comp_locoraycast:move_to_coord_direct(vec3)
 	self:state 'MOVING'
 end
 
-function comp_locoraycast:move_path(vec3_array)
+function comp_locoraycast:move_path(vec3_array, pathway)
 	self.data['path'] = vec3_array
 	self.data['current_node'] = 1
 	self.data['dest_t'] = vec3_array[1]
+
+	self.data['pathway'] = pathway
+
 	self.data.is_path = true
 	self:state 'MOVING'
 end
@@ -34,6 +37,8 @@ function comp_locoraycast:on_create()
 
 	self.data['path'] = { }
 	self.data['current_node'] = 1
+
+	self.data['pathway'] = nil
 
 	self.data['is_returning'] = false
 end
@@ -53,6 +58,8 @@ function comp_locoraycast:on_update()
 
 		local curpos = vhere.coord2vec2(core:GetCoord())
 		local curforward = vhere.coord2vec2(core.Physics.forward_vec):nom()
+
+		print(self.data.pathway:mapPointToPathDistance(vhere.vec2glm3(curpos)))
 
 		local look_ahead_offline = vhere.vector2d(curforward.y, -curforward.x)
 		local look_ahead_pos1, look_ahead_pos2 = curpos + look_ahead_offline * locoargs['lookahead_offset'],
