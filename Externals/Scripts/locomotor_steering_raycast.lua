@@ -73,8 +73,7 @@ function sign(src)
 end
 
 function comp_LocomotorSteer_Raycast:adjust_velocity(desired)
-	local core = self.data['core']
-	local phyargs = H.scriptType_TechnoRTTITable(self:container_parent()):property 'physics'
+	local core, phyargs = self.data['core'], H.scriptType_TechnoRTTITable(self:container_parent()):property 'physics'
 	local locoargs = phyargs['raycast_locomotor_args']
 
 	local curforward, curforward_speed = v.coord2vec2(core.Physics.forward_vec), core.Physics:getVelocity()
@@ -89,25 +88,27 @@ function comp_LocomotorSteer_Raycast:adjust_velocity(desired)
 	local cen_force = phyargs['mass']
 	local rot_radius = H.centri_radius(cen_force, phyargs['mass'], curforward_speed) * 10
 	local fac = sign(steer_force)
-	if rot_radius > locoargs['max_rot_radius'] then
+	if locoargs['use_aux_rot'] and rot_radius > locoargs['max_rot_radius'] then
 		local rot_force = fac * phyargs['mass']
 		core.Physics:applyImpulse_Vertical(rot_force/5, Utility.Float3D(48, 0, 0))
 	end
+	
 	core.Physics.vehicle:clear_brake()
+
 	if sim < 0.96 then
 		self:steer_safe(fac)
 
-		if rot_radius > locoargs['max_rot_radius'] then
+		if locoargs['brake_when_turning'] and rot_radius > locoargs['max_rot_radius'] then
 			if sim < 0.91 then
-				if engineforce > 0 then
-					engineforce = 0 end
+				if engineforce > 0 then engineforce = 0 end
 				self:brake_to_deacc()
-				-- engineforce = -locoargs['engineforce']
 			end
 		end
+
 	else
 		self:clear_steer()
 	end
+
 	self:apply_engineforce(engineforce)
 	print(string.format("(%.2f, %.2f) %.2f %.2f", curforward.x, curforward.y, sim, rot_radius))
 end

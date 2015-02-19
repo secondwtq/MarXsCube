@@ -85,6 +85,9 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		raycast_locomotor_args = {
 			engineforce = 4800,
 			stablespeed = 60,
+			brake_when_turning = true,
+			use_aux_rot = true,
+
 			brake_threshold = 20,
 			brake_extrathreshold = 60,
 			brakingforce = 50000,
@@ -122,7 +125,7 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 				type_internal_line = false,
 				has_shadow = true,
 
-				offset = { 0, 0, 0 },
+				offset = { 0, 0, -12 },
 				direction_offset = 0,
 
 				image = "TESTUNITBODYIMAGE",
@@ -140,7 +143,6 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 		composer.comp_RenderElementsManger,
 		composer.comp_RenderBasicBody,
 		blocomotor.comp_BVehicle,
-		locomotor_raycast.comp_locoraycast,
 		steer_locomotor.comp_LocomotorSteer_Raycast
 	},
 
@@ -186,6 +188,9 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 		raycast_locomotor_args = {
 			engineforce = 5400,
 			stablespeed = 20,
+			brake_when_turning = false,
+			use_aux_rot = false,
+
 			brake_threshold = 12,
 			brake_extrathreshold = 15,
 			brakingforce = 50000,
