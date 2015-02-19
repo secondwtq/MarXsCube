@@ -102,6 +102,14 @@ function comp_locoraycast:on_update()
 			if not self:path_ended() then self:renter_path() end
 		end
 
+		local distance_now = self.data.pathway:mapPointToPathDistance(vhere.vec2glm3(curpos))
+		local distance_target = distance_now + 128
+		local pathpt_current = vhere.coord2vec2(self.data.pathway:mapPathDistanceToPoint(distance_now))
+		local pathpt_target = vhere.coord2vec2(self.data.pathway:mapPathDistanceToPoint(distance_target))
+		Bullet.DebugDrawer.draw_line(vhere.vec2coord(pathpt_current), vhere.vec2coord(pathpt_target))
+
+		local dest_current = pathpt_target
+
 		if H.vector2_distance(curpos, self.data['dest_t']) < 128 then
 			if not need_steering then
 				if not self:path_ended() then
@@ -116,7 +124,7 @@ function comp_locoraycast:on_update()
 				self.data.is_returning = false
 			end
 		else
-			local reqforward = H.vector2_nom(H.vector2_offset(self:get_datafield 'dest_t', curpos))
+			local reqforward = H.vector2_nom(H.vector2_offset(dest_current, curpos))
 			local fac = 1
 			if H.vector2_cross(curforward, reqforward) < 0 then fac = -1 end
 			if self.data.is_returning then fac = fac * -1 end

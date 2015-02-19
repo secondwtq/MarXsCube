@@ -6,6 +6,8 @@ local locomotor = require 'locomotor'
 local blocomotor = require 'loco_bvehicle'
 local locomotor_raycast = require 'locomotor_raycast'
 local pfobstacle = require 'pfobstacle'
+local sobstacle = require 'steer_obstacle'
+local steer_locomotor = require 'locomotor_steering_raycast'
 
 local function base_def_technos()
 
@@ -45,7 +47,8 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 		composer.comp_RenderElementsManger,
 		composer.comp_RenderBasicBody,
 		blocomotor.comp_BVehicle,
-		locomotor_raycast.comp_locoraycast
+		locomotor_raycast.comp_locoraycast,
+		steer_locomotor.comp_LocomotorSteer_Raycast
 	},
 
 	physics = {
@@ -80,7 +83,7 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 			},
 		},
 		raycast_locomotor_args = {
-			engineforce = 5000,
+			engineforce = 6400,
 			stablespeed = 60,
 			brake_threshold = 20,
 			brake_extrathreshold = 60,
@@ -89,7 +92,9 @@ OBJECTS.TESTTECHNO = BASES.BaseTechno:newObject({
 			rotate_negativeforce = 800,
 			extra_rotforce = 10000,
 			extra_brakeforce = 16000,
-			lookahead_offset = 25
+			lookahead_offset = 25,
+
+			arrival_radius = 64,
 		},
 		shape = {
 			type = "COMPBOX",
@@ -135,7 +140,8 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 		composer.comp_RenderElementsManger,
 		composer.comp_RenderBasicBody,
 		blocomotor.comp_BVehicle,
-		locomotor_raycast.comp_locoraycast
+		locomotor_raycast.comp_locoraycast,
+		steer_locomotor.comp_LocomotorSteer_Raycast
 	},
 
 	physics = {
@@ -147,7 +153,7 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 		ntype_locomotor = 'bvehicle',
 		vehicle_type = 'raycast',
 		raycast_vehicle_args = {
-			wheel_friction = 1.4,
+			wheel_friction = 2.0,
 			wheel_radius = 28,
 			wheel_height = 10,
 			wheels = {
@@ -161,11 +167,11 @@ OBJECTS.TESTTECHNO_PHY = BASES.BaseTechno:newObject({
 				},
 				{
 					position = { 0, 42, 0 },
-					engine = true, brake = true, steer = true
+					engine = true, brake = true, steer = false
 				},
 				{
 					position = { 0, -42, 0 },
-					engine = true, brake = true, steer = true
+					engine = true, brake = true, steer = false
 				},
 				{
 					position = { -64, 42, 0 },
@@ -239,7 +245,8 @@ OBJECTS.TESTBUILDING = BASES.BaseTechno:newObject({
 		composer.comp_TechnoColorMultiply,
 		composer.comp_RenderElementsManger,
 		composer.comp_RenderBasicBody,
-		pfobstacle.comp_PathfindingObstacle
+		pfobstacle.comp_PathfindingObstacle,
+		sobstacle.comp_SteeringObstacle
 	},
 
 	pathfinding_obstacle = {
@@ -248,6 +255,13 @@ OBJECTS.TESTBUILDING = BASES.BaseTechno:newObject({
 		shape = "RECT",
 		width = 256,
 		height = 256,
+		offset = { 128, 128, 0 }
+	},
+
+	steering_obstacle = {
+		enabled = true,
+		static = true,
+		radius = 256,
 		offset = { 128, 128, 0 }
 	},
 

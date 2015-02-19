@@ -140,6 +140,9 @@ local function print_vectable(src)
 	io.write('\n')
 end
 
+local function tbl2vec2(tb)
+	return vector2d(tb[1], tb[2]) end
+
 local function coord2vec2(coord)
 	return vector2d(coord.x, coord.y) end
 
@@ -158,6 +161,7 @@ end
 
 __vhere.vector2d = vector2d
 
+__vhere.tbl2vec2 = tbl2vec2
 __vhere.coord2vec2 = coord2vec2
 __vhere.vec2coord = vec2coord
 __vhere.vec2glm3 = vec2glm3
