@@ -25,10 +25,10 @@ function grit_find_path(start, eend)
 	local a, b = Utility.CubePoint(start[1], start[2]), Utility.CubePoint(eend[1], eend[2])
 	local vec = Grit.instance():find_path(a, b)
 	local len, ret = vec:size(), { }
-	print('path length', len)
+	-- print('path length', len)
 	for i = 0, len-1 do
 		local pos = vec:at(i)
-		print(pos.x, pos.y)
+		-- print(pos.x, pos.y)
 	end
 
 	for i = len-1, 1, -1 do

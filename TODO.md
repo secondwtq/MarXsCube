@@ -4,9 +4,13 @@
 
 * **[MAINTENANCE]** More work about memory management.
 
+* **[BUG]** WE GOT A HUGE MEMORY MANAGEMENT BUG AND LOTS OF LEAK (in rendering module) !!!!11
+
 * ~~**[FEATURE]** Restrict the FPS of logic, physics and rendering. ***fixed***~~
 
 * **[MODULE]** C/S architecture for replay, save/load, network.
+
+* **[FEATURE]** And a notification center for events.
 
 * **[BUG]** Allow getting unit height relative to terrain (for shadow rendering, locomotor, etc.).
 
@@ -16,7 +20,7 @@
 
 * **[FEATURE]** Animations for buildings and units.
 
-* **[BUG]** Locomotor in Gmap is now broken.
+* ~~**[BUG]** Locomotor in Gmap is now broken. ***suspended***~~
 
 * **[FEATURE]** Basic Locomotor. ***in progress***
 

@@ -61,7 +61,7 @@ namespace Physics {
 				PhysicsObject *getFirstObject() {LOGFUNC;
 					return (PhysicsObject *)(callback->m_collisionObject->getUserPointer()); }
 
-				bool hit() {LOGFUNC; return callback->hasHit(); }
+				bool hit() { return callback->hasHit(); }
 
 				CoordStruct hit_point() {
 					return CoordStruct(this->callback->m_hitPointWorld.x()/PHY_SCALE, this->callback->m_hitPointWorld.y()/PHY_SCALE, this->callback->m_hitPointWorld.z()/PHY_SCALE); }
