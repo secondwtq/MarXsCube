@@ -65,7 +65,7 @@ function steering:steer_to_avoid()
 
 	avoid = avoid / (#obses)
 	local new_vel = self.vel_desired:reflect(avoid)
-	print(string.format("%d, (%.2f, %.2f), (%.2f, %.2f)", #obses, new_vel.x, new_vel.y, self.vel_desired.x, self.vel_desired.y))
+	-- print(string.format("%d, (%.2f, %.2f), (%.2f, %.2f)", #obses, new_vel.x, new_vel.y, self.vel_desired.x, self.vel_desired.y))
 	return new_vel
 end
 

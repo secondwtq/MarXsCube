@@ -93,7 +93,7 @@ function comp_LocomotorSteer_Raycast:adjust_velocity(desired)
 	local rot_radius = H.centri_radius(cen_force, phyargs['mass'], curforward_speed) * 10
 	local fac = sign(steer_force)
 	if locoargs['use_aux_rot'] and rot_radius > locoargs['max_rot_radius'] then
-		local rot_force = fac * phyargs['mass']
+		local rot_force = fac * phyargs['mass'] * 2
 		core.Physics:applyImpulse_Vertical(rot_force/5, Utility.Float3D(48, 0, 0))
 	end
 
