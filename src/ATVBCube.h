@@ -98,7 +98,8 @@ namespace ATVBCube {
 		public:
 		
 			float maxheight_phy = 64.f;
-			
+			bool enable_wireframe = false;
+		
 			void load();
 	};
 	

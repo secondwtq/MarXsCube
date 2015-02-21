@@ -18,7 +18,8 @@ AtTheVeryBeginning.together({
 	bullet_gravity = { 0, 0, -9.8 },
 	bullet_boost = 2.0,
 
-	tiler_max_height_bullet = 128.0,
+	tesla_max_height_bullet = 128.0,
+	tesla_enable_wireframe = false,
 
 	fps_limit_silcon = 60,
 	fps_limit_main = 60,

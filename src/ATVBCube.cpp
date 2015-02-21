@@ -44,7 +44,9 @@ void ATVBSetting<BulletGeneralSetting>::load() {
 }
 	
 void ATVBSetting<TeslaGeneralSetting>::load() {
-	maxheight_phy = value<float>("tiler_max_height_bullet"); }
+	maxheight_phy = value<float>("tesla_max_height_bullet");
+	enable_wireframe = value<bool>("tesla_enable_wireframe");
+}
 
 void ATVBSetting<FPSLimitSetting>::load() {
 	limit_silcon = value<std::size_t>("fps_limit_silcon");

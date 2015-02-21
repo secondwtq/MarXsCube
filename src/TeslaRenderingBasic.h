@@ -47,12 +47,16 @@ struct tesla_drawcell {
 	int this_idx = -1;
 	std::size_t tileidx = 0;
 	std::size_t secondary_idx = 0;
+	std::size_t third_idx = 0;
 	
 	void set_tileid(std::size_t idx);
 	void set_secondid(std::size_t idx);
+	void set_thirdid(std::size_t idx);
 	void override_tileid(std::size_t idx);
 	std::size_t get_tileid() { return this->tileidx; }
 	std::size_t get_secondid() { return this->secondary_idx; }
+	std::size_t get_thirdid() { return this->third_idx; }
+	
 	tesla_vert *vert(std::size_t id);
 	
 	tesla_drawcell *left();

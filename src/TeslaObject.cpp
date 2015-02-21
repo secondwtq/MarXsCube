@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 MarXsCube Staff. All rights reserved.
 //
 
+#include "ATVBCube.h"
 #include "GLShaderExt.h"
 #include "GLFoundation.h"
 #include "CubeTransform.h"
@@ -15,6 +16,8 @@
 
 #include "cubegl.h"
 #include "BulletCollision/CollisionDispatch/btInternalEdgeUtility.h"
+
+using namespace ATVBCube::Helper;
 
 TeslaObject *TeslaObject::create() {
 	// only used in Lua, so just pass the singleton
@@ -87,10 +90,16 @@ void TeslaObject::Render() {
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	SET_UNIFORMBP(this->m_shader_unique, is_wireframe, false);
 	glDrawElements(GL_TRIANGLES, (int)this->m_mesh_data->count_idx(), GL_UNSIGNED_INT, 0);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	SET_UNIFORMBP(this->m_shader_unique, is_wireframe, true);
-	glDrawElements(GL_TRIANGLES, (int)this->m_mesh_data->count_idx(), GL_UNSIGNED_INT, 0);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	
+	// wireframe rendering
+	// WARNING: glPolygonMode is likely unsupported in OpenGL ES.
+	if (ATVBCube::setting<S::TeslaGeneralSetting>().enable_wireframe) {
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		SET_UNIFORMBP(this->m_shader_unique, is_wireframe, true);
+		glDrawElements(GL_TRIANGLES, (int)this->m_mesh_data->count_idx(), GL_UNSIGNED_INT, 0);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}
+	
 	GLFoundation::unbind(*this->m_buffer_idx);
 	
 	this->m_shader->disable_attributes();

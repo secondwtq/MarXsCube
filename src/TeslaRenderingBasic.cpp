@@ -23,10 +23,11 @@ void tesla_drawcell::set_tileid(std::size_t idx) {
 void tesla_drawcell::override_tileid(std::size_t idx) {
 	std::array<std::size_t, 4> vert_idx_to_iter {{ 0, 1, 2, 4 }};
 	for (std::size_t i : vert_idx_to_iter) {
-		this->parent->vert(this->vertices[i]).blendweights.x = 0.f;
-		this->parent->vert(this->vertices[i]).tile_indexes.x = this->parent->vert(this->vertices[i]).tile_indexes.y = idx;
+		this->parent->vert(this->vertices[i]).blendweights.x = this->parent->vert(this->vertices[i]).blendweights.y = 0.f;
+		this->parent->vert(this->vertices[i]).tile_indexes.x = this->parent->vert(this->vertices[i]).tile_indexes.y
+													= this->parent->vert(this->vertices[i]).tile_indexes.z = idx;
 	}
-	this->tileidx = this->secondary_idx = idx;
+	this->tileidx = this->secondary_idx = this->third_idx = idx;
 }
 
 void tesla_drawcell::set_secondid(std::size_t idx) {
@@ -34,6 +35,13 @@ void tesla_drawcell::set_secondid(std::size_t idx) {
 	for (std::size_t i : vert_idx_to_iter)
 		this->parent->vert(this->vertices[i]).tile_indexes.y = idx;
 	this->secondary_idx = idx;
+}
+
+void tesla_drawcell::set_thirdid(std::size_t idx) {
+	std::array<std::size_t, 4> vert_idx_to_iter {{ 0, 1, 2, 4 }};
+	for (std::size_t i : vert_idx_to_iter)
+		this->parent->vert(this->vertices[i]).tile_indexes.z = idx;
+	this->third_idx = idx;
 }
 
 tesla_vert *tesla_drawcell::vert(std::size_t id) {
