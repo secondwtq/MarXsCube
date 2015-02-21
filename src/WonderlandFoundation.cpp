@@ -350,6 +350,32 @@ void buffer_update(TeslaObject *chunk) {
 	
 	Acheron::Silcon.invoke();
 }
+		
+struct wonderland_chunk_header {
+	const char HEADER_ID[16] = "!MXCUBE_CBSB!";
+	std::size_t num_cells = 0;
+	std::size_t num_verts = 0;
+	std::size_t num_idxes = 0;
+};
+
+#define SERIAL(var) reinterpret_cast<const char *>(&(var))
+#define SERIALP(var) reinterpret_cast<const char *>(var)
+
+std::string seralize_chunk(TeslaObject *chunk) {
+	std::ostringstream ret;
+	
+	wonderland_chunk_header header;
+	tesla_dataarray *data = chunk->get_data();
+	header.num_cells = data->vec_cells().size();
+	header.num_verts = data->vec_verts().size();
+	header.num_idxes = data->vec_indexes().size();
+	
+	ret.write(SERIAL(header), sizeof(wonderland_chunk_header));
+	ret.write(SERIALP(data->vec_indexes().data()), data->vec_indexes().size() * sizeof(GLIDX));
+	ret.write(SERIALP(data->vec_verts().data()), data->vec_verts().size() * sizeof(tesla_vert));
+
+	return ret.str();
+}
 
 	}
 	

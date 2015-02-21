@@ -35,6 +35,8 @@ namespace Wonderland {
 		
 		void blend_cells_batch(TeslaObject *chunk, const CoordStruct& position);
 		
+		std::string seralize_chunk(TeslaObject *chunk);
+		
 	}
 	
 }

@@ -63,8 +63,6 @@ int main() {
 	ATVBCube::load<S::TeslaGeneralSetting>();
 	ATVBCube::load<S::BulletGeneralSetting>();
 	ATVBCube::load<S::FPSLimitSetting>();
-
-	zephyr_check_output();
 	
 	cube_init_window();
 	init_opengl();

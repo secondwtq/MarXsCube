@@ -46,6 +46,13 @@ end
 
 function InputHandler.KeyPress(keycode)
 	apply_key_command_to(TECHNO_SELECTED, keycode)
+
+	if keycode == Enums.Key.A then
+		local s = Wonderland.seralize_chunk(TERRAIN_CHUNKS[1])
+		local fp = io.open("chunk1.cb", "w")
+		fp:write(s)
+		fp:close()
+	end
 end
 
 function InputHandler.MouseMove(mouse_status)
