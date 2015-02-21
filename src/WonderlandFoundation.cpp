@@ -53,14 +53,15 @@ void set_texture(TeslaObject *chunk, std::size_t index, const CoordStruct& posit
 
 void foo_cell_batchblend(TeslaObject *chunk, tesla_drawcell *cell) {
 	if (!cell->t) {
-		printf("blending cells\m");
+//		printf("blending cells\n");
 		cell_fix_blend(chunk, cell->this_idx);
 		cell->t = true;
 		
 		std::array <tesla_drawcell *, 4> cells {{ cell->top(), cell->bottom(), cell->left(), cell->right() }};
 		for (auto cell_m : cells) {
-			if (cell_m->get_tileid() == cell->get_tileid()) {
-				foo_cell_batchblend(chunk, cell_m);
+			if (cell_m) {
+				if (cell_m->get_tileid() == cell->get_tileid())
+					foo_cell_batchblend(chunk, cell_m);
 			}
 		}
 	}
@@ -86,15 +87,17 @@ void cell_fix_blend(TeslaObject *chunk, std::size_t cell_idx) {
 		cell.righttop(), cell.rightbottom(), cell.lefttop(), cell.leftbottom() }};
 	
 	for (auto cell : edge_cells) {
-		std::size_t org_primary = cell->get_tileid(), org_second = cell->get_secondid();
-		data->sepreate_cell(cell->this_idx);
-		cell->set_tileid(org_primary), cell->set_secondid(org_second);
+		if (cell) {
+			std::size_t org_primary = cell->get_tileid(), org_second = cell->get_secondid();
+			data->sepreate_cell(cell->this_idx);
+			cell->set_tileid(org_primary), cell->set_secondid(org_second);
+		}
 	}
 	data->update_idx();
 	
 	std::array<std::size_t, 4> vert_idx_to_iter {{ 0, 1, 2, 4 }};
 	for (auto cell : edge_cells) {
-		if (cell->get_secondid() != cell->get_tileid()) {
+		if (cell && cell->get_secondid() != cell->get_tileid()) {
 			if (cell->get_secondid() == cell->get_thirdid()) {
 				for (std::size_t i : vert_idx_to_iter) {
 					cell->vert(i)->blendweights.x = std::min(cell->vert(i)->blendweights.x+cell->vert(i)->blendweights.y, 1.0f);
@@ -105,8 +108,8 @@ void cell_fix_blend(TeslaObject *chunk, std::size_t cell_idx) {
 		}
 	}
 
-	std::function<bool (tesla_drawcell *)> match = [&cell, masterid] (tesla_drawcell *cell) {
-		return masterid == cell->get_tileid(); };
+	std::function<bool (tesla_drawcell *)> match = [masterid] (tesla_drawcell *cell) {
+		return !cell || masterid == cell->get_tileid(); };
 	
 	std::function<bool (tesla_drawcell *)> setid = [masterid] (tesla_drawcell *cell) {
 		if (cell->get_secondid() != cell->get_tileid()) {

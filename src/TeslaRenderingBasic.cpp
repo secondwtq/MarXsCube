@@ -47,23 +47,20 @@ void tesla_drawcell::set_thirdid(std::size_t idx) {
 tesla_vert *tesla_drawcell::vert(std::size_t id) {
 	return &(this->parent->vert(this->vertices[id])); }
 
-tesla_drawcell *tesla_drawcell::left() {
-	return &(this->parent->cell(this->parent->cell_left(this->this_idx))); }
-tesla_drawcell *tesla_drawcell::top() {
-	return &(this->parent->cell(this->parent->cell_top(this->this_idx))); }
-tesla_drawcell *tesla_drawcell::right() {
-	return &(this->parent->cell(this->parent->cell_right(this->this_idx))); }
-tesla_drawcell *tesla_drawcell::bottom() {
-	return &(this->parent->cell(this->parent->cell_bottom(this->this_idx))); }
+#define DEFINE_CELLDIRECTION(dir) tesla_drawcell *tesla_drawcell::dir() { \
+								auto t = this->parent->cell_##dir(this->this_idx); \
+								if (t >= 0) return &(this->parent->cell(t)); \
+								else return nullptr; }
 
-tesla_drawcell *tesla_drawcell::lefttop() {
-	return &(this->parent->cell(this->parent->cell_lefttop(this->this_idx))); }
-tesla_drawcell *tesla_drawcell::leftbottom() {
-	return &(this->parent->cell(this->parent->cell_leftbottom(this->this_idx))); }
-tesla_drawcell *tesla_drawcell::righttop() {
-	return &(this->parent->cell(this->parent->cell_righttop(this->this_idx))); }
-tesla_drawcell *tesla_drawcell::rightbottom() {
-	return &(this->parent->cell(this->parent->cell_rightbottom(this->this_idx))); }
+DEFINE_CELLDIRECTION(left);
+DEFINE_CELLDIRECTION(top);
+DEFINE_CELLDIRECTION(right);
+DEFINE_CELLDIRECTION(bottom);
+
+DEFINE_CELLDIRECTION(lefttop);
+DEFINE_CELLDIRECTION(righttop);
+DEFINE_CELLDIRECTION(leftbottom);
+DEFINE_CELLDIRECTION(rightbottom);
 
 void transfer_verts_tesla(tesla_dataarray& dest, const objfile& src) {
 	std::unordered_map<std::size_t, std::size_t> texcoord_cache;

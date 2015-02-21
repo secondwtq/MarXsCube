@@ -137,29 +137,27 @@ public:
 	
 	void sepreate_cell(std::size_t idx);
 	
-	std::size_t find_cell(std::size_t idx, const glm::vec3& offset, float threshold = 8.0f) {
+	int find_cell(std::size_t idx, const glm::vec3& offset, float threshold = 8.0f) {
 		glm::vec3 org_center = this->m_cell_center.at(idx);
 		
 		// you'll need to swap x and y coord, WHY?
 		glm::vec3 center_tofind = org_center + glm::vec3(offset.y, offset.x, 0);
 		
-		for (std::size_t i = 0; i < this->m_cell_center.size(); i++) {
-			if (glm::distance(center_tofind, this->center(i)) <= threshold) {
-				return i;
-			}
-		}
+		for (std::size_t i = 0; i < this->m_cell_center.size(); i++)
+			if (glm::distance(center_tofind, this->center(i)) <= threshold)
+				return static_cast<int>(i);
 		return -1;
 	}
 	
-	std::size_t cell_left(std::size_t idx) { return this->find_cell(idx, { -CELL_FACE_DISTANCE, 0, 0 }); }
-	std::size_t cell_right(std::size_t idx) { return this->find_cell(idx, { CELL_FACE_DISTANCE, 0, 0 }); }
-	std::size_t cell_top(std::size_t idx) { return this->find_cell(idx, { 0, CELL_FACE_DISTANCE, 0 }); }
-	std::size_t cell_bottom(std::size_t idx) { return this->find_cell(idx, { 0, -CELL_FACE_DISTANCE, 0 }); }
+	int cell_left(std::size_t idx) { return this->find_cell(idx, { -CELL_FACE_DISTANCE, 0, 0 }); }
+	int cell_right(std::size_t idx) { return this->find_cell(idx, { CELL_FACE_DISTANCE, 0, 0 }); }
+	int cell_top(std::size_t idx) { return this->find_cell(idx, { 0, CELL_FACE_DISTANCE, 0 }); }
+	int cell_bottom(std::size_t idx) { return this->find_cell(idx, { 0, -CELL_FACE_DISTANCE, 0 }); }
 	
-	std::size_t cell_lefttop(std::size_t idx) { return this->find_cell(idx, { -CELL_FACE_DISTANCE, CELL_FACE_DISTANCE, 0 }); }
-	std::size_t cell_leftbottom(std::size_t idx) { return this->find_cell(idx, { -CELL_FACE_DISTANCE, -CELL_FACE_DISTANCE, 0 }); }
-	std::size_t cell_righttop(std::size_t idx) { return this->find_cell(idx, { CELL_FACE_DISTANCE, CELL_FACE_DISTANCE, 0 }); }
-	std::size_t cell_rightbottom(std::size_t idx) { return this->find_cell(idx, { CELL_FACE_DISTANCE, -CELL_FACE_DISTANCE, 0 }); }
+	int cell_lefttop(std::size_t idx) { return this->find_cell(idx, { -CELL_FACE_DISTANCE, CELL_FACE_DISTANCE, 0 }); }
+	int cell_leftbottom(std::size_t idx) { return this->find_cell(idx, { -CELL_FACE_DISTANCE, -CELL_FACE_DISTANCE, 0 }); }
+	int cell_righttop(std::size_t idx) { return this->find_cell(idx, { CELL_FACE_DISTANCE, CELL_FACE_DISTANCE, 0 }); }
+	int cell_rightbottom(std::size_t idx) { return this->find_cell(idx, { CELL_FACE_DISTANCE, -CELL_FACE_DISTANCE, 0 }); }
 	
 private:
 	std::vector<VertObjectType> m_vert_data;
