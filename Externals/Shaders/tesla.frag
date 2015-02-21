@@ -20,6 +20,8 @@ uniform sampler2D texture_heightfield;
 
 uniform sampler2D texture_tileset;
 
+uniform bool is_wireframe;
+
 // from
 //		http://gamedev.stackexchange.com/questions/73586/how-can-i-repeat-scroll-a-tile-which-is-part-of-an-texture-atlas
 vec2 texatlas_offset(in float index, in float count) {
@@ -52,6 +54,11 @@ void main() {
 
 	vec2 texcoord_atlas_primary = fract(texcoord_org) / TEXATLAS_COUNT + offset;
 	vec2 texcoord_atlas_secondary = fract(texcoord_org) / TEXATLAS_COUNT + offset_secondary;
+
+	if (is_wireframe) {
+		color = vec4(1.0, 1.0, 1.0, 1.0);
+		return;
+	}
 
 #if LIGHTING_ONLY == 1
 	gl_FragColor = vec4(1, 1, 1, 0) * intensity;

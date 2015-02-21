@@ -84,7 +84,13 @@ void TeslaObject::Render() {
 	BIND_TEXTUREP(this->m_shader_unique, texture_tileset, this->m_tex_tileset, 3);
 	
 	this->m_buffer_idx->use();
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	SET_UNIFORMBP(this->m_shader_unique, is_wireframe, false);
 	glDrawElements(GL_TRIANGLES, (int)this->m_mesh_data->count_idx(), GL_UNSIGNED_INT, 0);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	SET_UNIFORMBP(this->m_shader_unique, is_wireframe, true);
+	glDrawElements(GL_TRIANGLES, (int)this->m_mesh_data->count_idx(), GL_UNSIGNED_INT, 0);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	GLFoundation::unbind(*this->m_buffer_idx);
 	
 	this->m_shader->disable_attributes();

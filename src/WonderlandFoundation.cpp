@@ -64,6 +64,16 @@ void cell_fix_blend(TeslaObject *chunk, std::size_t cell_idx) {
 	tesla_drawcell& cell = data->cell(cell_idx);
 	std::size_t masterid = cell.get_tileid();
 	
+	std::array<tesla_drawcell *, 8> edge_cells {{ cell.top(), cell.bottom(), cell.left(), cell.right(),
+		cell.righttop(), cell.rightbottom(), cell.lefttop(), cell.leftbottom() }};
+	
+	for (auto cell : edge_cells) {
+		std::size_t org_primary = cell->get_tileid(), org_second = cell->get_secondid();
+		data->sepreate_cell(cell->this_idx);
+		cell->set_tileid(org_primary), cell->set_secondid(org_second);
+	}
+	data->update_idx();
+
 	std::function<bool (tesla_drawcell *)> match = [&cell, masterid] (tesla_drawcell *cell) {
 		return masterid == cell->get_tileid(); };
 	

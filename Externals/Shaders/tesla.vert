@@ -24,6 +24,8 @@ uniform sampler2D texture_second;
 uniform sampler2D texture_heightfield;
 uniform sampler2D texture_tileset;
 
+uniform bool is_wireframe;
+
 // solution fram
 //		http://stackoverflow.com/questions/5281261/generating-a-normal-map-from-a-height-map
 vec4 parse_heightfield(in sampler2D heightfield_sampler, in vec2 texcoord) {

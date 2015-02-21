@@ -19,6 +19,7 @@ void tesla_shader::init_shader() {
 	
 	DEF_UNIFORM(model_view_and_projection);
 	DEF_UNIFORM(chunk_position);
+	DEF_UNIFORM(is_wireframe);
 	DEF_SAMPLER(texture_main);
 	DEF_SAMPLER(texture_second);
 	DEF_SAMPLER(texture_heightfield);

@@ -65,6 +65,7 @@ public:
 	
 	DEF_UNIFORM(model_view_and_projection);
 	DEF_UNIFORM(chunk_position);
+	DEF_UNIFORM(is_wireframe);
 	
 	DEF_SAMPLER(texture_main);
 	DEF_SAMPLER(texture_second);
@@ -72,6 +73,10 @@ public:
 	DEF_SAMPLER(texture_tileset);
 	
 };
+
+#define SET_UNIFORMB(shader, name, value) (glUniform1i((shader).NAME_UNIFORM(name), static_cast<bool>(value)))
+
+#define SET_UNIFORMBP(shader, name, value) SET_UNIFORMB(*(shader), name, (value))
 
 #define SET_UNIFORM2(shader, name, glmv) (glUniform2f((shader).NAME_UNIFORM(name), (glmv).x, (glmv).y))
 
