@@ -75,7 +75,7 @@ void main() {
 	vec4 colort1 = mix(color_original, color_scaled_1, 0.4);
 	vec4 colort2 = mix(colort1, color_scaled_2, 0.4);
 
-	color = 3.0 * vec4(1, 1, 1, 0) * intensity *
+	color = 2.0 * vec4(1, 1, 1, 0) * intensity *
 					 colort2;
 	color.a = 1.0;
 

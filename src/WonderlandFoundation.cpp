@@ -51,12 +51,30 @@ void set_texture(TeslaObject *chunk, std::size_t index, const CoordStruct& posit
 	data->update_idx();
 }
 
+void foo_cell_batchblend(TeslaObject *chunk, tesla_drawcell *cell) {
+	if (!cell->t) {
+		printf("blending cells\m");
+		cell_fix_blend(chunk, cell->this_idx);
+		cell->t = true;
+		
+		std::array <tesla_drawcell *, 4> cells {{ cell->top(), cell->bottom(), cell->left(), cell->right() }};
+		for (auto cell_m : cells) {
+			if (cell_m->get_tileid() == cell->get_tileid()) {
+				foo_cell_batchblend(chunk, cell_m);
+			}
+		}
+	}
+}
+
 void blend_cells_batch(TeslaObject *chunk, const CoordStruct& position) {
 	tesla_dataarray *data = chunk->get_data();
 	
 	std::size_t nearest_cellidx = data->find_nearest_cell({ position.y, position.x, 0 });
 	
-	cell_fix_blend(chunk, nearest_cellidx);
+	foo_cell_batchblend(chunk, &data->cell(nearest_cellidx));
+	
+	for (tesla_drawcell& cell : chunk->get_data()->vec_cells()) {
+		cell.t = false; }
 }
 
 void cell_fix_blend(TeslaObject *chunk, std::size_t cell_idx) {
@@ -73,97 +91,124 @@ void cell_fix_blend(TeslaObject *chunk, std::size_t cell_idx) {
 		cell->set_tileid(org_primary), cell->set_secondid(org_second);
 	}
 	data->update_idx();
+	
+	std::array<std::size_t, 4> vert_idx_to_iter {{ 0, 1, 2, 4 }};
+	for (auto cell : edge_cells) {
+		if (cell->get_secondid() != cell->get_tileid()) {
+			if (cell->get_secondid() == cell->get_thirdid()) {
+				for (std::size_t i : vert_idx_to_iter) {
+					cell->vert(i)->blendweights.x = std::min(cell->vert(i)->blendweights.x+cell->vert(i)->blendweights.y, 1.0f);
+					cell->vert(i)->blendweights.y = 0.0f;
+					cell->vert(i)->tile_indexes.z = cell->vert(i)->tile_indexes.x;
+				}
+			}
+		}
+	}
 
 	std::function<bool (tesla_drawcell *)> match = [&cell, masterid] (tesla_drawcell *cell) {
 		return masterid == cell->get_tileid(); };
 	
+	std::function<bool (tesla_drawcell *)> setid = [masterid] (tesla_drawcell *cell) {
+		if (cell->get_secondid() != cell->get_tileid()) {
+			if (cell->get_secondid() != masterid) {
+				cell->set_thirdid(masterid);
+			} else {
+				cell->set_secondid(masterid);
+				return true;
+			}
+		} else {
+			cell->set_secondid(masterid);
+		}
+		return false;
+	};
+	
 	if (!match(cell.bottom())) {
-		cell.bottom()->set_secondid(masterid);
-		apply_blend(chunk, cell.bottom()->this_idx, BOTTOM);
+		bool t = setid(cell.bottom());
+		apply_blend(chunk, cell.bottom()->this_idx, BOTTOM, masterid, t);
 		
 		if ((!match(cell.rightbottom())) && (!match(cell.leftbottom()))) { }
 		else if (match(cell.rightbottom())) {
-			apply_blend(chunk, cell.bottom()->this_idx, LEFT, true);
+			apply_blend(chunk, cell.bottom()->this_idx, LEFT, masterid, true);
 		} else {
-			apply_blend(chunk, cell.bottom()->this_idx, RIGHT, true); }
+			apply_blend(chunk, cell.bottom()->this_idx, RIGHT, masterid, true); }
 	}
 	
 	if (!match(cell.top())) {
-		cell.top()->set_secondid(masterid);
-		apply_blend(chunk, cell.top()->this_idx, TOP);
+		bool t = setid(cell.top());
+		apply_blend(chunk, cell.top()->this_idx, TOP, masterid, t);
 		
 		if ((!match(cell.lefttop())) && (!match(cell.righttop()))) { }
 		else if (match(cell.righttop())) {
-			apply_blend(chunk, cell.top()->this_idx, LEFT, true);
+			apply_blend(chunk, cell.top()->this_idx, LEFT, masterid, true);
 		} else {
-			apply_blend(chunk, cell.top()->this_idx, RIGHT, true); }
+			apply_blend(chunk, cell.top()->this_idx, RIGHT, masterid, true); }
 	}
 	
 	if (!match(cell.left())) {
-		cell.left()->set_secondid(masterid);
-		apply_blend(chunk, cell.left()->this_idx, LEFT);
+		bool t = setid(cell.left());
+		apply_blend(chunk, cell.left()->this_idx, LEFT, masterid, t);
 		
 		if ((!match(cell.lefttop())) && (!match(cell.leftbottom()))) { }
 		else if (match(cell.lefttop())) {
-			apply_blend(chunk, cell.left()->this_idx, BOTTOM, true);
+			apply_blend(chunk, cell.left()->this_idx, BOTTOM, masterid, true);
 		} else {
-			apply_blend(chunk, cell.left()->this_idx, TOP, true); }
+			apply_blend(chunk, cell.left()->this_idx, TOP, masterid, true); }
 	}
 	
 	if (!match(cell.right())) {
-		cell.right()->set_secondid(masterid);
-		apply_blend(chunk, cell.right()->this_idx, RIGHT);
+		bool t = setid(cell.right());
+		apply_blend(chunk, cell.right()->this_idx, RIGHT, masterid, t);
 		
 		if ((!match(cell.righttop())) && (!match(cell.rightbottom()))) { }
 		else if (match(cell.righttop())) {
-			apply_blend(chunk, cell.right()->this_idx, BOTTOM, true);
+			apply_blend(chunk, cell.right()->this_idx, BOTTOM, masterid, true);
 		} else {
-			apply_blend(chunk, cell.right()->this_idx, TOP, true); }
+			apply_blend(chunk, cell.right()->this_idx, TOP, masterid, true); }
 	}
 	
 	if (!match(cell.leftbottom())) {
-		cell.leftbottom()->set_secondid(masterid);
+		bool t = setid(cell.leftbottom());
 		if (!match(cell.left()) && (!match(cell.bottom()))) {
-			apply_blend(chunk, cell.leftbottom()->this_idx, LEFTBOTTOM);
+			apply_blend(chunk, cell.leftbottom()->this_idx, LEFTBOTTOM, masterid, t);
 		} else if ((match(cell.left())) && (match(cell.bottom()))) {
-			apply_blend(chunk, cell.leftbottom()->this_idx, LEFT);
-			apply_blend(chunk, cell.leftbottom()->this_idx, BOTTOM, true);
+			apply_blend(chunk, cell.leftbottom()->this_idx, LEFT, masterid);
+			apply_blend(chunk, cell.leftbottom()->this_idx, BOTTOM, masterid, true);
 		}
 	}
 	
 	if (!match(cell.rightbottom())) {
-		cell.rightbottom()->set_secondid(masterid);
+		bool t = setid(cell.rightbottom());
 		if (!match(cell.right()) && (!match(cell.bottom()))) {
-			apply_blend(chunk, cell.rightbottom()->this_idx, RIGHTBOTTOM);
+			apply_blend(chunk, cell.rightbottom()->this_idx, RIGHTBOTTOM, masterid, t);
 		} else if ((match(cell.right())) && (match(cell.bottom()))) {
-			apply_blend(chunk, cell.rightbottom()->this_idx, RIGHT);
-			apply_blend(chunk, cell.rightbottom()->this_idx, BOTTOM, true);
+			apply_blend(chunk, cell.rightbottom()->this_idx, RIGHT, masterid);
+			apply_blend(chunk, cell.rightbottom()->this_idx, BOTTOM, masterid, true);
 		}
 	}
 	
 	if (!match(cell.lefttop())) {
-		cell.lefttop()->set_secondid(masterid);
+		bool t = setid(cell.lefttop());
 		if (!match(cell.top()) && (!match(cell.left()))) {
-			apply_blend(chunk, cell.lefttop()->this_idx, LEFTTOP);
+			apply_blend(chunk, cell.lefttop()->this_idx, LEFTTOP, masterid, t);
 		} else if ((match(cell.top())) && (match(cell.left()))) {
-			apply_blend(chunk, cell.lefttop()->this_idx, TOP);
-			apply_blend(chunk, cell.lefttop()->this_idx, LEFT, true);
+			apply_blend(chunk, cell.lefttop()->this_idx, TOP, masterid);
+			apply_blend(chunk, cell.lefttop()->this_idx, LEFT, masterid, true);
 		}
 	}
 	
 	if (!match(cell.righttop())) {
-		cell.righttop()->set_secondid(masterid);
+		bool t = setid(cell.righttop());
 		if (!match(cell.right()) && (!match(cell.top()))) {
-			apply_blend(chunk, cell.righttop()->this_idx, RIGHTTOP);
+			apply_blend(chunk, cell.righttop()->this_idx, RIGHTTOP, masterid, t);
 		} else if ((match(cell.right())) && (match(cell.top()))) {
-			apply_blend(chunk, cell.righttop()->this_idx, TOP);
-			apply_blend(chunk, cell.righttop()->this_idx, RIGHT, true);
+			apply_blend(chunk, cell.righttop()->this_idx, TOP, masterid);
+			apply_blend(chunk, cell.righttop()->this_idx, RIGHT, masterid, true);
 		}
 	}
 	
 }
 
-void apply_blend(TeslaObject *chunk, std::size_t cell_idx, BlendDirection dir, bool overlay) {
+void apply_blend(TeslaObject *chunk, std::size_t cell_idx, BlendDirection dir, std::size_t tile_id, bool overlay) {
 	std::array<float, 6> blend_array {{ 0 }};
 	switch (dir) {
 		case LEFT:
@@ -185,16 +230,34 @@ void apply_blend(TeslaObject *chunk, std::size_t cell_idx, BlendDirection dir, b
 	}
 	
 	tesla_dataarray *data = chunk->get_data();
-	std::function<void (tesla_drawcell& cell, const std::array<float, 6>& weights)> set_blendweights =
+	tesla_drawcell& cell = data->cell(cell_idx);
+	
+	std::function<void (tesla_drawcell& cell, const std::array<float, 6>& weights)> func_setweights;
+	
+	std::function<void (tesla_drawcell& cell, const std::array<float, 6>& weights)> set_blendweights_x =
 	[data, overlay] (tesla_drawcell& cell, const std::array<float, 6>& weights) {
 		for (std::size_t i = 0; i < 6; i++)
-			if (!overlay)
-				data->vert(cell.vertices[i]).blendweights.x = weights[i];
-			else
-				data->vert(cell.vertices[i]).blendweights.x = std::min(cell.vert(i)->blendweights.x+weights[i], 1.0f);
+			if (!overlay) data->vert(cell.vertices[i]).blendweights.x = weights[i];
+			else data->vert(cell.vertices[i]).blendweights.x = std::min(cell.vert(i)->blendweights.x+weights[i], 1.0f);
 	};
 	
-	set_blendweights(data->cell(cell_idx), blend_array);
+	std::function<void (tesla_drawcell& cell, const std::array<float, 6>& weights)> set_blendweights_y =
+	[data, overlay] (tesla_drawcell& cell, const std::array<float, 6>& weights) {
+		for (std::size_t i = 0; i < 6; i++)
+			if (!overlay) data->vert(cell.vertices[i]).blendweights.y = weights[i];
+			else data->vert(cell.vertices[i]).blendweights.y = std::min(cell.vert(i)->blendweights.y+weights[i], 1.0f);
+	};
+	
+	if (cell.get_tileid() == tile_id) return;
+	else if (cell.get_secondid() != cell.get_tileid()) {
+		if (cell.get_secondid() != tile_id) {
+			func_setweights = set_blendweights_y;
+		} else {
+			func_setweights = set_blendweights_x;
+		}
+	}
+	
+	func_setweights(cell, blend_array);
 }
 
 void set_texture_and_blend(TeslaObject *chunk, std::size_t index, const CoordStruct& position) {

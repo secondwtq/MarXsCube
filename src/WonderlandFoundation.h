@@ -23,7 +23,7 @@ namespace Wonderland {
 			LEFTTOP, RIGHTTOP, LEFTBOTTOM, RIGHTBOTTOM
 		};
 		
-		void apply_blend(TeslaObject *chunk, std::size_t cell_idx, BlendDirection dir, bool overlay = false);
+		void apply_blend(TeslaObject *chunk, std::size_t cell_idx, BlendDirection dir, std::size_t tile_id, bool overlay = false);
 		
 		void cell_fix_blend(TeslaObject *chunk, std::size_t cell_idx);
 		

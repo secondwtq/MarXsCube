@@ -48,6 +48,7 @@ struct tesla_drawcell {
 	std::size_t tileidx = 0;
 	std::size_t secondary_idx = 0;
 	std::size_t third_idx = 0;
+	bool t = false;
 	
 	void set_tileid(std::size_t idx);
 	void set_secondid(std::size_t idx);
