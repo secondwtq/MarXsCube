@@ -16,15 +16,15 @@
 
 * **[BUG]** Fix shadow height issue.
 
-* **[FEATURE]** Allow buildings have boundary for pathfinding.
+* ~~**[FEATURE]** Allow buildings have boundary for pathfinding.~~ ***fixed***
 
 * **[FEATURE]** Animations for buildings and units.
 
-* ~~**[BUG]** Locomotor in Gmap is now broken. ***suspended***~~
+* ~~**[BUG]** Locomotor in Gmap is now broken.~~ ***suspended***
 
 * **[FEATURE]** Basic Locomotor. ***in progress***
 
-* **[MODULE]** Complete locomotor support for ground vehicles. ***suspended***
+* ~~**[MODULE]** Complete locomotor support for ground vehicles.~~ ***suspended***
 
 * **[MODULE]** Enable binary extension of CubeCore.
 
@@ -58,20 +58,22 @@
 
 * **[MAINTENANCE]** More work about Tesla & Wonderland. ***in progress***
 
-* **[FEATURE]** Map serialization.
+* ~~**[FEATURE]** Map serialization.~~ ***fixed***
+
+* **[MAINTENANCE]** Complete and optimize Tesla, Wonderland and serialization.
 
 * **[FEATURE]** Heightmap editting for Wonderland.
 
-* ~~**[BUG]** Performance issue of the coexistence of Silcon & Tesla. ***fixed***~~
+* ~~**[BUG]** Performance issue of the coexistence of Silcon & Tesla.~~ ***fixed***
 
-* ~~**[FEATURE]** Texture atlas and batch rendering support. ***suspended***~~
+* ~~**[FEATURE]** Texture atlas and batch rendering support.~~ ***suspended***
 
 * **[MAINTENANCE]** Replace SFML. ***in progress***
 
-* ~~**[FEATURE]** Re-enable Verdandi model rendering engine. ***suspended***~~
+* ~~**[FEATURE]** Re-enable Verdandi model rendering engine.~~ ***suspended***
 
-* ~~**[MODULE]** Silcon UI Engine. ***suspended***~~
+* ~~**[MODULE]** Silcon UI Engine.~~ ***suspended***
 
 * **[FEATURE]** Shadow mapping for Tesla.
 
-* ~~**[MAINTENANCE]** Bullet Debug Draw, which is pretty important for tweaking around vehicles, is now broken. ***fixed***~~
+* ~~**[MAINTENANCE]** Bullet Debug Draw, which is pretty important for tweaking around vehicles, is now broken.~~ ***fixed***
