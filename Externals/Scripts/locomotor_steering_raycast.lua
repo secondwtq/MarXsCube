@@ -11,8 +11,7 @@ local comp_LocomotorSteer_Raycast = components.component:new {
 }
 
 local vehicle_wrapper = object.object:new {
-	parent = nil
-}
+	parent = nil }
 
 function vehicle_wrapper:position()
 	return v.coord2vec2(self.parent:GetCoord()) end

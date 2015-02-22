@@ -49,6 +49,9 @@
 		595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */; };
 		595DDC13198ADD990046919B /* libLinearMath_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */; };
 		59725E831A8E015B0010B4F8 /* liblang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59725E821A8E015B0010B4F8 /* liblang.a */; };
+		5975C7FC1A9A1C4F0038F85A /* Serialization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5975C7FA1A9A1C4F0038F85A /* Serialization.cpp */; };
+		5975C7FF1A9A20740038F85A /* Serialization_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5975C7FD1A9A20740038F85A /* Serialization_Interface.cpp */; };
+		5975C8011A9A236A0038F85A /* libboost_serialization-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5975C8001A9A236A0038F85A /* libboost_serialization-mt.a */; };
 		598D1DDE1A3966A70049653B /* RayTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDC1A3966A70049653B /* RayTest.cpp */; };
 		598D1DE11A3967FF0049653B /* RayTest_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */; };
 		598E6EEF1A6F649E000C68BE /* ModelLoader_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */; };
@@ -203,6 +206,11 @@
 		595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletDynamics_xcode4_x64_release.a; sourceTree = "<group>"; };
 		595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libLinearMath_xcode4_x64_release.a; sourceTree = "<group>"; };
 		59725E821A8E015B0010B4F8 /* liblang.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblang.a; path = /usr/local/lib/liblang.a; sourceTree = "<absolute>"; };
+		5975C7FA1A9A1C4F0038F85A /* Serialization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Serialization.cpp; sourceTree = "<group>"; };
+		5975C7FB1A9A1C4F0038F85A /* Serialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serialization.h; sourceTree = "<group>"; };
+		5975C7FD1A9A20740038F85A /* Serialization_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Serialization_Interface.cpp; sourceTree = "<group>"; };
+		5975C7FE1A9A20740038F85A /* Serialization_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serialization_Interface.h; sourceTree = "<group>"; };
+		5975C8001A9A236A0038F85A /* libboost_serialization-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_serialization-mt.a"; path = "../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_serialization-mt.a"; sourceTree = "<group>"; };
 		597D223E1A3D95EC006B296B /* HafniumCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HafniumCommon.h; sourceTree = "<group>"; };
 		598D1DDC1A3966A70049653B /* RayTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RayTest.cpp; sourceTree = "<group>"; };
 		598D1DDD1A3966A70049653B /* RayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest.h; sourceTree = "<group>"; };
@@ -305,6 +313,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5975C8011A9A236A0038F85A /* libboost_serialization-mt.a in Frameworks */,
 				59F5BCC61A8DFFE4006676EC /* binded_attr.o in Frameworks */,
 				59F5BCC71A8DFFE4006676EC /* ttter.o in Frameworks */,
 				59F5BCC81A8DFFE4006676EC /* composer.o in Frameworks */,
@@ -430,6 +439,7 @@
 		592628F5198AB62300858A67 = {
 			isa = PBXGroup;
 			children = (
+				5975C8001A9A236A0038F85A /* libboost_serialization-mt.a */,
 				591064091A88FEF400C6A901 /* jit */,
 				59F431E21A83AC45008795D9 /* lib */,
 				59262900198AB62300858A67 /* src */,
@@ -466,6 +476,7 @@
 				59F431DE1A83A944008795D9 /* Wonderland */,
 				5923C8E519D0225A0055E0D5 /* Obsoleted */,
 				59F5BCAE1A8A37C4006676EC /* Zephyr */,
+				5975C7F91A9A1C280038F85A /* Serialization */,
 				5926290F198AB66500858A67 /* Config.h */,
 				59262913198AB66500858A67 /* Map.h */,
 				59262916198AB66500858A67 /* ObjectArray.h */,
@@ -503,6 +514,17 @@
 				5926292A198AB66500858A67 /* Common.cpp */,
 			);
 			name = Common;
+			sourceTree = "<group>";
+		};
+		5975C7F91A9A1C280038F85A /* Serialization */ = {
+			isa = PBXGroup;
+			children = (
+				5975C7FB1A9A1C4F0038F85A /* Serialization.h */,
+				5975C7FA1A9A1C4F0038F85A /* Serialization.cpp */,
+				5975C7FE1A9A20740038F85A /* Serialization_Interface.h */,
+				5975C7FD1A9A20740038F85A /* Serialization_Interface.cpp */,
+			);
+			name = Serialization;
 			sourceTree = "<group>";
 		};
 		599985F91A80DC5F00E6CE68 /* Vehicle */ = {
@@ -797,6 +819,7 @@
 				59FCBF461A73CBEC00BEF905 /* SilconThread.cpp in Sources */,
 				59FCBF361A73673100BEF905 /* FSM.cpp in Sources */,
 				59C97B071A77784000AB3F02 /* TeslaBullet.cpp in Sources */,
+				5975C7FC1A9A1C4F0038F85A /* Serialization.cpp in Sources */,
 				59262949198AB66500858A67 /* ObjectArrayImpl.cpp in Sources */,
 				593458641A8251F600DE4C28 /* GLShaderExt.cpp in Sources */,
 				5934586A1A832C8800DE4C28 /* Tesla_Interface.cpp in Sources */,
@@ -823,6 +846,7 @@
 				59F5BCB61A8B9657006676EC /* SilconSprite.cpp in Sources */,
 				59C97B0D1A7942CA00AB3F02 /* TeslaRenderingBasic.cpp in Sources */,
 				59262942198AB66500858A67 /* Common.cpp in Sources */,
+				5975C7FF1A9A20740038F85A /* Serialization_Interface.cpp in Sources */,
 				59BF15F31A837301000DA821 /* TeslaRendering.cpp in Sources */,
 				59BF15F61A837A9E000DA821 /* WonderlandFoundation.cpp in Sources */,
 				59CF4DB81A9594AF00F61962 /* Path.cpp in Sources */,
@@ -956,6 +980,7 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_THREADSAFE_STATICS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -977,6 +1002,7 @@
 					"/Users/secondatke/Documents/Assets/Librarys/SFML-master/lib",
 					"/Users/secondatke/Documents/Assets/Librarys/SFML-OSX-3.2Changes/lib",
 					"/Users/secondatke/Documents/Assets/Librarys/SFML-master/extlibs/libs-osx/lib",
+					/usr/local/Cellar/boost/1.55.0_2/lib,
 				);
 				OTHER_CFLAGS = (
 					"-ffast-math",
@@ -1006,6 +1032,7 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_THREADSAFE_STATICS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -1027,6 +1054,7 @@
 					"/Users/secondatke/Documents/Assets/Librarys/SFML-master/lib",
 					"/Users/secondatke/Documents/Assets/Librarys/SFML-OSX-3.2Changes/lib",
 					"/Users/secondatke/Documents/Assets/Librarys/SFML-master/extlibs/libs-osx/lib",
+					/usr/local/Cellar/boost/1.55.0_2/lib,
 				);
 				OTHER_CFLAGS = (
 					"-ffast-math",

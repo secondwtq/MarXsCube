@@ -10,6 +10,8 @@
 
 * **[MODULE]** C/S architecture for replay, save/load, network.
 
+* **[MODULE]** Serialization for CubeCore and Lunar data.
+
 * **[FEATURE]** And a notification center for events.
 
 * **[BUG]** Allow getting unit height relative to terrain (for shadow rendering, locomotor, etc.).

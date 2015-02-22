@@ -53,6 +53,12 @@ function InputHandler.KeyPress(keycode)
 		fp:write(s)
 		fp:close()
 	end
+	if keycode == Enums.Key.Q then
+		local s = Serialization.serialize_techno(TECHNO_SELECTED.Techno)
+		local fp = io.open("techno.cb", "w")
+		fp:write(s)
+		fp:close()
+	end
 end
 
 function InputHandler.MouseMove(mouse_status)

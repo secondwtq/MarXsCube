@@ -9,8 +9,7 @@ const CoordStruct CSession::CameraLocationDefault = CoordStruct(384, 384, 320);
 
 unsigned int CSession::addObject(Abs_Abstract &src) {LOGFUNC;
 	src.RTTIID = ++MaxID;
-	return MaxID;
-}
+	return MaxID; }
 
 void CSession::removeObject(Abs_Abstract *src) {LOGFUNC;
 	Generic::RenderLayerManger()->RemoveObject(src);

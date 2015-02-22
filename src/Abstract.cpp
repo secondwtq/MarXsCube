@@ -6,14 +6,12 @@
 #include "Config.h"
 #include "Generic.h"
 
-Abs_Abstract::Abs_Abstract() : Abs_Abstract(new PhysicsObject(this))
-	{LOGFUNC; }
+Abs_Abstract::Abs_Abstract() : Abs_Abstract(new PhysicsObject(this)) { }
 
 Abs_Abstract::Abs_Abstract(PhysicsObject *phy_object) :
 	RTTIID(Generic::Session()->addObject(*this)),
 	Physics(phy_object),
-	ExtTable(EventManger::GetInstance().CreateObjectTable(*this))
-	{LOGFUNC; }
+	ExtTable(EventManger::GetInstance().CreateObjectTable(*this)) { }
 
 Abs_Abstract::~Abs_Abstract() {LOGFUNC;
 	std::cout << "CubeCore: Abs_Abstract::~Abs_Abstract - Destroying ObjectTable " << this->RTTIID << " ..." << std::endl;

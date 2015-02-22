@@ -9,6 +9,7 @@ class Abs_Cell;
 class Type_Object;
 
 class Abs_Object : public Abs_Abstract {
+	
 	public:
 		static RenderLayerType::Type GetDefaultLayer() { return RenderLayerType::LAYER_OBJECT; }
 
@@ -46,7 +47,7 @@ class Abs_Object : public Abs_Abstract {
 		Pathfinding::Repathcache *getRepathcache() { return &repathcache; }
 		Pathfinding::Repathcache repathcache;
 
-	private:
+	public:
 		CoordStruct Location = CoordStruct(0, 0, 0);
 };
 

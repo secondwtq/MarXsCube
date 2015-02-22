@@ -8,7 +8,7 @@ using namespace std;
 class Map {
 	public:
 		static Map *instance;
-		static inline Map &GetInstance() {LOGFUNC; return *instance; }
+		static inline Map &GetInstance() { return *instance; }
 
 		CubePoint size = CubePoint(0, 0);
 
