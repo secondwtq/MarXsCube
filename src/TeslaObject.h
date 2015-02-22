@@ -33,14 +33,10 @@ public:
 		this->m_mesh_data = new tesla_dataarray;
 		this->m_btri_map = new btTriangleInfoMap();
 		this->m_bmesh = new btTriangleMesh();
-		this->m_btrans.setIdentity();
 	}
 	
 	void location(const CoordStruct& src) {
-		this->m_location = src;
-		this->m_btrans.setIdentity();
-		this->m_btrans.setOrigin(coord2bt(this->m_location));
-	}
+		this->m_location = src; }
 	
 	void Render();
 	
@@ -68,7 +64,6 @@ public:
 private:
 	
 	CoordStruct m_location { 0, 0, 0 };
-	btTransform m_btrans;
 	
 	GLIDX m_tex_heightfield = -1;
 	GLIDX m_tex_tileset = -1;

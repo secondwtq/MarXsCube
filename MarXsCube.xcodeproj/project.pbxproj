@@ -122,7 +122,6 @@
 		591201BD1A6D078900ECB42A /* libsfml-graphics.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-graphics.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-graphics.2.2.0.dylib"; sourceTree = "<group>"; };
 		591201BE1A6D078900ECB42A /* libsfml-window.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-window.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-window.2.2.0.dylib"; sourceTree = "<group>"; };
 		591201BF1A6D078900ECB42A /* libsfml-system.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-system.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-system.2.2.0.dylib"; sourceTree = "<group>"; };
-		591201C31A6D1D9400ECB42A /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGLEW.a; path = "../../Assets/Librarys/SFML-master/extlibs/libs-osx/lib/libGLEW.a"; sourceTree = "<group>"; };
 		591201C61A6D1DA500ECB42A /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		5916925E1A3E11D2001D4D35 /* SFLineShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SFLineShape.cpp; sourceTree = "<group>"; };
 		5916925F1A3E11D2001D4D35 /* SFLineShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFLineShape.h; sourceTree = "<group>"; };
@@ -654,7 +653,6 @@
 				59F5BCAC1A8A0F80006676EC /* libluajit.a */,
 				59725E821A8E015B0010B4F8 /* liblang.a */,
 				591201C61A6D1DA500ECB42A /* OpenGL.framework */,
-				591201C31A6D1D9400ECB42A /* libGLEW.a */,
 				591201BD1A6D078900ECB42A /* libsfml-graphics.2.2.0.dylib */,
 				591201BE1A6D078900ECB42A /* libsfml-window.2.2.0.dylib */,
 				591201BF1A6D078900ECB42A /* libsfml-system.2.2.0.dylib */,

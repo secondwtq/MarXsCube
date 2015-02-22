@@ -29,7 +29,11 @@ void TeslaObject::create_bullet() {
 	this->m_bshape = new btBvhTriangleMeshShape(this->m_bmesh, true);
 	this->m_bshape->setMargin(btScalar(0.1f));
 	
-	this->m_bmotion_state = new btDefaultMotionState(this->m_btrans);
+	btTransform btrans;
+	btrans.setIdentity();
+	btrans.setOrigin(coord2bt(this->m_location));
+	
+	this->m_bmotion_state = new btDefaultMotionState(btrans);
 	btRigidBody::btRigidBodyConstructionInfo grInfo(0., this->m_bmotion_state, this->m_bshape);
 	this->m_bbody = new btRigidBody(grInfo);
 	this->m_bbody->setRestitution(btScalar(0.5));

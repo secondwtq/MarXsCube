@@ -49,6 +49,8 @@ void init_err(lua_State *State, int err) {
 	}
 }
 
+#ifdef CUBE_CONFIG_ENABLE_LUNAR
+
 // from luajit-lang-toolkit - luajit-x
 void override_loaders(lua_State *L) {
 	lua_getfield(L, LUA_GLOBALSINDEX, "package");
@@ -69,6 +71,8 @@ void override_loaders(lua_State *L) {
 	lua_rawseti(L, -3, 2);
 	lua_pop(L, 2);
 }
+
+#endif
 
 void LuaStatus::init() {LOGFUNC;
 	if (!_loaded) {
@@ -169,26 +173,27 @@ luabridge::LuaRef &EventManger::GetEvent(Events type) { return _Events[type]; }
 
 #define ADD_EVENT(init, func) case init: addEvent(func); break
 
-EventManger::EventManger(LuaStatus &State) : _state(&State),FunctionTable(getGlobal(State, "Functions")), ObjectsTable(getGlobal(State, "Environment")["ObjectTable"]) {
-	LOGFUNC;
-	cout << "CubeCore: EventManger::EventManger - Constructing... " << endl;
-	for (size_t i = 0; i < EventCounts; i++) switch (i) {
-				ADD_EVENT(ANIM_UPDATE, "Abs_Anim_onUpdate");
-				ADD_EVENT(ANIM_CREATE, "Abs_Anim_onCreate");
-				ADD_EVENT(TEST_BEGIN, "TestManger_onTestInit");
-				ADD_EVENT(GAME_UPDATE_BEGIN, "Main_GameUpdateBegin");
-				ADD_EVENT(ANIM_SPAWN, "Abs_Anim_onSpawn");
-				ADD_EVENT(UI_KEYPRESS, "Session_KeyPress");
-				ADD_EVENT(UI_KEYRELEASE, "Session_KeyRelease");
-				ADD_EVENT(UI_MOUSEPRESS, "Session_MousePress");
-				ADD_EVENT(UI_MOUSERELEASE, "Session_MouseRelease");
-				ADD_EVENT(UI_MOUSEMOVE, "Session_MouseMove");
-				ADD_EVENT(TECHNOTYPE_LOAD, "TechnoType_onLoad");
-				ADD_EVENT(TECHNO_UPDATE, "Abs_Techno_onUpdate");
-				ADD_EVENT(TECHNO_SPAWN, "Abs_Techno_onSpawn");
-				ADD_EVENT(TECHNO_CREATE, "Abs_Techno_onCreate");
-				ADD_EVENT(TECHNO_PHYUPDATE, "Abs_Techno_onPhysicsTransformed");
-	}
+EventManger::EventManger(LuaStatus &State) : _state(&State),
+	FunctionTable(getGlobal(State, "Functions")), ObjectsTable(getGlobal(State, "Environment")["ObjectTable"]) {
+
+	for (size_t i = 0; i < EventCounts; i++)
+		switch (i) {
+			ADD_EVENT(ANIM_UPDATE, "Abs_Anim_onUpdate");
+			ADD_EVENT(ANIM_CREATE, "Abs_Anim_onCreate");
+			ADD_EVENT(TEST_BEGIN, "TestManger_onTestInit");
+			ADD_EVENT(GAME_UPDATE_BEGIN, "Main_GameUpdateBegin");
+			ADD_EVENT(ANIM_SPAWN, "Abs_Anim_onSpawn");
+			ADD_EVENT(UI_KEYPRESS, "Session_KeyPress");
+			ADD_EVENT(UI_KEYRELEASE, "Session_KeyRelease");
+			ADD_EVENT(UI_MOUSEPRESS, "Session_MousePress");
+			ADD_EVENT(UI_MOUSERELEASE, "Session_MouseRelease");
+			ADD_EVENT(UI_MOUSEMOVE, "Session_MouseMove");
+			ADD_EVENT(TECHNOTYPE_LOAD, "TechnoType_onLoad");
+			ADD_EVENT(TECHNO_UPDATE, "Abs_Techno_onUpdate");
+			ADD_EVENT(TECHNO_SPAWN, "Abs_Techno_onSpawn");
+			ADD_EVENT(TECHNO_CREATE, "Abs_Techno_onCreate");
+			ADD_EVENT(TECHNO_PHYUPDATE, "Abs_Techno_onPhysicsTransformed");
+		}
 }
 
 #undef ADD_EVENT
