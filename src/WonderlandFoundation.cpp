@@ -11,6 +11,7 @@
 #include "GLFoundation.h"
 #include "SilconThread.h"
 #include "TeslaObject.h"
+#include "WonderlandCommon.h"
 #include "WonderlandFoundation.h"
 
 #include <cmath>
@@ -350,18 +351,13 @@ void buffer_update(TeslaObject *chunk) {
 	
 	Acheron::Silcon.invoke();
 }
-		
-struct wonderland_chunk_header {
-	const char HEADER_ID[16] = "!MXCUBE_CBSB!";
-	std::size_t num_cells = 0;
-	std::size_t num_verts = 0;
-	std::size_t num_idxes = 0;
-};
 
-#define SERIAL(var) reinterpret_cast<const char *>(&(var))
-#define SERIALP(var) reinterpret_cast<const char *>(var)
+#define SERIAL(var) reinterpret_cast<char *>(&(var))
+#define SERIALP(var) reinterpret_cast<char *>(var)
+#define VOIDP(p) reinterpret_cast<void *>(p)
+#define CHARP(p) reinterpret_cast<char *>(p)
 
-std::string seralize_chunk(TeslaObject *chunk) {
+std::string serialize_chunk(TeslaObject *chunk) {
 	std::ostringstream ret;
 	
 	wonderland_chunk_header header;
@@ -373,8 +369,54 @@ std::string seralize_chunk(TeslaObject *chunk) {
 	ret.write(SERIAL(header), sizeof(wonderland_chunk_header));
 	ret.write(SERIALP(data->vec_indexes().data()), data->vec_indexes().size() * sizeof(GLIDX));
 	ret.write(SERIALP(data->vec_verts().data()), data->vec_verts().size() * sizeof(tesla_vert));
+	ret.write(SERIALP(data->vec_centers().data()), data->vec_centers().size() * sizeof(glm::vec3));
 
+	for (std::size_t i = 0; i < header.num_cells; i++)
+		ret.write(SERIAL(data->vec_cells()[i].vertices), CHARP(&(data->vec_cells()[i].t)) - CHARP(&(data->vec_cells()[i].vertices)));
+	
 	return ret.str();
+}
+		
+tesla_dataarray *deserialize_chunk(const std::string& src, tesla_dataarray *dest) {
+	std::istringstream in(src);
+	
+	wonderland_chunk_header header;
+	in.read(SERIAL(header), sizeof(header));
+	
+	std::vector<tesla_vert>& vec_verts = dest->vec_verts();
+	std::vector<GLIDX>& vec_indexes = dest->vec_indexes();
+	std::vector<glm::vec3>& vec_centers = dest->vec_centers();
+	std::vector<tesla_drawcell>& vec_cells = dest->vec_cells();
+	vec_verts.clear();
+	vec_indexes.clear();
+	vec_centers.clear();
+	vec_cells.clear();
+	
+	GLIDX index_t;
+	for (std::size_t i = 0; i < header.num_idxes; i++) {
+		in.read(SERIAL(index_t), sizeof(GLIDX));
+		vec_indexes.push_back(index_t);
+	}
+	
+	tesla_vert vert_t;
+	for (std::size_t i = 0; i < header.num_verts; i++) {
+		in.read(SERIAL(vert_t), sizeof(vert_t));
+		vec_verts.push_back(vert_t);
+	}
+	
+	glm::vec3 center_t;
+	for (std::size_t i = 0; i < header.num_cells; i++) {
+		in.read(SERIAL(center_t), sizeof(glm::vec3));
+		vec_centers.push_back(center_t);
+	}
+	
+	tesla_drawcell cell_t(dest);
+	for (std::size_t i = 0; i < header.num_cells; i++) {
+		in.read(SERIAL(cell_t.vertices), CHARP(&(cell_t.t)) - CHARP(&(cell_t.vertices)));
+		vec_cells.push_back(cell_t);
+	}
+	
+	return dest;
 }
 
 	}

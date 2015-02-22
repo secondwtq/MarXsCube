@@ -9,7 +9,10 @@ map.default.chunks[1] = {
 	heightfield = "DUMMY",
 	tileset = "TILESET",
 	location = { 0, 0, 0 },
-	bullet_model = "tesla_hull.obj"
+	bullet_model = "tesla_hull.obj",
+
+	-- serialized = true,
+	-- cbdata = 'chunk1.cb'
 }
 
 map.default.chunks[2] = {

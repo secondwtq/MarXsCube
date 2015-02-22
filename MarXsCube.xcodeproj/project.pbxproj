@@ -43,6 +43,7 @@
 		593458671A8316E000DE4C28 /* TeslaObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 593458651A8316E000DE4C28 /* TeslaObject.cpp */; };
 		5934586A1A832C8800DE4C28 /* Tesla_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 593458681A832C8800DE4C28 /* Tesla_Interface.cpp */; };
 		5944452F1A75389000941CEB /* CubeTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5944452D1A75389000941CEB /* CubeTransform.cpp */; };
+		5945C3511A99D02D0095EE51 /* WonderlandCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5945C34F1A99D02D0095EE51 /* WonderlandCommon.cpp */; };
 		5953D4191A90A84F009AD969 /* Wonderland_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5953D4171A90A84F009AD969 /* Wonderland_Interface.cpp */; };
 		595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */; };
 		595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */; };
@@ -194,6 +195,8 @@
 		593458691A832C8800DE4C28 /* Tesla_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tesla_Interface.h; sourceTree = "<group>"; };
 		5944452D1A75389000941CEB /* CubeTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CubeTransform.cpp; sourceTree = "<group>"; };
 		5944452E1A75389000941CEB /* CubeTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubeTransform.h; sourceTree = "<group>"; };
+		5945C34F1A99D02D0095EE51 /* WonderlandCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WonderlandCommon.cpp; sourceTree = "<group>"; };
+		5945C3501A99D02D0095EE51 /* WonderlandCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonderlandCommon.h; sourceTree = "<group>"; };
 		594F23A01A8F6F8100756010 /* BulletDebugShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BulletDebugShader.h; sourceTree = "<group>"; };
 		5953D4171A90A84F009AD969 /* Wonderland_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wonderland_Interface.cpp; sourceTree = "<group>"; };
 		5953D4181A90A84F009AD969 /* Wonderland_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wonderland_Interface.h; sourceTree = "<group>"; };
@@ -584,6 +587,8 @@
 		59F431DE1A83A944008795D9 /* Wonderland */ = {
 			isa = PBXGroup;
 			children = (
+				5945C3501A99D02D0095EE51 /* WonderlandCommon.h */,
+				5945C34F1A99D02D0095EE51 /* WonderlandCommon.cpp */,
 				59BF15F51A837A9E000DA821 /* WonderlandFoundation.h */,
 				59BF15F41A837A9E000DA821 /* WonderlandFoundation.cpp */,
 				5953D4181A90A84F009AD969 /* Wonderland_Interface.h */,
@@ -777,6 +782,7 @@
 				592859091A37594700D4AE91 /* Gmap_Interface.cpp in Sources */,
 				59262941198AB66500858A67 /* Cell.cpp in Sources */,
 				59CF4DBC1A959F4200F61962 /* PathAux.cpp in Sources */,
+				5945C3511A99D02D0095EE51 /* WonderlandCommon.cpp in Sources */,
 				5910640F1A890EC400C6A901 /* AcheronGCD.cpp in Sources */,
 				5923C8DA19D00EB90055E0D5 /* RenderElement.cpp in Sources */,
 				59F431E71A83AF0F008795D9 /* GritFoundation.cpp in Sources */,

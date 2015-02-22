@@ -11,17 +11,13 @@
 
 #include "Common.h"
 #include "TeslaObject.h"
+#include "WonderlandCommon.h"
 
 #include <cstddef>
 
 namespace Wonderland {
 	
 	namespace Foundation {
-		
-		enum BlendDirection {
-			LEFT, RIGHT, TOP, BOTTOM,
-			LEFTTOP, RIGHTTOP, LEFTBOTTOM, RIGHTBOTTOM
-		};
 		
 		void apply_blend(TeslaObject *chunk, std::size_t cell_idx, BlendDirection dir, std::size_t tile_id, bool overlay = false);
 		
@@ -35,7 +31,9 @@ namespace Wonderland {
 		
 		void blend_cells_batch(TeslaObject *chunk, const CoordStruct& position);
 		
-		std::string seralize_chunk(TeslaObject *chunk);
+		std::string serialize_chunk(TeslaObject *chunk);
+		
+		tesla_dataarray *deserialize_chunk(const std::string& src, tesla_dataarray *dest);
 		
 	}
 	

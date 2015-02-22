@@ -50,6 +50,13 @@ function Functions.TestManger_onTestInit()
 		terrain:set_heightfield(Helpers.texture(chunk.heightfield))
 		terrain:set_tileset(Helpers.texture(chunk.tileset))
 		terrain:load_objfile(chunk.source, chunk.bullet_model)
+
+		if chunk.serialized then
+			local fp = io.open(chunk.cbdata, 'r')
+			local s = fp:read('*a')
+			Wonderland.deserialize_chunk(s, terrain:get_data())
+		end
+
 		terrain:load_shader()
 		terrain:create_bullet()
 		terrain:load_buffer()

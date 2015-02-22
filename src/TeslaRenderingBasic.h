@@ -70,6 +70,9 @@ struct tesla_drawcell {
 	tesla_drawcell *righttop();
 	tesla_drawcell *rightbottom();
 	
+	tesla_drawcell(tesla_dataarray *p)
+											: parent(p) { }
+	
 	tesla_drawcell(tesla_dataarray *p, std::array<std::size_t, CELL_VERTS_TOTAL> pvertices, int idx)
 											: parent(p), vertices(pvertices), this_idx(idx) { }
 	

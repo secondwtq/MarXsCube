@@ -8,6 +8,7 @@
 
 #include "Common.h"
 #include "Generic.h"
+#include "TeslaRenderingBasic.h"
 #include "TeslaObject.h"
 #include "TeslaRendering.h"
 #include "Tesla_Interface.h"
@@ -16,6 +17,9 @@ void LuaInterface::RegisterInterface_Tesla(LuaStatus &L) {
 
 	luabridge::getGlobalNamespace(L).
 		beginNamespace("Tesla").
+			beginClass<tesla_dataarray>("tesla_dataarray").
+	
+			endClass().
 			beginClass<TeslaObject>("TeslaChunkObject").
 				addFunction("location", &TeslaObject::location).
 				addFunction("set_heightfield", &TeslaObject::set_heightfield).
@@ -24,6 +28,7 @@ void LuaInterface::RegisterInterface_Tesla(LuaStatus &L) {
 				addFunction("load_objfile", &TeslaObject::load_objfile).
 				addFunction("load_shader", &TeslaObject::load_shader).
 				addFunction("load_buffer", &TeslaObject::load_buffer).
+				addFunction("get_data", &TeslaObject::get_data).
 				addStaticFunction("create", &TeslaObject::create).
 			endClass().
 			beginClass<TeslaRenderingManger>("TeslaRenderingManger").
