@@ -52,7 +52,6 @@ void _readall(ifstream &str, string &dest) {LOGFUNC;
 }
 
 int disToCamera(const Abs_Abstract *src) {
-//	if (src->temp_ZOffset) return 0x6FFFFFFF;
 	auto c = src->GetCoord();
 	static auto d = Generic::Session()->CameraLocation;
 	int f = d.x*10-c.x, g = d.y*10-c.y, h = d.z*10-c.z;

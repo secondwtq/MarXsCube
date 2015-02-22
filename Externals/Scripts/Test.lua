@@ -42,7 +42,7 @@ end
 -- run when game started
 function Functions.TestManger_onTestInit()
 
-	Objects.Map.GetInstance():CreateEmptyMap(60, 50) -- create map
+	-- Objects.Map.GetInstance():CreateEmptyMap(60, 50)
 
 	for i, chunk in ipairs(map.default.chunks) do
 		local terrain = Tesla.TeslaChunkObject.create()
@@ -65,7 +65,6 @@ function Functions.TestManger_onTestInit()
 	end
 
 	-- local background = ModEnvironment.Functions.createTechno(OBJECTS.SATELITE_BG, Utility.CoordStruct(64*27+56, -36, 0))
-	-- background.temp_ZOffset = true
 	local cycle = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO, Utility.CoordStruct(256, 0, 64), true)
 	local rail = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(256, 256, 128), true)
 	local building = ModEnvironment.Functions.createTechno(OBJECTS.TESTBUILDING, Utility.CoordStruct(512, 384, 0), true)

@@ -250,7 +250,6 @@ namespace LuaInterface {
 					addFunction("print_this", &Abs_Abstract::print_this).
 					addData("useCollSphere", &Abs_Abstract::useCollSphere).
 					addData("rCollSphere", &Abs_Abstract::rCollSphere).
-					addData("temp_ZOffset", &Abs_Abstract::temp_ZOffset).
 				endClass().
 				deriveClass<Type_Abstract, Abs_Abstract>("Type_Abstract").
 					addData("RegName", &Type_Abstract::RegName).

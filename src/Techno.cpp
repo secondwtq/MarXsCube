@@ -31,13 +31,11 @@ Abs_Techno::Abs_Techno(Type_Techno *Type, PhysicsObject *phy_object) :
 	EventManger::GetInstance().GetEvent(EventManger::Events::TECHNO_CREATE)(this, ExtTable);
 }
 
-void Abs_Techno::Update() {LOGFUNC;
-	EventManger::GetInstance().GetEvent(EventManger::Events::TECHNO_UPDATE)(this);
-}
+void Abs_Techno::Update() {
+	EventManger::GetInstance().GetEvent(EventManger::Events::TECHNO_UPDATE)(this); }
 
-void Abs_Techno::Render() {LOGFUNC;
-	elements->Update();
-}
+void Abs_Techno::Render() {
+	elements->Update(); }
 
 void Abs_Techno::SpawnAtMapCoord(const CoordStruct &location) {LOGFUNC;
 	cout << "CubeCore: Abs_Techno::SpawnAtMapCoord - Spawning " << location.x << " " << location.y << " " << location.z << " ..." << endl;

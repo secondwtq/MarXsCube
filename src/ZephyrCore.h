@@ -18,7 +18,6 @@ struct ZephyrObject {
 	enum ZRenderLayerType_Type Layer;
 	unsigned int RTTIID;
 	
-	bool temp_ZOffset;
 	bool useCollSphere;
 	int rCollSphere;
 	UNDEFINED_PTR *collSphere;

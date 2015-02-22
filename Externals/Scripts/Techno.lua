@@ -20,34 +20,6 @@ function Functions.Abs_Techno_onSpawn(self, table)
 
 	table.disabledTimer = Utility.CubeTimer(64, -1)
 
-	if scriptType.occupationtype == "local" then
-		table.occupationtype_local_curCell = util.getObjectCell(self)
-	end
-	if scriptType.occupationtype == "buildingstatic" then
-		local curCell = util.getObjectCell(self)
-		local x, y = scriptType.occupationfoundation_simple.x, scriptType.occupationfoundation_simple.y
-		for i = curCell.LocCell.x, curCell.LocCell.x+x do
-			for j = curCell.LocCell.y, curCell.LocCell.y+y do
-				Objects.Map.GetInstance():GetCellAt(Utility.CellStruct(i, j)):setOccupyObject(self)
-			end
-		end
-	end
-	if scriptType.occupationtype == "centeredynamic" then
-		table.occupationtype_centeredynamic_cells = { }
-		local curCell = util.getObjectCell(self)
-		local x, y = scriptType.occupationfoundation_simple.x, scriptType.occupationfoundation_simple.y
-		for i = curCell.LocCell.x-x, curCell.LocCell.x+x do
-			for j = curCell.LocCell.y-y, curCell.LocCell.y+y do
-				local cell = Objects.Map.GetInstance():GetCellAt(Utility.CellStruct(i, j))
-				util.tblinsert(table.occupationtype_centeredynamic_cells, cell)
-				cell:setOccupyObject(self)
-			end
-		end
-	end
-
-	if scriptType.physics.initialstatic == true then
-		self.Physics:setToStatic() end
-
 	table.components:spawn()
 end
 
@@ -57,7 +29,6 @@ end
 -- call init_components() method after all components are added to trigger on_init()
 
 function Functions.Abs_Techno_onCreate(creating, table)
-	print("Functions.Abs_Techno_onCreate: creating Techno ...")
 
 	-- set general properties for RTTIID table, for helpers
 	table.RTTIID = creating.RTTIID
@@ -81,7 +52,6 @@ function Functions.Abs_Techno_onCreate(creating, table)
 		table.components:add_component(v)
 	end
 
-	print("Functions.Abs_Techno_onCreate: initing components ...")
 	table.components:init_components()
 
 	table.isDisabled = false
@@ -94,6 +64,4 @@ function Functions.Abs_Techno_onCreate(creating, table)
 
 	creating.useCollSphere = scriptType.usecollsphere
 	creating.rCollSphere = scriptType.rcollsphere
-
-	print("Functions.Abs_Techno_onCreate: completed ...")
 end

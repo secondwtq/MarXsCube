@@ -10,21 +10,19 @@ class Type_Object;
 
 class Abs_Object : public Abs_Abstract {
 	public:
-		static RenderLayerType::Type GetDefaultLayer() {LOGFUNC; return RenderLayerType::LAYER_OBJECT; }
+		static RenderLayerType::Type GetDefaultLayer() { return RenderLayerType::LAYER_OBJECT; }
 
 		unsigned int WhatAmI() { return RTTIType_Object; }
 
-		CoordStruct GetCoord() const {LOGFUNC; return Location; }
+		CoordStruct GetCoord() const { return Location; }
 
 		int GetHeight() { return Location.z; }
 
-		virtual void SpawnAtMapCoord(const CoordStruct &location) {LOGFUNC; Location = location; }
+		virtual void SpawnAtMapCoord(const CoordStruct &location) { Location = location; }
 
-		Type_Object *ObjectType = nullptr;
+		void setLocation(const CoordStruct &location) { Location = location; }
 
-		void setLocation(const CoordStruct &location) {LOGFUNC; Location = location; }
-
-		void setMainRotation(int deg) {LOGFUNC;
+		void setMainRotation(int deg) {
 			if (deg < 0) deg = 360 + deg;
 			Direction.degree = deg;
 		}
@@ -35,19 +33,19 @@ class Abs_Object : public Abs_Abstract {
 		Abs_Object(Type_Object *Type, PhysicsObject *phy_object);
 
 		bool onGround() { return abs(GetHeight()) <= 5; }
-
-		CoordStruct Destnation = CoordStruct(0, 0, 0);
+	
 		void setDestnation(const CoordStruct &destnation) { Destnation = destnation; }
-		
+
+		Type_Object *ObjectType = nullptr;
+	
+		CoordStruct Destnation = CoordStruct(0, 0, 0);
+	
 		ObjectDirection Direction;
 		ObjectDirection *getDirection() {LOGFUNC; return &Direction; }
 
 		Pathfinding::Repathcache *getRepathcache() { return &repathcache; }
 		Pathfinding::Repathcache repathcache;
 
-		// bool enablePhysicsOccp = false;
-		// CoordStruct occpSize
-		// std::vector<Abs_Cell *> vec_phyOccCells;
 	private:
 		CoordStruct Location = CoordStruct(0, 0, 0);
 };

@@ -100,7 +100,6 @@ local comp_TechnoColorMultiply = components.component:new({
 
 		local datatable = self:get_datatable()
 
-		print(bindedattr)
 		local attr_ColorMultiply = bindedattr.add_bound_attr(datatable, 'ColorMultiplyAttr')
 
 		datatable.ColorMultiplyAttr = { 1.0, 1.0, 1.0, 1.0 }
