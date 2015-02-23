@@ -30,6 +30,10 @@ vec2 texatlas_offset(in float index, in float count) {
 }
 
 vec4 sample_scale_and_offset(in vec2 texcoord, in sampler2D tileset, in vec2 offset, in float scale, in float count) {
+	if (offset.x - 0 < 1e-3 && offset.y - 0 < 1e-3) {
+		return texture(texture_main, frag_texcoord/30.0);
+	}
+
 	vec2 texcoord_org = texcoord * scale;
 
 	vec2 texcoord_scaled = fract(texcoord_org);

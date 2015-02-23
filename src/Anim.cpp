@@ -24,12 +24,15 @@ void Abs_Anim::Update() {LOGFUNC;
 		Generic::RemoveObject(this);
 }
 
-void Abs_Anim::Render() {LOGFUNC;
+void Abs_Anim::Render() {
 	if (AnimTimer.Enabled) {
-		sprite.position = CubeTransform::view_pos_nt(GetCoord()+AnimType->Offset);
-		sf::IntRect tex_area = AnimType->texture->getArea(this->GetCurrentFrame());
-		sprite.set_texture_area(tex_area.left, tex_area.top, tex_area.width*scale, tex_area.height*scale);
 		AnimTimer.Update();
+		
+		if (!AnimTimer.TimerEnded) {
+			sprite.position = CubeTransform::view_pos_nt(GetCoord()+AnimType->Offset);
+			sf::IntRect tex_area = AnimType->texture->getArea(this->GetCurrentFrame());
+			sprite.set_texture_area(tex_area.left, tex_area.top, tex_area.width*scale, tex_area.height*scale);
+		}
 	}
 }
 
@@ -47,7 +50,6 @@ void Abs_Anim::SpawnAtMapCoord(const CoordStruct &location) {LOGFUNC;
 	this->setLocation(location);
 	ObjectManger::GetInstance().addObject(*this);
 	Generic::RenderLayerManger()->Layers[Layer].addObject(*this);
-	cout << "CubeCore: Abs_Anim::SpawnAtMapCoord - Starting ..." << endl;
 	StartPlay();
 	EventManger::GetInstance().GetEvent(EventManger::Events::ANIM_SPAWN)(this, ExtTable);
 }

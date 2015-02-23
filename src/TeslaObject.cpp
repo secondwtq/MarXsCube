@@ -88,6 +88,8 @@ void TeslaObject::Render() {
 	SET_UNIFORMAT4P(this->m_shader_unique, model_view_and_projection, this->m_parent->m_mat_mvp);
 	SET_UNIFORM3P(this->m_shader_unique, chunk_position, this->m_location);
 	BIND_TEXTUREP(this->m_shader_unique, texture_main, this->m_tex_background, 0);
+	glSamplerParameteri(0, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glSamplerParameteri(0, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	BIND_TEXTUREP(this->m_shader_unique, texture_heightfield, this->m_tex_heightfield, 2);
 	BIND_TEXTUREP(this->m_shader_unique, texture_tileset, this->m_tex_tileset, 3);
 	

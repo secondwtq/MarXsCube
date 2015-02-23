@@ -10,7 +10,7 @@ map.default.chunks[1] = {
 	tileset = "TILESET",
 	location = { 0, 0, 0 },
 	bullet_model = "tesla_hull.obj",
-	background_tex = "JAGUAR"
+	background_tex = "TERRAINBG"
 
 	-- serialized = true,
 	-- cbdata = 'chunk1.cb'
@@ -22,7 +22,7 @@ map.default.chunks[2] = {
 	tileset = "TILESET",
 	location = { 1920, 0, 0 },
 	bullet_model = "tesla_hull.obj",
-	background_tex = "JAGUAR"
+	background_tex = "TERRAINBG"
 }
 
 map.default.chunks[3] = {
@@ -31,7 +31,7 @@ map.default.chunks[3] = {
 	tileset = "TILESET",
 	location = { 3840, 0, 0 },
 	bullet_model = "tesla_hull.obj",
-	background_tex = "JAGUAR"
+	background_tex = "TERRAINBG"
 }
 
 map.default.chunks[4] = {
@@ -40,7 +40,7 @@ map.default.chunks[4] = {
 	tileset = "TILESET",
 	location = { 0, 1920, 0 },
 	bullet_model = "tesla_hull.obj",
-	background_tex = "JAGUAR"
+	background_tex = "TERRAINBG"
 }
 
 map.default.chunks[5] = {
@@ -49,7 +49,7 @@ map.default.chunks[5] = {
 	tileset = "TILESET",
 	location = { 1920, 1920, 0 },
 	bullet_model = "tesla_hull.obj",
-	background_tex = "JAGUAR"
+	background_tex = "TERRAINBG"
 }
 
 -- map.default.chunks[3] = {
