@@ -100,5 +100,6 @@ TEXTURES.HEIGHTFIELD = define_tex "heightfield.png"
 TEXTURES.HEIGHTFIELD_TEST = define_tex "heightfield_test.png"
 TEXTURES.HEIGHTFIELD_COMPLEX = define_tex "heightfield_complex.png"
 TEXTURES.TERRAINBG = define_tex "terrainbg.png"
+TEXTURES.WLANDBRUSH = define_tex "wlandbrush.png"
 
 TEXTURES.TILESET = define_tex "tileset.png"

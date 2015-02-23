@@ -9,6 +9,7 @@
 local InputHandler = { }
 
 local Helpers = require 'Helpers'
+local v = require 'Vhere'
 
 -- called when mouse press on an object
 -- args: mouse_status: same as Functions.Session_MousePress
@@ -90,8 +91,12 @@ function InputHandler.MousePress_OnCell(mouse_status)
 		-- Wonderland.set_texture(TERRAIN_CHUNKS[1], CURRENT_TERRAIN_TILE, hit_point)
 		-- Wonderland.buffer_update(TERRAIN_CHUNKS[1])
 
+		local p = v.coord2vec2(hit_point)
+		p.y = p.y + (1920 / 2)
+		p = (p / 1920) * 2048
+
 		Wonderland.brush_init()
-		Wonderland.brush_test(TERRAIN_CHUNKS[1])
+		Wonderland.brush_test(TERRAIN_CHUNKS[1], Helpers.texture('WLANDBRUSH'), Helpers.texture('DOGE'), v.vec2cubep(p), 128)
 
 		if TECHNO_SELECTED then
 			local Techno = Helpers.Techno_TechnoRTTIIDTable(TECHNO_SELECTED)

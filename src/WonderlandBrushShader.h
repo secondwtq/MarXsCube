@@ -25,6 +25,11 @@ public:
 	DEF_ATTRIBUTE(texcoord);
 	
 	DEF_UNIFORM(model_view_and_projection);
+	DEF_UNIFORM(brush_position);
+	DEF_UNIFORM(brush_scale);
+	
+	DEF_SAMPLER(texture_mask);
+	DEF_SAMPLER(texture_fill);
 	
 };
 

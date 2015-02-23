@@ -20,6 +20,6 @@ struct WonderlandBrushVertex {
 
 void BrushInit();
 
-void BrushTest(TeslaObject *chunk);
+void BrushTest(TeslaObject *chunk, TextureAtlas *brush, TextureAtlas *fill, CubePoint& center, float radius);
 
 #endif /* defined(__MarXsCube__WonderlandBrush__) */
