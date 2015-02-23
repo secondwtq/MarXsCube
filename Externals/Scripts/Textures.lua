@@ -95,13 +95,7 @@ TEXTURES.DOGE = TEXTURES.DUMMY:newObject({
 	frame_row = 1,
 })
 
-TEXTURES.JAGUAR = TEXTURES.DUMMY:newObject({
-	filename = "./Textures/jaguar.png",
-	frame_count = 1,
-	frame_col = 1,
-	frame_row = 1,
-})
-
+TEXTURES.JAGUAR = define_tex "jaguar.png"
 TEXTURES.HEIGHTFIELD = define_tex "heightfield.png"
 TEXTURES.HEIGHTFIELD_TEST = define_tex "heightfield_test.png"
 TEXTURES.HEIGHTFIELD_COMPLEX = define_tex "heightfield_complex.png"

@@ -47,6 +47,9 @@ public:
 		this->m_tex_heightfield_s = &(texture->texture);
 		this->m_tex_heightfield = texture->texture.m_texture; }
 	
+	void set_background(const TextureAtlas *texture) {
+		this->m_tex_background = texture->texture.m_texture; }
+	
 	void load_objfile(const std::string& path, const std::string& path_bullet);
 	
 	void load_shader();
@@ -67,6 +70,7 @@ private:
 	
 	GLIDX m_tex_heightfield = -1;
 	GLIDX m_tex_tileset = -1;
+	GLIDX m_tex_background = -1;
 	const sf::Texture *m_tex_heightfield_s = nullptr;
 	
 	gl_buffer<VBO, DYNAMIC> *m_buffer_vert = nullptr;

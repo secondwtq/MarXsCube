@@ -49,6 +49,7 @@ function Functions.TestManger_onTestInit()
 		terrain:location(Utility.CoordStruct(unpack(chunk.location)))
 		terrain:set_heightfield(Helpers.texture(chunk.heightfield))
 		terrain:set_tileset(Helpers.texture(chunk.tileset))
+		terrain:set_background(Helpers.texture(chunk.background_tex))
 		terrain:load_objfile(chunk.source, chunk.bullet_model)
 
 		if chunk.serialized then

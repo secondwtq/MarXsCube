@@ -24,6 +24,7 @@ void LuaInterface::RegisterInterface_Tesla(LuaStatus &L) {
 				addFunction("location", &TeslaObject::location).
 				addFunction("set_heightfield", &TeslaObject::set_heightfield).
 				addFunction("set_tileset", &TeslaObject::set_tileset).
+				addFunction("set_background", &TeslaObject::set_background).
 				addFunction("create_bullet", &TeslaObject::create_bullet).
 				addFunction("load_objfile", &TeslaObject::load_objfile).
 				addFunction("load_shader", &TeslaObject::load_shader).

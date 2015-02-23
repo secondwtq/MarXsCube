@@ -198,16 +198,15 @@ EventManger::EventManger(LuaStatus &State) : _state(&State),
 
 #undef ADD_EVENT
 
-LuaRef EventManger::CreateObjectTable(Abs_Abstract &src) {LOGFUNC;
+LuaRef EventManger::CreateObjectTable(Abs_Abstract &src) {
 	// cout << "CubeCore: EventManger::CreateObjectTable - Creating " << src.RTTIID << " ... " << endl;
 	ObjectsTable[src.RTTIID] = Generic::CreateObjectTable(src.RTTIID); // newTable(*_state);
 	return ObjectsTable[src.RTTIID];
 }
 
-LuaRef EventManger::GetObjectTable(Abs_Abstract &src) {LOGFUNC;
-	return ObjectsTable[src.RTTIID];
-}
+LuaRef EventManger::GetObjectTable(Abs_Abstract &src) {
+	return ObjectsTable[src.RTTIID]; }
 
-void EventManger::DestroyObjectTable(Abs_Abstract &src) {LOGFUNC;
+void EventManger::DestroyObjectTable(Abs_Abstract &src) {
 	// ObjectsTable[src.RTTIID] = Nil();
 }

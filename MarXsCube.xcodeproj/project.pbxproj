@@ -210,7 +210,7 @@
 		5975C7FB1A9A1C4F0038F85A /* Serialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serialization.h; sourceTree = "<group>"; };
 		5975C7FD1A9A20740038F85A /* Serialization_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Serialization_Interface.cpp; sourceTree = "<group>"; };
 		5975C7FE1A9A20740038F85A /* Serialization_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serialization_Interface.h; sourceTree = "<group>"; };
-		5975C8001A9A236A0038F85A /* libboost_serialization-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_serialization-mt.a"; path = "../../../../../usr/local/Cellar/boost/1.55.0_2/lib/libboost_serialization-mt.a"; sourceTree = "<group>"; };
+		5975C8001A9A236A0038F85A /* libboost_serialization-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_serialization-mt.a"; path = "/usr/local/Cellar/boost/1.55.0_2/lib/libboost_serialization-mt.a"; sourceTree = "<absolute>"; };
 		597D223E1A3D95EC006B296B /* HafniumCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HafniumCommon.h; sourceTree = "<group>"; };
 		598D1DDC1A3966A70049653B /* RayTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RayTest.cpp; sourceTree = "<group>"; };
 		598D1DDD1A3966A70049653B /* RayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest.h; sourceTree = "<group>"; };
@@ -439,7 +439,6 @@
 		592628F5198AB62300858A67 = {
 			isa = PBXGroup;
 			children = (
-				5975C8001A9A236A0038F85A /* libboost_serialization-mt.a */,
 				591064091A88FEF400C6A901 /* jit */,
 				59F431E21A83AC45008795D9 /* lib */,
 				59262900198AB62300858A67 /* src */,
@@ -672,6 +671,7 @@
 		59F431E21A83AC45008795D9 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				5975C8001A9A236A0038F85A /* libboost_serialization-mt.a */,
 				59F5BCAC1A8A0F80006676EC /* libluajit.a */,
 				59725E821A8E015B0010B4F8 /* liblang.a */,
 				591201C61A6D1DA500ECB42A /* OpenGL.framework */,

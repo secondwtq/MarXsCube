@@ -17,7 +17,6 @@ out vec4 color;
 uniform sampler2D texture_main;
 uniform sampler2D texture_second;
 uniform sampler2D texture_heightfield;
-
 uniform sampler2D texture_tileset;
 
 uniform bool is_wireframe;
@@ -75,9 +74,11 @@ void main() {
 	vec4 colort1 = mix(color_original, color_scaled_1, 0.4);
 	vec4 colort2 = mix(colort1, color_scaled_2, 0.4);
 
+	vec4 color_background = texture(texture_main, frag_texcoord/30.0);
+
 	color = 2.0 * vec4(1, 1, 1, 0) * intensity *
-					 colort2;
-	color.a = 1.0;
+					 mix(color_background, colort2, colort2.a);
+	// color.a = 1.0;
 
 #endif
 }
