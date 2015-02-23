@@ -33,6 +33,8 @@ public:
 		this->m_mesh_data = new tesla_dataarray;
 		this->m_btri_map = new btTriangleInfoMap();
 		this->m_bmesh = new btTriangleMesh();
+		
+		this->m_buf_bgpaint = new gl_buffer<VBO, DYNAMIC>;
 	}
 	
 	void location(const CoordStruct& src) {
@@ -64,13 +66,16 @@ public:
 	
 	static TeslaObject *create();
 	
+	GLIDX m_tex_background = -1;
+	GLIDX m_fb_bgpaint = -1;
+	gl_buffer<VBO, DYNAMIC> *m_buf_bgpaint = nullptr;
+	
 private:
 	
 	CoordStruct m_location { 0, 0, 0 };
 	
 	GLIDX m_tex_heightfield = -1;
 	GLIDX m_tex_tileset = -1;
-	GLIDX m_tex_background = -1;
 	const sf::Texture *m_tex_heightfield_s = nullptr;
 	
 	gl_buffer<VBO, DYNAMIC> *m_buffer_vert = nullptr;

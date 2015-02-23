@@ -25,6 +25,8 @@ class GLFoundation {
 		static void unbind(const BufferT& src) {
 			return glBindBuffer(src.buffer_type, 0); }
 	
+		static void reset_target();
+	
 };
 
 enum SILCON_GLBUFFER_TYPE {

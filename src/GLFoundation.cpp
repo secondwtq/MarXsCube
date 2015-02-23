@@ -43,6 +43,14 @@ void GLFoundation::unbind_shader() {
 void GLFoundation::clear_depth() {
 	return glClear(GL_DEPTH_BUFFER_BIT); }
 
+void GLFoundation::reset_target() {
+	GLsizei width = ATVBCube::setting<S::WindowSetting>().width,
+	height = ATVBCube::setting<S::WindowSetting>().height;
+	
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glViewport(0, 0, width, height);
+}
+
 GLuint vertex_arrays[5];
 
 void init_opengl() {
@@ -55,9 +63,6 @@ void init_opengl() {
 //	glDepthMask(GL_TRUE);
 	glClearDepth(1.f);
 	
-	GLsizei width = ATVBCube::setting<S::WindowSetting>().width,
-		height = ATVBCube::setting<S::WindowSetting>().height;
-	
-	glViewport(0, 0, width, height);
+	GLFoundation::reset_target();
 	
 }

@@ -79,6 +79,10 @@ void TeslaObject::load_buffer() {
 	
 	this->m_buffer_vert->init_with(this->m_mesh_data->vec_verts(), 4.0f);
 	this->m_buffer_idx->init_with(this->m_mesh_data->vec_indexes(), 4.0f);
+	
+	this->m_buf_bgpaint->init_with(this->m_mesh_data->vec_verts().data(), 64 * sizeof(float));
+	
+	glGenFramebuffers(1, &this->m_fb_bgpaint);
 }
 
 void TeslaObject::Render() {

@@ -20,6 +20,8 @@
 
 * ~~**[FEATURE]** Allow buildings have boundary for pathfinding.~~ ***fixed***
 
+* **[BUG]** It is suggested that there is a GL_INVALID_ENUM error in Silcon.
+
 * **[FEATURE]** Animations for buildings and units.
 
 * ~~**[BUG]** Locomotor in Gmap is now broken.~~ ***suspended***

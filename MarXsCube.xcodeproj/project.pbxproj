@@ -44,6 +44,8 @@
 		5934586A1A832C8800DE4C28 /* Tesla_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 593458681A832C8800DE4C28 /* Tesla_Interface.cpp */; };
 		5944452F1A75389000941CEB /* CubeTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5944452D1A75389000941CEB /* CubeTransform.cpp */; };
 		5945C3511A99D02D0095EE51 /* WonderlandCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5945C34F1A99D02D0095EE51 /* WonderlandCommon.cpp */; };
+		59465FB71A9B492D008A5B93 /* WonderlandBrushShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59465FB51A9B492D008A5B93 /* WonderlandBrushShader.cpp */; };
+		59465FBA1A9B4984008A5B93 /* WonderlandBrush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59465FB81A9B4984008A5B93 /* WonderlandBrush.cpp */; };
 		5953D4191A90A84F009AD969 /* Wonderland_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5953D4171A90A84F009AD969 /* Wonderland_Interface.cpp */; };
 		595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */; };
 		595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */; };
@@ -199,6 +201,10 @@
 		5944452E1A75389000941CEB /* CubeTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubeTransform.h; sourceTree = "<group>"; };
 		5945C34F1A99D02D0095EE51 /* WonderlandCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WonderlandCommon.cpp; sourceTree = "<group>"; };
 		5945C3501A99D02D0095EE51 /* WonderlandCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonderlandCommon.h; sourceTree = "<group>"; };
+		59465FB51A9B492D008A5B93 /* WonderlandBrushShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WonderlandBrushShader.cpp; sourceTree = "<group>"; };
+		59465FB61A9B492D008A5B93 /* WonderlandBrushShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonderlandBrushShader.h; sourceTree = "<group>"; };
+		59465FB81A9B4984008A5B93 /* WonderlandBrush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WonderlandBrush.cpp; sourceTree = "<group>"; };
+		59465FB91A9B4984008A5B93 /* WonderlandBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonderlandBrush.h; sourceTree = "<group>"; };
 		594F23A01A8F6F8100756010 /* BulletDebugShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BulletDebugShader.h; sourceTree = "<group>"; };
 		5953D4171A90A84F009AD969 /* Wonderland_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wonderland_Interface.cpp; sourceTree = "<group>"; };
 		5953D4181A90A84F009AD969 /* Wonderland_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wonderland_Interface.h; sourceTree = "<group>"; };
@@ -611,6 +617,10 @@
 				5945C34F1A99D02D0095EE51 /* WonderlandCommon.cpp */,
 				59BF15F51A837A9E000DA821 /* WonderlandFoundation.h */,
 				59BF15F41A837A9E000DA821 /* WonderlandFoundation.cpp */,
+				59465FB91A9B4984008A5B93 /* WonderlandBrush.h */,
+				59465FB81A9B4984008A5B93 /* WonderlandBrush.cpp */,
+				59465FB61A9B492D008A5B93 /* WonderlandBrushShader.h */,
+				59465FB51A9B492D008A5B93 /* WonderlandBrushShader.cpp */,
 				5953D4181A90A84F009AD969 /* Wonderland_Interface.h */,
 				5953D4171A90A84F009AD969 /* Wonderland_Interface.cpp */,
 			);
@@ -818,6 +828,7 @@
 				59CF4DC51A95A89C00F61962 /* PathCube.cpp in Sources */,
 				59FCBF461A73CBEC00BEF905 /* SilconThread.cpp in Sources */,
 				59FCBF361A73673100BEF905 /* FSM.cpp in Sources */,
+				59465FBA1A9B4984008A5B93 /* WonderlandBrush.cpp in Sources */,
 				59C97B071A77784000AB3F02 /* TeslaBullet.cpp in Sources */,
 				5975C7FC1A9A1C4F0038F85A /* Serialization.cpp in Sources */,
 				59262949198AB66500858A67 /* ObjectArrayImpl.cpp in Sources */,
@@ -848,6 +859,7 @@
 				59262942198AB66500858A67 /* Common.cpp in Sources */,
 				5975C7FF1A9A20740038F85A /* Serialization_Interface.cpp in Sources */,
 				59BF15F31A837301000DA821 /* TeslaRendering.cpp in Sources */,
+				59465FB71A9B492D008A5B93 /* WonderlandBrushShader.cpp in Sources */,
 				59BF15F61A837A9E000DA821 /* WonderlandFoundation.cpp in Sources */,
 				59CF4DB81A9594AF00F61962 /* Path.cpp in Sources */,
 				5953D4191A90A84F009AD969 /* Wonderland_Interface.cpp in Sources */,

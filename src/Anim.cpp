@@ -18,7 +18,7 @@ Abs_Anim::Abs_Anim(Type_Anim *Type) : Abs_Object(Type, nullptr), AnimType(Type) 
 //	renderSprite.scale(Type->_scale);
 }
 
-void Abs_Anim::Update() {LOGFUNC;
+void Abs_Anim::Update() {
 	EventManger::GetInstance().GetEvent(EventManger::Events::ANIM_UPDATE)(this, ExtTable);
 	if (AnimTimer.TimerEnded)
 		Generic::RemoveObject(this);
@@ -54,5 +54,5 @@ void Abs_Anim::SpawnAtMapCoord(const CoordStruct &location) {LOGFUNC;
 	EventManger::GetInstance().GetEvent(EventManger::Events::ANIM_SPAWN)(this, ExtTable);
 }
 
-unsigned int Abs_Anim::GetCurrentFrame() {LOGFUNC;
+unsigned int Abs_Anim::GetCurrentFrame() {
 	return (AnimTimer.GetCurrent() / AnimType->FrameLast) * AnimType->FrameStep; }

@@ -87,8 +87,11 @@ function InputHandler.MousePress_OnCell(mouse_status)
 
 	if ray_cell:hit() then
 		local hit_point = ray_cell:hit_point()
-		Wonderland.set_texture(TERRAIN_CHUNKS[1], CURRENT_TERRAIN_TILE, hit_point)
-		Wonderland.buffer_update(TERRAIN_CHUNKS[1])
+		-- Wonderland.set_texture(TERRAIN_CHUNKS[1], CURRENT_TERRAIN_TILE, hit_point)
+		-- Wonderland.buffer_update(TERRAIN_CHUNKS[1])
+
+		Wonderland.brush_init()
+		Wonderland.brush_test(TERRAIN_CHUNKS[1])
 
 		if TECHNO_SELECTED then
 			local Techno = Helpers.Techno_TechnoRTTIIDTable(TECHNO_SELECTED)
