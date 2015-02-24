@@ -51,6 +51,23 @@ void GLFoundation::reset_target() {
 	glViewport(0, 0, width, height);
 }
 
+void GLFoundation::toggle_blend(bool enabled) {
+	if (enabled) {
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	} else {
+		glDisable(GL_BLEND);
+	}
+}
+
+void GLFoundation::enable_blend_for(std::function<void ()> action) {
+	GLFoundation::toggle_blend(true);
+	
+	action();
+	
+	GLFoundation::toggle_blend(false);
+}
+
 GLuint vertex_arrays[5];
 
 void init_opengl() {

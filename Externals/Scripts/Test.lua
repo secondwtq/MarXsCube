@@ -11,6 +11,8 @@ TECHNO_SELECTED = nil
 TERRAIN_CHUNKS = { }
 CURRENT_TERRAIN_TILE = 1
 
+WL_BUFFER = nil
+
 function acheroncube_test()
 
 	local start = Utility.CubePoint(0, 0)
@@ -71,5 +73,7 @@ function Functions.TestManger_onTestInit()
 	local building = ModEnvironment.Functions.createTechno(OBJECTS.TESTBUILDING, Utility.CoordStruct(512, 384, 0), true)
 	-- local rail2 = ModEnvironment.Functions.createTechno(OBJECTS.TESTTECHNO_PHY, Utility.CoordStruct(1024, 0, 128), true)
 	ModEnvironment.Functions.createAnim(OBJECTS.TESTANIM, Utility.CoordStruct(1024, 512, 512))
+
+	WL_BUFFER = Evan.DrawBuffer(2048, 2048)
 
 end

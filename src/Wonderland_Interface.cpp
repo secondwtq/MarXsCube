@@ -14,6 +14,11 @@
 void LuaInterface::RegisterInterface_Wonderland(LuaStatus &L) {
 	
 	luabridge::getGlobalNamespace(L).
+		beginNamespace("Evan").
+			beginClass<EvanDrawBuffer>("DrawBuffer").
+				addConstructor<void (*)(std::size_t, std::size_t)>().
+			endClass().
+		endNamespace().
 		beginNamespace("Wonderland").
 			addFunction("set_texture", Wonderland::Foundation::set_texture).
 			addFunction("set_texture_and_blend", Wonderland::Foundation::set_texture_and_blend).

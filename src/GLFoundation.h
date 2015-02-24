@@ -12,6 +12,7 @@
 #include "Common.h"
 #include "cubegl.h"
 #include <vector>
+#include <functional>
 
 void init_opengl();
 
@@ -20,6 +21,9 @@ class GLFoundation {
 	
 		static void unbind_shader();
 		static void clear_depth();
+		static void toggle_blend(bool enabled);
+	
+		static void enable_blend_for(std::function<void ()> action);
 	
 		template<typename BufferT>
 		static void unbind(const BufferT& src) {

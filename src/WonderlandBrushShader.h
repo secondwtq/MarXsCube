@@ -15,7 +15,7 @@
 class WonderlandBrushShader : public gl_shader_ext {
 public:
 	
-	typedef WonderlandBrushVertex type_vert_obj;
+	typedef EvanBrushVertex type_vert_obj;
 	
 	void init_shader();
 	void attribute_attr();

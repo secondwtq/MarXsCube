@@ -96,7 +96,7 @@ function InputHandler.MousePress_OnCell(mouse_status)
 		p = (p / 1920) * 2048
 
 		Wonderland.brush_init()
-		Wonderland.brush_test(TERRAIN_CHUNKS[1], Helpers.texture('WLANDBRUSH'), Helpers.texture('DOGE'), v.vec2cubep(p), 128)
+		Wonderland.brush_test(TERRAIN_CHUNKS[1], WL_BUFFER, Helpers.texture('WLANDBRUSH'), Helpers.texture('DOGE'), v.vec2cubep(p), 128)
 
 		if TECHNO_SELECTED then
 			local Techno = Helpers.Techno_TechnoRTTIIDTable(TECHNO_SELECTED)
