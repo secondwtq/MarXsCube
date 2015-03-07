@@ -16,7 +16,10 @@ function Functions.Abs_Techno_onUpdate(self)
 end
 
 function Functions.Abs_Techno_onSpawn(self, table)
-	local scriptType = self:getTechnoType().ScriptType
+	local script_type = self:getTechnoType().ScriptType
+
+	if script_type.physics.initialstatic then
+		self.Physics:setToStatic() end
 
 	table.disabledTimer = Utility.CubeTimer(64, -1)
 
