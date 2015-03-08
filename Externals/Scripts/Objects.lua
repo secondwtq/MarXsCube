@@ -1,7 +1,6 @@
 Import("Anims.lua")
 
 local composer = require('composer')
-local gmap_comps = require('gmap_comps')
 local locomotor = require 'locomotor'
 local blocomotor = require 'loco_bvehicle'
 local locomotor_raycast = require 'locomotor_raycast'
@@ -293,110 +292,6 @@ OBJECTS.TESTBUILDING = BASES.BaseTechno:newObject({
 			size = { x = 128, y = 128, z = 64 }
 		}
 	}
-})
-
-OBJECTS.GRAPH_LINE = BASES.BaseTechno:newObject({
-	type = "TECHNO",
-	clickmoveable = false,
-	clickselectable = false,
-	occupationtype = 'none',
-
-	appearance = {
-		render_elements = {
-			{
-				name = 'line',
-				type_general = false,
-				type_internal_line = true,
-				has_shadow = false,
-				point1 = { 0, 1000, 50 },
-				point2 = { 1000, 0, 50 },
-				offset = { 0, 0, 0 },
-				thickness = 2,
-				color = { 1, 1, 1, 0.5 }
-			},
-		}
-	},
-
-	components = {
-		-- composer.comp_TechnoColorMultiply,
-		composer.comp_RenderElementsManger,
-		composer.comp_RenderBasicBody,
-		gmap_comps.comp_GraphLineStore,
-	},
-
-
-	physics = {
-		enabled = false,
-		never_enable = true,
-	}
-
-})
-
-OBJECTS.GRAPH_NODE = BASES.BaseTechno:newObject({
-	type = "TECHNO",
-	clickmoveable = false,
-	clickselectable = false,
-	occupationtype = 'none',
-
-	appearance = {
-		render_elements = {
-			{
-				name = 'body',
-				type_general = true,
-				type_directioned = false,
-				type_static = true,
-				has_shadow = true,
-				image = "GRAPH_NODE_IMAGE",
-				shadow = "GRAPH_NODE_SHADOW",
-				offset = { 0, 0, 0 },
-				multiply = { 1.0, 1.0, 1.0, 1.0 },
-				affected_by_global_multiply = true,
-			}
-		}
-	},
-
-	components = {
-		composer.comp_RenderElementsManger,
-		composer.comp_RenderBasicBody,
-		gmap_comps.comp_GraphNodeStore,
-	},
-
-	physics = {
-		enabled = false,
-		never_enable = true,
-	}
-
-})
-
-OBJECTS.SATELITE_BG = BASES.BaseTechno:newObject({
-	type="TECHNO",
-	clickmoveable=false,
-	clickselectable=false,
-	occupationtype='none',
-
-	appearance={
-		render_elements={
-			{
-				name = 'body',
-				type_general = true,
-				type_directioned = false,
-				type_static = true,
-				has_shadow = false,
-				image = "SATELITE",
-				shadow = "SATELITE",
-				offset = { 0, 0, 0 },
-				multiply = { 1.0, 1.0, 1.0, 1.0 },
-				affected_by_global_multiply = true,
-			}
-		},
-	},
-
-	components = {
-		composer.comp_RenderElementsManger,
-		composer.comp_RenderBasicBody,
-	},
-
-	physics={enabled=false}
 })
 
 end

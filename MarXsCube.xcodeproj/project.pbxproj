@@ -77,7 +77,6 @@
 		59F431DC1A839A47008795D9 /* GLM_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F431DA1A839A47008795D9 /* GLM_Interface.cpp */; };
 		59F431E71A83AF0F008795D9 /* GritFoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F431E51A83AF0F008795D9 /* GritFoundation.cpp */; };
 		59F5BCAD1A8A0F80006676EC /* libluajit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F5BCAC1A8A0F80006676EC /* libluajit.a */; };
-		59F5BCB31A8A39E5006676EC /* ZephyrCheck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BCB11A8A39E5006676EC /* ZephyrCheck.cpp */; };
 		59F5BCB61A8B9657006676EC /* SilconSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BCB41A8B9657006676EC /* SilconSprite.cpp */; };
 		59F5BCB91A8B9E4F006676EC /* SilconShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BCB71A8B9E4F006676EC /* SilconShader.cpp */; };
 		59F5BCBE1A8C91F1006676EC /* Silcon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BCBC1A8C91F1006676EC /* Silcon.cpp */; };
@@ -269,10 +268,6 @@
 		59F431E51A83AF0F008795D9 /* GritFoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GritFoundation.cpp; sourceTree = "<group>"; };
 		59F431E61A83AF0F008795D9 /* GritFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GritFoundation.h; sourceTree = "<group>"; };
 		59F5BCAC1A8A0F80006676EC /* libluajit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libluajit.a; path = /usr/local/lib/libluajit.a; sourceTree = "<absolute>"; };
-		59F5BCAF1A8A37D7006676EC /* ZephyrCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZephyrCommon.h; sourceTree = "<group>"; };
-		59F5BCB01A8A38A8006676EC /* ZephyrCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZephyrCore.h; sourceTree = "<group>"; };
-		59F5BCB11A8A39E5006676EC /* ZephyrCheck.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZephyrCheck.cpp; sourceTree = "<group>"; };
-		59F5BCB21A8A39E5006676EC /* ZephyrCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZephyrCheck.h; sourceTree = "<group>"; };
 		59F5BCB41A8B9657006676EC /* SilconSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SilconSprite.cpp; sourceTree = "<group>"; };
 		59F5BCB51A8B9657006676EC /* SilconSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilconSprite.h; sourceTree = "<group>"; };
 		59F5BCB71A8B9E4F006676EC /* SilconShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SilconShader.cpp; sourceTree = "<group>"; };
@@ -480,7 +475,6 @@
 				59F431DD1A83A92D008795D9 /* Verdandi */,
 				59F431DE1A83A944008795D9 /* Wonderland */,
 				5923C8E519D0225A0055E0D5 /* Obsoleted */,
-				59F5BCAE1A8A37C4006676EC /* Zephyr */,
 				5975C7F91A9A1C280038F85A /* Serialization */,
 				5926290F198AB66500858A67 /* Config.h */,
 				59262913198AB66500858A67 /* Map.h */,
@@ -710,17 +704,6 @@
 			name = Grit;
 			sourceTree = "<group>";
 		};
-		59F5BCAE1A8A37C4006676EC /* Zephyr */ = {
-			isa = PBXGroup;
-			children = (
-				59F5BCAF1A8A37D7006676EC /* ZephyrCommon.h */,
-				59F5BCB01A8A38A8006676EC /* ZephyrCore.h */,
-				59F5BCB21A8A39E5006676EC /* ZephyrCheck.h */,
-				59F5BCB11A8A39E5006676EC /* ZephyrCheck.cpp */,
-			);
-			name = Zephyr;
-			sourceTree = "<group>";
-		};
 		59FCBF311A72818100BEF905 /* AtTheVeryBeginning */ = {
 			isa = PBXGroup;
 			children = (
@@ -845,7 +828,6 @@
 				59262945198AB66500858A67 /* LuaInterface.cpp in Sources */,
 				59262955198AB66500858A67 /* Type_Techno.cpp in Sources */,
 				5923C8EF19D02A5E0055E0D5 /* PhysicsGeneral.cpp in Sources */,
-				59F5BCB31A8A39E5006676EC /* ZephyrCheck.cpp in Sources */,
 				59FCB50F1A84A3C90048D776 /* Grit_Interface.cpp in Sources */,
 				59262947198AB66500858A67 /* Map.cpp in Sources */,
 				5923C8E419D01EE60055E0D5 /* Generic.cpp in Sources */,

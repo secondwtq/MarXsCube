@@ -36,8 +36,6 @@ using namespace std;
 
 #include "Timer.h"
 
-#include "ZephyrCheck.h"
-
 Grit grit_global;
 
 Grit *get_grit() {
