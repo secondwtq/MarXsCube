@@ -33,34 +33,7 @@ Abs_Cell::Abs_Cell(int x, int y, bool Special) :
 }
 
 void Abs_Cell::Render() {
-/*
-	// renderSprite.setOrigin(30, 15);
-	obsTransform::GetViewPos_Opted(_coordObj);
-	renderSprite.setPosition(obsTransform::x);
-	if (ShowCenter) renderSprite.setColor(Color(255, 255, 255, 128));
-	// 150202 PM: You are not needed anymore!
-	
-	// if (!PassableTo()) renderSprite.setColor(Color(0, 0, 0, 255));
-//	if (obsTransform::x.x > (-size.x) && obsTransform::x.x <= (WIDTH+size.x) && obsTransform::x.y > (-size.y) && obsTransform::x.y <= (HEIGHT+size.y)) {
-//		static auto shader_ptr = &TestManger::GetInstance().extTerrainShader;
-//		shader_ptr->setParameter("texture0", this->renderTexture->texture);
-//		TestManger::GetInstance().window->draw(renderSprite, shader_ptr);
-		// if (!PassableTo()) {
-		// 	CircleShape shape(5);
-		// 	shape.setFillColor(Color(255, 0, 0));
-		// 	shape.setPosition(x);
-		// 	TestManger::GetInstance().window->draw(shape);
-		// }
-//	}
 
-	if (ShowCenter) {
-		CircleShape shape(1);
-		if (isSpecial) shape.setFillColor(Color(255, 0, 0));
-		else shape.setFillColor(Color(0, 0, 0));
-		shape.setPosition(obsTransform::x);
-		TestManger::GetInstance().window->draw(shape);
-	}
-*/
 }
 
 bool Abs_Cell::initialPerformOccTest(int xoff, int yoff, Abs_Object *Obj, int hei) {

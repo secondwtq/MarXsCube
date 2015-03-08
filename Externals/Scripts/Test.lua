@@ -44,8 +44,6 @@ end
 -- run when game started
 function Functions.TestManger_onTestInit()
 
-	-- Objects.Map.GetInstance():CreateEmptyMap(60, 50)
-
 	for i, chunk in ipairs(map.default.chunks) do
 		local terrain = Tesla.TeslaChunkObject.create()
 		terrain:location(Utility.CoordStruct(unpack(chunk.location)))

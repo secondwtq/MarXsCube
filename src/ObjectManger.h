@@ -54,16 +54,6 @@ class TextureManger {
 		TextureAtlas *getTexture(const string &name);
 };
 
-class TestManger {
-	public:
-		static TestManger *instance;
-		static inline TestManger &GetInstance() { return *instance; }
-
-		RenderWindow *window = nullptr;
-
-		void initTest();
-};
-
 #include "Abstract.h"
 
 #endif

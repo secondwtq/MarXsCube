@@ -51,7 +51,7 @@ sf::RenderWindow *window_global = nullptr;
 void safe_session_close() {
 	Acheron::Bullet.invoke_and_stop();
 	Acheron::Silcon.invoke_and_stop();
-	TestManger::GetInstance().window->close();
+	window_global->close();
 }
 
 int main() {
@@ -80,9 +80,9 @@ int main() {
 	SilconSpriteGeneral::init();
 	Generic::Init_FunObjectTableCreate(config);
 
-	TestManger::GetInstance().window = window_global;
 	grit_global.late_update();
-	TestManger::GetInstance().initTest();
+	Generic::PhysicsGeneral()->init();
+	EventManger::GetInstance().GetEvent(EventManger::Events::TEST_BEGIN)();
 
 	Pathfinding::init(Map::GetInstance().size.x, Map::GetInstance().size.y);
 	obsTransform::UpdateVm(0, 0);

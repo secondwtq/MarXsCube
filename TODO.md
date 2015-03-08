@@ -10,7 +10,15 @@
 
 * **[MODULE]** C/S architecture for replay, save/load, network.
 
+* **[MODULE]** Reflection support for C++ & Lua.
+
 * **[MODULE]** Serialization for CubeCore and Lunar data.
+
+* **[FEATURE]** More debugging support.
+
+* **[MAINTENANCE]** More clear interface.
+
+* **[FEATURE]** We need a mechanism to manage components.
 
 * **[FEATURE]** And a notification center for events.
 
