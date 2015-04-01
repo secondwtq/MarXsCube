@@ -38,7 +38,7 @@ bool EvanDrawBuffer::bind(GLIDX target) {
 	this->m_target_id = target;
 	glDrawBuffers(1, _evan_fb_bufs);
 	glViewport(0, 0, static_cast<int>(this->m_width), static_cast<int>(this->m_height));
-	
+
 	this->m_buf_paint.use();
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
 		printf("Framebuffer not complete!\n");
@@ -58,22 +58,22 @@ void BrushInit() {
 	shader_test.load_file(SHADERTYPE::FRAG, "shaders/wonderland_brush.frag");
 	shader_test.create();
 	shader_test.init_shader();
-	
+
 	std::cout << shader_test.log(VERTEX);
 	std::cout << shader_test.log(FRAG);
 	Acheron::Silcon.invoke();
 }
 
 void BrushTest(TeslaObject *chunk, EvanDrawBuffer *buffer, TextureAtlas *brush, TextureAtlas *fill, CubePoint& center, float radius) {
-	
+
 	Acheron::Silcon.pause();
-	
+
 	GLFoundation::enable_blend_for([chunk, buffer, brush, fill, &center, radius] () {
-	
+
 		glm::vec2 scale { 1, 1 }, position { center.x, center.y };
 		scale *= radius;
 		glm::mat4 projection = glm::ortho(0.f, (float)2048, (float)2048, 0.f, -16384.f, 16384.f);
-		
+
 		buffer->bind(chunk->get_texid_bg());
 		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(g_quad_vertex_buffer_data), g_quad_vertex_buffer_data);
 		shader_test.use_n_load();
@@ -82,13 +82,13 @@ void BrushTest(TeslaObject *chunk, EvanDrawBuffer *buffer, TextureAtlas *brush, 
 		SET_UNIFORM2(shader_test, brush_scale, scale);
 		BIND_TEXTURE(shader_test, texture_mask, brush->texture.m_texture, 0);
 		BIND_TEXTURE(shader_test, texture_fill, fill->texture.m_texture, 1);
-		
+
 		glDrawArrays(GL_TRIANGLES, 0, 6);
-		
+
 		shader_test.disable_attributes();
 		buffer->unbind();
-	
+
 	});
-	
+
 	Acheron::Silcon.invoke();
 }

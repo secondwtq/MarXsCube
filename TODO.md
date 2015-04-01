@@ -55,6 +55,8 @@
 
 * ~~**[FEATURE]** This seems good: [http://terralang.org/index.html](). ***won't fix***~~
 
+* **[FEATURE]** Try extending LuaBridge for operator overloading with metatable on userdata.
+
 * **[FEATURE]** MarXsCube DSL (maybe related to components) with luajit-lang-toolkit. ***in progress***
 
 

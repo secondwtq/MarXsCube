@@ -20,6 +20,6 @@ Pathway pathway_from_gritpath(const std::vector<CubePoint> *src) {
 		t.push_back(glm::vec3(i->x, i->y, 0)); }
 	
 	Pathway ret(t.size(), t.data(), 256, false);
-	printf("pathway_from_gritpath: %lu points, length %f\n.", ret.pointCount(), ret.length());
+	printf("pathway_from_gritpath: %lu points, length %f.\n", ret.pointCount(), ret.length());
 	return ret;
 }

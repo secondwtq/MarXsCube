@@ -19,8 +19,8 @@ class ConfigManger {
 		ConfigManger(LuaStatus &state);
 		void loadConfigFrom(const char *filename);
 		void load() { }
-		static void LUA_loadTexture(ConfigManger *self, luabridge::LuaRef name, luabridge::LuaRef args) {LOGFUNC; self->loadTexture(name, args); }
-		static void LUA_loadObject(ConfigManger *self, luabridge::LuaRef name, luabridge::LuaRef args) {LOGFUNC; self->loadObject(name, args); }
+		static void LUA_loadTexture(ConfigManger *self, luabridge::LuaRef name, luabridge::LuaRef args) { self->loadTexture(name, args); }
+		static void LUA_loadObject(ConfigManger *self, luabridge::LuaRef name, luabridge::LuaRef args) { self->loadObject(name, args); }
 
 		void loadTexture(std::string name, luabridge::LuaRef args);
 		void loadObject(std::string name, luabridge::LuaRef args);

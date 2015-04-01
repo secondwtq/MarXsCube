@@ -10,8 +10,6 @@
 
 #include "Acheron.h"
 
-#include "GProfiler.h"
-
 #include <thread>
 #include <chrono>
 #include <functional>
@@ -37,7 +35,6 @@ void Acheron::AcheronBase::function() {
 		if (!this->m_running) return lk.unlock();
 		this->m_target();
 		if (this->m_running) { if (this->m_auto_lock) this->m_cycle = false; }
-		else return lk.unlock();
-		lk.unlock();
+		else return;
 	}
 }
