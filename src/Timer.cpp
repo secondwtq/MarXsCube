@@ -23,7 +23,7 @@ namespace {
 #include <mach/mach_time.h>
 #elif defined(CUBE_PLATFORM_WINDOWS)
 #include <windows.h>
-#elif defined(CUBE_PLATFROM_POSIX)
+#elif defined(CUBE_PLATFORM_POSIX)
 #include <time.h>
 #endif
 
@@ -33,7 +33,7 @@ void timer_init() {
 	mach_timebase_info_data_t rate_mach;
 	mach_timebase_info(&rate_mach);
 	rate_d = 1000000. * (rate_mach.numer / (double)rate_mach.denom);
-#elif defined(CUBE_PLATFROM_WINDOWS)
+#elif defined(CUBE_PLATFORM_WINDOWS)
 	LARGE_INTEGER f;
  
 	QueryPerformanceFrequency(&f);
@@ -55,7 +55,7 @@ double time_in_millisec() {
 	now = mach_absolute_time();
 #elif defined(CUBE_PLATFORM_WINDOWS)
 	LARGE_INTEGER f;
-	QueryPerformanceFrequency(&f);
+	QueryPerformanceCounter(&f);
 	now = f.QuadPart;
 #elif defined(CUBE_PLATFORM_POSIX)
 	

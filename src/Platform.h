@@ -11,22 +11,19 @@
 
 #define CUBE_COMPILER_UNKNOWN
 
-#ifdef _WIN32
-#define CUBE_PLATFORM_WINDOWS
-#define CUBE_PLATFORM_NONPOSIX
-#endif
-
 #ifdef __APPLE__
 #define CUBE_PLATFORM_OS_X
 #define CUBE_PLATFORM_DARWIN
 #define CUBE_PLATFORM_POSIX
 #define CUBE_PLATFORM_MACH
-#elif defined(_MSC_VER)
+#elif defined(_WIN32)
 #define CUBE_PLATFORM_WINDOWS
 #define CUBE_PLATFORM_NONPOSIX
+#if defined(_MSC_VER)
 #undef CUBE_COMPILER_UNKNOWN
 #define CUBE_COMPILER_MSVC
 #pragma message "MSVC is not supported by MarKsCube yet."
+#endif
 #elif defined(__linux)
 #define CUBE_PLATFORM_LINUX
 #define CUBE_PLATFORM_POSIX
@@ -57,7 +54,7 @@
 // so ...
 // http://stackoverflow.com/questions/9832687/strange-diagnostic-pragma-behavior-in-gcc-4-6
 // http://stackoverflow.com/questions/8071579/hide-gcc-warning-set-but-not-used
-#ifdef CUBE_COMPILER_GCC
+#ifdef CUBE_COMPILER_GCC_BASED
 #define CUBEMUTEW_NOT_USED __attribute__ ((unused))
 #else
 #define CUBEMUTEW_NOT_USED
