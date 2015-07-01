@@ -35,7 +35,6 @@
 #include "Wonderland_Interface.h"
 #include "BulletInterface.h"
 #include "Path_Interface.h"
-#include "Serialization_Interface.h"
 
 #include "Gmap_Interface.h"
 
@@ -66,7 +65,6 @@ namespace LuaInterface {
 		RegisterInterface_Wonderland(L);
 		RegisterInterface_Bullet(L);
 		RegisterInterface_Path(L);
-		RegisterInterface_Serialization(L);
 		
 		RegisterInterface_Std<int>(L, "int");
 		RegisterInterface_Std<CubePoint>(L, "CubePoint");

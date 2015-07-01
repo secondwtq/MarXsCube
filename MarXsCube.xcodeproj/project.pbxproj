@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		462948661B458A560052B07E /* libluajit-5.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 462948651B458A560052B07E /* libluajit-5.1.a */; };
+		462948681B4591EF0052B07E /* libLinearMath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 462948671B4591EF0052B07E /* libLinearMath.a */; };
+		4629486B1B4592000052B07E /* libBulletCollision.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 462948691B4592000052B07E /* libBulletCollision.a */; };
+		4629486C1B4592000052B07E /* libBulletDynamics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4629486A1B4592000052B07E /* libBulletDynamics.a */; };
+		462948701B4592F20052B07E /* libsfml-graphics.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4629486D1B4592F20052B07E /* libsfml-graphics.2.2.0.dylib */; };
+		462948711B4592F20052B07E /* libsfml-system.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4629486E1B4592F20052B07E /* libsfml-system.2.2.0.dylib */; };
+		462948721B4592F20052B07E /* libsfml-window.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4629486F1B4592F20052B07E /* libsfml-window.2.2.0.dylib */; };
 		5910640F1A890EC400C6A901 /* AcheronGCD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5910640D1A890EC400C6A901 /* AcheronGCD.cpp */; };
 		591064121A8912E100C6A901 /* AcheronCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 591064101A8912E100C6A901 /* AcheronCube.cpp */; };
 		591064151A89151000C6A901 /* Acheron_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 591064131A89151000C6A901 /* Acheron_Interface.cpp */; };
-		591201C11A6D078900ECB42A /* libsfml-window.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 591201BE1A6D078900ECB42A /* libsfml-window.2.2.0.dylib */; };
-		591201C21A6D078900ECB42A /* libsfml-system.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 591201BF1A6D078900ECB42A /* libsfml-system.2.2.0.dylib */; };
-		591201C51A6D1D9F00ECB42A /* libsfml-graphics.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 591201BD1A6D078900ECB42A /* libsfml-graphics.2.2.0.dylib */; };
 		591201C71A6D1DA500ECB42A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 591201C61A6D1DA500ECB42A /* OpenGL.framework */; };
 		591692601A3E11D2001D4D35 /* SFLineShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5916925E1A3E11D2001D4D35 /* SFLineShape.cpp */; };
 		5923C8DA19D00EB90055E0D5 /* RenderElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5923C8D919D00EB90055E0D5 /* RenderElement.cpp */; };
@@ -47,13 +51,6 @@
 		59465FB71A9B492D008A5B93 /* WonderlandBrushShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59465FB51A9B492D008A5B93 /* WonderlandBrushShader.cpp */; };
 		59465FBA1A9B4984008A5B93 /* WonderlandBrush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59465FB81A9B4984008A5B93 /* WonderlandBrush.cpp */; };
 		5953D4191A90A84F009AD969 /* Wonderland_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5953D4171A90A84F009AD969 /* Wonderland_Interface.cpp */; };
-		595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */; };
-		595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */; };
-		595DDC13198ADD990046919B /* libLinearMath_xcode4_x64_release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */; };
-		59725E831A8E015B0010B4F8 /* liblang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59725E821A8E015B0010B4F8 /* liblang.a */; };
-		5975C7FC1A9A1C4F0038F85A /* Serialization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5975C7FA1A9A1C4F0038F85A /* Serialization.cpp */; };
-		5975C7FF1A9A20740038F85A /* Serialization_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5975C7FD1A9A20740038F85A /* Serialization_Interface.cpp */; };
-		5975C8011A9A236A0038F85A /* libboost_serialization-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5975C8001A9A236A0038F85A /* libboost_serialization-mt.a */; };
 		598D1DDE1A3966A70049653B /* RayTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDC1A3966A70049653B /* RayTest.cpp */; };
 		598D1DE11A3967FF0049653B /* RayTest_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598D1DDF1A3967FF0049653B /* RayTest_Interface.cpp */; };
 		598E6EEF1A6F649E000C68BE /* ModelLoader_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598E6EED1A6F649E000C68BE /* ModelLoader_obj.cpp */; };
@@ -76,7 +73,6 @@
 		59CF4DC81A95A9D000F61962 /* Pathway.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59CF4DC61A95A9D000F61962 /* Pathway.cpp */; };
 		59F431DC1A839A47008795D9 /* GLM_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F431DA1A839A47008795D9 /* GLM_Interface.cpp */; };
 		59F431E71A83AF0F008795D9 /* GritFoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F431E51A83AF0F008795D9 /* GritFoundation.cpp */; };
-		59F5BCAD1A8A0F80006676EC /* libluajit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F5BCAC1A8A0F80006676EC /* libluajit.a */; };
 		59F5BCB61A8B9657006676EC /* SilconSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BCB41A8B9657006676EC /* SilconSprite.cpp */; };
 		59F5BCB91A8B9E4F006676EC /* SilconShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BCB71A8B9E4F006676EC /* SilconShader.cpp */; };
 		59F5BCBE1A8C91F1006676EC /* Silcon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BCBC1A8C91F1006676EC /* Silcon.cpp */; };
@@ -112,6 +108,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		462948651B458A560052B07E /* libluajit-5.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libluajit-5.1.a"; path = "/usr/local/lib/libluajit-5.1.a"; sourceTree = "<absolute>"; };
+		462948671B4591EF0052B07E /* libLinearMath.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath.a; path = /usr/local/lib/libLinearMath.a; sourceTree = "<absolute>"; };
+		462948691B4592000052B07E /* libBulletCollision.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision.a; path = /usr/local/lib/libBulletCollision.a; sourceTree = "<absolute>"; };
+		4629486A1B4592000052B07E /* libBulletDynamics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics.a; path = /usr/local/lib/libBulletDynamics.a; sourceTree = "<absolute>"; };
+		4629486D1B4592F20052B07E /* libsfml-graphics.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-graphics.2.2.0.dylib"; path = "/usr/local/lib/libsfml-graphics.2.2.0.dylib"; sourceTree = "<absolute>"; };
+		4629486E1B4592F20052B07E /* libsfml-system.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-system.2.2.0.dylib"; path = "/usr/local/lib/libsfml-system.2.2.0.dylib"; sourceTree = "<absolute>"; };
+		4629486F1B4592F20052B07E /* libsfml-window.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-window.2.2.0.dylib"; path = "/usr/local/lib/libsfml-window.2.2.0.dylib"; sourceTree = "<absolute>"; };
 		591063FC1A88FD7A00C6A901 /* components.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = components.o; path = tmp/components.o; sourceTree = "<group>"; };
 		591063FD1A88FD7A00C6A901 /* object.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = object.o; path = tmp/object.o; sourceTree = "<group>"; };
 		591063FE1A88FD7A00C6A901 /* Placeholders.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = Placeholders.o; path = tmp/Placeholders.o; sourceTree = "<group>"; };
@@ -123,9 +126,6 @@
 		591064131A89151000C6A901 /* Acheron_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Acheron_Interface.cpp; sourceTree = "<group>"; };
 		591064141A89151000C6A901 /* Acheron_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Acheron_Interface.h; sourceTree = "<group>"; };
 		591064161A89228700C6A901 /* CallbackRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallbackRef.h; sourceTree = "<group>"; };
-		591201BD1A6D078900ECB42A /* libsfml-graphics.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-graphics.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-graphics.2.2.0.dylib"; sourceTree = "<group>"; };
-		591201BE1A6D078900ECB42A /* libsfml-window.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-window.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-window.2.2.0.dylib"; sourceTree = "<group>"; };
-		591201BF1A6D078900ECB42A /* libsfml-system.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-system.2.2.0.dylib"; path = "../../Assets/Librarys/SFML-master/lib/libsfml-system.2.2.0.dylib"; sourceTree = "<group>"; };
 		591201C61A6D1DA500ECB42A /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		5916925E1A3E11D2001D4D35 /* SFLineShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SFLineShape.cpp; sourceTree = "<group>"; };
 		5916925F1A3E11D2001D4D35 /* SFLineShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFLineShape.h; sourceTree = "<group>"; };
@@ -207,15 +207,6 @@
 		594F23A01A8F6F8100756010 /* BulletDebugShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BulletDebugShader.h; sourceTree = "<group>"; };
 		5953D4171A90A84F009AD969 /* Wonderland_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wonderland_Interface.cpp; sourceTree = "<group>"; };
 		5953D4181A90A84F009AD969 /* Wonderland_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wonderland_Interface.h; sourceTree = "<group>"; };
-		595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletCollision_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletCollision_xcode4_x64_release.a; sourceTree = "<group>"; };
-		595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBulletDynamics_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libBulletDynamics_xcode4_x64_release.a; sourceTree = "<group>"; };
-		595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLinearMath_xcode4_x64_release.a; path = ../../Assets/Librarys/Bullet/lib/libLinearMath_xcode4_x64_release.a; sourceTree = "<group>"; };
-		59725E821A8E015B0010B4F8 /* liblang.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblang.a; path = /usr/local/lib/liblang.a; sourceTree = "<absolute>"; };
-		5975C7FA1A9A1C4F0038F85A /* Serialization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Serialization.cpp; sourceTree = "<group>"; };
-		5975C7FB1A9A1C4F0038F85A /* Serialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serialization.h; sourceTree = "<group>"; };
-		5975C7FD1A9A20740038F85A /* Serialization_Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Serialization_Interface.cpp; sourceTree = "<group>"; };
-		5975C7FE1A9A20740038F85A /* Serialization_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serialization_Interface.h; sourceTree = "<group>"; };
-		5975C8001A9A236A0038F85A /* libboost_serialization-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_serialization-mt.a"; path = "/usr/local/Cellar/boost/1.55.0_2/lib/libboost_serialization-mt.a"; sourceTree = "<absolute>"; };
 		597D223E1A3D95EC006B296B /* HafniumCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HafniumCommon.h; sourceTree = "<group>"; };
 		598D1DDC1A3966A70049653B /* RayTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RayTest.cpp; sourceTree = "<group>"; };
 		598D1DDD1A3966A70049653B /* RayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayTest.h; sourceTree = "<group>"; };
@@ -267,7 +258,6 @@
 		59F431DB1A839A47008795D9 /* GLM_Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLM_Interface.h; sourceTree = "<group>"; };
 		59F431E51A83AF0F008795D9 /* GritFoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GritFoundation.cpp; sourceTree = "<group>"; };
 		59F431E61A83AF0F008795D9 /* GritFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GritFoundation.h; sourceTree = "<group>"; };
-		59F5BCAC1A8A0F80006676EC /* libluajit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libluajit.a; path = /usr/local/lib/libluajit.a; sourceTree = "<absolute>"; };
 		59F5BCB41A8B9657006676EC /* SilconSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SilconSprite.cpp; sourceTree = "<group>"; };
 		59F5BCB51A8B9657006676EC /* SilconSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilconSprite.h; sourceTree = "<group>"; };
 		59F5BCB71A8B9E4F006676EC /* SilconShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SilconShader.cpp; sourceTree = "<group>"; };
@@ -314,7 +304,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5975C8011A9A236A0038F85A /* libboost_serialization-mt.a in Frameworks */,
+				462948701B4592F20052B07E /* libsfml-graphics.2.2.0.dylib in Frameworks */,
+				462948711B4592F20052B07E /* libsfml-system.2.2.0.dylib in Frameworks */,
+				462948721B4592F20052B07E /* libsfml-window.2.2.0.dylib in Frameworks */,
+				4629486B1B4592000052B07E /* libBulletCollision.a in Frameworks */,
+				4629486C1B4592000052B07E /* libBulletDynamics.a in Frameworks */,
+				462948681B4591EF0052B07E /* libLinearMath.a in Frameworks */,
+				462948661B458A560052B07E /* libluajit-5.1.a in Frameworks */,
 				59F5BCC61A8DFFE4006676EC /* binded_attr.o in Frameworks */,
 				59F5BCC71A8DFFE4006676EC /* ttter.o in Frameworks */,
 				59F5BCC81A8DFFE4006676EC /* composer.o in Frameworks */,
@@ -322,15 +318,7 @@
 				59F5BCC01A8DFFE3006676EC /* Placeholders.o in Frameworks */,
 				59F5BCC11A8DFFE3006676EC /* object.o in Frameworks */,
 				59F5BCC21A8DFFE3006676EC /* Helpers.o in Frameworks */,
-				59725E831A8E015B0010B4F8 /* liblang.a in Frameworks */,
-				59F5BCAD1A8A0F80006676EC /* libluajit.a in Frameworks */,
 				591201C71A6D1DA500ECB42A /* OpenGL.framework in Frameworks */,
-				591201C11A6D078900ECB42A /* libsfml-window.2.2.0.dylib in Frameworks */,
-				591201C51A6D1D9F00ECB42A /* libsfml-graphics.2.2.0.dylib in Frameworks */,
-				591201C21A6D078900ECB42A /* libsfml-system.2.2.0.dylib in Frameworks */,
-				595DDC12198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a in Frameworks */,
-				595DDC11198ADD990046919B /* libBulletCollision_xcode4_x64_release.a in Frameworks */,
-				595DDC13198ADD990046919B /* libLinearMath_xcode4_x64_release.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,7 +463,6 @@
 				59F431DD1A83A92D008795D9 /* Verdandi */,
 				59F431DE1A83A944008795D9 /* Wonderland */,
 				5923C8E519D0225A0055E0D5 /* Obsoleted */,
-				5975C7F91A9A1C280038F85A /* Serialization */,
 				5926290F198AB66500858A67 /* Config.h */,
 				59262913198AB66500858A67 /* Map.h */,
 				59262916198AB66500858A67 /* ObjectArray.h */,
@@ -513,17 +500,6 @@
 				5926292A198AB66500858A67 /* Common.cpp */,
 			);
 			name = Common;
-			sourceTree = "<group>";
-		};
-		5975C7F91A9A1C280038F85A /* Serialization */ = {
-			isa = PBXGroup;
-			children = (
-				5975C7FB1A9A1C4F0038F85A /* Serialization.h */,
-				5975C7FA1A9A1C4F0038F85A /* Serialization.cpp */,
-				5975C7FE1A9A20740038F85A /* Serialization_Interface.h */,
-				5975C7FD1A9A20740038F85A /* Serialization_Interface.cpp */,
-			);
-			name = Serialization;
 			sourceTree = "<group>";
 		};
 		599985F91A80DC5F00E6CE68 /* Vehicle */ = {
@@ -675,16 +651,14 @@
 		59F431E21A83AC45008795D9 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				5975C8001A9A236A0038F85A /* libboost_serialization-mt.a */,
-				59F5BCAC1A8A0F80006676EC /* libluajit.a */,
-				59725E821A8E015B0010B4F8 /* liblang.a */,
+				4629486D1B4592F20052B07E /* libsfml-graphics.2.2.0.dylib */,
+				4629486E1B4592F20052B07E /* libsfml-system.2.2.0.dylib */,
+				4629486F1B4592F20052B07E /* libsfml-window.2.2.0.dylib */,
+				462948691B4592000052B07E /* libBulletCollision.a */,
+				4629486A1B4592000052B07E /* libBulletDynamics.a */,
+				462948671B4591EF0052B07E /* libLinearMath.a */,
+				462948651B458A560052B07E /* libluajit-5.1.a */,
 				591201C61A6D1DA500ECB42A /* OpenGL.framework */,
-				591201BD1A6D078900ECB42A /* libsfml-graphics.2.2.0.dylib */,
-				591201BE1A6D078900ECB42A /* libsfml-window.2.2.0.dylib */,
-				591201BF1A6D078900ECB42A /* libsfml-system.2.2.0.dylib */,
-				595DDC0E198ADD990046919B /* libBulletCollision_xcode4_x64_release.a */,
-				595DDC0F198ADD990046919B /* libBulletDynamics_xcode4_x64_release.a */,
-				595DDC10198ADD990046919B /* libLinearMath_xcode4_x64_release.a */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -813,7 +787,6 @@
 				59FCBF361A73673100BEF905 /* FSM.cpp in Sources */,
 				59465FBA1A9B4984008A5B93 /* WonderlandBrush.cpp in Sources */,
 				59C97B071A77784000AB3F02 /* TeslaBullet.cpp in Sources */,
-				5975C7FC1A9A1C4F0038F85A /* Serialization.cpp in Sources */,
 				59262949198AB66500858A67 /* ObjectArrayImpl.cpp in Sources */,
 				593458641A8251F600DE4C28 /* GLShaderExt.cpp in Sources */,
 				5934586A1A832C8800DE4C28 /* Tesla_Interface.cpp in Sources */,
@@ -839,7 +812,6 @@
 				59F5BCB61A8B9657006676EC /* SilconSprite.cpp in Sources */,
 				59C97B0D1A7942CA00AB3F02 /* TeslaRenderingBasic.cpp in Sources */,
 				59262942198AB66500858A67 /* Common.cpp in Sources */,
-				5975C7FF1A9A20740038F85A /* Serialization_Interface.cpp in Sources */,
 				59BF15F31A837301000DA821 /* TeslaRendering.cpp in Sources */,
 				59465FB71A9B492D008A5B93 /* WonderlandBrushShader.cpp in Sources */,
 				59BF15F61A837A9E000DA821 /* WonderlandFoundation.cpp in Sources */,
@@ -1007,9 +979,9 @@
 					10000,
 					"-image_base",
 					100000000,
-					"-lprofiler",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = /usr/local/include/Bullet;
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = Debug;
@@ -1058,9 +1030,9 @@
 					10000,
 					"-image_base",
 					100000000,
-					"-lprofiler",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = /usr/local/include/Bullet;
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = Release;
